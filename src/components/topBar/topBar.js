@@ -31,10 +31,13 @@ const Search = styled('div')(({ theme }) => ({
     backgroundColor: alpha(theme.palette.common.white, 0.15),
     marginRight: theme.spacing(1),
     marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
+    width: '360px',
+    [theme.breakpoints.up('md')]: {
         marginLeft: theme.spacing(2),
-        width: '50%',
+        width: '520px',
+    },
+    [theme.breakpoints.down('md')]: {
+        width: '400px',
     },
 }));
 
@@ -56,10 +59,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
         // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
         transition: theme.transitions.create('width'),
-        width: '100%',
+        width: '295px',
         [theme.breakpoints.up('md')]: {
-            width: '20ch',
+            width: '455px',
         },
+        [theme.breakpoints.down('md')]: {
+            width: '335px',
+        },
+
     },
 }));
 
@@ -153,11 +160,9 @@ export default function PrimarySearchAppBar(props) {
             <MenuItem >
                 <IconButton
                     size="large"
-                    aria-label="show 4 new mails"
                     color="inherit"
                 >
                     <Badge
-                        badgeContent={4}
                         color="error"
                     >
                         <FavoriteIcon />
@@ -196,7 +201,7 @@ export default function PrimarySearchAppBar(props) {
     );
 
     return (
-        <Box sx={{ flexGrow: 1}}>
+        <Box sx={{ flexGrow: 1 }}>
             <AppBar
                 position="static"
                 style={{
@@ -229,20 +234,19 @@ export default function PrimarySearchAppBar(props) {
                         style={{
                             background: '#C4C4C4',
                             color: '#0D1B2A',
-                            
                         }}
                     >
                         <SearchIconWrapper>
-                            <SearchIcon 
-                            style={{
-                                marginLeft: '-5px',
-                            }}
+                            <SearchIcon
+                                style={{
+                                    marginLeft: '-5px',
+                                }}
                             />
                         </SearchIconWrapper>
                         <StyledInputBase
                             placeholder="Pesquisar jogo..."
                             inputProps={{ 'aria-label': 'search' }}
-                            style={{marginLeft: '-5px',}}
+                            style={{ marginLeft: '-5px', }}
                         />
                     </Search>
                     <Box sx={{ flexGrow: 1 }} />
@@ -299,7 +303,7 @@ export default function PrimarySearchAppBar(props) {
                                 onClick={handleProfileMenuOpen}
                                 endIcon={<KeyboardArrowDownIcon />}
                             >
-                                <AccountCircleIcon style={{ marginRight: "10px", marginLeft: '-10px'}} />
+                                <AccountCircleIcon style={{ marginRight: "10px", marginLeft: '-10px' }} />
                                 {props.userAccount}
                             </Button>
                         </IconButton>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './FloatingBar.css';
+import './floatingBar.css';
 
-export function FloatingBar() {
+function floatingBar() {
     return (
             <nav className='floatingbar'>
                 <div className='floatingbar-container'>
@@ -10,3 +10,5 @@ export function FloatingBar() {
             </nav>
     )
 }
+
+export default floatingBar

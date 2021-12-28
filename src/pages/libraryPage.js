@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Library() {
+const library = () => {
     return (
         <div>
             <h1>Library Page</h1>
@@ -8,4 +8,4 @@ function Library() {
     )
 }
 
-export default Library
+export default library

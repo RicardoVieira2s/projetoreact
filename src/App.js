@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Home from './pages/Home';
-import AccountPage from './pages/AccountPage';
-import LibraryPage from './pages/LibraryPage';
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import Home from './pages/home';
+import AccountPage from './pages/accountPage';
+import LibraryPage from './pages/libraryPage';
 
 function App() {
   return (

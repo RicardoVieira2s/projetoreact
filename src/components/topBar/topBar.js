@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './Topbar.css';
+import './topbar.css';
 import { Link } from 'react-router-dom';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -23,14 +23,11 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import PersonIcon from '@mui/icons-material/Person';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
-import { height } from '@mui/system';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: '20px',
-    backgroundColor: alpha(theme.palette.common.white, 0.15), '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: '100%',
@@ -52,7 +49,6 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: "#415A77",
-
     '& .MuiInputBase-input': {
         padding: theme.spacing(1, 1, 1, 0),
         // vertical padding + font size from searchIcon
@@ -60,7 +56,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
         transition: theme.transitions.create('width'),
         width: '100%',
         [theme.breakpoints.up('md')]: {
-            width: '75ch',
+            width: '95ch',
         },
     },
 }));
@@ -153,8 +149,15 @@ export default function PrimarySearchAppBar(props) {
             onClose={handleMobileMenuClose}
         >
             <MenuItem >
-                <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                    <Badge badgeContent={4} color="error">
+                <IconButton
+                    size="large"
+                    aria-label="show 4 new mails"
+                    color="inherit"
+                >
+                    <Badge
+                        badgeContent={4}
+                        color="error"
+                    >
                         <FavoriteIcon />
                     </Badge>
                 </IconButton>
@@ -166,7 +169,10 @@ export default function PrimarySearchAppBar(props) {
                     aria-label="show 17 new notifications"
                     color="inherit"
                 >
-                    <Badge badgeContent={17} color="error">
+                    <Badge
+                        badgeContent={17}
+                        color="error"
+                    >
                         <ShoppingCartIcon />
                     </Badge>
                 </IconButton>
@@ -188,19 +194,40 @@ export default function PrimarySearchAppBar(props) {
     );
 
     return (
-        <Box sx={{ flexGrow: 1,  height: 90,}}>
-            <AppBar position="static" style={{ background: '#0D1B2A', color: '#C4C4C4' ,  height: "100%",}} >
-                <Toolbar sx={{ flexGrow: 1}}>
+        <Box sx={{ flexGrow: 1, height: 90, }}>
+            <AppBar
+                position="static"
+                style={{
+                    background: '#0D1B2A',
+                    color: '#C4C4C4',
+                    height: "100%",
+                }}
+            >
+                <Toolbar
+                    sx={{
+                        flexGrow: 1
+                    }}
+                >
                     <Typography
                         variant="h6"
                         noWrap
                         component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' }, color: '#415A77' }}
+                        sx={{
+                            flexGrow: 1,
+                            display: {
+                                xs: 'none',
+                                sm: 'block',
+                            },
+                            color: '#415A77',
+                        }}
                     >
                         GOOFRSTORE
                     </Typography>
                     <Search
-                        style={{ background: '#C4C4C4', color: '#0D1B2A' }}
+                        style={{
+                            background: '#C4C4C4',
+                            color: '#0D1B2A',
+                        }}
                     >
                         <SearchIconWrapper>
                             <SearchIcon

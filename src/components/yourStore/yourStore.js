@@ -1,8 +1,8 @@
 import React from 'react';
 import { link } from 'react-router-dom';
-import './YourStore.css';
+import './yourStore.css';
 
-function YourStore() {
+function yourStore() {
     return (
         <div className='yourstore'>
             <div className='yourstore-container'>
@@ -12,4 +12,4 @@ function YourStore() {
     )
 }
 
-export default YourStore;
+export default yourStore;

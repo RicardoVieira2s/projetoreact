@@ -1,4 +1,18 @@
-html,body{
+@import url('https://fonts.googleapis.com/css2?family=Viga&display=swap');
+
+html, body {
     margin: 0;
     padding: 0;
+    font-family: 'Viga', sans-serif;
+    font-size: 20px !important;
 }
+
+input{
+    font-family: 'Viga', sans-serif;
+    font-size: 20px;
+}
+
+input::placeholder {
+    font-family: 'Viga', sans-serif;
+}
+

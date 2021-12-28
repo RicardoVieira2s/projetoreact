@@ -22,7 +22,7 @@
    float: right;
 }
 
-.newsletter p{
+.newsletter span{
     color: #778DA9;
     float: left;
     padding: 15px;
@@ -47,7 +47,7 @@
     padding: 10px;
     text-align: center;
     border: none;
-    /* font-size: 20px; */
+    font-size: 20px;
 }
 
 .newsletter-input{

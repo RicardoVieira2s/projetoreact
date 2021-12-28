@@ -31,15 +31,19 @@ import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import Paper from '@mui/material/Paper';
 
 const Search = styled('div')(({ theme }) => ({
+    height: '40px',
     position: 'relative',
     borderRadius: '20px',
     backgroundColor: alpha(theme.palette.common.white, 0.15),
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(1),
     marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(3),
-        width: '50%',
+    width: '360px',
+    [theme.breakpoints.up('md')]: {
+        marginLeft: theme.spacing(2),
+        width: '520px',
+    },
+    [theme.breakpoints.down('md')]: {
+        width: '400px',
     },
 }));
 
@@ -55,15 +59,20 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: "#415A77",
+    height: '40px',
     '& .MuiInputBase-input': {
         padding: theme.spacing(1, 1, 1, 0),
         // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
         transition: theme.transitions.create('width'),
-        width: '100%',
+        width: '295px',
         [theme.breakpoints.up('md')]: {
-            width: '95ch',
+            width: '455px',
         },
+        [theme.breakpoints.down('md')]: {
+            width: '335px',
+        },
+
     },
 }));
 
@@ -93,7 +102,6 @@ export default function PrimarySearchAppBar(props) {
     };
 
     const menuId = 'primary-search-account-menu';
-    // RENDER DO "MENU" CARRINHO, WISHLIST E USER LIST EM DESKTOP
     const renderMenu = (
         <Menu
             anchorEl={anchorEl}
@@ -138,8 +146,6 @@ export default function PrimarySearchAppBar(props) {
     );
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
-
-    // RENDER DO "MENU" CARRINHO, WISHLIST E USER LIST EM MOBILE
     const renderMobileMenu = (
         <Menu
             anchorEl={mobileMoreAnchorEl}
@@ -160,11 +166,9 @@ export default function PrimarySearchAppBar(props) {
             <MenuItem >
                 <IconButton
                     size="large"
-                    aria-label="show 4 new mails"
                     color="inherit"
                 >
                     <Badge
-                        badgeContent={4}
                         color="error"
                     >
                         <FavoriteIcon />
@@ -203,13 +207,13 @@ export default function PrimarySearchAppBar(props) {
     );
 
     return (
-        <Box sx={{ flexGrow: 1, height: 90, }}>
+        <Box sx={{ flexGrow: 1 }}>
             <AppBar
                 position="static"
                 style={{
                     background: '#0D1B2A',
                     color: '#C4C4C4',
-                    height: "100%",
+                    height: "75px",
                 }}
             >
                 <Toolbar
@@ -218,12 +222,14 @@ export default function PrimarySearchAppBar(props) {
                     }}
                 >
                     {
-                    //FIXME: COLOCAR UMA IMAGEM NA PASTA DAS IMAGENS E COLOCAR O CAMINHO NO SRC
+                        //FIXME: COLOCAR UMA IMAGEM NA PASTA DAS IMAGENS E COLOCAR O CAMINHO NO SRC
 
                     }
                     <Paper variant="outlined">
                         <img src="" />
                     </Paper>
+
+                    <Box sx={{ flexGrow: 1 }} />
                     <Search
                         style={{
                             background: '#C4C4C4',
@@ -232,15 +238,15 @@ export default function PrimarySearchAppBar(props) {
                     >
                         <SearchIconWrapper>
                             <SearchIcon
-                                sx={{
-                                    bgcolor: '#415A77', color: '#000',
-                                    borderRadius: '20px',
+                                style={{
+                                    marginLeft: '-5px',
                                 }}
                             />
                         </SearchIconWrapper>
                         <StyledInputBase
                             placeholder="Pesquisar jogo..."
                             inputProps={{ 'aria-label': 'search' }}
+                            style={{ marginLeft: '-5px', }}
                         />
                     </Search>
                     <Box sx={{ flexGrow: 1 }} />
@@ -282,11 +288,11 @@ export default function PrimarySearchAppBar(props) {
                                 sx={{
                                     bgcolor: '#C4C4C4', color: '#415A77',
                                     ':hover': {
-                                        bgcolor: '#415A77',
-                                        color: '#C4C4C4'
+                                        bgcolor: '#C4C4C4',
+                                        color: '#415A77',
                                     },
                                     borderRadius: '20px',
-
+                                    height: '40px'
                                 }}
                                 alignItems='center'
                                 aria-controls={menuId}
@@ -297,7 +303,7 @@ export default function PrimarySearchAppBar(props) {
                                 onClick={handleProfileMenuOpen}
                                 endIcon={<KeyboardArrowDownIcon />}
                             >
-                                <AccountCircleIcon style={{ marginRight: "15px" }} />
+                                <AccountCircleIcon style={{ marginRight: "10px", marginLeft: '-10px' }} />
                                 {props.userAccount}
                             </Button>
                         </IconButton>

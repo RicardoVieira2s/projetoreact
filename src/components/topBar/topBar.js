@@ -1,3 +1,8 @@
+/**
+* TODO:
+* - DAR FIX NA IMAGEM DO LOGOTIPO
+*/
+
 import * as React from 'react';
 import './topbar.css';
 import { Link } from 'react-router-dom';
@@ -23,6 +28,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import PersonIcon from '@mui/icons-material/Person';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import Paper from '@mui/material/Paper';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -87,6 +93,7 @@ export default function PrimarySearchAppBar(props) {
     };
 
     const menuId = 'primary-search-account-menu';
+    // RENDER DO "MENU" CARRINHO, WISHLIST E USER LIST EM DESKTOP
     const renderMenu = (
         <Menu
             anchorEl={anchorEl}
@@ -131,6 +138,8 @@ export default function PrimarySearchAppBar(props) {
     );
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
+
+    // RENDER DO "MENU" CARRINHO, WISHLIST E USER LIST EM MOBILE
     const renderMobileMenu = (
         <Menu
             anchorEl={mobileMoreAnchorEl}
@@ -208,21 +217,13 @@ export default function PrimarySearchAppBar(props) {
                         flexGrow: 1
                     }}
                 >
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{
-                            flexGrow: 1,
-                            display: {
-                                xs: 'none',
-                                sm: 'block',
-                            },
-                            color: '#415A77',
-                        }}
-                    >
-                        GOOFRSTORE
-                    </Typography>
+                    {
+                    //FIXME: COLOCAR UMA IMAGEM NA PASTA DAS IMAGENS E COLOCAR O CAMINHO NO SRC
+
+                    }
+                    <Paper variant="outlined">
+                        <img src="" />
+                    </Paper>
                     <Search
                         style={{
                             background: '#C4C4C4',

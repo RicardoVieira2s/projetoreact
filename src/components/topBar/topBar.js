@@ -1,8 +1,3 @@
-/**
-* TODO:
-* - DAR FIX NA IMAGEM DO LOGOTIPO
-*/
-
 import * as React from 'react';
 import './topbar.css';
 import { Link } from 'react-router-dom';
@@ -11,7 +6,6 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
@@ -29,6 +23,7 @@ import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import PersonIcon from '@mui/icons-material/Person';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import Paper from '@mui/material/Paper';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const Search = styled('div')(({ theme }) => ({
     height: '40px',
@@ -221,15 +216,17 @@ export default function PrimarySearchAppBar(props) {
                         flexGrow: 1
                     }}
                 >
-                    {
-                        //FIXME: COLOCAR UMA IMAGEM NA PASTA DAS IMAGENS E COLOCAR O CAMINHO NO SRC
-
-                    }
-                    <Paper variant="outlined">
-                        <img src="" />
-                    </Paper>
-
-                    <Box sx={{ flexGrow: 1 }} />
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="open drawer"
+                        sx={{ mr: 2 }}
+                    >
+                        <Paper >
+                            <img src="/images/store.png" />
+                        </Paper>
+                    </IconButton>
                     <Search
                         style={{
                             background: '#C4C4C4',

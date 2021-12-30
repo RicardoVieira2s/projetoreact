@@ -73,6 +73,7 @@ const useStyles = makeStyles(({ palette, typography }) => ({
 export const OceanAppFooterDemo = React.memo(function OceanAppFooter() {
     const classes = useStyles();
     return (
+        
         <Box width={'100%'} px={{ xs: 2, sm: 3, lg: 4 }}>
             <Box pt={1} pb={{ md: 6 }}>
                 <Grid item xs={12} md={4} lg={10}>

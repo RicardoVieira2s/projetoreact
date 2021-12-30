@@ -1,6 +1,6 @@
 import React from 'react';
 import TopBar from '../components/topBar/topBar';
-import {OceanAppFooterDemo} from '../components/footer/footer';
+import {ArcAppFooterDemo} from '../components/footer/footer';
 import '../App.css';
 
 const home = () => {
@@ -13,7 +13,7 @@ const home = () => {
                 userCart = {cart}
             />
             
-            <OceanAppFooterDemo />
+            <ArcAppFooterDemo />
         </div>
     )
 }

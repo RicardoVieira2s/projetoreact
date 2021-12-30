@@ -43,7 +43,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import Typography from '@mui/material/Typography';
 
 const DESKTOP_ITEM_HEIGHT = '27px'
-const MOBILE_ITEM_HEIGHT = '15px'
+const MOBILE_ITEM_HEIGHT = '50px'
 const ICON_MARGIN_LEFT = '-10px'
 const TYPOGRAPHY_MARGIN_LEFT = '10px'
 
@@ -55,8 +55,7 @@ const Search = styled('div')(({ theme }) => ({
     marginRight: theme.spacing(1),
     marginLeft: 0,
     width: '360px',
-    [theme.breakpoints.up('md')]: {
-        marginLeft: theme.spacing(2),
+    [theme.breakpoints.up('lg')]: {
         width: '520px',
     },
     [theme.breakpoints.down('md')]: {
@@ -229,7 +228,6 @@ export default function PrimarySearchAppBar(props) {
                     width: '22ch',
                     backgroundColor: COLOR_PLATINIUM,
                     color: COLOR_BDAZZLED_BLUE,
-                    padding: '5px',
                     borderRadius: BORDER_RADIUS_1,
                     marginTop: '60px'
                 },
@@ -241,7 +239,7 @@ export default function PrimarySearchAppBar(props) {
                         color="inherit"
                         style={{ marginLeft: ICON_MARGIN_LEFT, backgroundColor: 'transparent' }}
                     >
-                        <HomeIcon fontSize="small"/>
+                        <HomeIcon fontSize="small" />
                     </IconButton>
                     <Typography style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
                         Página Principal
@@ -249,7 +247,7 @@ export default function PrimarySearchAppBar(props) {
                 </MenuItem>
             </Link>
             <Link to="/account">
-                <MenuItem style={{ height: MOBILE_ITEM_HEIGHT}}>
+                <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
                     <IconButton
                         color="inherit"
                         style={{ marginLeft: ICON_MARGIN_LEFT, backgroundColor: 'transparent' }}
@@ -261,10 +259,10 @@ export default function PrimarySearchAppBar(props) {
                     </Typography>
                 </MenuItem>
             </Link>
-            <MenuItem style={{ height: MOBILE_ITEM_HEIGHT}}>
+            <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
                 <IconButton
                     color="inherit"
-                    style={{ marginLeft: ICON_MARGIN_LEFT, backgroundColor: 'transparent'   }}
+                    style={{ marginLeft: ICON_MARGIN_LEFT, backgroundColor: 'transparent' }}
                 >
                     <Badge
                         color="error"
@@ -276,15 +274,14 @@ export default function PrimarySearchAppBar(props) {
                     Lista de Desejos
                 </Typography>
             </MenuItem>
-            <MenuItem style={{ height: MOBILE_ITEM_HEIGHT}}>
+            <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
                 <IconButton
-                    aria-label="show 17 new notifications"
                     color="inherit"
-                    style={{ marginLeft: ICON_MARGIN_LEFT, backgroundColor: 'transparent'   }}
+                    style={{ marginLeft: ICON_MARGIN_LEFT, backgroundColor: 'transparent' }}
                 >
                     <Badge
-                        variant="dot"
-                        color="error"
+                        variant="dot" invisible={props.userCart.count <= 0}
+                        color="error" 
                     >
                         <ShoppingCartIcon fontSize="small" />
                     </Badge>
@@ -293,10 +290,10 @@ export default function PrimarySearchAppBar(props) {
                     Carrinho
                 </Typography>
             </MenuItem>
-            <MenuItem style={{ height: MOBILE_ITEM_HEIGHT}}>
+            <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
                 <IconButton
                     color="inherit"
-                    style={{ marginLeft: ICON_MARGIN_LEFT, backgroundColor: 'transparent'   }}
+                    style={{ marginLeft: ICON_MARGIN_LEFT, backgroundColor: 'transparent' }}
                 >
                     <LibraryBooksIcon fontSize="small" />
                 </IconButton>
@@ -304,10 +301,14 @@ export default function PrimarySearchAppBar(props) {
                     Biblioteca
                 </Typography>
             </MenuItem>
-            <MenuItem style={{ height: MOBILE_ITEM_HEIGHT}}>
+            <Divider
+                variant="middle"
+                sx={{ marginTop: 1.5 }}
+            />
+            <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
                 <IconButton
                     color="inherit"
-                    style={{ marginLeft: ICON_MARGIN_LEFT, backgroundColor: 'transparent'   }}
+                    style={{ marginLeft: ICON_MARGIN_LEFT, backgroundColor: 'transparent' }}
                 >
                     <LogoutIcon fontSize="small" />
                 </IconButton>
@@ -329,7 +330,7 @@ export default function PrimarySearchAppBar(props) {
                 }}
             >
                 <Toolbar sx={{ flexGrow: 1 }}>
-                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                    <Box sx={{ display: { xs: 'none', sm: 'none', md: 'flex' } }}>
                         <Paper sx={{ width: '150px' }}>
                             <img src="/images/store.png" />
                         </Paper>
@@ -351,7 +352,7 @@ export default function PrimarySearchAppBar(props) {
                         />
                     </Search>
                     <Box sx={{ flexGrow: 1 }} />
-                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                    <Box sx={{ display: { xs: 'none', sm: 'none', md: 'flex' } }}>
                         <IconButton color="inherit">
                             <FavoriteIcon
                                 sx={{
@@ -364,11 +365,10 @@ export default function PrimarySearchAppBar(props) {
                             />
                         </IconButton>
                         <IconButton
-                            aria-label="show 17 new notifications"
                             color="inherit"
                         >
                             <Badge
-                                badgeContent={17}
+                                badgeContent={props.userCart.count}
                                 color='error'
                             >
                                 <ShoppingCartIcon
@@ -418,12 +418,12 @@ export default function PrimarySearchAppBar(props) {
                                         maxWidth: '150px',
                                     }}
                                 >
-                                    {props.userAccount}
+                                    {props.userAccount.name}
                                 </Typography>
                             </Button>
                         </IconButton>
                     </Box>
-                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                    <Box sx={{ display: { xs: 'flex', sm: 'flex', md: 'none' } }}>
                         <IconButton
                             aria-controls={mobileMenuId}
                             aria-haspopup="true"

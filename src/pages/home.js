@@ -4,10 +4,14 @@ import TopBar from '../components/topBar/topBar';
 import '../App.css';
 
 const home = () => {
-    const username = "Ricardo";
+    const user = {name:"Ricardo"};
+    const cart = {count: 4};
     return (
         <div>
-            <TopBar userAccount={username} />
+            <TopBar 
+                userAccount = {user}
+                userCart = {cart}
+            />
             {/* <Footer /> */}
         </div>
     )

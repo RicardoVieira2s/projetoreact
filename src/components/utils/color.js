@@ -1,0 +1,5 @@
+export const COLOR_RICH_BLACK = '#0D1B2A'
+export const COLOR_OXFORD_BLUE = '#1B263B'
+export const COLOR_BDAZZLED_BLUE = '#415A77'
+export const COLOR_SHADOW_BLUE = '#778DA9'
+export const COLOR_PLATINIUM = '#E0E1DD'

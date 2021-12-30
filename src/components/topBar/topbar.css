@@ -1,9 +1,13 @@
-a{
+a {
     text-decoration: none;
-    color: black;
+    color: #415A77;
 }
 
-img{
+/* a:link a:visited a:hover a:active{
+    color: #415A77;
+} */
+
+img {
     height: 40px;
     width: 100%;
 }

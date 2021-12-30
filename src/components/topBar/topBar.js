@@ -1,5 +1,22 @@
 import * as React from 'react';
 import './topbar.css';
+import {
+    COLOR_RICH_BLACK,
+    COLOR_OXFORD_BLUE,
+    COLOR_BDAZZLED_BLUE,
+    COLOR_SHADOW_BLUE,
+    COLOR_PLATINIUM,
+} from '../utils/color';
+
+import {
+    FONT_SECUNDARY_SIZE,
+    FONT_FAMILY
+} from '../utils/font';
+
+import {
+    BORDER_RADIUS_1
+} from '../utils/border';
+
 import { Link } from 'react-router-dom';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -21,9 +38,14 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import PersonIcon from '@mui/icons-material/Person';
-import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import Paper from '@mui/material/Paper';
-import MenuIcon from '@mui/icons-material/Menu';
+import HomeIcon from '@mui/icons-material/Home';
+import Typography from '@mui/material/Typography';
+
+const DESKTOP_ITEM_HEIGHT = '27px'
+const MOBILE_ITEM_HEIGHT = '15px'
+const ICON_MARGIN_LEFT = '-10px'
+const TYPOGRAPHY_MARGIN_LEFT = '10px'
 
 const Search = styled('div')(({ theme }) => ({
     height: '40px',
@@ -38,7 +60,7 @@ const Search = styled('div')(({ theme }) => ({
         width: '520px',
     },
     [theme.breakpoints.down('md')]: {
-        width: '400px',
+        width: '350px',
     },
 }));
 
@@ -65,9 +87,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
             width: '455px',
         },
         [theme.breakpoints.down('md')]: {
-            width: '335px',
+            width: '285px',
         },
-
     },
 }));
 
@@ -113,29 +134,73 @@ export default function PrimarySearchAppBar(props) {
             }}
             open={isMenuOpen}
             onClose={handleMenuClose}
+
+            PaperProps={{
+                style: {
+                    backgroundColor: COLOR_PLATINIUM,
+                    color: COLOR_BDAZZLED_BLUE,
+                    borderRadius: BORDER_RADIUS_1,
+                    marginTop: '10px',
+                },
+            }}
         >
             <Link to="/account">
-                <MenuItem onClick={handleMenuClose} disableRipple>
-                    <PersonIcon />
-                    Detalhes da conta
+                <MenuItem
+                    onClick={handleMenuClose}
+                    style={{
+                        height: DESKTOP_ITEM_HEIGHT,
+                        fontSize: FONT_SECUNDARY_SIZE
+                    }}
+                    disableRipple
+                >
+                    <Typography style={{ fontFamily: FONT_FAMILY }}>
+                        Detalhes da conta
+                    </Typography>
                 </MenuItem>
             </Link>
             <Link to="/library">
-                <MenuItem onClick={handleMenuClose} disableRipple>
-                    <LibraryBooksIcon />
-                    Biblioteca
+                <MenuItem
+                    onClick={handleMenuClose}
+                    style={{
+                        height: DESKTOP_ITEM_HEIGHT,
+                        fontSize: FONT_SECUNDARY_SIZE
+                    }}
+                    disableRipple
+                >
+                    <Typography>
+                        Biblioteca
+                    </Typography>
                 </MenuItem>
             </Link>
             <Link to="/account">
-                <MenuItem onClick={handleMenuClose} disableRipple>
-                    <AccountBalanceWalletIcon />
-                    Saldo:
+                <MenuItem
+                    onClick={handleMenuClose}
+                    style={{
+                        height: DESKTOP_ITEM_HEIGHT,
+                        fontSize: FONT_SECUNDARY_SIZE
+                    }}
+                    disableRipple
+                >
+                    <Typography>
+                        Saldo:
+                    </Typography>
                 </MenuItem>
             </Link>
-            <Divider sx={{ my: 0.5 }} />
-            <MenuItem onClick={handleMenuClose} disableRipple>
-                <LogoutIcon />
-                Logout
+            <Divider
+                variant="middle"
+                sx={{ marginTop: 1.3 }}
+            />
+            <MenuItem
+                onClick={handleMenuClose}
+                style={{
+                    height: DESKTOP_ITEM_HEIGHT,
+                    fontSize: FONT_SECUNDARY_SIZE
+                }}
+                disableRipple
+            >
+                <Typography>
+                    Logout
+                </Typography>
             </MenuItem>
         </Menu>
     );
@@ -157,46 +222,98 @@ export default function PrimarySearchAppBar(props) {
             }
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
+
+            PaperProps={{
+                style: {
+                    height: 'auto',
+                    width: '22ch',
+                    backgroundColor: COLOR_PLATINIUM,
+                    color: COLOR_BDAZZLED_BLUE,
+                    padding: '5px',
+                    borderRadius: BORDER_RADIUS_1,
+                    marginTop: '60px'
+                },
+            }}
         >
-            <MenuItem >
+            <Link to="/">
+                <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
+                    <IconButton
+                        color="inherit"
+                        style={{ marginLeft: ICON_MARGIN_LEFT, backgroundColor: 'transparent' }}
+                    >
+                        <HomeIcon fontSize="small"/>
+                    </IconButton>
+                    <Typography style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
+                        Página Principal
+                    </Typography>
+                </MenuItem>
+            </Link>
+            <Link to="/account">
+                <MenuItem style={{ height: MOBILE_ITEM_HEIGHT}}>
+                    <IconButton
+                        color="inherit"
+                        style={{ marginLeft: ICON_MARGIN_LEFT, backgroundColor: 'transparent' }}
+                    >
+                        <PersonIcon fontSize="small" />
+                    </IconButton>
+                    <Typography style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
+                        Perfil
+                    </Typography>
+                </MenuItem>
+            </Link>
+            <MenuItem style={{ height: MOBILE_ITEM_HEIGHT}}>
                 <IconButton
-                    size="large"
                     color="inherit"
+                    style={{ marginLeft: ICON_MARGIN_LEFT, backgroundColor: 'transparent'   }}
                 >
                     <Badge
                         color="error"
                     >
-                        <FavoriteIcon />
+                        <FavoriteIcon fontSize="small" />
                     </Badge>
                 </IconButton>
-                <p>Wishlist</p>
+                <Typography style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
+                    Lista de Desejos
+                </Typography>
             </MenuItem>
-            <MenuItem>
+            <MenuItem style={{ height: MOBILE_ITEM_HEIGHT}}>
                 <IconButton
-                    size="large"
                     aria-label="show 17 new notifications"
                     color="inherit"
+                    style={{ marginLeft: ICON_MARGIN_LEFT, backgroundColor: 'transparent'   }}
                 >
                     <Badge
-                        badgeContent={17}
+                        variant="dot"
                         color="error"
                     >
-                        <ShoppingCartIcon />
+                        <ShoppingCartIcon fontSize="small" />
                     </Badge>
                 </IconButton>
-                <p>ShoppingCart</p>
+                <Typography style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
+                    Carrinho
+                </Typography>
             </MenuItem>
-            <MenuItem onClick={handleProfileMenuOpen}>
+            <MenuItem style={{ height: MOBILE_ITEM_HEIGHT}}>
                 <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="search-account-menu"
-                    aria-haspopup="true"
                     color="inherit"
+                    style={{ marginLeft: ICON_MARGIN_LEFT, backgroundColor: 'transparent'   }}
                 >
-                    <AccountCircleIcon />
+                    <LibraryBooksIcon fontSize="small" />
                 </IconButton>
-                <p>Profile</p>
+                <Typography style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
+                    Biblioteca
+                </Typography>
+            </MenuItem>
+            <MenuItem style={{ height: MOBILE_ITEM_HEIGHT}}>
+                <IconButton
+                    color="inherit"
+                    style={{ marginLeft: ICON_MARGIN_LEFT, backgroundColor: 'transparent'   }}
+                >
+                    <LogoutIcon fontSize="small" />
+                </IconButton>
+                <Typography style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
+                    Logout
+                </Typography>
             </MenuItem>
         </Menu >
     );
@@ -206,92 +323,80 @@ export default function PrimarySearchAppBar(props) {
             <AppBar
                 position="static"
                 style={{
-                    background: '#0D1B2A',
-                    color: '#C4C4C4',
+                    background: COLOR_RICH_BLACK,
+                    color: COLOR_PLATINIUM,
                     height: "75px",
                 }}
             >
-                <Toolbar
-                    sx={{
-                        flexGrow: 1
-                    }}
-                >
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="open drawer"
-                        sx={{ mr: 2 }}
-                    >
-                        <Paper >
+                <Toolbar sx={{ flexGrow: 1 }}>
+                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                        <Paper sx={{ width: '150px' }}>
                             <img src="/images/store.png" />
                         </Paper>
-                    </IconButton>
+                    </Box>
+                    <Box sx={{ flexGrow: 1 }} />
                     <Search
                         style={{
-                            background: '#C4C4C4',
-                            color: '#0D1B2A',
+                            background: COLOR_PLATINIUM,
+                            color: COLOR_RICH_BLACK,
                         }}
                     >
                         <SearchIconWrapper>
-                            <SearchIcon
-                                style={{
-                                    marginLeft: '-5px',
-                                }}
-                            />
+                            <SearchIcon style={{ marginLeft: '-5px' }} />
                         </SearchIconWrapper>
                         <StyledInputBase
                             placeholder="Pesquisar jogo..."
                             inputProps={{ 'aria-label': 'search' }}
-                            style={{ marginLeft: '-5px', }}
+                            style={{ marginLeft: '-5px' }}
                         />
                     </Search>
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        <IconButton
-                            size="large"
-                            color="inherit"
-                        >
+                        <IconButton color="inherit">
                             <FavoriteIcon
                                 sx={{
-                                    color: '#415A77',
+                                    color: COLOR_BDAZZLED_BLUE,
                                     ':hover': {
-                                        color: '#C4C4C4'
+                                        color: COLOR_PLATINIUM
                                     },
                                 }}
+                                fontSize="medium"
                             />
                         </IconButton>
                         <IconButton
-                            size="large"
                             aria-label="show 17 new notifications"
                             color="inherit"
                         >
-                            <Badge badgeContent={17} color="error">
+                            <Badge
+                                badgeContent={17}
+                                color='error'
+                            >
                                 <ShoppingCartIcon
                                     sx={{
-                                        color: '#415A77',
+                                        color: COLOR_BDAZZLED_BLUE,
                                         ':hover': {
-                                            color: '#C4C4C4'
+                                            color: COLOR_PLATINIUM
                                         },
                                     }}
+                                    fontSize="medium"
                                 />
                             </Badge>
                         </IconButton>
                         <IconButton>
                             <Button
-                                aria-label="account of current user"
-                                size="large"
                                 edge="end"
                                 sx={{
-                                    bgcolor: '#C4C4C4', color: '#415A77',
+                                    bgcolor: COLOR_BDAZZLED_BLUE,
+                                    color: COLOR_PLATINIUM,
                                     ':hover': {
-                                        bgcolor: '#C4C4C4',
-                                        color: '#415A77',
+                                        bgcolor: COLOR_BDAZZLED_BLUE,
+                                        color: COLOR_PLATINIUM,
                                     },
-                                    borderRadius: '20px',
-                                    height: '40px'
+                                    borderRadius: BORDER_RADIUS_1,
+                                    height: '40px',
+                                    marginLeft: TYPOGRAPHY_MARGIN_LEFT,
+                                    fontFamily: 'Viga',
                                 }}
-                                alignItems='center'
                                 aria-controls={menuId}
                                 aria-haspopup="true"
                                 aria-expanded={isMenuOpen ? 'true' : undefined}
@@ -300,15 +405,26 @@ export default function PrimarySearchAppBar(props) {
                                 onClick={handleProfileMenuOpen}
                                 endIcon={<KeyboardArrowDownIcon />}
                             >
-                                <AccountCircleIcon style={{ marginRight: "10px", marginLeft: '-10px' }} />
-                                {props.userAccount}
+                                <AccountCircleIcon
+                                    style={{
+                                        marginRight: "5px",
+                                        marginLeft: ICON_MARGIN_LEFT
+                                    }}
+                                />
+                                <Typography
+                                    style={{
+                                        textOverflow: "ellipsis",
+                                        overflow: "hidden",
+                                        maxWidth: '150px',
+                                    }}
+                                >
+                                    {props.userAccount}
+                                </Typography>
                             </Button>
                         </IconButton>
                     </Box>
                     <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
-                            size="large"
-                            aria-label="show more"
                             aria-controls={mobileMenuId}
                             aria-haspopup="true"
                             onClick={handleMobileMenuOpen}

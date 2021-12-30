@@ -47,7 +47,6 @@ const MOBILE_ITEM_HEIGHT = '50px'
 const ICON_MARGIN_LEFT = '-10px'
 const TYPOGRAPHY_MARGIN_LEFT = '10px'
 
-
 const Search = styled('div')(({ theme }) => ({
     height: '40px',
     position: 'relative',

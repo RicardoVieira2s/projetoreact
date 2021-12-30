@@ -3,7 +3,6 @@ import TopBar from '../components/topBar/topBar';
 // import Footer from '../components/footer/footer';
 import '../App.css';
 
-
 const home = () => {
     const user = {name:"Ricardo"};
     const cart = {count: 4};

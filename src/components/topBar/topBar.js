@@ -10,7 +10,6 @@ import {
 
 import {
     FONT_SECUNDARY_SIZE,
-    FONT_FAMILY
 } from '../utils/font';
 
 import {
@@ -41,6 +40,9 @@ import PersonIcon from '@mui/icons-material/Person';
 import Paper from '@mui/material/Paper';
 import HomeIcon from '@mui/icons-material/Home';
 import Typography from '@mui/material/Typography';
+import {
+    makeStyles,
+} from '@material-ui/core/styles';
 
 const DESKTOP_ITEM_HEIGHT = '27px'
 const MOBILE_ITEM_HEIGHT = '50px'
@@ -152,7 +154,7 @@ export default function PrimarySearchAppBar(props) {
                     }}
                     disableRipple
                 >
-                    <Typography style={{ fontFamily: FONT_FAMILY }}>
+                    <Typography >
                         Detalhes da conta
                     </Typography>
                 </MenuItem>
@@ -281,7 +283,7 @@ export default function PrimarySearchAppBar(props) {
                 >
                     <Badge
                         variant="dot" invisible={props.userCart.count <= 0}
-                        color="error" 
+                        color="error"
                     >
                         <ShoppingCartIcon fontSize="small" />
                     </Badge>

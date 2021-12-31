@@ -1,10 +1,12 @@
 import React from 'react'
-import {ArcAppFooterDemo} from '../components/footer/footer'
+import FloatingBar from '../components/floatingBar/floatingBar'
+import { ArcAppFooterDemo } from '../components/footer/footer'
 
 const home = () => {
-    
+
     return (
         <>
+            <FloatingBar />
             <ArcAppFooterDemo />
         </>
     )

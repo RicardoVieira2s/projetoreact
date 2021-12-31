@@ -1,14 +1,10 @@
 import React, { useState } from 'react'
 import './floatingBar.css'
 
-function floatingBar() {
+export default function floatingBar() {
     return (
-            <nav className='floatingbar'>
-                <div className='floatingbar-container'>
-
-                </div>
-            </nav>
+            <>
+                <h1>floatingBar</h1>
+            </>
     )
 }
-
-export default floatingBar

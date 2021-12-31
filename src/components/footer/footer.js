@@ -1,38 +1,38 @@
-import React from 'react';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Divider from '@material-ui/core/Divider';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+import React from 'react'
+import Box from '@material-ui/core/Box'
+import Container from '@material-ui/core/Container'
+import Divider from '@material-ui/core/Divider'
+import Typography from '@material-ui/core/Typography'
+import Grid from '@material-ui/core/Grid'
 import {
     makeStyles,
     ThemeProvider,
     createTheme,
-} from '@material-ui/core/styles';
+} from '@material-ui/core/styles'
 
-import { ColumnToRow, Item } from '@mui-treasury/components/flex';
-import { NavMenu, NavItem } from '@mui-treasury/components/menu/navigation';
+import { ColumnToRow, Item } from '@mui-treasury/components/flex'
+import { NavMenu, NavItem } from '@mui-treasury/components/menu/navigation'
 import {
     EmailSubscribe,
     EmailTextInput,
     SubmitButton,
-} from '@mui-treasury/components/EmailSubscribe';
+} from '@mui-treasury/components/EmailSubscribe'
 import {
     CategoryProvider,
     CategoryTitle,
     CategoryItem,
-} from '@mui-treasury/components/menu/category';
+} from '@mui-treasury/components/menu/category'
 import {
     SocialProvider,
     SocialLink,
-} from '@mui-treasury/components/socialLink';
+} from '@mui-treasury/components/socialLink'
 
-import { useMagCategoryMenuStyles } from '@mui-treasury/styles/categoryMenu/mag';
-import { usePoofSocialLinkStyles } from '@mui-treasury/styles/socialLink/poof';
-import { useReadyEmailSubscribeStyles } from '@mui-treasury/styles/emailSubscribe/ready';
-import { usePlainNavigationMenuStyles } from '@mui-treasury/styles/navigationMenu/plain';
+import { useMagCategoryMenuStyles } from '@mui-treasury/styles/categoryMenu/mag'
+import { usePoofSocialLinkStyles } from '@mui-treasury/styles/socialLink/poof'
+import { useReadyEmailSubscribeStyles } from '@mui-treasury/styles/emailSubscribe/ready'
+import { usePlainNavigationMenuStyles } from '@mui-treasury/styles/navigationMenu/plain'
 
-const darkTheme = createTheme({ palette: { type: 'dark' } });
+const darkTheme = createTheme({ palette: { type: 'dark' } })
 
 const useStyles = makeStyles(({ palette, typography }) => ({
     top: {
@@ -85,10 +85,10 @@ const useStyles = makeStyles(({ palette, typography }) => ({
         color: palette.text.hint,
         marginTop: 8,
     }
-}));
+}))
 
 export const ArcAppFooterDemo = React.memo(function ArcAppFooter() {
-    const classes = useStyles();
+    const classes = useStyles()
     return (
         <Box width={'100%'} position={'fixed'} bottom={'0'}>
             <Box px={2} py={10} className={classes.middle}>
@@ -149,5 +149,5 @@ export const ArcAppFooterDemo = React.memo(function ArcAppFooter() {
                 </Container>
             </Box>
         </Box>
-    );
-});
+    )
+})

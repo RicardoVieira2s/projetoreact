@@ -1,5 +1,5 @@
 import React from 'react'
-import { ArcAppFooterDemo } from '../components/footer/footer';
+import { ArcAppFooterDemo } from '../components/footer/footer'
 
 const library = () => {
     return (

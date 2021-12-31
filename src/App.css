@@ -8,10 +8,14 @@ html, body {
 }
 
 input{
-    font-family: 'Viga', sans-serif;
+    font-family: 'Viga', sans-serif !important;
     font-size: 20px;
 }
 
 input::placeholder {
-    font-family: 'Viga', sans-serif;
+    font-family: 'Viga', sans-serif !important;
+}
+
+p{
+    font-family: 'Viga', sans-serif !important;
 }

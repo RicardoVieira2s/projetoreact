@@ -1,53 +1,53 @@
-import * as React from 'react';
-import './topbar.css';
+import * as React from 'react'
+import './topbar.css'
 import {
     COLOR_RICH_BLACK,
     COLOR_OXFORD_BLUE,
     COLOR_BDAZZLED_BLUE,
     COLOR_SHADOW_BLUE,
     COLOR_PLATINIUM,
-} from '../utils/color';
+} from '../utils/color'
 
 import {
     FONT_SECUNDARY_SIZE,
-} from '../utils/font';
+} from '../utils/font'
 
 import {
     BORDER_RADIUS_1
-} from '../utils/border';
+} from '../utils/border'
 
-import { Link } from 'react-router-dom';
-import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import MoreIcon from '@mui/icons-material/MoreVert';
-import Divider from '@mui/material/Divider';
-import Button from '@mui/material/Button';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import LogoutIcon from '@mui/icons-material/Logout';
-import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
-import PersonIcon from '@mui/icons-material/Person';
-import Paper from '@mui/material/Paper';
-import HomeIcon from '@mui/icons-material/Home';
-import Typography from '@mui/material/Typography';
-import {
-    makeStyles,
-} from '@material-ui/core/styles';
+import { Link } from 'react-router-dom'
+import { styled, alpha } from '@mui/material/styles'
+import AppBar from '@mui/material/AppBar'
+import Box from '@mui/material/Box'
+import Toolbar from '@mui/material/Toolbar'
+import IconButton from '@mui/material/IconButton'
+import InputBase from '@mui/material/InputBase'
+import Badge from '@mui/material/Badge'
+import MenuItem from '@mui/material/MenuItem'
+import Menu from '@mui/material/Menu'
+import SearchIcon from '@mui/icons-material/Search'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import MoreIcon from '@mui/icons-material/MoreVert'
+import Divider from '@mui/material/Divider'
+import Button from '@mui/material/Button'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import LogoutIcon from '@mui/icons-material/Logout'
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks'
+import PersonIcon from '@mui/icons-material/Person'
+import Paper from '@mui/material/Paper'
+import HomeIcon from '@mui/icons-material/Home'
 
 const DESKTOP_ITEM_HEIGHT = '27px'
 const MOBILE_ITEM_HEIGHT = '50px'
-const ICON_MARGIN_LEFT = '-10px'
 const TYPOGRAPHY_MARGIN_LEFT = '10px'
+const MOBILE_ICON_BUTTON_STYLE = {
+    marginLeft: '-10px',
+    backgroundColor: 'transparent',
+}
+const MOBILE_ICON_BUTTON_COLOR = "inherit"
 
 const Search = styled('div')(({ theme }) => ({
     height: '40px',
@@ -63,7 +63,7 @@ const Search = styled('div')(({ theme }) => ({
     [theme.breakpoints.down('md')]: {
         width: '350px',
     },
-}));
+}))
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
     padding: theme.spacing(0, 2),
@@ -73,7 +73,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-}));
+}))
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: "#415A77",
@@ -91,34 +91,34 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
             width: '285px',
         },
     },
-}));
+}))
 
 export default function PrimarySearchAppBar(props) {
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = React.useState(null)
+    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
 
-    const isMenuOpen = Boolean(anchorEl);
-    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+    const isMenuOpen = Boolean(anchorEl)
+    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
 
     const handleProfileMenuOpen = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+        setAnchorEl(event.currentTarget)
+    }
 
     const handleMobileMenuClose = () => {
-        setMobileMoreAnchorEl(null);
-    };
+        setMobileMoreAnchorEl(null)
+    }
 
     const handleMenuClose = () => {
-        setAnchorEl(null);
-        handleMobileMenuClose();
+        setAnchorEl(null)
+        handleMobileMenuClose()
 
-    };
+    }
 
     const handleMobileMenuOpen = (event) => {
-        setMobileMoreAnchorEl(event.currentTarget);
-    };
+        setMobileMoreAnchorEl(event.currentTarget)
+    }
 
-    const menuId = 'primary-search-account-menu';
+    const menuId = 'primary-search-account-menu'
     const renderMenu = (
         <Menu
             anchorEl={anchorEl}
@@ -154,9 +154,7 @@ export default function PrimarySearchAppBar(props) {
                     }}
                     disableRipple
                 >
-                    <Typography >
-                        Detalhes da conta
-                    </Typography>
+                    <p>Detalhes da conta</p>
                 </MenuItem>
             </Link>
             <Link to="/library">
@@ -168,9 +166,7 @@ export default function PrimarySearchAppBar(props) {
                     }}
                     disableRipple
                 >
-                    <Typography>
-                        Biblioteca
-                    </Typography>
+                    <p>Biblioteca</p>
                 </MenuItem>
             </Link>
             <Link to="/account">
@@ -182,9 +178,7 @@ export default function PrimarySearchAppBar(props) {
                     }}
                     disableRipple
                 >
-                    <Typography>
-                        Saldo:
-                    </Typography>
+                    <p>Saldo: {props.userBalance.coin}{props.userBalance.amount}</p>
                 </MenuItem>
             </Link>
             <Divider
@@ -199,14 +193,12 @@ export default function PrimarySearchAppBar(props) {
                 }}
                 disableRipple
             >
-                <Typography>
-                    Logout
-                </Typography>
+                <p>Logout</p>
             </MenuItem>
         </Menu>
-    );
+    )
 
-    const mobileMenuId = 'primary-search-account-menu-mobile';
+    const mobileMenuId = 'primary-search-account-menu-mobile'
     const renderMobileMenu = (
         <Menu
             anchorEl={mobileMoreAnchorEl}
@@ -238,33 +230,37 @@ export default function PrimarySearchAppBar(props) {
             <Link to="/">
                 <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
                     <IconButton
-                        color="inherit"
-                        style={{ marginLeft: ICON_MARGIN_LEFT, backgroundColor: 'transparent' }}
+                        color={MOBILE_ICON_BUTTON_COLOR}
+                        style={MOBILE_ICON_BUTTON_STYLE}
+                        disableRipple
                     >
                         <HomeIcon fontSize="small" />
                     </IconButton>
-                    <Typography style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
+                    <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
                         Página Principal
-                    </Typography>
+                    </p>
                 </MenuItem>
             </Link>
             <Link to="/account">
                 <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
                     <IconButton
-                        color="inherit"
-                        style={{ marginLeft: ICON_MARGIN_LEFT, backgroundColor: 'transparent' }}
+                        color={MOBILE_ICON_BUTTON_COLOR}
+                        style={MOBILE_ICON_BUTTON_STYLE}
+                        disableRipple
                     >
                         <PersonIcon fontSize="small" />
                     </IconButton>
-                    <Typography style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
+                    <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
                         Perfil
-                    </Typography>
+                    </p>
                 </MenuItem>
             </Link>
+            <Link to="/wishlist">
             <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
                 <IconButton
-                    color="inherit"
-                    style={{ marginLeft: ICON_MARGIN_LEFT, backgroundColor: 'transparent' }}
+                    color={MOBILE_ICON_BUTTON_COLOR}
+                    style={MOBILE_ICON_BUTTON_STYLE}
+                    disableRipple
                 >
                     <Badge
                         color="error"
@@ -272,14 +268,17 @@ export default function PrimarySearchAppBar(props) {
                         <FavoriteIcon fontSize="small" />
                     </Badge>
                 </IconButton>
-                <Typography style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
+                <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
                     Lista de Desejos
-                </Typography>
+                </p>
             </MenuItem>
+            </Link>
+            <Link to="/cart">
             <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
                 <IconButton
-                    color="inherit"
-                    style={{ marginLeft: ICON_MARGIN_LEFT, backgroundColor: 'transparent' }}
+                    color={MOBILE_ICON_BUTTON_COLOR}
+                    style={MOBILE_ICON_BUTTON_STYLE}
+                    disableRipple
                 >
                     <Badge
                         variant="dot" invisible={props.userCart.count <= 0}
@@ -288,38 +287,43 @@ export default function PrimarySearchAppBar(props) {
                         <ShoppingCartIcon fontSize="small" />
                     </Badge>
                 </IconButton>
-                <Typography style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
+                <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
                     Carrinho
-                </Typography>
+                </p>
             </MenuItem>
+            </Link>
+            <Link to="/library">
             <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
                 <IconButton
-                    color="inherit"
-                    style={{ marginLeft: ICON_MARGIN_LEFT, backgroundColor: 'transparent' }}
+                    color={MOBILE_ICON_BUTTON_COLOR}
+                    style={MOBILE_ICON_BUTTON_STYLE}
+                    disableRipple
                 >
                     <LibraryBooksIcon fontSize="small" />
                 </IconButton>
-                <Typography style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
+                <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
                     Biblioteca
-                </Typography>
+                </p>
             </MenuItem>
+            </Link>
             <Divider
                 variant="middle"
                 sx={{ marginTop: 1.5 }}
             />
             <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
                 <IconButton
-                    color="inherit"
-                    style={{ marginLeft: ICON_MARGIN_LEFT, backgroundColor: 'transparent' }}
+                    color={MOBILE_ICON_BUTTON_COLOR}
+                    style={MOBILE_ICON_BUTTON_STYLE}
+                    disableRipple
                 >
                     <LogoutIcon fontSize="small" />
                 </IconButton>
-                <Typography style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
+                <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
                     Logout
-                </Typography>
+                </p>
             </MenuItem>
         </Menu >
-    );
+    )
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -333,11 +337,11 @@ export default function PrimarySearchAppBar(props) {
             >
                 <Toolbar sx={{ flexGrow: 1 }}>
                     <Box sx={{ display: { xs: 'none', sm: 'none', md: 'flex' } }}>
-                    <Link to="/">
-                        <Paper sx={{ width: '150px' }}>
-                            <img src="/images/store.png" />
-                        </Paper>
-                    </Link>
+                        <Link to="/">
+                            <Paper sx={{ width: '150px' }}>
+                                <img src="/images/store.png" />
+                            </Paper>
+                        </Link>
                     </Box>
                     <Box sx={{ flexGrow: 1 }} />
                     <Search
@@ -412,10 +416,10 @@ export default function PrimarySearchAppBar(props) {
                                 <AccountCircleIcon
                                     style={{
                                         marginRight: "5px",
-                                        marginLeft: ICON_MARGIN_LEFT
+                                        marginLeft: '-10px'
                                     }}
                                 />
-                                <Typography
+                                <p
                                     style={{
                                         textOverflow: "ellipsis",
                                         overflow: "hidden",
@@ -423,7 +427,7 @@ export default function PrimarySearchAppBar(props) {
                                     }}
                                 >
                                     {props.userAccount.name}
-                                </Typography>
+                                </p>
                             </Button>
                         </IconButton>
                     </Box>
@@ -442,5 +446,5 @@ export default function PrimarySearchAppBar(props) {
             {renderMobileMenu}
             {renderMenu}
         </Box>
-    );
+    )
 }

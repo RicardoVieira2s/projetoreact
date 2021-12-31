@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import './floatingBar.css';
+import React, { useState } from 'react'
+import './floatingBar.css'
 
 function floatingBar() {
     return (

@@ -1,6 +1,6 @@
-import React from 'react';
-import { link } from 'react-router-dom';
-import './yourStore.css';
+import React from 'react'
+import { link } from 'react-router-dom'
+import './yourStore.css'
 
 function yourStore() {
     return (
@@ -12,4 +12,4 @@ function yourStore() {
     )
 }
 
-export default yourStore;
+export default yourStore

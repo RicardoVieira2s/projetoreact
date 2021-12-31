@@ -1,5 +1,5 @@
-import React from 'react';
-import {ArcAppFooterDemo} from '../components/footer/footer';
+import React from 'react'
+import {ArcAppFooterDemo} from '../components/footer/footer'
 
 const accountPage = () => {
     return (
@@ -14,7 +14,7 @@ const accountPage = () => {
             <h1>account Page.</h1>
             <ArcAppFooterDemo />
         </div>
-    );
-};
+    )
+}
 
-export default accountPage;
+export default accountPage

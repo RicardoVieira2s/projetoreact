@@ -40,11 +40,10 @@ const useStyles = makeStyles(({ palette, typography }) => ({
         overflow: 'hidden',
     },
     middle: {
-        backgroundColor: palette.type === 'dark' ? '#192D36' : palette.action.hover,
+        backgroundColor: '#0D1B2A',
     },
     bottom: {
-        backgroundColor:
-            palette.type === 'dark' ? '#0F2128' : palette.action.selected,
+        backgroundColor: '#0D1B2A',
     },
     newsletterText: {
         color: '#fff',
@@ -66,6 +65,7 @@ const useStyles = makeStyles(({ palette, typography }) => ({
     divider: {
         height: 2,
         margin: '-1px 0',
+        backgroundColor: '#778DA9',
     },
     overlay: {
         position: 'absolute',
@@ -90,29 +90,7 @@ const useStyles = makeStyles(({ palette, typography }) => ({
 export const ArcAppFooterDemo = React.memo(function ArcAppFooter() {
     const classes = useStyles();
     return (
-        <Box width={'100%'}>
-            <Box px={2} py={6} className={classes.top} position={'relative'}>
-                <div className={classes.overlay}>
-                    <img
-                        src={
-                            'https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2251&q=80'
-                        }
-                        alt={''}
-                    />
-                </div>
-                <ThemeProvider theme={darkTheme}>
-                    <ColumnToRow
-                        at={'sm'}
-                        cssPosition={'relative'}
-                        columnStyle={{ alignItems: 'center', textAlign: 'center' }}
-                        rowStyle={{ justifyContent: 'center' }}
-                        gap={{ xs: 2, sm: 3, md: 4 }}
-                        wrap
-                    >
-
-                    </ColumnToRow>
-                </ThemeProvider>
-            </Box>
+        <Box width={'100%'} position={'fixed'} bottom={'0'}>
             <Box px={2} py={10} className={classes.middle}>
                 <Container disableGutters>
                     <Grid container spacing={4}>
@@ -162,10 +140,8 @@ export const ArcAppFooterDemo = React.memo(function ArcAppFooter() {
                                     variant={'caption'}
                                     color={'textSecondary'}
                                 >
-
                                     Designed by Anonymous © Fake Studio 2020 All right
                                     reserved
-
                                 </Typography>
                             </Box>
                         </Item>

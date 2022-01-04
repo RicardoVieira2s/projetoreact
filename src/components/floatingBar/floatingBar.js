@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './floatingBar.css'
 
 export default function floatingBar() {
+
     return (
-            <>
-                <h1>floatingBar</h1>
-            </>
+        <div class="hero-image">
+            
+        </div>
     )
 }

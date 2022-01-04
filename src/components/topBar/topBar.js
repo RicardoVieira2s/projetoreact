@@ -156,18 +156,16 @@ export default function PrimarySearchAppBar(props) {
                     <p>Biblioteca</p>
                 </MenuItem>
             </Link>
-            <Link to="/account">
-                <MenuItem
-                    onClick={handleMenuClose}
-                    style={{
-                        height: DESKTOP_ITEM_HEIGHT,
-                        fontSize: FONT_SECUNDARY_SIZE
-                    }}
-                    disableRipple
-                >
-                    <p>Saldo: {props.userBalance.coin}{props.userBalance.amount}</p>
-                </MenuItem>
-            </Link>
+            <MenuItem
+                onClick={handleMenuClose}
+                style={{
+                    height: DESKTOP_ITEM_HEIGHT,
+                    fontSize: FONT_SECUNDARY_SIZE
+                }}
+                disableRipple
+            >
+                <p>Saldo: {props.userBalance.coin}{props.userBalance.amount}</p>
+            </MenuItem>
             <Divider
                 variant="middle"
                 sx={{ marginTop: 1.3 }}

@@ -426,7 +426,8 @@ export default function YourStore(props) {
 													</Typography>
 												</AccordionDetails>
 											</Accordion>
-											<Accordion expanded={expanded === 'panel2'} onChange={handleChangeAccordion('panel2')}>
+											<Accordion expanded={expanded === 'panel2'}
+												onChange={handleChangeAccordion('panel2')}>
 												<AccordionSummary
 													expandIcon={<ExpandMoreIcon />}
 												>
@@ -443,7 +444,8 @@ export default function YourStore(props) {
 													</Typography>
 												</AccordionDetails>
 											</Accordion>
-											<Accordion expanded={expanded === 'panel3'} onChange={handleChangeAccordion('panel3')}>
+											<Accordion expanded={expanded === 'panel3'}
+												onChange={handleChangeAccordion('panel3')}>
 												<AccordionSummary
 													expandIcon={<ExpandMoreIcon />}
 												>
@@ -460,7 +462,8 @@ export default function YourStore(props) {
 													</Typography>
 												</AccordionDetails>
 											</Accordion>
-											<Accordion expanded={expanded === 'panel4'} onChange={handleChangeAccordion('panel4')}>
+											<Accordion expanded={expanded === 'panel4'}
+												onChange={handleChangeAccordion('panel4')}>
 												<AccordionSummary
 													expandIcon={<ExpandMoreIcon />}
 												>

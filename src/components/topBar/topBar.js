@@ -1,8 +1,8 @@
 import * as React from 'react'
 import './topbar.css'
-import {COLOR_RICH_BLACK,COLOR_OXFORD_BLUE,COLOR_BDAZZLED_BLUE,COLOR_SHADOW_BLUE,COLOR_PLATINIUM} from '../utils/color'
-import {FONT_SECUNDARY_SIZE} from '../utils/font'
-import {BORDER_RADIUS_1} from '../utils/border'
+import { COLOR_RICH_BLACK, COLOR_OXFORD_BLUE, COLOR_BDAZZLED_BLUE, COLOR_SHADOW_BLUE, COLOR_PLATINIUM } from '../utils/color'
+import { FONT_SECUNDARY_SIZE } from '../utils/font'
+import { BORDER_RADIUS_1 } from '../utils/border'
 import { Link } from 'react-router-dom'
 import { styled, alpha } from '@mui/material/styles'
 import AppBar from '@mui/material/AppBar'
@@ -243,55 +243,55 @@ export default function PrimarySearchAppBar(props) {
                 </MenuItem>
             </Link>
             <Link to="/wishlist">
-            <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
-                <IconButton
-                    color={MOBILE_ICON_BUTTON_COLOR}
-                    style={MOBILE_ICON_BUTTON_STYLE}
-                    disableRipple
-                >
-                    <Badge
-                        color="error"
+                <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
+                    <IconButton
+                        color={MOBILE_ICON_BUTTON_COLOR}
+                        style={MOBILE_ICON_BUTTON_STYLE}
+                        disableRipple
                     >
-                        <FavoriteIcon fontSize="small" />
-                    </Badge>
-                </IconButton>
-                <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
-                    Lista de Desejos
-                </p>
-            </MenuItem>
+                        <Badge
+                            color="error"
+                        >
+                            <FavoriteIcon fontSize="small" />
+                        </Badge>
+                    </IconButton>
+                    <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
+                        Lista de Desejos
+                    </p>
+                </MenuItem>
             </Link>
             <Link to="/cart">
-            <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
-                <IconButton
-                    color={MOBILE_ICON_BUTTON_COLOR}
-                    style={MOBILE_ICON_BUTTON_STYLE}
-                    disableRipple
-                >
-                    <Badge
-                        variant="dot" invisible={props.userCart.count <= 0}
-                        color="error"
+                <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
+                    <IconButton
+                        color={MOBILE_ICON_BUTTON_COLOR}
+                        style={MOBILE_ICON_BUTTON_STYLE}
+                        disableRipple
                     >
-                        <ShoppingCartIcon fontSize="small" />
-                    </Badge>
-                </IconButton>
-                <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
-                    Carrinho
-                </p>
-            </MenuItem>
+                        <Badge
+                            variant="dot" invisible={props.userCart.count <= 0}
+                            color="error"
+                        >
+                            <ShoppingCartIcon fontSize="small" />
+                        </Badge>
+                    </IconButton>
+                    <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
+                        Carrinho
+                    </p>
+                </MenuItem>
             </Link>
             <Link to="/library">
-            <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
-                <IconButton
-                    color={MOBILE_ICON_BUTTON_COLOR}
-                    style={MOBILE_ICON_BUTTON_STYLE}
-                    disableRipple
-                >
-                    <LibraryBooksIcon fontSize="small" />
-                </IconButton>
-                <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
-                    Biblioteca
-                </p>
-            </MenuItem>
+                <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
+                    <IconButton
+                        color={MOBILE_ICON_BUTTON_COLOR}
+                        style={MOBILE_ICON_BUTTON_STYLE}
+                        disableRipple
+                    >
+                        <LibraryBooksIcon fontSize="small" />
+                    </IconButton>
+                    <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
+                        Biblioteca
+                    </p>
+                </MenuItem>
             </Link>
             <Divider
                 variant="middle"
@@ -326,7 +326,7 @@ export default function PrimarySearchAppBar(props) {
                     <Box sx={{ display: { xs: 'none', sm: 'none', md: 'flex' } }}>
                         <Link to="/">
                             <Paper sx={{ width: '150px' }}>
-                                <img src="/images/store.png" alt=""/>
+                                <img src="/images/store.png" alt="" />
                             </Paper>
                         </Link>
                     </Box>
@@ -348,35 +348,41 @@ export default function PrimarySearchAppBar(props) {
                     </Search>
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', sm: 'none', md: 'flex' } }}>
-                        <IconButton color="inherit">
-                            <FavoriteIcon
-                                sx={{
-                                    color: COLOR_BDAZZLED_BLUE,
-                                    ':hover': {
-                                        color: COLOR_PLATINIUM
-                                    },
-                                }}
-                                fontSize="medium"
-                            />
-                        </IconButton>
-                        <IconButton
-                            color="inherit"
-                        >
-                            <Badge
-                                badgeContent={props.userCart.count}
-                                color='error'
-                            >
-                                <ShoppingCartIcon
+                        <Link to="/wishlist">
+                            <IconButton color="inherit">
+                                <FavoriteIcon
                                     sx={{
                                         color: COLOR_BDAZZLED_BLUE,
                                         ':hover': {
-                                            color: COLOR_PLATINIUM
+                                            color: COLOR_PLATINIUM,
                                         },
+                                        mt: '6px',
                                     }}
                                     fontSize="medium"
                                 />
-                            </Badge>
-                        </IconButton>
+                            </IconButton>
+                        </Link>
+                        <Link to="/cart">
+                            <IconButton
+                                color="inherit"
+                            >
+                                <Badge
+                                    badgeContent={props.userCart.count}
+                                    color='error'
+                                >
+                                    <ShoppingCartIcon
+                                        sx={{
+                                            color: COLOR_BDAZZLED_BLUE,
+                                            ':hover': {
+                                                color: COLOR_PLATINIUM
+                                            },
+                                            mt: '6px',
+                                        }}
+                                        fontSize="medium"
+                                    />
+                                </Badge>
+                            </IconButton>
+                        </Link>
                         <IconButton>
                             <Button
                                 edge="end"

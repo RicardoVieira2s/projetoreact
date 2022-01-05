@@ -34,7 +34,7 @@ export default function YourStore(props) {
 	//user infos
 	const user = {
 		id: '',
-		avatar: "images/store.png",
+		avatar: "images/avatar-Man-2.png",
 		name: 'Ricardo',
 		balance: { amount: 12, coin: '€' },
 

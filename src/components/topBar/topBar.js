@@ -98,7 +98,6 @@ export default function PrimarySearchAppBar(props) {
     const handleMenuClose = () => {
         setAnchorEl(null)
         handleMobileMenuClose()
-
     }
 
     const handleMobileMenuOpen = (event) => {

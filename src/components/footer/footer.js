@@ -67,6 +67,9 @@ const useStyles = makeStyles(({ palette, typography }) => ({
         margin: '-1px 0',
         backgroundColor: '#778DA9',
     },
+    text:{
+        color: '#778DA9'
+    },
     overlay: {
         position: 'absolute',
         top: 0,
@@ -79,6 +82,9 @@ const useStyles = makeStyles(({ palette, typography }) => ({
             height: '100%',
             objectFit: 'cover',
         },
+    },
+    icon:{
+        color: '#778DA9',
     },
     info: {
         ...typography.caption,
@@ -96,16 +102,15 @@ export const ArcAppFooterDemo = React.memo(function ArcAppFooter() {
                     <Grid container spacing={4}>
                         <Grid item xs={12} md={4} lg={3}>
                             <SocialProvider useStyles={usePoofSocialLinkStyles}>
-                                <SocialLink brand={'Envelope'} />
-                                <SocialLink brand={'GooglePlus'} />
-                                <SocialLink brand={'Pinterest'} />
-                                <SocialLink brand={'Dribbble'} />
+                                <SocialLink brand={'Twitter'} className={classes.icon} />
+                                <SocialLink brand={'Instagram'} className={classes.icon} />
+                                <SocialLink brand={'FacebookCircle'} className={classes.icon} />
                             </SocialProvider>
                         </Grid>
                         <Grid item xs={12} md={8} lg={3} style={{ marginLeft: 'auto' }}>
-                            <Item>
+                            <Typography className={classes.text} >
                                 Newsletter
-                            </Item>
+                            </Typography>
                             <Item>
                                 <EmailSubscribe
                                     className={classes.form}
@@ -138,10 +143,9 @@ export const ArcAppFooterDemo = React.memo(function ArcAppFooter() {
                                 <Typography
                                     component={'p'}
                                     variant={'caption'}
-                                    color={'textSecondary'}
+                                    className={classes.text}
                                 >
-                                    Designed by Anonymous © Fake Studio 2020 All right
-                                    reserved
+                                    © 2022 GOOFR. All rights reserved.
                                 </Typography>
                             </Box>
                         </Item>

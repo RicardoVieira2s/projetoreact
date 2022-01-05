@@ -89,7 +89,7 @@ const useStyles = makeStyles(({ palette, typography }) => ({
     }
 }))
 
-export const ArcAppFooterDemo = React.memo(function ArcAppFooter() {
+export const Footer = React.memo(function ArcAppFooter() {
     const classes = useStyles()
     return (
         <Box className={classes.footer}>

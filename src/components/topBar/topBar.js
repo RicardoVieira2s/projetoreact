@@ -322,7 +322,7 @@ export default function PrimarySearchAppBar(props) {
                 <Toolbar sx={{ flexGrow: 1 }}>
                     <Box sx={{ display: { xs: 'none', sm: 'none', md: 'flex' } }}>
                         <Link to="/">
-                            <Paper sx={{ width: '150px' }}>
+                            <Paper sx={{ width: '150px', backgroundColor:'transparent'}}>
                                 <img src="/images/store.png" alt="" />
                             </Paper>
                         </Link>

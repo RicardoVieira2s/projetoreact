@@ -1,7 +1,13 @@
+.container {
+    position: relative;
+    height: 538px;
+    width: 100%;
+}
+
 .hero-image {
     background-image: url("https://gmedia.playstation.com/is/image/SIEPDC/assassins-creed-valhalla-pdp-hero-01-ps4-17jul20$en?$native$");
     height: 538px;
-    width: auto;
+    width: 100%;
     background-position: right;
     background-repeat: no-repeat;
     background-size: cover;
@@ -15,4 +21,12 @@
     height: 100%;
     backdrop-filter: blur(4px);
     pointer-events: none;
-  }
+}
+
+.buttons-menu {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+}

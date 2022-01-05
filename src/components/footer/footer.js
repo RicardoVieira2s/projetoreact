@@ -67,7 +67,7 @@ const useStyles = makeStyles(({ palette, typography }) => ({
         margin: '-1px 0',
         backgroundColor: '#778DA9',
     },
-    text:{
+    text: {
         color: '#778DA9'
     },
     overlay: {
@@ -83,7 +83,7 @@ const useStyles = makeStyles(({ palette, typography }) => ({
             objectFit: 'cover',
         },
     },
-    icon:{
+    icon: {
         color: '#778DA9',
     },
     info: {
@@ -119,6 +119,9 @@ export const ArcAppFooterDemo = React.memo(function ArcAppFooter() {
                                     inputClearedAfterSubmit
                                 >
                                     <EmailTextInput placeholder="Email..." />
+
+                                    {/* FIXME: ARRANJAR O BOTÃO DE SUBMIT */}
+                                    
                                     {/* <SubmitButton>Subscrever</SubmitButton> */}
                                 </EmailSubscribe>
                             </Item>

@@ -35,15 +35,11 @@ import { usePlainNavigationMenuStyles } from '@mui-treasury/styles/navigationMen
 const darkTheme = createTheme({ palette: { type: 'dark' } })
 
 const useStyles = makeStyles(({ palette, typography }) => ({
-    top: {
-        backgroundSize: 'cover',
-        overflow: 'hidden',
-    },
-    middle: {
+    footer: {
         backgroundColor: '#0D1B2A',
-    },
-    bottom: {
-        backgroundColor: '#0D1B2A',
+        width: '100%',
+        position: 'fixed',
+        bottom: '0',
     },
     newsletterText: {
         color: '#fff',
@@ -96,8 +92,8 @@ const useStyles = makeStyles(({ palette, typography }) => ({
 export const ArcAppFooterDemo = React.memo(function ArcAppFooter() {
     const classes = useStyles()
     return (
-        <Box width={'100%'} position={'fixed'} bottom={'0'}>
-            <Box px={2} py={10} className={classes.middle}>
+        <Box className={classes.footer}>
+            <Box px={2} py={10}>
                 <Container disableGutters>
                     <Grid container spacing={4}>
                         <Grid item xs={12} md={4} lg={3}>
@@ -121,8 +117,9 @@ export const ArcAppFooterDemo = React.memo(function ArcAppFooter() {
                                     <EmailTextInput placeholder="Email..." />
 
                                     {/* FIXME: ARRANJAR O BOTÃO DE SUBMIT */}
-                                    
+
                                     {/* <SubmitButton>Subscrever</SubmitButton> */}
+
                                 </EmailSubscribe>
                             </Item>
 

@@ -11,8 +11,7 @@ import wishlistPage from './pages/wishlistPage'
 function App() {
   const user = { name: "Ricardo" }
   const cart = { count: 4 }
-  const balance = { amount: 12, coin:'€'}
-
+  const balance = { amount: 12, coin: '€' }
 
   return (
     <Router>
@@ -31,7 +30,7 @@ function App() {
         <Route
           path="/library" component={LibraryPage} exact />
         <Route
-          path="/wishlist" component={wishlistPage} exact />  
+          path="/wishlist" component={wishlistPage} exact />
       </Switch>
     </Router>
   )

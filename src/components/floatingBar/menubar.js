@@ -11,6 +11,14 @@ const useStyles = makeStyles(theme => ({
   indicator: {
     backgroundColor: COLOR_BDAZZLED_BLUE,
   },
+  floatBarFather: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  floatBar: {
+    position: 'absolute',
+  }
+
 }));
 
 export default function MenuBar() {
@@ -23,14 +31,14 @@ export default function MenuBar() {
 
   return (
 
-    <TabContext value={value}>
-      <Tabs
+    <TabContext value={value} className={classes.floatBarFather}>
+      <Tabs  className={classes.floatBar}
         onChange={handleChange}
         sx={{
           background: COLOR_RICH_BLACK,
           borderRadius: BORDER_RADIUS_2,
           alignItems: 'center',
-          marginTop: '67px',
+          marginTop: '65px',
         }}
         TabIndicatorProps={{ className: classes.indicator }}
       >
@@ -101,26 +109,6 @@ export default function MenuBar() {
         />
       </Tabs>
 
-      <TabPanel
-        value={0}
-      >
-        <p>00000</p>
-      </TabPanel>
-      <TabPanel
-        value={1}
-      >
-        <p>11111</p>
-      </TabPanel>
-      <TabPanel
-        value={2}
-      >
-        <p>2222</p>
-      </TabPanel>
-      <TabPanel
-        value={3}
-      >
-        <p>333333</p>
-      </TabPanel>
     </TabContext >
   )
 }

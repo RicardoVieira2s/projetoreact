@@ -7,6 +7,7 @@ import AccountPage from './pages/accountPage'
 import LibraryPage from './pages/libraryPage'
 import CartPage from './pages/cartPage'
 import wishlistPage from './pages/wishlistPage'
+import {Footer} from './components/footer/footer'
 
 function App() {
   const user = { name: "Ricardo" }
@@ -32,6 +33,9 @@ function App() {
         <Route
           path="/wishlist" component={wishlistPage} exact />
       </Switch>
+    
+    <Footer/>
+
     </Router>
   )
 }

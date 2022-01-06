@@ -7,7 +7,7 @@ const home = () => {
     return (
         <>
             <FloatingBar />
-            <Footer />
+            {/* <Footer /> */}
         </>
     )
 }

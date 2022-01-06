@@ -26,7 +26,7 @@ const useStyles = makeStyles(({ palette, typography }) => ({
     footer: {
         backgroundColor: COLOR_RICH_BLACK,
         width: '100%',
-        position: 'fixed',
+        position: 'relative',
         bottom: '0',
     },
     newsletterText: {

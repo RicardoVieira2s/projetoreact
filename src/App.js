@@ -33,9 +33,7 @@ function App() {
         <Route
           path="/wishlist" component={wishlistPage} exact />
       </Switch>
-    
     <Footer/>
-
     </Router>
   )
 }

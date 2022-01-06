@@ -29,6 +29,7 @@ export default function MenuBar() {
       <Box sx={{
         display: 'flex',
         justifyContent: 'center',
+        position:'relative',
       }}
       >
         <TabList
@@ -40,6 +41,9 @@ export default function MenuBar() {
             width: '950px',
             height: '70px',
             alignItems: 'center',
+            marginTop: '67px',
+            paddingLeft: '20px',
+            paddingRight: '20px',
           }}
           TabIndicatorProps={{ className: classes.indicator }}
         >
@@ -47,6 +51,7 @@ export default function MenuBar() {
             label="A tua loja"
             value={0}
             sx={{
+              padding: '20px',
               color: COLOR_BDAZZLED_BLUE,
               ':hover': {
                 color: COLOR_SHADOW_BLUE,

@@ -1,5 +1,5 @@
 import React from 'react'
-import FloatingBar from '../components/floatingBar/floatingBar'
+import FloatingBar from '../components/floatingBar/banner'
 
 const home = () => {
 

@@ -1,10 +1,10 @@
 import React from 'react'
-import YourStore from '../components/yourStore/yourStore'
+import YourAccount from '../components/yourAccount/yourAccount'
 
 const accountPage = () => {
     return (
         <>
-            <YourStore />
+            <YourAccount />
         </>
     )
 }

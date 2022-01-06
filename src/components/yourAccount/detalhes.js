@@ -1,10 +1,10 @@
 import React from 'react'
-import './yourStore.css'
+import './yourAccount.css'
 import { Box, Button, Card, CardContent, CardHeader, Divider, Grid, TextField } from '@mui/material'
 import { COLOR_RICH_BLACK, COLOR_OXFORD_BLUE, COLOR_BDAZZLED_BLUE, COLOR_SHADOW_BLUE, COLOR_PLATINIUM } from '../utils/color'
 import { BORDER_RADIUS_3 } from '../utils/border'
 
-export default function endereco() {
+export default function Detalhes() {
     
     const button = {
         backgroundColor: COLOR_BDAZZLED_BLUE,
@@ -24,7 +24,7 @@ export default function endereco() {
         >
             <Card>
                 <CardHeader
-                    title="Endereço"
+                    title="Detalhes"
                 />
                 <Divider />
                 <CardContent>
@@ -39,8 +39,8 @@ export default function endereco() {
                         >
                             <TextField
                                 fullWidth
-                                label="Rua"
-                                name="Rua"
+                                label="Nome Próprio"
+                                name="Nome Próprio"
                                 required
                                 variant="outlined"
                             />
@@ -52,35 +52,35 @@ export default function endereco() {
                         >
                             <TextField
                                 fullWidth
-                                label="Número de porta"
-                                name="Número de porta"
+                                label="Apelido"
+                                name="Apelido"
+                                required
+                                variant="outlined"
+                            />
+                        </Grid>
+                        <Grid
+                            item
+                            md={6}
+                            xs={12}
+                        >
+                            <TextField
+                                fullWidth
+                                label="E-mail"
+                                name="E-mail"
+                                required
+                                variant="outlined"
+                            />
+                        </Grid>
+                        <Grid
+                            item
+                            md={6}
+                            xs={12}
+                        >
+                            <TextField
+                                fullWidth
+                                label="Número de telemóvel"
+                                name="Número de telemóvel"
                                 type="number"
-                                required
-                                variant="outlined"
-                            />
-                        </Grid>
-                        <Grid
-                            item
-                            md={6}
-                            xs={12}
-                        >
-                            <TextField
-                                fullWidth
-                                label="Código Postal"
-                                name="Código Postal"
-                                required
-                                variant="outlined"
-                            />
-                        </Grid>
-                        <Grid
-                            item
-                            md={6}
-                            xs={12}
-                        >
-                            <TextField
-                                fullWidth
-                                label="Cidade"
-                                name="Cidade"
                                 variant="outlined"
                                 required
                             />
@@ -92,8 +92,20 @@ export default function endereco() {
                         >
                             <TextField
                                 fullWidth
-                                label="País"
-                                name="País"
+                                type="date"
+                                variant="outlined"
+                                helperText="Data de nascimento" />
+                        </Grid>
+                        <Grid
+                            item
+                            md={6}
+                            xs={12}
+                        >
+                            <TextField
+                                fullWidth
+                                label="Número de Identificação Fiscal"
+                                name="Número de Identificação Fiscal"
+                                type="number"
                                 variant="outlined"
                                 required
                             />

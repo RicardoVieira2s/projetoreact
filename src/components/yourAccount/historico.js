@@ -1,5 +1,5 @@
 import React from 'react'
-import './yourStore.css'
+import './yourAccount.css'
 import { COLOR_RICH_BLACK, COLOR_OXFORD_BLUE, COLOR_BDAZZLED_BLUE, COLOR_SHADOW_BLUE, COLOR_PLATINIUM } from '../utils/color'
 import { BORDER_RADIUS_3 } from '../utils/border'
 import { Box, Button, Card, CardContent, CardHeader, Divider, Grid} from '@mui/material'

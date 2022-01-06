@@ -5,21 +5,13 @@ import Divider from '@material-ui/core/Divider'
 import Typography from '@material-ui/core/Typography'
 import { Link } from 'react-router-dom'
 import { COLOR_RICH_BLACK, COLOR_OXFORD_BLUE, COLOR_BDAZZLED_BLUE, COLOR_SHADOW_BLUE, COLOR_PLATINIUM } from '../utils/color'
-
-
-import IconButton from '@mui/material/IconButton'
-
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import InstagramIcon from '@mui/icons-material/Instagram'
-
 import { makeStyles } from '@material-ui/core/styles'
-
-import { ColumnToRow, Item, Row } from '@mui-treasury/components/flex'
+import { Item, Row } from '@mui-treasury/components/flex'
 import { EmailSubscribe, EmailTextInput, SubmitButton } from '@mui-treasury/components/EmailSubscribe'
-
-import { useReadyEmailSubscribeStyles } from '@mui-treasury/styles/emailSubscribe/ready'
-
+import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles(({ palette, typography }) => ({
 
@@ -30,7 +22,7 @@ const useStyles = makeStyles(({ palette, typography }) => ({
         bottom: '0',
     },
     newsletterText: {
-        color: '#fff',
+        color: COLOR_PLATINIUM,
         fontFamily: 'Viga',
         fontSize: '20px',
     },
@@ -47,8 +39,8 @@ const useStyles = makeStyles(({ palette, typography }) => ({
         flex: 1,
         padding: '0.5rem 1rem',
         paddingRight: '7.7rem',
-        backgroundColor: '#C4C4C4',
-        color: '#E0E1DDF',
+        backgroundColor: COLOR_PLATINIUM,
+        color: COLOR_BDAZZLED_BLUE,
         border: 'none',
         borderRadius: 5,
         outline: 'none',
@@ -57,19 +49,20 @@ const useStyles = makeStyles(({ palette, typography }) => ({
     submit: {
         fontFamily: 'Viga',
         fontSize: '20px',
+        border: 'none',
         position: 'absolute',
         top: 0,
         right: 0,
         bottom: 0,
         borderRadius: 5,
-        backgroundColor: '#415A77',
-        color: '#E0E1DD',
+        backgroundColor: COLOR_BDAZZLED_BLUE,
+        color: COLOR_PLATINIUM,
         padding: '0.5rem 1rem',
         transition: 'transform 0.2s',
         transformOrigin: 'right',
         '&:hover, &:focus': {
-            backgroundColor: '#1b263b',
-            color: '#E0E1DD'
+            backgroundColor: COLOR_OXFORD_BLUE,
+            color: COLOR_PLATINIUM
         },
         '&:active': {
             transform: 'scale(0.92)'
@@ -119,85 +112,89 @@ const useStyles = makeStyles(({ palette, typography }) => ({
 export const Footer = React.memo(function ArcAppFooter() {
     const classes = useStyles()
     return (
-        <Box className={classes.footer} >
-            <Container >
-                <Box pt={8} pb={2} className={classes.top} position={'relative'}>
-                    <Row wrap alignItems="center">
-                        <Item grow={2}>
-                            <Item >
-                                <FacebookRoundedIcon sx={{
-                                    color: COLOR_BDAZZLED_BLUE,
-                                    ':hover': {
-                                        color: COLOR_PLATINIUM,
-                                    },
-                                    mt: '6px',
-                                }}
-                                    fontSize="large" />
-                                <TwitterIcon sx={{
-                                    color: COLOR_BDAZZLED_BLUE,
-                                    ':hover': {
-                                        color: COLOR_PLATINIUM,
-                                    },
-                                    mt: '6px',
-                                }}
-                                    fontSize="large" />
-                                <InstagramIcon sx={{
-                                    color: COLOR_BDAZZLED_BLUE,
-                                    ':hover': {
-                                        color: COLOR_PLATINIUM,
-                                    },
-                                    mt: '6px',
-                                }}
-                                    fontSize="large" />
+        <footer>
+            <Box className={classes.footer} >
+                <Container >
+                    <Box pt={4} pb={4} >
+                        <Row wrap alignItems="center">
+                            <Item grow={2}>
+                                <Item >
+                                    <FacebookRoundedIcon sx={{
+                                        color: COLOR_BDAZZLED_BLUE,
+                                        ':hover': {
+                                            color: COLOR_PLATINIUM,
+                                        },
+                                        mt: '6px',
+                                        paddingRight: '10px'
+                                    }}
+                                        fontSize="medium" />
+                                    <TwitterIcon sx={{
+                                        color: COLOR_BDAZZLED_BLUE,
+                                        ':hover': {
+                                            color: COLOR_PLATINIUM,
+                                        },
+                                        mt: '6px',
+                                        paddingRight: '10px'
+                                    }}
+                                        fontSize="medium" />
+                                    <InstagramIcon sx={{
+                                        color: COLOR_BDAZZLED_BLUE,
+                                        ':hover': {
+                                            color: COLOR_PLATINIUM,
+                                        },
+                                        mt: '6px',
+                                    }}
+                                        fontSize="medium" />
+                                </Item>
                             </Item>
-                        </Item>
-                        <Item paddingRight= '15px'>
-                            <Typography className={classes.textNewsletter}>
-                                Newsletter
-                            </Typography>
-                        </Item>
-                        <Item>
-                            <EmailSubscribe
-                                className={classes.form}
-                                onSubmit={email => alert(`Your email is ${email}.`)}
-                                useStyles={useStyles}
-                                inputClearedAfterSubmit
-                            >
-                                <EmailTextInput placeholder="Email..." />
-                                {/* <SubmitButton>Subscrever</SubmitButton> */}
-                            </EmailSubscribe>
-                        </Item>
-                    </Row>
-                </Box>
-                <Divider className={classes.divider} />
-                <Box pt={3} pb={1}>
-                    <Container>
-                        <Row wrap
-                            alignItems="center"
-                            justifyContent="center"
-                        >
-                            <Item>
-                                <Box>
-                                    <Link to="/">
-                                        <img src="/images/store.png" alt="" />
-                                    </Link>
-                                </Box>
+                            <Item paddingRight='15px'>
+                                <Typography className={classes.textNewsletter}>
+                                    Newsletter
+                                </Typography>
                             </Item>
                             <Item>
-                                <Box>
-                                    <Typography
-                                        component={'p'}
-                                        variant={'caption'}
-                                        className={classes.textCopy}
-                                    >
-                                        © 2022 GOOFR. All rights reserved.
-                                    </Typography>
-                                </Box>
+                                <EmailSubscribe
+                                    className={classes.form}
+                                    onSubmit={email => alert(`Newsletter subscrita com sucesso ${email}.`)}
+                                    useStyles={useStyles}
+                                    inputClearedAfterSubmit
+                                >
+                                    <EmailTextInput placeholder="Email..." />
+                                    <input type="submit" className={classes.submit} value="Subscrever" />
+                                </EmailSubscribe>
                             </Item>
                         </Row>
-                    </Container>
-                </Box>
-            </Container>
-        </Box >
+                    </Box>
+                    <Divider className={classes.divider} />
+                    <Box pt={3} pb={3}>
+                        <Container>
+                            <Row wrap
+                                alignItems="center"
+                                justifyContent="center"
+                            >
+                                <Item>
+                                    <Box>
+                                        <Link to="/">
+                                            <img src="/images/store.png" alt="" />
+                                        </Link>
+                                    </Box>
+                                </Item>
+                                <Item>
+                                    <Box>
+                                        <Typography
+                                            component={'p'}
+                                            variant={'caption'}
+                                            className={classes.textCopy}
+                                        >
+                                            © 2022 GOOFR. All rights reserved.
+                                        </Typography>
+                                    </Box>
+                                </Item>
+                            </Row>
+                        </Container>
+                    </Box>
+                </Container>
+            </Box >
+        </footer>
     )
 })

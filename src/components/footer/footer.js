@@ -10,8 +10,7 @@ import TwitterIcon from '@mui/icons-material/Twitter'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import { makeStyles } from '@material-ui/core/styles'
 import { Item, Row } from '@mui-treasury/components/flex'
-import { EmailSubscribe, EmailTextInput, SubmitButton } from '@mui-treasury/components/EmailSubscribe'
-import { Button } from "@material-ui/core";
+import { EmailSubscribe, EmailTextInput } from '@mui-treasury/components/EmailSubscribe'
 
 const useStyles = makeStyles(({ palette, typography }) => ({
 

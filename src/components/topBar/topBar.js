@@ -323,7 +323,7 @@ export default function PrimarySearchAppBar(props) {
                     <Box sx={{ display: { xs: 'none', sm: 'none', md: 'flex' } }}>
                         <Link to="/">
                             <Paper sx={{ width: '150px', backgroundColor:'transparent'}}>
-                                <img src="/images/store.png" alt="" />
+                                <img src="/images/store.png" alt="" height= '40px' width= '100%' />
                             </Paper>
                         </Link>
                     </Box>

@@ -1,19 +1,16 @@
 import React from 'react'
-import { CardHeader, Grid } from '@mui/material'
 import './wishList.css'
-import DividerPages from '../utils/dividerPages'
+import Title from '../title/Title'
+import { COLOR_SHADOW_BLUE } from '../utils/color'
+import { Grid } from '@mui/material'
 
 export default function WishList(props) {
     return (
         <div class="wishListContentor">
-            <CardHeader
-                title="Lista de desejos"
-                titleTypographyProps={{
-                    variant: 'p',
-                }}
-                sx={{ marginLeft: '16px', paddingTop: '40px', fontSize: '40px' }}
+            <Title
+                name={'Lista de desejos'}
+                color={COLOR_SHADOW_BLUE}
             />
-            <DividerPages />
             <Grid
                 container
                 alignItems={'center'}

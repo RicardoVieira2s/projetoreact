@@ -9,9 +9,9 @@ export default function CartList(props) {
             <CardHeader
                 title="Carrinho"
                 titleTypographyProps={{
-                    variant: 'h4',
+                    variant: 'p',
                 }}
-                sx={{ marginLeft: '16px', paddingTop: '40px' }}
+                sx={{ marginLeft: '16px', paddingTop: '40px', fontSize: '40px'}}
             />
             <DividerPages />
             <Grid

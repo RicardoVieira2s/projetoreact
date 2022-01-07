@@ -3,20 +3,17 @@ import { COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM } from '../utils/color'
 import GameImage from './GameImage'
 import DownloadIcon from '@mui/icons-material/Download'
 import { Card, CardContent, Grid, CardActions, IconButton, Typography } from '@mui/material'
+import { BORDER_RADIUS_3 } from '../utils/border'
 
 export default function libraryGame({ game }) {
 
     return (
         <CardContent>
-            <Grid
-                item
-                xs={12}
-                md={12}
-                lg={12}
-            >
+            <Grid>
                 <Card
                     sx={{
                         maxWidth: '400px',
+                        borderRadius: BORDER_RADIUS_3,
                     }}
                 >
                     <GameImage

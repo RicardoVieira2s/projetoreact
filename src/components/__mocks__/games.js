@@ -9,7 +9,7 @@ const games = [
         state: "active",
         release_date: "2022-01-07",
         description: "string",
-        download_link: "string"
+        download_link: "https://www.google.pt"
     },
     {
         id: 2,
@@ -21,7 +21,7 @@ const games = [
         cover_image: "https://arena.rtp.pt/wp-content/uploads/2020/05/VALORANT-launch-midnight-002.png",
         release_date: "2022-01-07",
         description: "string",
-        download_link: "string"  
+        download_link: "https://www.google.pt"  
     },
     {
         id: 3,
@@ -33,7 +33,7 @@ const games = [
         cover_image: "https://blog.2amgaming.com/wp-content/uploads/2018/10/coisas-que-um-novato-nao-deve-fazer-em-league-of-legends-lol.jpg",
         release_date: "2022-01-07",
         description: "string",
-        download_link: "string"
+        download_link: "https://www.google.pt"
       },
       {
         id: 4,
@@ -45,7 +45,7 @@ const games = [
         state: "active",
         release_date: "2022-01-07",
         description: "string",
-        download_link: "string"
+        download_link: "https://www.google.pt"
     },
     {
         id: 5,
@@ -57,7 +57,7 @@ const games = [
         state: "active",
         release_date: "2022-01-07",
         description: "string",
-        download_link: "string"
+        download_link: "https://www.google.pt"
     },
     {
         id: 6,
@@ -69,7 +69,7 @@ const games = [
         state: "active",
         release_date: "2022-01-07",
         description: "string",
-        download_link: "string"
+        download_link: "https://www.google.pt"
     },
 ];
 

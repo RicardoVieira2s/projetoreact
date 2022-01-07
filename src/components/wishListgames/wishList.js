@@ -9,9 +9,9 @@ export default function WishList(props) {
             <CardHeader
                 title="Lista de desejos"
                 titleTypographyProps={{
-                    variant: 'h4',
+                    variant: 'p',
                 }}
-                sx={{ marginLeft: '16px', paddingTop: '40px' }}
+                sx={{ marginLeft: '16px', paddingTop: '40px', fontSize: '40px' }}
             />
             <DividerPages />
             <Grid
@@ -20,7 +20,7 @@ export default function WishList(props) {
                 justifyContent={'center'}
                 display={'flex'}
             >
-                
+
             </Grid>
         </div>
     )

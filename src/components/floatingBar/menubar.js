@@ -12,11 +12,14 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: COLOR_BDAZZLED_BLUE,
   },
   floatBarFather: {
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   floatBar: {
-    position: 'absolute',
+    position: 'relative',
+    background: COLOR_RICH_BLACK,
+    borderRadius: BORDER_RADIUS_2,
+    marginTop:'65px',
+    display: 'table',
+    margin: '0 auto'
   }
 
 }));
@@ -34,19 +37,12 @@ export default function MenuBar() {
     <TabContext value={value} className={classes.floatBarFather}>
       <Tabs className={classes.floatBar}
         onChange={handleChange}
-        sx={{
-          background: COLOR_RICH_BLACK,
-          borderRadius: BORDER_RADIUS_2,
-          alignItems: 'center',
-          marginTop: '65px',
-        }}
         TabIndicatorProps={{ className: classes.indicator }}
       >
         <Tab
           label="A tua loja"
           value={0}
           sx={{
-            padding: '20px',
             color: COLOR_BDAZZLED_BLUE,
             ':hover': {
               color: COLOR_SHADOW_BLUE,

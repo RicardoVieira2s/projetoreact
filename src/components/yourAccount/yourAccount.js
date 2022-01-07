@@ -6,10 +6,9 @@ import Privacidade from '../yourAccount/privacidade'
 import Historico from '../yourAccount/historico'
 import CustomButton1 from './customButton1'
 import { COLOR_RICH_BLACK, COLOR_OXFORD_BLUE, COLOR_BDAZZLED_BLUE, COLOR_SHADOW_BLUE, COLOR_PLATINIUM } from '../utils/color'
-import { BORDER_RADIUS_3 } from '../utils/border'
+import { BORDER_RADIUS_1, BORDER_RADIUS_2, BORDER_RADIUS_3 } from '../utils/border'
 import { Box, Tab } from '@mui/material'
 import { TabContext, TabList, TabPanel } from '@mui/lab'
-
 
 export default function YourAccount(props) {
 

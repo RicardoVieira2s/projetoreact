@@ -1,7 +1,7 @@
 import React from 'react'
-import GameList from '../components/Games/GameList'
+import GameList from '../components/libraryGames/GameList'
 
-const library = () => {
+const libraryPage = () => {
     return (
         <>
             <GameList />
@@ -9,4 +9,4 @@ const library = () => {
     )
 }
 
-export default library
+export default libraryPage

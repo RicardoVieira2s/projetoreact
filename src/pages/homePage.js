@@ -1,7 +1,7 @@
 import React from 'react'
 import {Banner} from '../components/floatingBar/banner'
 
-const home = () => {
+const homePage = () => {
 
     return (
         <>
@@ -10,4 +10,4 @@ const home = () => {
     )
 }
 
-export default home
+export default homePage

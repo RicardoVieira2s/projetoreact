@@ -1,6 +1,5 @@
 import React from 'react'
-import { COLOR_RICH_BLACK, COLOR_OXFORD_BLUE, COLOR_BDAZZLED_BLUE, COLOR_SHADOW_BLUE, COLOR_PLATINIUM } from '../utils/color'
-import { BORDER_RADIUS_1, BORDER_RADIUS_2, BORDER_RADIUS_3 } from '../utils/border'
+import { COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM } from '../utils/color'
 import GameImage from './GameImage'
 import DownloadIcon from '@mui/icons-material/Download'
 import { Card, CardContent, Grid, CardActions, IconButton, Typography } from '@mui/material'
@@ -18,13 +17,12 @@ export default function libraryGame({ game }) {
                 <Card
                     sx={{
                         maxWidth: '400px',
-                        height: '380px',
                     }}
                 >
                     <GameImage
                         cover_image={game.cover_image}
                     />
-                    <CardActions>
+                    <CardActions style={{ position: 'relative', backgroundColor: COLOR_PLATINIUM }}>
                         <Grid
                             sx={{
                                 alignItems: 'center',
@@ -33,19 +31,31 @@ export default function libraryGame({ game }) {
                             }}
                         >
                             <Typography
-                                sx={{ pl: 2, flex: 1 }}
+                                sx={{
+                                    pl: 2,
+                                    textOverflow: "ellipsis",
+                                    overflow: "hidden",
+                                    maxWidth: '290px',
+                                    color: COLOR_BDAZZLED_BLUE,
+                                }}
                                 variant="p"
                             >
                                 {game.name}
                             </Typography>
-                            <IconButton>
-                                <DownloadIcon />
-                            </IconButton>
+
                         </Grid>
+                        <IconButton style={{
+                            right: 0,
+                            position: 'absolute',
+                            marginRight: '12px',
+                            color: COLOR_BDAZZLED_BLUE,
+                        }}>
+                            <DownloadIcon />
+                        </IconButton>
                     </CardActions>
                 </Card>
             </Grid>
-        </CardContent>
+        </CardContent >
     )
 }
 

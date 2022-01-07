@@ -1,11 +1,12 @@
 import React from 'react'
+import CartList from '../components/cartGames/cartList'
 
-const cart = () => {
+const cartPage = () => {
     return (
         <>
-            <h1>Cart Page.</h1>
+            <CartList/>
         </>
     )
 }
 
-export default cart
+export default cartPage

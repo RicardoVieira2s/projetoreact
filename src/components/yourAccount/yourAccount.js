@@ -22,7 +22,10 @@ export default function YourAccount(props) {
 	const user = {
 		avatar: "images/avatar-Man-2.png",
 		name: 'Ricardo',
-		balance: { amount: 12, coin: '€' },
+		balance: {
+			amount: 12,
+			coin: '€'
+		},
 	}
 
 	return (
@@ -33,7 +36,7 @@ export default function YourAccount(props) {
 					<div class="user-name user-content">
 						<p class="user-info">{user.name}</p>
 						<p class="user-info">Saldo: {user.balance.coin}{user.balance.amount}</p>
-						<CustomButton1/>	
+						<CustomButton1 />
 					</div>
 				</div>
 			</div>

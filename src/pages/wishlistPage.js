@@ -1,11 +1,12 @@
 import React from 'react'
+import WishList from '../components/wishListgames/wishList'
 
-const wishlist = () => {
+const wishlistPage = () => {
     return (
         <>
-            <h1>Wishlist Page.</h1>
+          <WishList />
         </>
     )
 }
 
-export default wishlist
+export default wishlistPage

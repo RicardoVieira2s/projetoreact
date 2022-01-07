@@ -5,26 +5,16 @@ import { FONT_SECUNDARY_SIZE } from '../utils/font'
 import { BORDER_RADIUS_1 } from '../utils/border'
 import { Link } from 'react-router-dom'
 import { styled, alpha } from '@mui/material/styles'
-import AppBar from '@mui/material/AppBar'
-import Box from '@mui/material/Box'
-import Toolbar from '@mui/material/Toolbar'
-import IconButton from '@mui/material/IconButton'
-import InputBase from '@mui/material/InputBase'
-import Badge from '@mui/material/Badge'
-import MenuItem from '@mui/material/MenuItem'
-import Menu from '@mui/material/Menu'
+import { IconButton, Toolbar, Paper, Button, Divider, Menu, MenuItem, Badge, InputBase, Box, AppBar } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import MoreIcon from '@mui/icons-material/MoreVert'
-import Divider from '@mui/material/Divider'
-import Button from '@mui/material/Button'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import LogoutIcon from '@mui/icons-material/Logout'
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks'
 import PersonIcon from '@mui/icons-material/Person'
-import Paper from '@mui/material/Paper'
 import HomeIcon from '@mui/icons-material/Home'
 
 const DESKTOP_ITEM_HEIGHT = '27px'
@@ -322,8 +312,8 @@ export default function PrimarySearchAppBar(props) {
                 <Toolbar sx={{ flexGrow: 1 }}>
                     <Box sx={{ display: { xs: 'none', sm: 'none', md: 'flex' } }}>
                         <Link to="/">
-                            <Paper sx={{ width: '150px', backgroundColor:'transparent'}}>
-                                <img src="/images/store.png" alt="" height= '40px' width= '100%' />
+                            <Paper sx={{ width: '150px', backgroundColor: 'transparent' }}>
+                                <img src="/images/store.png" alt="" height='40px' width='100%' />
                             </Paper>
                         </Link>
                     </Box>

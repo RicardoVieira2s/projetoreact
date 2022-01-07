@@ -4,13 +4,12 @@ import Detalhes from '../yourAccount/detalhes'
 import Endereco from '../yourAccount/endereco'
 import Privacidade from '../yourAccount/privacidade'
 import Historico from '../yourAccount/historico'
-import { Box, Button} from '@mui/material'
+import CustomButton1 from './customButton1'
 import { COLOR_RICH_BLACK, COLOR_OXFORD_BLUE, COLOR_BDAZZLED_BLUE, COLOR_SHADOW_BLUE, COLOR_PLATINIUM } from '../utils/color'
 import { BORDER_RADIUS_3 } from '../utils/border'
-import Tab from '@mui/material/Tab'
-import TabContext from '@mui/lab/TabContext'
-import TabList from '@mui/lab/TabList'
-import TabPanel from '@mui/lab/TabPanel'
+import { Box, Tab } from '@mui/material'
+import { TabContext, TabList, TabPanel } from '@mui/lab'
+
 
 export default function YourAccount(props) {
 
@@ -20,41 +19,10 @@ export default function YourAccount(props) {
 		setValue(newValue);
 	}
 
-	const button = {
-		backgroundColor: COLOR_BDAZZLED_BLUE,
-		color: COLOR_PLATINIUM,
-		':hover': {
-			backgroundColor: COLOR_BDAZZLED_BLUE,
-			color: COLOR_PLATINIUM,
-		},
-		borderRadius: BORDER_RADIUS_3,
-		fontFamily: 'Viga',
-	}
-
-	//user infos
 	const user = {
-		id: '',
 		avatar: "images/avatar-Man-2.png",
 		name: 'Ricardo',
 		balance: { amount: 12, coin: '€' },
-
-		surname: '',
-		phoneNumber: '',
-		vat: '',
-		email: '',
-		birthData: '',
-
-		street: '',
-		doorNumber: '',
-		zipCode: '',
-		city: '',
-		country: '',
-
-		accordionInfo: {
-			title: 'title',
-			caption: 'caption',
-			info: 'info',
-		}
 	}
 
 	return (
@@ -65,12 +33,7 @@ export default function YourAccount(props) {
 					<div class="user-name user-content">
 						<p class="user-info">{user.name}</p>
 						<p class="user-info">Saldo: {user.balance.coin}{user.balance.amount}</p>
-						<Button
-							style={button}
-							sx={{ height: '30px', float: 'right' }}
-						>
-							Add balance
-						</Button>
+						<CustomButton1/>	
 					</div>
 				</div>
 			</div>
@@ -112,6 +75,6 @@ export default function YourAccount(props) {
 					</TabPanel>
 				</TabContext>
 			</div>
-		</div>
+		</div >
 	)
 }

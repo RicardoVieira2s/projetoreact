@@ -2,11 +2,7 @@ import React from 'react'
 import './yourAccount.css'
 import { COLOR_RICH_BLACK, COLOR_OXFORD_BLUE, COLOR_BDAZZLED_BLUE, COLOR_SHADOW_BLUE, COLOR_PLATINIUM } from '../utils/color'
 import { BORDER_RADIUS_3 } from '../utils/border'
-import { Box, Button, Card, CardContent, CardHeader, Divider, Grid} from '@mui/material'
-import Accordion from '@mui/material/Accordion'
-import AccordionDetails from '@mui/material/AccordionDetails'
-import AccordionSummary from '@mui/material/AccordionSummary'
-import Typography from '@mui/material/Typography'
+import {Typography, Box, Button, Card, CardContent, CardHeader, Divider, Grid, Accordion, AccordionDetails,AccordionSummary } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 export default function Historico() {
@@ -24,8 +20,6 @@ export default function Historico() {
 
     //user infos
     const user = {
-        id: '',
-
         accordionInfo: {
             title: 'title',
             caption: 'caption',

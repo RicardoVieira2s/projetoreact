@@ -2,22 +2,12 @@ import React from 'react'
 import './yourAccount.css'
 import { COLOR_RICH_BLACK, COLOR_OXFORD_BLUE, COLOR_BDAZZLED_BLUE, COLOR_SHADOW_BLUE, COLOR_PLATINIUM } from '../utils/color'
 import { BORDER_RADIUS_3 } from '../utils/border'
-import { Box, Button, Card, CardContent, CardHeader, Divider, Grid, TextField } from '@mui/material'
+import { Box, Card, CardContent, CardHeader, Divider, Grid, TextField } from '@mui/material'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Switch from '@mui/material/Switch'
+import CustomButton2 from './customButton2'
 
 export default function privacidade() {
-    
-    const button = {
-        backgroundColor: COLOR_BDAZZLED_BLUE,
-        color: COLOR_PLATINIUM,
-        ':hover': {
-            backgroundColor: COLOR_BDAZZLED_BLUE,
-            color: COLOR_PLATINIUM,
-        },
-        borderRadius: BORDER_RADIUS_3,
-        fontFamily: 'Viga',
-    }
 
     return (
         <form
@@ -69,12 +59,7 @@ export default function privacidade() {
                         p: 2
                     }}
                 >
-                    <Button
-                        style={button}
-                        sx={{ height: '40px' }}
-                    >
-                        Save details
-                    </Button>
+                    <CustomButton2 />
                 </Box>
             </Card>
         </form>

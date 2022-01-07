@@ -32,7 +32,7 @@ export default function MenuBar() {
   return (
 
     <TabContext value={value} className={classes.floatBarFather}>
-      <Tabs  className={classes.floatBar}
+      <Tabs className={classes.floatBar}
         onChange={handleChange}
         sx={{
           background: COLOR_RICH_BLACK,

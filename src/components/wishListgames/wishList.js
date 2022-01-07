@@ -7,8 +7,11 @@ export default function WishList(props) {
     return (
         <div class="wishListContentor">
             <CardHeader
-                titleTypographyProps={{ variant: 'h4' }}
                 title="Lista de desejos"
+                titleTypographyProps={{
+                    variant: 'h4',
+                }}
+                sx={{ marginLeft: '16px', paddingTop: '40px' }}
             />
             <DividerPages />
             <Grid

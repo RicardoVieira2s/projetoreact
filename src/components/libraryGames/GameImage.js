@@ -12,6 +12,7 @@ export default function GameImage({ cover_image }) {
                 '&:hover, &:focus': {
                     transform: 'scale(1.05)',
                     transition: 'all .2s ease-in-out',
+                    cursor: 'pointer',
                 },
             }}
         />

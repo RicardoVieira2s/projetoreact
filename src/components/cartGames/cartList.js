@@ -7,8 +7,11 @@ export default function CartList(props) {
     return (
         <div class="cartContentor">
             <CardHeader
-                titleTypographyProps={{ variant: 'h4' }}
                 title="Carrinho"
+                titleTypographyProps={{
+                    variant: 'h4',
+                }}
+                sx={{ marginLeft: '16px', paddingTop: '40px' }}
             />
             <DividerPages />
             <Grid

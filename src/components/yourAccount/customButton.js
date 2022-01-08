@@ -2,7 +2,7 @@ import { Button } from '@mui/material'
 import { COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM } from '../utils/color'
 import { BORDER_RADIUS_3 } from '../utils/border'
 
-export default function CustomButton2() {
+export default function CustomButton({ name }) {
 
     return (
         <Button
@@ -15,10 +15,10 @@ export default function CustomButton2() {
                 },
                 borderRadius: BORDER_RADIUS_3,
                 fontFamily: 'Viga',
-                height: '40px'
+                height: '40px',
             }}
         >
-            Save details
+            {name}
         </Button>
     )
 }

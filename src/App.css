@@ -5,6 +5,7 @@ html, body {
     padding: 0;
     font-family: 'Viga', sans-serif;
     font-size: 20px;
+    height: 100%;
 }
 
 input{
@@ -18,4 +19,9 @@ input::placeholder {
 
 p{
     font-family: 'Viga', sans-serif !important;
+}
+
+.content-body{
+    min-height: calc(100% - 281px);
+    background-color: #1B263B;
 }

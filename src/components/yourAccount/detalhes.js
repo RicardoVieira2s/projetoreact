@@ -1,22 +1,41 @@
 import React from 'react'
 import './yourAccount.css'
-import { Box, Card, CardContent, CardHeader, Divider, Grid, TextField } from '@mui/material'
+import CustomButton from './customButton'
 import { COLOR_RICH_BLACK, COLOR_OXFORD_BLUE, COLOR_BDAZZLED_BLUE, COLOR_SHADOW_BLUE, COLOR_PLATINIUM } from '../utils/color'
-import { BORDER_RADIUS_3 } from '../utils/border'
-import CustomButton2 from './customButton2'
+import { Box, Card, CardContent, CardHeader, Divider, Grid, TextField } from '@mui/material'
+import { BORDER_RADIUS_1, BORDER_RADIUS_2, BORDER_RADIUS_3 } from '../utils/border'
+import Title from '../title/Title'
+import { makeStyles } from '@material-ui/core/styles'
+
+const useStyles = makeStyles(() => ({
+    container: {
+        backgroundColor: COLOR_PLATINIUM,
+        color: COLOR_BDAZZLED_BLUE,
+        borderRadius: BORDER_RADIUS_2,
+        paddingRight: '15px',
+        paddingLeft: '15px',
+    },
+    finalBox: {
+        display: 'flex',
+        justifyContent: 'flex-end',
+        padding: '16px',
+    },
+}))
 
 export default function Detalhes() {
+
+    const classes = useStyles()
 
     return (
         <form
             autoComplete="off"
             noValidate
         >
-            <Card>
-                <CardHeader
-                    title="Detalhes"
+            <Card className={classes.container}>
+                <Title
+                    name={'Detalhes'}
+                    color={COLOR_BDAZZLED_BLUE}
                 />
-                <Divider />
                 <CardContent>
                     <Grid
                         container
@@ -103,14 +122,10 @@ export default function Detalhes() {
                     </Grid>
                 </CardContent>
                 <Divider />
-                <Box
-                    sx={{
-                        display: 'flex',
-                        justifyContent: 'flex-end',
-                        p: 2
-                    }}
-                >
-                    <CustomButton2 />
+                <Box className={classes.finalBox}>
+                    <CustomButton
+                        name={"Guardar Alterações"}
+                    />
                 </Box>
             </Card>
         </form>

@@ -21,18 +21,20 @@ function App() {
         userCart={cart}
         userBalance={balance}
       />
-      <Switch>
-        <Route
-          path="/" component={Home} exact />
-        <Route
-          path="/account" component={AccountPage} exact />
-        <Route
-          path="/cart" component={CartPage} exact />
-        <Route
-          path="/library" component={LibraryPage} exact />
-        <Route
-          path="/wishlist" component={wishlistPage} exact />
-      </Switch>
+      <div class='content-body'>
+        <Switch>
+          <Route
+            path="/" component={Home} exact />
+          <Route
+            path="/account" component={AccountPage} exact />
+          <Route
+            path="/cart" component={CartPage} exact />
+          <Route
+            path="/library" component={LibraryPage} exact />
+          <Route
+            path="/wishlist" component={wishlistPage} exact />
+        </Switch>
+      </div>
       <Footer />
     </Router>
   )

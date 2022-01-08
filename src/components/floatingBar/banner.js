@@ -22,14 +22,10 @@ export const Banner = React.memo(function BannerApp() {
     const classes = useStyles()
 
     return (
-
-
         <Container className={classes.containerBanner}>
 
             <MenuBar />
 
         </Container>
-
-
     )
 })

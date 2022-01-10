@@ -66,7 +66,7 @@ const useStyles = makeStyles(({ palette, typography }) => ({
         },
         '&:active': {
             transform: 'scale(0.92)'
-        } 
+        }
     },
     divider: {
         height: 2,

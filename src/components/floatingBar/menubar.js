@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     display: 'table',
     margin: '0 auto'
   }
-
+ 
 }));
 
 export default function MenuBar() {

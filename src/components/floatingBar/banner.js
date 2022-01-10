@@ -2,7 +2,7 @@ import React from 'react'
 import MenuBar from './menubar'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
-import { display } from '@mui/system'
+import { display } from '@mui/system' 
 
 const useStyles = makeStyles(({ palette, typography }) => ({
     containerBanner: {

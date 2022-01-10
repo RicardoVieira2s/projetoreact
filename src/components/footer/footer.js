@@ -59,13 +59,14 @@ const useStyles = makeStyles(({ palette, typography }) => ({
         padding: '0.5rem 1rem',
         transition: 'transform 0.2s',
         transformOrigin: 'right',
+        cursor: 'pointer',
         '&:hover, &:focus': {
             backgroundColor: COLOR_OXFORD_BLUE,
             color: COLOR_PLATINIUM
         },
         '&:active': {
             transform: 'scale(0.92)'
-        }
+        } 
     },
     divider: {
         height: 2,
@@ -124,7 +125,8 @@ export const Footer = React.memo(function ArcAppFooter() {
                                             color: COLOR_PLATINIUM,
                                         },
                                         mt: '6px',
-                                        paddingRight: '10px'
+                                        paddingRight: '10px',
+                                        cursor: 'pointer'
                                     }}
                                         fontSize="medium" />
                                     <TwitterIcon sx={{
@@ -133,7 +135,8 @@ export const Footer = React.memo(function ArcAppFooter() {
                                             color: COLOR_PLATINIUM,
                                         },
                                         mt: '6px',
-                                        paddingRight: '10px'
+                                        paddingRight: '10px',
+                                        cursor: 'pointer'
                                     }}
                                         fontSize="medium" />
                                     <InstagramIcon sx={{
@@ -142,6 +145,7 @@ export const Footer = React.memo(function ArcAppFooter() {
                                             color: COLOR_PLATINIUM,
                                         },
                                         mt: '6px',
+                                        cursor: 'pointer'
                                     }}
                                         fontSize="medium" />
                                 </Item>

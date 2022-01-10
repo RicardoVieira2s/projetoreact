@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { COLOR_OXFORD_BLUE, COLOR_BDAZZLED_BLUE, COLOR_SHADOW_BLUE } from '../utils/color'
 import LibraryGame from './libraryGames'
 import games from '../__mocks__/games'
@@ -20,20 +21,22 @@ export default function GameList(props) {
     const classes = useStyles()
     return (
         <div className={classes.container}>
-            <Title 
-                name = {'Biblioteca'}
-                color = {COLOR_SHADOW_BLUE}
+            <Title
+                name={'Biblioteca'}
+                color={COLOR_SHADOW_BLUE}
             />
-            <Grid
-                container
-                alignItems={'center'}
-                justifyContent={'center'}
-            >
-                {RenderIfEmpty(games.length, "Sem jogos na biblioteca")}
-                {games.map((game) =>
-                    <LibraryGame key={game.id} game={game} />
-                )}
-            </Grid>
+                <Grid
+                    container
+                    alignItems={'center'}
+                    justifyContent={'center'}
+                >
+                    {RenderIfEmpty(games.length, "Sem jogos na biblioteca")}
+                    {games.map((game) =>
+                        <LibraryGame key={game.id} game={game} />
+                    )}
+                </Grid>
         </div >
     )
 }
+
+//<Link to="/gamepage"> <Link>

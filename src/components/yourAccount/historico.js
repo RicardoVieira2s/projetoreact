@@ -1,12 +1,27 @@
 import React from 'react'
 import './yourAccount.css'
 import { COLOR_RICH_BLACK, COLOR_OXFORD_BLUE, COLOR_BDAZZLED_BLUE, COLOR_SHADOW_BLUE, COLOR_PLATINIUM } from '../utils/color'
-import { BORDER_RADIUS_3 } from '../utils/border'
-import {Typography, Box, Button, Card, CardContent, CardHeader, Divider, Grid, Accordion, AccordionDetails,AccordionSummary } from '@mui/material'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { BORDER_RADIUS_2, BORDER_RADIUS_3 } from '../utils/border'
+import { Box, Button, Card, CardContent, Divider, getImageListItemBarUtilityClass, Grid, Typography } from '@mui/material'
+import Title from '../title/Title'
+import { makeStyles } from '@material-ui/core/styles'
+import mocksHistory from '../__mocks__/history'
+import HistoryList from './historyList'
+import RenderIfEmpty from '../utils/messageError'
 
-export default function Historico() {
-    
+const useStyles = makeStyles(() => ({
+    container: {
+        backgroundColor: COLOR_PLATINIUM,
+        color: COLOR_BDAZZLED_BLUE,
+        borderRadius: BORDER_RADIUS_2,
+        paddingRight: '15px',
+        paddingLeft: '15px',
+    },
+}))
+
+export default function Historico(props) {
+    const classes = useStyles()
+
     const button = {
         backgroundColor: COLOR_BDAZZLED_BLUE,
         color: COLOR_PLATINIUM,
@@ -18,116 +33,29 @@ export default function Historico() {
         fontFamily: 'Viga',
     }
 
-    //user infos
-    const user = {
-        accordionInfo: {
-            title: 'title',
-            caption: 'caption',
-            info: 'info',
-        }
-    }
-
-    const [expanded, setExpanded] = React.useState(false)
-
-    const handleChangeAccordion = (panel) => (event, isExpanded) => {
-        setExpanded(isExpanded ? panel : false);
-    }
-
     return (
         <form
             autoComplete="off"
             noValidate
         >
-            <Card>
-                <CardHeader
-                    title="Histórico de compras"
+            <Card className={classes.container}>
+                <Title
+                    name={'Histórico de Compras'}
+                    color={COLOR_BDAZZLED_BLUE}
                 />
-                <Divider />
                 <CardContent>
                     <Grid
-                        container
-                        spacing={3}
+                        item
+                        md={12}
+                        xs={12}
                     >
-                        <Grid
-                            item
-                            md={12}
-                            xs={12}
-                        >
-                            <Accordion
-                                expanded={expanded === 'panel1'}
-                                onChange={handleChangeAccordion('panel1')}
-                            >
-                                <AccordionSummary
-                                    expandIcon={<ExpandMoreIcon />}
-                                >
-                                    <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                                        {user.accordionInfo.title}
-                                    </Typography>
-                                    <Typography sx={{ color: 'text.secondary' }}>
-                                        {user.accordionInfo.caption}
-                                    </Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <Typography>
-                                        {user.accordionInfo.info}
-                                    </Typography>
-                                </AccordionDetails>
-                            </Accordion>
-                            <Accordion expanded={expanded === 'panel2'}
-                                onChange={handleChangeAccordion('panel2')}>
-                                <AccordionSummary
-                                    expandIcon={<ExpandMoreIcon />}
-                                >
-                                    <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                                        {user.accordionInfo.title}
-                                    </Typography>
-                                    <Typography sx={{ color: 'text.secondary' }}>
-                                        {user.accordionInfo.caption}
-                                    </Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <Typography>
-                                        {user.accordionInfo.info}
-                                    </Typography>
-                                </AccordionDetails>
-                            </Accordion>
-                            <Accordion expanded={expanded === 'panel3'}
-                                onChange={handleChangeAccordion('panel3')}>
-                                <AccordionSummary
-                                    expandIcon={<ExpandMoreIcon />}
-                                >
-                                    <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                                        {user.accordionInfo.title}
-                                    </Typography>
-                                    <Typography sx={{ color: 'text.secondary' }}>
-                                        {user.accordionInfo.caption}
-                                    </Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <Typography>
-                                        {user.accordionInfo.info}
-                                    </Typography>
-                                </AccordionDetails>
-                            </Accordion>
-                            <Accordion expanded={expanded === 'panel4'}
-                                onChange={handleChangeAccordion('panel4')}>
-                                <AccordionSummary
-                                    expandIcon={<ExpandMoreIcon />}
-                                >
-                                    <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                                        {user.accordionInfo.title}
-                                    </Typography>
-                                    <Typography sx={{ color: 'text.secondary' }}>
-                                        {user.accordionInfo.caption}
-                                    </Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <Typography>
-                                        {user.accordionInfo.info}
-                                    </Typography>
-                                </AccordionDetails>
-                            </Accordion>
-                        </Grid>
+                        {RenderIfEmpty(mocksHistory.length, "Sem Histórico")}
+                        {mocksHistory.map((history) =>
+                            <HistoryList
+                                key={history.id}
+                                history={history}
+                            />
+                        )}
                     </Grid>
                 </CardContent>
                 <Divider />

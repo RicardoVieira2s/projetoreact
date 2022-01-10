@@ -16,43 +16,17 @@ const useStyles = makeStyles(({ palette, typography }) => ({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    teste: {
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        display: 'table'
-    }
+
 }))
 
 export const Banner = React.memo(function BannerApp() {
     const classes = useStyles()
 
     return (
-        <div id='bannerPrincipal' style={{ position: 'relative' }}>
-            <div id='imagemPrincipal' className={classes.containerBanner}>
-            </div>
+        <Container className={classes.containerBanner}>
 
-            <div id='content' style={{
-                position: 'absolute',
-                width: '100%',
-                top: '0px'
-            }}> {/* absolute  com topo 68px*/}
-            <div style={{
-                position: 'relative',
-                width: '100%',
-            }}>
-            <MenuBar className={classes.teste}
-                />
-            </div>
-
-            </div>
-
-
-            {/* <Container className={classes.containerBanner}>
-            
             <MenuBar />
 
-        </Container> */}
-
-        </div>
+        </Container>
     )
 })

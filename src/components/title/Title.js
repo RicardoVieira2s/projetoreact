@@ -9,6 +9,9 @@ const useStyles = makeStyles({
         paddingTop: '40px',
         fontSize: '40px',
         color: props.color,
+        textOverflow: 'ellipsis',
+        overflow: "hidden",
+        whiteSpace: 'nowrap',
     }),
     divider: props => ({
         marginBottom: '30px',

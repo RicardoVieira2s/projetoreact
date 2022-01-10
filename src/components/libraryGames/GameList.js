@@ -5,12 +5,14 @@ import games from '../__mocks__/games'
 import { Grid } from '@mui/material'
 import { makeStyles } from '@material-ui/core/styles'
 import Title from '../title/Title'
+import RenderIfEmpty from '../utils/messageError'
 
 const useStyles = makeStyles(() => ({
     container: {
         backgroundColor: COLOR_OXFORD_BLUE,
         color: COLOR_BDAZZLED_BLUE,
         paddingBottom: '40px',
+        height: '100%'
     },
 }))
 
@@ -26,8 +28,8 @@ export default function GameList(props) {
                 container
                 alignItems={'center'}
                 justifyContent={'center'}
-                display={'flex'}
             >
+                {RenderIfEmpty(games.length, "Sem jogos na biblioteca")}
                 {games.map((game) =>
                     <LibraryGame key={game.id} game={game} />
                 )}

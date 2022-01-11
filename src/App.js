@@ -8,6 +8,7 @@ import LibraryPage from './pages/libraryPage'
 import CartPage from './pages/cartPage'
 import wishlistPage from './pages/wishlistPage'
 import { Footer } from './components/footer/footer'
+import gamePage from './pages/gamePage'
 
 function App() {
   const user = { name: "Ricardo" }
@@ -33,6 +34,8 @@ function App() {
             path="/library" component={LibraryPage} exact />
           <Route
             path="/wishlist" component={wishlistPage} exact />
+          <Route
+            path="/gamepage" component={gamePage} exact />
         </Switch>
       </div>
       <Footer />

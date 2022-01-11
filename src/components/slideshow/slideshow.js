@@ -27,7 +27,6 @@ export const Slideshow = React.memo(function GoofrSlideshow() {
                 height='285'
                 itemRatio='9:5'
                 background='none'
-
             />
         </div>
     )

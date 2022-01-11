@@ -11,7 +11,7 @@ const useStyles = makeStyles(({ palette, typography }) => ({
         backgroundImage: 'url("https://gmedia.playstation.com/is/image/SIEPDC/assassins-creed-valhalla-pdp-hero-01-ps4-17jul20$en?$native$")',
         maxWidth: '100%',
         width: '100%',
-        height: '600px',
+        height: '538px',
         backgroundSize: 'cover',
         backgroundPosition: 'right top',
         alignItems: 'center',

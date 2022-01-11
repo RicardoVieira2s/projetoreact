@@ -11,18 +11,24 @@ const imagesArr = [
 ];
 
 const useStyles = makeStyles(({ }) => ({
-    coverflowCSS: {
-        backgroundColor: '#FFF',
-        background: 'none',
-        borderRadius: '5px'
-    }
+    coverflowFather: {
+        top:'94px',
+        position: 'absolute'
+    },
 }))
 
 export const Slideshow = React.memo(function GoofrSlideshow() {
     const classes = useStyles();
     return (
-        <CoverFlow 
-            background='none'
-            imagesArr={imagesArr} />
+        <div className={classes.coverflowFather}>
+            <CoverFlow imagesArr={imagesArr}
+                direction='horizontal'
+                width='1920'
+                height='285'
+                itemRatio='9:5'
+                background='none'
+
+            />
+        </div>
     )
 })

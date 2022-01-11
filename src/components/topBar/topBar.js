@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom'
 import { styled, alpha } from '@mui/material/styles'
 import { IconButton, Toolbar, Paper, Button, Divider, Menu, MenuItem, Badge, InputBase, Box, AppBar } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
-import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import MoreIcon from '@mui/icons-material/MoreVert'
@@ -393,12 +392,17 @@ export default function PrimarySearchAppBar(props) {
                                 onClick={handleProfileMenuOpen}
                                 endIcon={<KeyboardArrowDownIcon />}
                             >
-                                <AccountCircleIcon
-                                    style={{
-                                        marginRight: "5px",
-                                        marginLeft: '-10px'
-                                    }}
-                                />
+                                <Paper sx={{
+                                    width: '30px',
+                                    backgroundColor: 'transparent',
+                                    marginTop: '11px',
+                                    marginRight: '5px',
+                                    marginLeft: '-10px',
+                                    boxShadow: 'none',
+                                }}
+                                >
+                                    <img src="/images/avatar-Man-1.png" alt="" height='30px' />
+                                </Paper>
                                 <p
                                     style={{
                                         textOverflow: "ellipsis",

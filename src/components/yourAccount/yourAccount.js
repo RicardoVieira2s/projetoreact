@@ -75,7 +75,7 @@ export default function YourAccount(props) {
 	}
 
 	const user = {
-		avatar: "images/avatar-Man-2.png",
+		avatar: "images/avatar-Man-1.png",
 		name: 'Ricardo Vieira',
 		balance: {
 			amount: 112,

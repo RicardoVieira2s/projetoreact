@@ -3,6 +3,7 @@ import MenuBar from './menubar'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import { display } from '@mui/system'
+import { Slideshow } from '../slideshow/slideshow'
 
 const useStyles = makeStyles(({ palette, typography }) => ({
     containerBanner: {
@@ -40,8 +41,8 @@ export const Banner = React.memo(function BannerApp() {
                     position: 'relative',
                     width: '100%',
                 }}>
-                    <MenuBar className={classes.teste}
-                    />
+                    <MenuBar className={classes.teste} />
+                    <Slideshow />
                 </div>
 
             </div>

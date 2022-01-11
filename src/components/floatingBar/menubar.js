@@ -3,7 +3,6 @@ import { COLOR_RICH_BLACK, COLOR_OXFORD_BLUE, COLOR_BDAZZLED_BLUE, COLOR_SHADOW_
 import Tab from '@mui/material/Tab'
 import TabContext from '@mui/lab/TabContext'
 import Tabs from '@mui/material/Tabs';
-import TabPanel from '@mui/lab/TabPanel'
 import { BORDER_RADIUS_2 } from '../utils/border'
 import { makeStyles } from "@material-ui/core";
 
@@ -11,15 +10,13 @@ const useStyles = makeStyles(theme => ({
   indicator: {
     backgroundColor: COLOR_BDAZZLED_BLUE,
   },
-  floatBarFather: {
-  },
   floatBar: {
     position: 'relative',
     background: COLOR_RICH_BLACK,
     borderRadius: BORDER_RADIUS_2,
     marginTop: '65px',
     display: 'table',
-    margin: '0 auto'
+    margin: '0 auto',
   }
 
 }));
@@ -34,7 +31,7 @@ export default function MenuBar() {
 
   return (
 
-    <TabContext value={value} className={classes.floatBarFather}>
+    <TabContext value={value}>
       <Tabs className={classes.floatBar}
         onChange={handleChange}
         TabIndicatorProps={{ className: classes.indicator }}
@@ -46,6 +43,8 @@ export default function MenuBar() {
             color: COLOR_BDAZZLED_BLUE,
             ':hover': {
               color: COLOR_SHADOW_BLUE,
+              alignItems: 'center',
+              justifyContent: 'center',
             },
             '&.Mui-selected': {
               color: COLOR_BDAZZLED_BLUE,

@@ -1,6 +1,7 @@
 import * as React from 'react'
 import CoverFlow from 'coverflow-react';
 import { makeStyles } from "@material-ui/core";
+import CoverFlow from 'coverflow-react';
 
 const imagesArr = [
     'https://s2.glbimg.com/dLHiEFov94ONVIVLP2V85FWh7hE=/0x0:695x390/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2019/3/t/9vl0fdRyi9SvlPOe33yA/subway-surfers-mais-baixado-downloads-decada-2010-2019.jpg',
@@ -10,9 +11,9 @@ const imagesArr = [
     'https://guiadoestudante.abril.com.br/wp-content/uploads/sites/4/2021/07/doodle-do-google.jpg'
 ];
 
-const useStyles = makeStyles(({ palette, typography }) => ({
+const useStyles = makeStyles(({ }) => ({
     coverflowCSS: {
-        backgroundColor: 'none',
+        backgroundColor: '#FFF',
         background: 'none',
         borderRadius: '5px'
     }
@@ -22,8 +23,7 @@ export const Slideshow = React.memo(function GoofrSlideshow() {
     const classes = useStyles();
     return (
         <CoverFlow 
-            background={'none'}
-            borderRadius={'5px'}
+            background='none'
             imagesArr={imagesArr} />
     )
 })

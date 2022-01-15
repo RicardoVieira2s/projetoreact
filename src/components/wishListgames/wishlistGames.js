@@ -8,7 +8,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import Grid from '@mui/material/Grid';
 import { BORDER_RADIUS_2, BORDER_RADIUS_3 } from '../utils/border'
 import { textAlign } from '@mui/system'
-
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const useStyles = makeStyles(() => ({
     container: {
@@ -94,9 +94,7 @@ export default function WishlistGames({ game, index }) {
                 </Grid>
 
                 <Grid
-                    container
-                    direction="row"
-                    alignItems="center"
+                    item
                     xs={12}
                     sm={12}
                     md={9}
@@ -140,6 +138,18 @@ export default function WishlistGames({ game, index }) {
                                     cursor: "pointer",
                                 },
                                 mt: '7px',
+                            }}
+                            fontSize="medium"
+                        />
+                        <DeleteIcon
+                            sx={{
+                                color: COLOR_OXFORD_BLUE,
+                                ':hover': {
+                                    color: COLOR_BDAZZLED_BLUE,
+                                    cursor: "pointer",
+                                },
+                                mt: '7px',
+                                paddingLeft: "5px",
                             }}
                             fontSize="medium"
                         />

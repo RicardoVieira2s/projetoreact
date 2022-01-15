@@ -22,7 +22,7 @@ function App() {
         userCart={cart}
         userBalance={balance}
       />
-      <div class='content-body'>
+      <div className='content-body'>
         <Switch>
           <Route
             path="/" component={Home} exact />

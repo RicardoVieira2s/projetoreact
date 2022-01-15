@@ -32,10 +32,9 @@ export default function GameList(props) {
             >
                 {RenderIfEmpty(games.length, "Sem jogos na biblioteca")}
                 {games.map((game) => {
-                    if (game.state != "inactive") {
-                        <LibraryGame key={game.id} game={game} />
+                    if (game.state !== "inactive") {
+                        return <LibraryGame key={game.id} game={game} />
                     }
-
                 }
                 )}
             </Grid>

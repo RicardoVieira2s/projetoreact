@@ -5,6 +5,38 @@ import DownloadIcon from '@mui/icons-material/Download'
 import { Card, CardContent, Grid, CardActions, IconButton, Typography } from '@mui/material'
 import { BORDER_RADIUS_3 } from '../utils/border'
 
+function renderDownloadButton(state, url, releaseDate) {
+    if (state === "active") {
+        return <IconButton
+            style={{
+                right: 0,
+                position: 'absolute',
+                marginRight: '13px',
+                color: COLOR_BDAZZLED_BLUE,
+            }}
+            onClick={() => window.open(url, "_blank")}
+        >
+            <DownloadIcon />
+        </IconButton>
+    }
+    else {
+        return <Typography
+            sx={{
+                paddingRight: "13px",
+                textOverflow: "ellipsis",
+                overflow: "hidden",
+                maxWidth: '290px',
+                color: COLOR_BDAZZLED_BLUE,
+                right: 0,
+                position: 'absolute',
+            }}
+            variant="p"
+        >
+            {releaseDate}
+        </Typography>
+    }
+}
+
 export default function libraryGame({ game }) {
 
     return (
@@ -29,7 +61,7 @@ export default function libraryGame({ game }) {
                         >
                             <Typography
                                 sx={{
-                                    pl: 2,
+                                    paddingLeft: "13px",
                                     textOverflow: "ellipsis",
                                     overflow: "hidden",
                                     maxWidth: '290px',
@@ -41,21 +73,8 @@ export default function libraryGame({ game }) {
                             </Typography>
 
                         </Grid>
-                        {() => {
-                            if (game.state == "active") {
-                                <IconButton
-                                    style={{
-                                        right: 0,
-                                        position: 'absolute',
-                                        marginRight: '12px',
-                                        color: COLOR_BDAZZLED_BLUE,
-                                    }}
-                                >
-                                    <DownloadIcon />
-                                </IconButton>
-                            }
-                        }
-                        }
+
+                        {renderDownloadButton(game.state, game.download_link, game.release_date)}
                     </CardActions>
                 </Card>
             </Grid>

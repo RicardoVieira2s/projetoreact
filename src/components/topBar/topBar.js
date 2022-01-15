@@ -388,9 +388,9 @@ export default function PrimarySearchAppBar(props) {
                                 aria-haspopup="true"
                                 aria-expanded={isMenuOpen ? 'true' : undefined}
                                 variant="contained"
-                                disableElevation
                                 onClick={handleProfileMenuOpen}
                                 endIcon={<KeyboardArrowDownIcon />}
+                                
                             >
                                 <Paper sx={{
                                     width: '30px',

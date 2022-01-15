@@ -41,16 +41,21 @@ export default function libraryGame({ game }) {
                             </Typography>
 
                         </Grid>
-                        <IconButton
-                            style={{
-                                right: 0,
-                                position: 'absolute',
-                                marginRight: '12px',
-                                color: COLOR_BDAZZLED_BLUE,
-                            }}
-                        >
-                            <DownloadIcon />
-                        </IconButton>
+                        {() => {
+                            if (game.state == "active") {
+                                <IconButton
+                                    style={{
+                                        right: 0,
+                                        position: 'absolute',
+                                        marginRight: '12px',
+                                        color: COLOR_BDAZZLED_BLUE,
+                                    }}
+                                >
+                                    <DownloadIcon />
+                                </IconButton>
+                            }
+                        }
+                        }
                     </CardActions>
                 </Card>
             </Grid>

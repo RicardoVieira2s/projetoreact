@@ -25,18 +25,20 @@ export default function GameList(props) {
                 name={'Biblioteca'}
                 color={COLOR_SHADOW_BLUE}
             />
-                <Grid
-                    container
-                    alignItems={'center'}
-                    justifyContent={'center'}
-                >
-                    {RenderIfEmpty(games.length, "Sem jogos na biblioteca")}
-                    {games.map((game) =>
+            <Grid
+                container
+                alignItems={'center'}
+                justifyContent={'center'}
+            >
+                {RenderIfEmpty(games.length, "Sem jogos na biblioteca")}
+                {games.map((game) => {
+                    if (game.state != "inactive") {
                         <LibraryGame key={game.id} game={game} />
-                    )}
-                </Grid>
+                    }
+
+                }
+                )}
+            </Grid>
         </div >
     )
 }
-
-//<Link to="/gamepage"> <Link>

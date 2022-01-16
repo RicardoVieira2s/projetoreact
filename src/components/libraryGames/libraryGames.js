@@ -1,41 +1,9 @@
 import React from 'react'
 import { COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM } from '../utils/color'
 import GameImage from './GameImage'
-import DownloadIcon from '@mui/icons-material/Download'
-import { Card, CardContent, Grid, CardActions, IconButton, Typography } from '@mui/material'
+import { Card, CardContent, Grid, CardActions, Typography } from '@mui/material'
 import { BORDER_RADIUS_3 } from '../utils/border'
-
-function renderDownloadButton(state, url, releaseDate) {
-    if (state === "active") {
-        return <IconButton
-            style={{
-                right: 0,
-                position: 'absolute',
-                marginRight: '13px',
-                color: COLOR_BDAZZLED_BLUE,
-            }}
-            onClick={() => window.open(url, "_blank")}
-        >
-            <DownloadIcon />
-        </IconButton>
-    }
-    else {
-        return <Typography
-            sx={{
-                paddingRight: "13px",
-                textOverflow: "ellipsis",
-                overflow: "hidden",
-                maxWidth: '290px',
-                color: COLOR_BDAZZLED_BLUE,
-                right: 0,
-                position: 'absolute',
-            }}
-            variant="p"
-        >
-            {releaseDate}
-        </Typography>
-    }
-}
+import renderDownloadButton from '../utils/downloadButton'
 
 export default function libraryGame({ game }) {
 
@@ -73,7 +41,6 @@ export default function libraryGame({ game }) {
                             </Typography>
 
                         </Grid>
-
                         {renderDownloadButton(game.state, game.download_link, game.release_date)}
                     </CardActions>
                 </Card>

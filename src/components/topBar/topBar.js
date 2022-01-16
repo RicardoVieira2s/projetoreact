@@ -1,6 +1,6 @@
 import * as React from 'react'
 import './topbar.css'
-import { COLOR_RICH_BLACK, COLOR_OXFORD_BLUE, COLOR_BDAZZLED_BLUE, COLOR_SHADOW_BLUE, COLOR_PLATINIUM } from '../utils/color'
+import { COLOR_RICH_BLACK, COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM } from '../utils/color'
 import { FONT_SECUNDARY_SIZE } from '../utils/font'
 import { BORDER_RADIUS_1 } from '../utils/border'
 import { Link } from 'react-router-dom'

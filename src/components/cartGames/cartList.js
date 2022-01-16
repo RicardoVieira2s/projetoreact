@@ -1,12 +1,19 @@
 import React from 'react'
 import { Grid } from '@mui/material'
-import './cartGames.css'
+import Title from '../utils/Title'
+import { makeStyles } from '@material-ui/core/styles'
 import { COLOR_SHADOW_BLUE } from '../utils/color'
-import Title from '../title/Title'
+
+const useStyles = makeStyles(() => ({
+    container:{
+
+    },
+}))
 
 export default function CartList(props) {
+    const classes = useStyles()
     return (
-        <div class="cartContentor">
+        <div className={classes.container}>
             <Title
                 name={'Carrinho'}
                 color={COLOR_SHADOW_BLUE}
@@ -17,7 +24,6 @@ export default function CartList(props) {
                 justifyContent={'center'}
                 display={'flex'}
             >
-
             </Grid>
         </div>
     )

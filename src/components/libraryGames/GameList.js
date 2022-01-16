@@ -1,11 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { COLOR_OXFORD_BLUE, COLOR_BDAZZLED_BLUE, COLOR_SHADOW_BLUE } from '../utils/color'
 import LibraryGame from './libraryGames'
 import games from '../__mocks__/games'
 import { Grid } from '@mui/material'
 import { makeStyles } from '@material-ui/core/styles'
-import Title from '../title/Title'
+import Title from '../utils/Title'
 import RenderIfEmpty from '../utils/messageError'
 
 const useStyles = makeStyles(() => ({

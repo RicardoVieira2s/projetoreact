@@ -1,5 +1,5 @@
 import React from 'react'
-import Title from '../title/Title'
+import Title from '../utils/Title'
 import { COLOR_SHADOW_BLUE } from '../utils/color'
 import { Grid } from '@mui/material'
 import RenderIfEmpty from '../utils/messageError'

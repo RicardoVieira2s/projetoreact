@@ -5,8 +5,8 @@ import { BORDER_RADIUS_1, BORDER_RADIUS_2, BORDER_RADIUS_3 } from '../utils/bord
 import { Box, Card, CardContent, CardHeader, Divider, Grid, TextField } from '@mui/material'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Switch from '@mui/material/Switch'
-import CustomButton from './customButton'
-import Title from '../title/Title'
+import CustomButton from '../utils/customButton'
+import Title from '../utils/Title'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(() => ({

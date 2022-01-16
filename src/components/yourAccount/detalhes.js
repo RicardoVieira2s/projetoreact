@@ -1,10 +1,10 @@
 import React from 'react'
 import './yourAccount.css'
-import CustomButton from './customButton'
+import CustomButton from '../utils/customButton'
 import { COLOR_RICH_BLACK, COLOR_OXFORD_BLUE, COLOR_BDAZZLED_BLUE, COLOR_SHADOW_BLUE, COLOR_PLATINIUM } from '../utils/color'
 import { Box, Card, CardContent, CardHeader, Divider, Grid, TextField } from '@mui/material'
 import { BORDER_RADIUS_1, BORDER_RADIUS_2, BORDER_RADIUS_3 } from '../utils/border'
-import Title from '../title/Title'
+import Title from '../utils/Title'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(() => ({

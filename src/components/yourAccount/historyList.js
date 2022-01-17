@@ -3,13 +3,13 @@ import { Typography, Accordion, AccordionDetails, AccordionSummary } from '@mui/
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { COLOR_PLATINIUM, COLOR_RICH_BLACK } from '../utils/color'
 import { makeStyles } from '@material-ui/core/styles'
+import InvoiceButton from '../utils/invoiceButton'
 
 const useStyles = makeStyles(() => ({
     accordion: {
-        backgroundColor: COLOR_PLATINIUM, 
+        backgroundColor: COLOR_PLATINIUM,
         color: COLOR_RICH_BLACK,
     },
-
 }))
 
 export default function HistoryList({ history }) {
@@ -43,6 +43,9 @@ export default function HistoryList({ history }) {
                     </Typography>
                 )}
             </AccordionDetails>
+            <InvoiceButton
+                name="Guardar fatura"
+            />
         </Accordion>
     )
 }

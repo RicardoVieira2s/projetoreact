@@ -39,7 +39,6 @@ export default function Privacidade() {
     return (
         <form
             autoComplete="off"
-            noValidate
         >
             <Card className={classes.container}>
                 <Title
@@ -60,6 +59,7 @@ export default function Privacidade() {
                                 fullWidth
                                 label="Password"
                                 name="Password"
+                                type= "password"
                                 required
                                 variant="outlined"
                             />

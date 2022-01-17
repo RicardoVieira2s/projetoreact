@@ -107,7 +107,7 @@ function Slideshow() {
 
               <div class='slide-content'>
                 <a href={game.url}>
-                  <h2 className='slide-title'>{game.name}</h2>
+                  <h2 className='slide-title' target="_blank">{game.name}</h2>
                 </a>
               </div>
             </div>

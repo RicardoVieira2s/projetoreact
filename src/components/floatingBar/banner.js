@@ -1,7 +1,8 @@
 import React from 'react'
 import MenuBar from './menubar'
 import { makeStyles } from '@material-ui/core/styles'
-import { Slideshow } from '../slideshow/slideshow'
+import Slideshow from '../slideshow/slideshow';
+
 
 const useStyles = makeStyles(({ palette, typography }) => ({
     containerBanner: {

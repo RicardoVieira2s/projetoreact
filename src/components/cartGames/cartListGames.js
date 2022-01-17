@@ -1,9 +1,8 @@
 import React from 'react'
-import { Typography, Tooltip, Fade, Grid } from '@mui/material'
+import { Typography, Grid, Tooltip, Fade } from '@mui/material'
 import { Item } from '@mui-treasury/components/flex'
 import { makeStyles } from '@material-ui/core/styles'
 import { COLOR_OXFORD_BLUE, COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM } from '../utils/color'
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import { BORDER_RADIUS_2, BORDER_RADIUS_3 } from '../utils/border'
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -40,7 +39,7 @@ const useStyles = makeStyles(() => ({
     }
 }))
 
-export default function WishlistGames({ game, index }) {
+export default function CartlistGames({ game, index }) {
     const classes = useStyles()
 
     return (
@@ -109,18 +108,7 @@ export default function WishlistGames({ game, index }) {
                         textAlign={"center"}
                     >
                         <Tooltip
-                            title="Adicionar ao carrinho"
-                            placement="left-start"
-                            TransitionComponent={Fade}
-                            TransitionProps={{ timeout: 600 }}
-                        >
-                            <ShoppingCartIcon
-                                className={classes.icon}
-                                fontSize="medium"
-                            />
-                        </Tooltip>
-                        <Tooltip
-                            title="Remover da lista"
+                            title="Remover do carrinho"
                             placement="right-start"
                             TransitionComponent={Fade}
                             TransitionProps={{ timeout: 600 }}

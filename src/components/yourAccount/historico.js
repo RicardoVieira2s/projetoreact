@@ -23,9 +23,7 @@ export default function Historico(props) {
     const classes = useStyles()
 
     return (
-        <div
-            
-        >
+
             <Card className={classes.container}>
                 <Title
                     name='Histórico de Compras'
@@ -47,6 +45,5 @@ export default function Historico(props) {
                     </Grid>
                 </CardContent>
             </Card>
-        </div>
     )
 }

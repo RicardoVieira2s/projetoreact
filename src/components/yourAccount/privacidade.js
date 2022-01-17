@@ -62,6 +62,7 @@ export default function Privacidade() {
                                 type= "password"
                                 required
                                 variant="outlined"
+                                
                             />
                         </Grid>
                         <Grid

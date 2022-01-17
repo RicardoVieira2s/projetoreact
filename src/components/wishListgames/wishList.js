@@ -1,16 +1,26 @@
 import React from 'react'
 import Title from '../utils/Title'
 import { COLOR_SHADOW_BLUE } from '../utils/color'
-import { Grid } from '@mui/material'
+import { Grid, Box } from '@mui/material'
 import RenderIfEmpty from '../utils/messageError'
 import games from '../__mocks__/games'
 import WishlistGames from './wishlistGames'
 import { makeStyles } from '@material-ui/core/styles'
+import CustomButton from '../utils/customButton'
 
 const useStyles = makeStyles(() => ({
     container: {
         paddingBottom: "40px",
     },
+    finalBox: {
+        paddingTop: '15px',
+        display: 'flex',
+        justifyContent: 'flex-end',
+        width: "90%",
+    },
+    total:{
+        backgroundColor: "red",
+    }
 }))
 
 export default function WishList(props) {
@@ -21,6 +31,11 @@ export default function WishList(props) {
                 name={'Lista de desejos'}
                 color={COLOR_SHADOW_BLUE}
             />
+            <Box className={classes.finalBox}>
+                <CustomButton
+                    name={"Remover todos"}
+                />
+            </Box>
             <Grid
                 container
                 alignItems={'center'}
@@ -29,7 +44,7 @@ export default function WishList(props) {
             >
                 {RenderIfEmpty(games.length, "Sem jogos na wishlist")}
                 {games.map((game, i) =>
-                    <WishlistGames key={game.id} game={game} index={i+1} />
+                    <WishlistGames key={game.id} game={game} index={i + 1} />
                 )}
             </Grid>
         </div>

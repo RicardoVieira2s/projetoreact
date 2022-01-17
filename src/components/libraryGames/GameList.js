@@ -33,7 +33,8 @@ export default function GameList(props) {
                 {games.map((game) => {
                     if (game.state !== "inactive") {
                         return <LibraryGame key={game.id} game={game} />
-                    }
+                    } 
+                    return null
                 }
                 )}
             </Grid>

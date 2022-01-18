@@ -29,7 +29,6 @@ export default function Endereco() {
     return (
         <form
             autoComplete="off"
-            noValidate
         >
             <Card className={classes.container}>
                 <Title

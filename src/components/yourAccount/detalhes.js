@@ -3,7 +3,7 @@ import './yourAccount.css'
 import CustomButton from '../utils/customButton'
 import { COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM } from '../utils/color'
 import { Box, Card, CardContent, Divider, Grid, TextField } from '@mui/material'
-import {  BORDER_RADIUS_2 } from '../utils/border'
+import { BORDER_RADIUS_2 } from '../utils/border'
 import Title from '../utils/Title'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -29,7 +29,6 @@ export default function Detalhes() {
     return (
         <form
             autoComplete="off"
-            noValidate
         >
             <Card className={classes.container}>
                 <Title
@@ -78,6 +77,7 @@ export default function Detalhes() {
                                 name="E-mail"
                                 required
                                 variant="outlined"
+                                type="email"
                             />
                         </Grid>
                         <Grid
@@ -89,7 +89,8 @@ export default function Detalhes() {
                                 fullWidth
                                 label="Número de telemóvel"
                                 name="Número de telemóvel"
-                                type="number"
+                                type="tel"
+                                inputProps={{ maxLength: 9, pattern: "[9]{1}[0-9]{8}" }}
                                 variant="outlined"
                                 required
                             />
@@ -103,7 +104,9 @@ export default function Detalhes() {
                                 fullWidth
                                 type="date"
                                 variant="outlined"
-                                helperText="Data de nascimento" />
+                                helperText="Data de nascimento"
+                                required
+                            />
                         </Grid>
                         <Grid
                             item
@@ -114,9 +117,13 @@ export default function Detalhes() {
                                 fullWidth
                                 label="Número de Identificação Fiscal"
                                 name="Número de Identificação Fiscal"
-                                type="number"
+                                type="tel"
                                 variant="outlined"
                                 required
+                                inputProps={{
+                                    maxLength: 9,
+                                    pattern: "[1-9]{1}[0-9]{8}"
+                                }}
                             />
                         </Grid>
                     </Grid>

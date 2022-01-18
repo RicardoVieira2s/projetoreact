@@ -1,12 +1,12 @@
 import { Navigation, Pagination, Autoplay } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react'
 
-import "swiper/swiper-bundle.min.css";
+// import "swiper/swiper-bundle.min.css";
 
 import './slideshow.css'
-// import 'swiper/swiper.min.css'
-// import 'swiper/modules/pagination/pagination.min.css'
-// import 'swiper/modules/navigation/navigation.min.css'
+import 'swiper/swiper.min.css'
+import 'swiper/modules/pagination/pagination.min.css'
+import 'swiper/modules/navigation/navigation.min.css'
 
 
 const games = [
@@ -92,7 +92,7 @@ function Slideshow() {
         centeredSlides
         //navigation
         //pagination={{ clickable: true }}
-        autoplay={{ delay: 3000 }}
+        //autoplay={{ delay: 3000 }}
         onProgress={onProgress}
         onSetTransition={onSetTransition}
         onSlideChange={(swiper) => console.log(swiper.activeIndex)}

@@ -8,11 +8,11 @@ export default function GameImage({ cover_image }) {
             image={cover_image}
             alt=""
             sx={{
-                height: "370px",
+                height: "135px",
                 '&:hover, &:focus': {
                     transform: 'scale(1.1)',
                     transition: 'all .2s ease-in-out',
-                    cursor: 'pointer', 
+                    cursor: 'pointer',
                 },
             }}
         />

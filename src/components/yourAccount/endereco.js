@@ -62,7 +62,8 @@ export default function Endereco() {
                                 fullWidth
                                 label="Número de porta"
                                 name="Número de porta"
-                                type="number"
+                                type="tel"
+                                inputProps={{ maxLength: 5, pattern: "[1-9]{1}" }}
                                 required
                                 variant="outlined"
                             />

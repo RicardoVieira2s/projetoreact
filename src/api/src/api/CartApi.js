@@ -13,10 +13,10 @@
  * Do not edit the class manually.
  *
  */
-import {ApiClient} from "../src/ApiClient";
-import {ErrorSchema} from '../src/model/ErrorSchema';
-import {GameSchema} from '../src/model/GameSchema';
-import {InvoiceSchema} from '../src/model/InvoiceSchema';
+import {ApiClient} from "../ApiClient";
+import {ErrorSchema} from '../model/ErrorSchema';
+import {GameSchema} from '../model/GameSchema';
+import {InvoiceSchema} from '../model/InvoiceSchema';
 
 /**
 * Cart service.

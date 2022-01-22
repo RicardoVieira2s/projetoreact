@@ -15,6 +15,8 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks'
 import PersonIcon from '@mui/icons-material/Person'
 import HomeIcon from '@mui/icons-material/Home'
+import ImageLogo from './imageLogo'
+import { makeStyles } from '@material-ui/core/styles'
 
 const DESKTOP_ITEM_HEIGHT = '27px'
 const MOBILE_ITEM_HEIGHT = '50px'
@@ -29,7 +31,8 @@ const Search = styled('div')(({ theme }) => ({
     height: '40px',
     position: 'relative',
     borderRadius: '20px',
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    background: COLOR_PLATINIUM,
+    color: COLOR_RICH_BLACK,
     marginRight: theme.spacing(1),
     marginLeft: 0,
     width: '360px',
@@ -66,6 +69,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
         [theme.breakpoints.down('md')]: {
             width: '285px',
         },
+        marginLeft: '-5px',
     },
 }))
 
@@ -297,7 +301,6 @@ export default function PrimarySearchAppBar(props) {
             </MenuItem>
         </Menu >
     )
-
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar
@@ -310,26 +313,17 @@ export default function PrimarySearchAppBar(props) {
             >
                 <Toolbar sx={{ flexGrow: 1 }}>
                     <Box sx={{ display: { xs: 'none', sm: 'none', md: 'flex' } }}>
-                        <Link to="/">
-                            <Paper sx={{ width: '150px', backgroundColor: 'transparent' }}>
-                                <img src="/images/store.png" alt="" height='40px' width='100%' />
-                            </Paper>
-                        </Link>
+                        <ImageLogo />
                     </Box>
                     <Box sx={{ flexGrow: 1 }} />
-                    <Search
-                        style={{
-                            background: COLOR_PLATINIUM,
-                            color: COLOR_RICH_BLACK,
-                        }}
-                    >
+                    <Search>
                         <SearchIconWrapper>
                             <SearchIcon style={{ marginLeft: '-5px' }} />
                         </SearchIconWrapper>
                         <StyledInputBase
                             placeholder="Pesquisar jogo..."
                             inputProps={{ 'aria-label': 'search' }}
-                            style={{ marginLeft: '-5px' }}
+
                         />
                     </Search>
                     <Box sx={{ flexGrow: 1 }} />
@@ -390,7 +384,7 @@ export default function PrimarySearchAppBar(props) {
                                 variant="contained"
                                 onClick={handleProfileMenuOpen}
                                 endIcon={<KeyboardArrowDownIcon />}
-                                
+
                             >
                                 <Paper sx={{
                                     width: '30px',

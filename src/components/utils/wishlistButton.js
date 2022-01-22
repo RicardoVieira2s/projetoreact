@@ -12,9 +12,7 @@ export default function WishlistButton() {
                     ':hover': {
                         color: COLOR_SHADOW_BLUE,
                     },
-                    mt: '6px',
                 }}
-                fontSize="medium"
             />
         </IconButton>
     )

@@ -12,7 +12,10 @@ export default function GameCardSmall({ game }) {
 
     return (
         <CardContent
-            style={{ padding: '0px 0px 0px 0px ' }}>
+            style={{
+                padding: '0px 0px 0px 0px '
+            }}
+        >
             <Card
                 sx={{
                     width: '100%',
@@ -22,29 +25,51 @@ export default function GameCardSmall({ game }) {
                 <GameImage
                     cover_image={game.cover_image}
                 />
-                <CardActions style={{
-                    position: 'relative', backgroundColor: COLOR_PLATINIUM,
-                    padding: '0px'
-                }}>
-                    <Box sx={{ width: '100%' }} >
+                <CardActions
+                    style={{
+                        position: 'relative',
+                        backgroundColor: COLOR_PLATINIUM,
+                        padding: '0px',
+                        height: '80px'
+                    }}
+                >
+                    <Box
+                        sx={{
+                            width: '100%'
+                        }}
+                    >
                         <Grid
                             container
-                            rowSpacing={1}
-                            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+                            // rowSpacing={1}
+                            // columnSpacing={{ xs: 1, sm: 2, md: 3 }}
                             sx={{
-                                // alignItems: 'left',
                                 display: 'flex',
-                                height: '80px',
+                                width: '100%',
+                                height: '100%'
                             }}
                         >
-                            <Grid item xs={6}>
+                            <Grid
+                                sx={{
+                                    width: '100%',
+                                    height: '50%',
+                                    display: 'flex',
+                                    justifyContent: 'space-evenly',
+                                    alignItems: 'center',
+                                    paddingRight: '20px'
+                                    //p: 1,
+                                    //m: 1,
+                                }}
+                            >
+                            </Grid>
+                            <Grid item xs={6} >
                                 <Typography
                                     sx={{
                                         paddingLeft: "13px",
                                         textOverflow: "ellipsis",
-                                        overflow: "hidden",
+                                        overflow: 'hidden',
                                         maxWidth: '290px',
                                         color: COLOR_BDAZZLED_BLUE,
+                                        fontSize: '27px'
                                     }}
                                     variant="p"
                                 >
@@ -52,20 +77,31 @@ export default function GameCardSmall({ game }) {
                                 </Typography>
                             </Grid>
                             <Grid item xs={6}
-                                sx={{
-                                    textAlign: 'right'
-                                }}
+                                textAlign={'right'}
                             >
                                 <StarsReview ratingValue={game.rate} />
                             </Grid>
-                            <Grid item xs={6}>
+                        </Grid>
+                        <Grid
+                            sx={{
+                                width: '100%',
+                                height: '50%',
+                                display: 'flex',
+                                justifyContent: 'space-evenly',
+                                alignItems: 'center',
+                                paddingRight: '20px'
+                                //p: 1,
+                                //m: 1,
+                            }}
+                        >
+                            <Grid item xs={6}
+                                textAlign={'left'}
+                            >
                                 <WishlistButton />
                                 <CartButton />
                             </Grid>
                             <Grid item xs={6}
-                                sx={{
-                                    textAlign: 'right'
-                                }}
+                                textAlign={'right'}
                             >
                                 <Typography
                                     sx={{
@@ -74,6 +110,7 @@ export default function GameCardSmall({ game }) {
                                         overflow: "hidden",
                                         maxWidth: '290px',
                                         color: COLOR_BDAZZLED_BLUE,
+                                        fontSize: '20px'
                                     }}
                                     variant="p"
                                 >

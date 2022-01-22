@@ -12,7 +12,9 @@ export default function GameCardBig({ game }) {
 
     return (
         <CardContent
-            style={{ padding: '0px 0px 0px 0px ' }}
+            style={{
+                padding: '0px 0px 0px 0px',
+            }}
         >
             <Card
                 sx={{
@@ -23,55 +25,100 @@ export default function GameCardBig({ game }) {
                 <GameImage
                     cover_image={game.cover_image}
                 />
-                <CardActions style={{
-                    position: 'relative', backgroundColor: COLOR_PLATINIUM,
-                    padding: '0px'
-                }}>
-                    <Box sx={{ width: '100%' }} >
+                <CardActions
+                    style={{
+                        position: 'relative',
+                        backgroundColor: COLOR_PLATINIUM,
+                        padding: '0px',
+                        height: '80px'
+                    }}
+                >
+                    <Box
+                        sx={{
+                            width: '100%',
+                            height: '100%'
+                        }}
+                    >
                         <Grid
                             container
-                            rowSpacing={1}
-                            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+                            //rowSpacing={1}
+                            //columnSpacing={{ xs: 1, sm: 2, md: 3 }}
                             sx={{
-                                // alignItems: 'left',
                                 display: 'flex',
-                                height: '80px',
+                                width: '100%',
+                                height: '100%'
                             }}
                         >
-                            <Grid item xs={6}>
-                                <Typography
+                            <Grid
+                                sx={{
+                                    width: '100%',
+                                    height: '50%',
+                                    display: 'flex',
+                                    justifyContent: 'space-evenly',
+                                    alignItems: 'center',
+                                    paddingRight: '20px'
+                                    //p: 1,
+                                    //m: 1,
+                                }}
+                            >
+                                <Grid item xs={6}>
+                                    <Typography
+                                        sx={{
+                                            paddingLeft: "13px",
+                                            textOverflow: "ellipsis",
+                                            overflow: 'hidden',
+                                            maxWidth: '290px',
+                                            color: COLOR_BDAZZLED_BLUE,
+                                            fontSize: '27px'
+                                        }}
+                                        variant="p"
+                                    >
+                                        {game.name}
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={6}
                                     sx={{
-                                        paddingLeft: "13px",
-                                        textOverflow: "ellipsis",
-                                        overflow: "hidden",
-                                        maxWidth: '290px',
-                                        color: COLOR_BDAZZLED_BLUE,
+                                        textAlign: 'right',
                                     }}
-                                    variant="p"
                                 >
-                                    {game.name}
-                                </Typography>
+                                    <StarsReview ratingValue={game.rate} />
+                                </Grid>
                             </Grid>
-                            <Grid item xs={6}>
-                                <StarsReview ratingValue={game.rate} />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <WishlistButton />
-                                <CartButton />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <Typography
-                                    sx={{
-                                        paddingLeft: "13px",
-                                        textOverflow: "ellipsis",
-                                        overflow: "hidden",
-                                        maxWidth: '290px',
-                                        color: COLOR_BDAZZLED_BLUE,
-                                    }}
-                                    variant="p"
+                            <Grid
+                                sx={{
+                                    width: '100%',
+                                    height: '50%',
+                                    display: 'flex',
+                                    justifyContent: 'space-evenly',
+                                    alignItems: 'center',
+                                    paddingRight: '20px'
+                                    //p: 1,
+                                    //m: 1,
+                                }}
+                            >
+                                <Grid item xs={6}
+                                    textAlign={'left'}
                                 >
-                                    {game.price}
-                                </Typography>
+                                    <WishlistButton />
+                                    <CartButton />
+                                </Grid>
+                                <Grid item xs={6}
+                                    textAlign={'right'}
+                                >
+                                    <Typography
+                                        sx={{
+                                            paddingLeft: "13px",
+                                            textOverflow: "ellipsis",
+                                            overflow: "hidden",
+                                            maxWidth: '290px',
+                                            color: COLOR_BDAZZLED_BLUE,
+                                            fontSize: '20px'
+                                        }}
+                                        variant="p"
+                                    >
+                                        {game.price}
+                                    </Typography>
+                                </Grid>
                             </Grid>
                         </Grid>
                     </Box>

@@ -2,7 +2,7 @@ const history = [
     {
         id: 1,
         id_client: "string",
-        purchase_date: "2022-01-08T16:25:52.914Z",
+        purchase_date: "2022-01-08",
         vat_id: 0,
         games: [
             {
@@ -20,7 +20,7 @@ const history = [
     {
         id: 2,
         id_client: "string",
-        purchase_date: "2023-01-08T16:25:52.914Z",
+        purchase_date: "2023-01-08",
         vat_id: 0,
         games: [
             {
@@ -33,7 +33,7 @@ const history = [
     {
         id: 3,
         id_client: "string",
-        purchase_date: "2024-01-08T16:25:52.914Z",
+        purchase_date: "2024-01-08",
         vat_id: 0,
         games: [
              {

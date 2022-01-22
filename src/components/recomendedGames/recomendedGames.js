@@ -95,12 +95,6 @@ export default function RecomendedGames() {
                             <Grid item xs={12} sm={12} md={6} lg={6} style={{ padding: '0px 0px 10px 10px' }}>
                                 <GameCardSmall game={games[2]} />
                             </Grid>
-                            <Grid item xs={12} sm={12} md={6} lg={6} style={{ padding: '10px 10px 0px 0px' }}>
-                                <GameCardSmall game={games[3]} />
-                            </Grid>
-                            <Grid item xs={12} sm={12} md={6} lg={6} style={{ padding: '10px 0px 0px 10px' }}>
-                                <GameCardSmall game={games[4]} />
-                            </Grid>
                         </Grid>
                     </Grid>
 

@@ -40,8 +40,6 @@ export default function GameCardSmall({ game }) {
                     >
                         <Grid
                             container
-                            // rowSpacing={1}
-                            // columnSpacing={{ xs: 1, sm: 2, md: 3 }}
                             sx={{
                                 display: 'flex',
                                 width: '100%',
@@ -56,8 +54,6 @@ export default function GameCardSmall({ game }) {
                                     justifyContent: 'space-evenly',
                                     alignItems: 'center',
                                     paddingRight: '20px'
-                                    //p: 1,
-                                    //m: 1,
                                 }}
                             >
                             </Grid>
@@ -90,8 +86,6 @@ export default function GameCardSmall({ game }) {
                                 justifyContent: 'space-evenly',
                                 alignItems: 'center',
                                 paddingRight: '20px'
-                                //p: 1,
-                                //m: 1,
                             }}
                         >
                             <Grid item xs={6}

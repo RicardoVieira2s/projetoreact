@@ -5,6 +5,7 @@ import TabContext from '@mui/lab/TabContext'
 import Tabs from '@mui/material/Tabs';
 import { BORDER_RADIUS_2 } from '../utils/border'
 import { makeStyles } from "@material-ui/core";
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   indicator: {
@@ -36,24 +37,26 @@ export default function MenuBar() {
         onChange={handleChange}
         TabIndicatorProps={{ className: classes.indicator }}
       >
-        <Tab
-          label="A tua loja"
-          value={0}
-          sx={{
-            color: COLOR_BDAZZLED_BLUE,
-            ':hover': {
-              color: COLOR_SHADOW_BLUE,
-              alignItems: 'center',
-              justifyContent: 'center',
-            },
-            '&.Mui-selected': {
+        <Link to="/">
+          <Tab
+            label="A tua loja"
+            value={0}
+            sx={{
               color: COLOR_BDAZZLED_BLUE,
               ':hover': {
                 color: COLOR_SHADOW_BLUE,
+                alignItems: 'center',
+                justifyContent: 'center',
               },
-            },
-          }}
-        />
+              '&.Mui-selected': {
+                color: COLOR_BDAZZLED_BLUE,
+                ':hover': {
+                  color: COLOR_SHADOW_BLUE,
+                },
+              },
+            }}
+          />
+        </Link>
         <Tab
           label="Novidades"
           value={1}

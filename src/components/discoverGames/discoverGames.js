@@ -64,12 +64,12 @@ const games = [
     },
 ]
 
-export default function News() {
+export default function DiscoverGames() {
     const classes = useStyles()
     return (
         <div >
             <Title
-                name={'Novidades'}
+                name={'Descobertas'}
                 color={COLOR_SHADOW_BLUE}
             />
             <div style={{ padding: '0px 14px 0px 14px ' }}>

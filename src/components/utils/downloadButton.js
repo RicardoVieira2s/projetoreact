@@ -2,6 +2,7 @@ import DownloadIcon from '@mui/icons-material/Download'
 import { IconButton, Typography } from '@mui/material'
 import { COLOR_BDAZZLED_BLUE } from '../utils/color'
 import { makeStyles } from '@material-ui/core/styles'
+import { dateToString } from './date'
 
 const useStyles = makeStyles(() => ({
     iconButton: {
@@ -10,7 +11,7 @@ const useStyles = makeStyles(() => ({
         marginRight: '13px',
         color: COLOR_BDAZZLED_BLUE,
     },
-    typography:{
+    typography: {
         paddingRight: "13px",
         color: COLOR_BDAZZLED_BLUE,
         right: 0,
@@ -34,7 +35,7 @@ export default function RenderDownloadButton(state, url, releaseDate) {
             className={classes.typography}
             variant="p"
         >
-            {releaseDate}
+            {dateToString(releaseDate)}
         </Typography>
     }
 }

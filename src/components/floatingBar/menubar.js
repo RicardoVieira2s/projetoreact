@@ -37,7 +37,7 @@ export default function MenuBar() {
         onChange={handleChange}
         TabIndicatorProps={{ className: classes.indicator }}
       >
-        <Link to="/home">
+        <Link to="/">
           <Tab
             label="A tua loja"
             value={0}
@@ -93,23 +93,26 @@ export default function MenuBar() {
             }}
           />
         </Link>
-        <Tab
-          label="Estatísticas"
-          value={3}
-          sx={{
-            color: COLOR_BDAZZLED_BLUE,
-            ':hover': {
-              color: COLOR_SHADOW_BLUE,
-            },
-            '&.Mui-selected': {
+        <Link to="statistics">
+          <Tab
+            label="Estatísticas"
+            value={3}
+            sx={{
               color: COLOR_BDAZZLED_BLUE,
               ':hover': {
                 color: COLOR_SHADOW_BLUE,
               },
-            },
-          }}
-        />
+              '&.Mui-selected': {
+                color: COLOR_BDAZZLED_BLUE,
+                ':hover': {
+                  color: COLOR_SHADOW_BLUE,
+                },
+              },
+            }}
+          />
+        </Link>
       </Tabs>
+
 
     </TabContext >
   )

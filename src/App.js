@@ -2,18 +2,16 @@ import './App.css'
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route, } from 'react-router-dom'
 import TopBar from './components/topBar/topBar'
-import AccountPage from './pages/accountPage'
-import LibraryPage from './pages/libraryPage'
-import CartPage from './pages/cartPage'
+import accountPage from './pages/accountPage'
+import libraryPage from './pages/libraryPage'
+import cartPage from './pages/cartPage'
 import wishlistPage from './pages/wishlistPage'
 import { Footer } from './components/footer/footer'
 import gamePage from './pages/gamePage'
-import { Banner } from './components/floatingBar/banner'
-import RecomendedGames from './components/recomendedGames/recomendedGames'
-import GamesOnSale from './components/gamesOnSale/gamesOnSale'
-import DiscoverGames from './components/discoverGames/discoverGames'
-import NewGames from './components/newGames/newGames'
-import FeaturedGames from './components/featuredGames/featuredGames'
+import homePage from './pages/homePage'
+import newStorePage from './pages/newStorePage'
+import featuredPage from './pages/featuredPage'
+import statisticsPage from './pages/statisticsPage'
 
 function App() {
   const user = { name: "Ricardo" }
@@ -29,33 +27,24 @@ function App() {
       />
       <div className='content-body'>
         <Switch>
-          <Route path="/" >
-            <Banner />
-            <Switch>
-              <Route path="/home" exact >
-                <RecomendedGames />
-                <GamesOnSale />
-                <DiscoverGames />
-              </Route>
-              <Route path="/news" >
-                <NewGames />
-              </Route>
-              <Route path="/featured" >
-                <FeaturedGames />
-              </Route>
-            </Switch>
-            <Route
-              path="/account" component={AccountPage} exact />
-            <Route
-              path="/cart" component={CartPage} exact />
-            <Route
-              path="/library" component={LibraryPage} exact />
-            <Route
-              path="/wishlist" component={wishlistPage} exact />
-            <Route
-              path="/gamepage" component={gamePage} exact />
-          </Route>
-
+          <Route
+            path="/" component={homePage} exact />
+          <Route
+            path="/News" component={newStorePage} exact />
+          <Route
+            path="/featured" component={featuredPage} exact />
+          <Route
+            path="/statistics" component={statisticsPage} exact />
+          <Route
+            path="/account" component={accountPage} exact />
+          <Route
+            path="/cart" component={cartPage} exact />
+          <Route
+            path="/library" component={libraryPage} exact />
+          <Route
+            path="/wishlist" component={wishlistPage} exact />
+          <Route
+            path="/gamepage" component={gamePage} exact />
         </Switch>
       </div>
       <Footer />

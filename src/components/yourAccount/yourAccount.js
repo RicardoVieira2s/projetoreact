@@ -93,7 +93,7 @@ export default function YourAccount(props) {
 					/>
 					<img src={user.avatar} alt="" className={classes.imageBox}></img>
 					<div className={classes.userContentContainer}>
-						<p className={classes.userContent}>Saldo: <br/>{user.balance.coin}{user.balance.amount}</p>
+						<p className={classes.userContent}>Saldo: <br />{user.balance.coin}{user.balance.amount}</p>
 						<CustomButton
 							name={"Adicionar saldo"}
 						/>

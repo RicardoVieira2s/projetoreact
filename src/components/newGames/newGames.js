@@ -62,7 +62,7 @@ class NewGames extends Component {
                     alignItems={'center'}
                     justifyContent={'center'}
                 >
-                    
+
                     {games._new.map((game) => {
                         if (game.state !== "inactive") {
                             return <GameCardMedium key={game.id} game={game} />

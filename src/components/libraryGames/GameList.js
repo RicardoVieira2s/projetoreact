@@ -7,7 +7,6 @@ import RenderIfEmpty from '../utils/messageError'
 import { makeStyles } from '@material-ui/core/styles'
 import { gameApi } from '../../api'
 
-
 const useStyles = makeStyles(() => ({
     container: {
         backgroundColor: COLOR_OXFORD_BLUE,
@@ -24,7 +23,6 @@ class GameList extends Component {
         this.state = {
             games: [],
             isLoaded: false,
-
         }
     }
 
@@ -47,8 +45,6 @@ class GameList extends Component {
     render() {
 
         var { isLoaded, games } = this.state;
-
-        console.log(games);
 
         if (!isLoaded) {
             return <div>Loading....</div>

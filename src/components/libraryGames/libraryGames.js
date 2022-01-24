@@ -6,10 +6,12 @@ import { BORDER_RADIUS_5PX } from '../utils/border'
 import renderDownloadButton from '../utils/downloadButton'
 
 export default function libraryGame({ game }) {
-console.log("games", game)
+    console.log(game)
     return (
         <CardContent>
-            <Grid>
+            <Grid
+                item
+            >
                 <Card
                     sx={{
                         maxWidth: '400px',

@@ -3,7 +3,7 @@ import { COLOR_RICH_BLACK, COLOR_OXFORD_BLUE, COLOR_BDAZZLED_BLUE, COLOR_SHADOW_
 import Tab from '@mui/material/Tab'
 import TabContext from '@mui/lab/TabContext'
 import Tabs from '@mui/material/Tabs';
-import { BORDER_RADIUS_2 } from '../utils/border'
+import { BORDER_RADIUS_10PX } from '../utils/border'
 import { makeStyles } from "@material-ui/core";
 import { Link } from 'react-router-dom'
 
@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   floatBar: {
     position: 'relative',
     background: COLOR_RICH_BLACK,
-    borderRadius: BORDER_RADIUS_2,
+    borderRadius: BORDER_RADIUS_10PX,
     marginTop: '65px',
     display: 'table',
     margin: '0 auto',
@@ -37,7 +37,7 @@ export default function MenuBar() {
         onChange={handleChange}
         TabIndicatorProps={{ className: classes.indicator }}
       >
-        <Link to="/">
+        <Link to="/home">
           <Tab
             label="A tua loja"
             value={0}
@@ -57,38 +57,42 @@ export default function MenuBar() {
             }}
           />
         </Link>
-        <Tab
-          label="Novidades"
-          value={1}
-          sx={{
-            color: COLOR_BDAZZLED_BLUE,
-            ':hover': {
-              color: COLOR_SHADOW_BLUE,
-            },
-            '&.Mui-selected': {
+        <Link to="/news">
+          <Tab
+            label="Novidades"
+            value={1}
+            sx={{
               color: COLOR_BDAZZLED_BLUE,
               ':hover': {
                 color: COLOR_SHADOW_BLUE,
               },
-            },
-          }}
-        />
-        <Tab
-          label="Destaques"
-          value={2}
-          sx={{
-            color: COLOR_BDAZZLED_BLUE,
-            ':hover': {
-              color: COLOR_SHADOW_BLUE,
-            },
-            '&.Mui-selected': {
+              '&.Mui-selected': {
+                color: COLOR_BDAZZLED_BLUE,
+                ':hover': {
+                  color: COLOR_SHADOW_BLUE,
+                },
+              },
+            }}
+          />
+        </Link>
+        <Link to="/featured">
+          <Tab
+            label="Destaques"
+            value={2}
+            sx={{
               color: COLOR_BDAZZLED_BLUE,
               ':hover': {
                 color: COLOR_SHADOW_BLUE,
               },
-            },
-          }}
-        />
+              '&.Mui-selected': {
+                color: COLOR_BDAZZLED_BLUE,
+                ':hover': {
+                  color: COLOR_SHADOW_BLUE,
+                },
+              },
+            }}
+          />
+        </Link>
         <Tab
           label="Estatísticas"
           value={3}

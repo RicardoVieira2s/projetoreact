@@ -3,7 +3,7 @@ import { Card, CardContent, Grid, CardActions, Typography } from '@mui/material'
 import Box from '@mui/material/Box';
 import GameImage from './gameCardImages/hpGameCardImageBig'
 import { COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM } from '../color'
-import { BORDER_RADIUS_3 } from '../border'
+import { BORDER_RADIUS_5PX } from '../border'
 import WishlistButton from '../wishlistButton'
 import CartButton from '../cartButton'
 import StarsReview from '../starsReview'
@@ -19,7 +19,7 @@ export default function GameCardSmall({ game }) {
             <Card
                 sx={{
                     width: '100%',
-                    borderRadius: BORDER_RADIUS_3,
+                    borderRadius: BORDER_RADIUS_5PX,
                 }}
             >
                 <GameImage

@@ -1,14 +1,19 @@
 import './App.css'
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, } from 'react-router-dom'
 import TopBar from './components/topBar/topBar'
-import Home from './pages/homePage'
 import AccountPage from './pages/accountPage'
 import LibraryPage from './pages/libraryPage'
 import CartPage from './pages/cartPage'
 import wishlistPage from './pages/wishlistPage'
 import { Footer } from './components/footer/footer'
 import gamePage from './pages/gamePage'
+import { Banner } from './components/floatingBar/banner'
+import RecomendedGames from './components/recomendedGames/recomendedGames'
+import GamesOnSale from './components/gamesOnSale/gamesOnSale'
+import DiscoverGames from './components/discoverGames/discoverGames'
+import NewGames from './components/newGames/newGames'
+import FeaturedGames from './components/featuredGames/featuredGames'
 
 function App() {
   const user = { name: "Ricardo" }
@@ -24,8 +29,22 @@ function App() {
       />
       <div className='content-body'>
         <Switch>
-          <Route
-            path="/" component={Home} exact />
+          <Route path="/" >
+            <Banner />
+            <Switch>
+              <Route path="/home" exact >
+                <RecomendedGames />
+                <GamesOnSale />
+                <DiscoverGames />
+              </Route>
+              <Route path="/news" >
+                <NewGames />
+              </Route>
+              <Route path="/featured" >
+                <FeaturedGames />
+              </Route>
+            </Switch>
+          </Route>
           <Route
             path="/account" component={AccountPage} exact />
           <Route

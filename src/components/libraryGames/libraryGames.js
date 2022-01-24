@@ -2,22 +2,22 @@ import React from 'react'
 import { COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM } from '../utils/color'
 import GameImage from './GameImage'
 import { Card, CardContent, Grid, CardActions, Typography } from '@mui/material'
-import { BORDER_RADIUS_3 } from '../utils/border'
+import { BORDER_RADIUS_5PX } from '../utils/border'
 import renderDownloadButton from '../utils/downloadButton'
 
 export default function libraryGame({ game }) {
-
+console.log("games", game)
     return (
         <CardContent>
             <Grid>
                 <Card
                     sx={{
                         maxWidth: '400px',
-                        borderRadius: BORDER_RADIUS_3,
+                        borderRadius: BORDER_RADIUS_5PX,
                     }}
                 >
                     <GameImage
-                        cover_image={game.cover_image}
+                        cover_image={game.coverImage}
                     />
                     <CardActions style={{ position: 'relative', backgroundColor: COLOR_PLATINIUM }}>
                         <Grid
@@ -41,7 +41,7 @@ export default function libraryGame({ game }) {
                             </Typography>
 
                         </Grid>
-                        {renderDownloadButton(game.state, game.download_link, game.release_date)}
+                        {renderDownloadButton(game.state, game.downloadLink, game.releaseDate)}
                     </CardActions>
                 </Card>
             </Grid>

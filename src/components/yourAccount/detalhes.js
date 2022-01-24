@@ -3,7 +3,7 @@ import './yourAccount.css'
 import CustomButton from '../utils/customButton'
 import { COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM } from '../utils/color'
 import { Box, Card, CardContent, Divider, Grid, TextField } from '@mui/material'
-import { BORDER_RADIUS_2 } from '../utils/border'
+import { BORDER_RADIUS_10PX } from '../utils/border'
 import Title from '../utils/Title'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
     container: {
         backgroundColor: COLOR_PLATINIUM,
         color: COLOR_BDAZZLED_BLUE,
-        borderRadius: BORDER_RADIUS_2,
+        borderRadius: BORDER_RADIUS_10PX,
         paddingRight: '15px',
         paddingLeft: '15px',
     },

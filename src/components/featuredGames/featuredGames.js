@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { COLOR_OXFORD_BLUE, COLOR_BDAZZLED_BLUE, COLOR_SHADOW_BLUE } from '../utils/color'
-import LibraryGame from './libraryGames'
+import GameCardMedium from '../utils/gameCard/gameCardMedium'
 import { Grid } from '@mui/material'
 import Title from '../utils/Title'
-import RenderIfEmpty from '../utils/messageError'
 import { makeStyles } from '@material-ui/core/styles'
-import { gameApi } from '../../api'
+import { storeApi } from '../../api'
+import renderIfEmpty from '../utils/messageError'
 
 
 const useStyles = makeStyles(() => ({
@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
     },
 }))
 
-class GameList extends Component {
+class FeaturedGames extends Component {
 
     constructor(props) {
         super(props);
@@ -29,7 +29,7 @@ class GameList extends Component {
     }
 
     componentDidMount() {
-        gameApi.gameGet(null, (error, data, response) => {
+        storeApi.noteworthyStoreGet(null, (error, data) => {
 
             if (error) {
                 console.error(error);
@@ -46,18 +46,16 @@ class GameList extends Component {
 
     render() {
 
-        var { isLoaded, games } = this.state;
-
-        console.log(games);
+        var { games, isLoaded } = this.state;
 
         if (!isLoaded) {
-            return <div>Loading....</div>
+            return null
         }
 
         return (
             <div className={useStyles.container} >
                 <Title
-                    name={'Biblioteca'}
+                    name={'Destaques'}
                     color={COLOR_SHADOW_BLUE}
                 />
                 <Grid
@@ -65,11 +63,10 @@ class GameList extends Component {
                     alignItems={'center'}
                     justifyContent={'center'}
                 >
-
-                    {RenderIfEmpty(games.length, "Sem jogos na biblioteca")}
-                    {games.map((game) => {
+                    {renderIfEmpty(games.featured.length, "Sem jogos em destaque")}
+                    {games.featured.map((game) => {
                         if (game.state !== "inactive") {
-                            return <LibraryGame key={game.id} game={game} />
+                            return <GameCardMedium key={game.id} game={game} />
                         }
                         return null
                     }
@@ -77,7 +74,8 @@ class GameList extends Component {
                 </Grid>
             </div >
         )
+
     }
 }
 
-export default GameList;
+export default FeaturedGames;

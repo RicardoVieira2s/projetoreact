@@ -1,37 +1,37 @@
 import React from 'react'
 import { Banner } from '../components/floatingBar/banner'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import RecomendedGames from '../components/recomendedGames/recomendedGames'
 import GamesOnSale from '../components/gamesOnSale/gamesOnSale'
 import DiscoverGames from '../components/discoverGames/discoverGames'
+import NewGames from '../components/newGames/newGames'
+import { Link } from 'react-router-dom'
 
-const homePage = () => {
+const Homepage = () => {
 
     return (
-        <>
+        
+        <Router>
+             
             <Banner />
+            
+            <Redirect to="/home" />
             <Switch>
-                <Route path="/" >
+                <Route path="/home" exact >
                     <RecomendedGames/>
-                    <GamesOnSale />
-                    <DiscoverGames />
+                    <GamesOnSale/>
+                    <DiscoverGames/> 
+                   
                 </Route>
-                {/* <Route
-                    path="/account" component={AccountPage} exact />
-                <Route
-                    path="/cart" component={CartPage} exact />
-                <Route
-                    path="/library" component={LibraryPage} exact />
-                <Route
-                    path="/wishlist" component={wishlistPage} exact />
-                <Route
-                    path="/gamepage" component={gamePage} exact /> */}
-            </Switch>
-            {/* <GamesOnSale />
-            <DiscoverGames /> */}
 
-        </>
+                <Route path="/news" >
+                    <NewGames/>
+                </Route>
+            </Switch>
+        </Router>
+
+
     )
 }
 
-export default homePage
+export default Homepage

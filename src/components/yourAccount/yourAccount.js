@@ -7,7 +7,7 @@ import Historico from '../yourAccount/historico'
 import CustomButton from '../utils/customButton'
 import Title from '../utils/Title'
 import { COLOR_OXFORD_BLUE, COLOR_BDAZZLED_BLUE, COLOR_SHADOW_BLUE, COLOR_PLATINIUM } from '../utils/color'
-import { BORDER_RADIUS_2 } from '../utils/border'
+import { BORDER_RADIUS_10PX } from '../utils/border'
 import { makeStyles } from '@material-ui/core/styles'
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 import { Box, Tab } from '@mui/material'
@@ -24,7 +24,7 @@ const useStyles = makeStyles(() => ({
 		paddingLeft: '15px',
 		margin: '0px 30px 30px 30px',
 		backgroundColor: COLOR_PLATINIUM,
-		borderRadius: BORDER_RADIUS_2,
+		borderRadius: BORDER_RADIUS_10PX,
 	},
 	imageBox: {
 		height: '145px',

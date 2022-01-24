@@ -1,3 +1,3 @@
-export const BORDER_RADIUS_1 = '20px'
-export const BORDER_RADIUS_2 = '10px'
-export const BORDER_RADIUS_3 = '5px'
+export const BORDER_RADIUS_20PX = '20px'
+export const BORDER_RADIUS_10PX = '10px'
+export const BORDER_RADIUS_5PX = '5px'

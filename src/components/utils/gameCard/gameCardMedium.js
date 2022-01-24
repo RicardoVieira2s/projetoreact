@@ -18,19 +18,19 @@ export default function GameCardBig({ game }) {
         >
             <Card
                 sx={{
-                    width: '100%',
+                    maxWidth: '400px',
                     borderRadius: BORDER_RADIUS_5PX,
                 }}
             >
                 <GameImage
-                    cover_image={game.cover_image}
+                    cover_image={game.coverImage}
                 />
                 <CardActions
                     style={{
                         position: 'relative',
                         backgroundColor: COLOR_PLATINIUM,
                         padding: '0px',
-                        height: '80px'
+                        height: '60px'
                     }}
                 >
                     <Box
@@ -77,7 +77,8 @@ export default function GameCardBig({ game }) {
                                         textAlign: 'right',
                                     }}
                                 >
-                                    <StarsReview ratingValue={game.rate} />
+                                    {/* <StarsReview ratingValue={game.rate} /> */}
+                                    <StarsReview  />
                                 </Grid>
                             </Grid>
                             <Grid
@@ -121,4 +122,3 @@ export default function GameCardBig({ game }) {
         </CardContent >
     )
 }
-

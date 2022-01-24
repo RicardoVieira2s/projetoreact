@@ -2,7 +2,7 @@ import * as React from 'react'
 import './topbar.css'
 import { COLOR_RICH_BLACK, COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM } from '../utils/color'
 import { FONT_SECUNDARY_SIZE } from '../utils/font'
-import { BORDER_RADIUS_1 } from '../utils/border'
+import { BORDER_RADIUS_20PX } from '../utils/border'
 import { Link } from 'react-router-dom'
 import { styled, alpha } from '@mui/material/styles'
 import { IconButton, Toolbar, Paper, Button, Divider, Menu, MenuItem, Badge, InputBase, Box, AppBar } from '@mui/material'
@@ -119,7 +119,7 @@ export default function PrimarySearchAppBar(props) {
                 style: {
                     backgroundColor: COLOR_PLATINIUM,
                     color: COLOR_BDAZZLED_BLUE,
-                    borderRadius: BORDER_RADIUS_1,
+                    borderRadius: BORDER_RADIUS_20PX,
                     marginTop: '10px',
                 },
             }}
@@ -199,12 +199,12 @@ export default function PrimarySearchAppBar(props) {
                     width: '22ch',
                     backgroundColor: COLOR_PLATINIUM,
                     color: COLOR_BDAZZLED_BLUE,
-                    borderRadius: BORDER_RADIUS_1,
+                    borderRadius: BORDER_RADIUS_20PX,
                     marginTop: '60px'
                 },
             }}
         >
-            <Link to="/">
+            <Link to="/home">
                 <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
                     <IconButton
                         color={MOBILE_ICON_BUTTON_COLOR}
@@ -373,7 +373,7 @@ export default function PrimarySearchAppBar(props) {
                                         bgcolor: COLOR_BDAZZLED_BLUE,
                                         color: COLOR_PLATINIUM,
                                     },
-                                    borderRadius: BORDER_RADIUS_1,
+                                    borderRadius: BORDER_RADIUS_20PX,
                                     height: '40px',
                                     marginLeft: TYPOGRAPHY_MARGIN_LEFT,
                                     fontFamily: 'Viga',

@@ -161,16 +161,18 @@ export default function PrimarySearchAppBar(props) {
                 variant="middle"
                 sx={{ marginTop: 1.3 }}
             />
-            <MenuItem
-                onClick={handleMenuClose}
-                style={{
-                    height: DESKTOP_ITEM_HEIGHT,
-                    fontSize: FONT_SECUNDARY_SIZE
-                }}
-                disableRipple
-            >
-                <p>Logout</p>
-            </MenuItem>
+            <Link to="/login">
+                <MenuItem
+                    onClick={handleMenuClose}
+                    style={{
+                        height: DESKTOP_ITEM_HEIGHT,
+                        fontSize: FONT_SECUNDARY_SIZE
+                    }}
+                    disableRipple
+                >
+                    <p>Logout</p>
+                </MenuItem>
+            </Link>
         </Menu>
     )
 
@@ -394,7 +396,7 @@ export default function PrimarySearchAppBar(props) {
                                     boxShadow: 'none',
                                 }}
                                 >
-                                    <img src="/images/avatar-Man-1.png" alt="" height='30px' />
+                                    <img src="/images/avatar/avatar-Man-1.png" alt="" height='30px' />
                                 </Paper>
                                 <p
                                     style={{

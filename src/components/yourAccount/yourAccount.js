@@ -10,7 +10,9 @@ import { COLOR_OXFORD_BLUE, COLOR_BDAZZLED_BLUE, COLOR_SHADOW_BLUE, COLOR_PLATIN
 import { BORDER_RADIUS_10PX } from '../utils/border'
 import { makeStyles } from '@material-ui/core/styles'
 import { TabContext, TabList, TabPanel } from '@mui/lab'
-import { Box, Tab } from '@mui/material'
+import { Box, Tab, Modal, Grid } from '@mui/material'
+import { Item } from '@mui-treasury/components/flex'
+import {client} from '../../index'
 
 const useStyles = makeStyles(() => ({
 	container: {
@@ -34,6 +36,7 @@ const useStyles = makeStyles(() => ({
 		float: 'left',
 		padding: '5px',
 		margin: '15px',
+		cursor: 'pointer',
 	},
 	userContentContainer: {
 		float: 'right',
@@ -63,7 +66,32 @@ const useStyles = makeStyles(() => ({
 	indicator: {
 		backgroundColor: 'transparent',
 	},
+	boxModalStyle: {
+		position: 'absolute',
+		top: '50%',
+		left: '50%',
+		transform: 'translate(-50%, -50%)',
+		maxWidth: "450px",
+		height: "auto",
+		paddingTop: "15px",
+		paddingBottom: "10px",
+		backgroundColor: COLOR_PLATINIUM,
+	},
+	avatares: {
+		height: '145px',
+		width: '145px',
+		borderRadius: '100%',
+		border: '2px solid #0D1B2A',
+		padding: '5px',
+		margin: '15px',
+		cursor: 'pointer',
+	}
 }))
+
+function updateClientAvatar(url) {
+	
+	//call api to update user
+}
 
 export default function YourAccount(props) {
 	const classes = useStyles()
@@ -74,8 +102,19 @@ export default function YourAccount(props) {
 		setValue(newValue);
 	}
 
+	const [open, setOpen] = React.useState(false)
+	const handleOpen = () => setOpen(true)
+	const handleClose = () => setOpen(false)
+
+	const avatars = {
+		avatar1: "images/avatar/avatar-Man-1.png",
+		avatar2: "images/avatar/avatar-Man-2.png",
+		avatar3: "images/avatar/avatar-Woman-1.png",
+		avatar4: "images/avatar/avatar-Woman-2.png",
+	}
+
 	const user = {
-		avatar: "images/avatar-Man-1.png",
+		avatar: "images/avatar/avatar-Man-1.png",
 		name: 'Ricardo Vieira',
 		balance: {
 			amount: 112,
@@ -91,7 +130,65 @@ export default function YourAccount(props) {
 						name={user.name}
 						color={COLOR_BDAZZLED_BLUE}
 					/>
-					<img src={user.avatar} alt="" className={classes.imageBox}></img>
+
+					<img onClick={handleOpen} src={user.avatar} alt="" className={classes.imageBox}></img>
+					<Modal
+						open={open}
+						onClose={handleClose}
+					>
+						<Box className={classes.boxModalStyle}>
+							<Grid
+								container
+							>
+								<Grid
+									item
+									md={6}
+									xs={12}
+								>
+									<Item
+										textAlign={"center"}
+									>
+										<img onClick={updateClientAvatar("http://localhost:3000/images/avatar/avatar-Man-1.png")} src={avatars.avatar1} alt="" className={classes.avatares}></img>
+									</Item>
+								</Grid>
+								<Grid
+									item
+									md={6}
+									xs={12}
+								>
+									<Item
+										textAlign={"center"}
+									>
+										<img onClick={updateClientAvatar("http://localhost:3000/images/avatar/avatar-Man-2.png")} src={avatars.avatar2} alt="" className={classes.avatares}></img>
+									</Item>
+								</Grid>
+								<Grid
+									item
+									md={6}
+									xs={12}
+								>
+									<Item
+										textAlign={"center"}
+									>
+										<img onClick={updateClientAvatar("http://localhost:3000/images/avatar/avatar-Woman-1.png")} src={avatars.avatar3} alt="" className={classes.avatares}></img>
+									</Item>
+								</Grid>
+								<Grid
+									item
+									md={6}
+									xs={12}
+								>
+									<Item
+										textAlign={"center"}
+									>
+										<img onClick={updateClientAvatar("http://localhost:3000/images/avatar/avatar-Woman-2.png")} src={avatars.avatar4} alt="" className={classes.avatares}></img>
+									</Item>
+								</Grid>
+							</Grid>
+						</Box>
+					</Modal>
+
+
 					<div className={classes.userContentContainer}>
 						<p className={classes.userContent}>Saldo: <br />{user.balance.coin}{user.balance.amount}</p>
 						<CustomButton

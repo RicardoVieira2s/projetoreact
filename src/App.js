@@ -44,17 +44,18 @@ function App() {
                 <FeaturedGames />
               </Route>
             </Switch>
+            <Route
+              path="/account" component={AccountPage} exact />
+            <Route
+              path="/cart" component={CartPage} exact />
+            <Route
+              path="/library" component={LibraryPage} exact />
+            <Route
+              path="/wishlist" component={wishlistPage} exact />
+            <Route
+              path="/gamepage" component={gamePage} exact />
           </Route>
-          <Route
-            path="/account" component={AccountPage} exact />
-          <Route
-            path="/cart" component={CartPage} exact />
-          <Route
-            path="/library" component={LibraryPage} exact />
-          <Route
-            path="/wishlist" component={wishlistPage} exact />
-          <Route
-            path="/gamepage" component={gamePage} exact />
+
         </Switch>
       </div>
       <Footer />

@@ -63,7 +63,7 @@ class FeaturedGames extends Component {
                     alignItems={'center'}
                     justifyContent={'center'}
                 >
-                    {renderIfEmpty(games.featured.length, "Sem jogos em destaque")}
+
                     {games.featured.map((game) => {
                         if (game.state !== "inactive") {
                             return <GameCardMedium key={game.id} game={game} />

@@ -14,7 +14,7 @@
  *
  */
 import {ApiClient} from "../ApiClient";
-import {GameSchema} from '../model/GameSchema';
+import {TopReviewsSchema} from '../model/TopReviewsSchema';
 
 /**
 * Statistics service.
@@ -39,7 +39,7 @@ export class StatisticsApi {
      * Callback function to receive the result of the topReviewsGet operation.
      * @callback moduleapi/StatisticsApi~topReviewsGetCallback
      * @param {String} error Error message, if any.
-     * @param {Array.<module:model/GameSchema>{ data The data returned by the service call.
+     * @param {Array.<module:model/TopReviewsSchema>{ data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -68,7 +68,7 @@ export class StatisticsApi {
       let authNames = [];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = [GameSchema];
+      let returnType = [TopReviewsSchema];
 
       return this.apiClient.callApi(
         '/topReviews', 'GET',

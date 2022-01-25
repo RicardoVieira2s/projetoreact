@@ -6,7 +6,8 @@ api.basePath = 'http://localhost:8080/api'
 const clientApi = new goofrStore.ClientApi(api);
 const gameApi = new goofrStore.GameApi(api);
 const storeApi = new goofrStore.StoreApi(api);
+const topReviewedGames = new goofrStore.StatisticsApi(api);
 
 export {
-    clientApi, gameApi, storeApi
+    clientApi, gameApi, storeApi, topReviewedGames
 }

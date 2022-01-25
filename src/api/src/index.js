@@ -32,6 +32,7 @@ import {RegisterClientSchema} from './model/RegisterClientSchema';
 import {ReviewSchema} from './model/ReviewSchema';
 import {SearchSchema} from './model/SearchSchema';
 import {TagSchema} from './model/TagSchema';
+import {TopReviewsSchema} from './model/TopReviewsSchema';
 import {VersionSchema} from './model/VersionSchema';
 import {YourStoreSchema} from './model/YourStoreSchema';
 import {AccessApi} from './api/AccessApi';
@@ -197,6 +198,12 @@ export {
      * @property {module:model/TagSchema}
      */
     TagSchema,
+
+    /**
+     * The TopReviewsSchema model constructor.
+     * @property {module:model/TopReviewsSchema}
+     */
+    TopReviewsSchema,
 
     /**
      * The VersionSchema model constructor.

@@ -27,7 +27,7 @@ class GameList extends Component {
     }
 
     componentDidMount() {
-        gameApi.gameGet(null, (error, data, response) => {
+        gameApi.gameGet(null, (error, data) => {
 
             if (error) {
                 console.error(error);

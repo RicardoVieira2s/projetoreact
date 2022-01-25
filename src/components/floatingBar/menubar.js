@@ -18,8 +18,21 @@ const useStyles = makeStyles(theme => ({
     marginTop: '65px',
     display: 'table',
     margin: '0 auto',
-  }
-
+  },
+  tabsConfig: {
+    color: COLOR_BDAZZLED_BLUE,
+    ':hover': {
+      color: COLOR_SHADOW_BLUE,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    '&.Mui-selected': {
+      color: COLOR_BDAZZLED_BLUE,
+      ':hover': {
+        color: COLOR_SHADOW_BLUE,
+      },
+    },
+  },
 }));
 
 export default function MenuBar() {
@@ -41,79 +54,31 @@ export default function MenuBar() {
           <Tab
             label="A tua loja"
             value={0}
-            sx={{
-              color: COLOR_BDAZZLED_BLUE,
-              ':hover': {
-                color: COLOR_SHADOW_BLUE,
-                alignItems: 'center',
-                justifyContent: 'center',
-              },
-              '&.Mui-selected': {
-                color: COLOR_BDAZZLED_BLUE,
-                ':hover': {
-                  color: COLOR_SHADOW_BLUE,
-                },
-              },
-            }}
+            className={classes.tabsConfig}
           />
         </Link>
         <Link to="/news">
           <Tab
             label="Novidades"
             value={1}
-            sx={{
-              color: COLOR_BDAZZLED_BLUE,
-              ':hover': {
-                color: COLOR_SHADOW_BLUE,
-              },
-              '&.Mui-selected': {
-                color: COLOR_BDAZZLED_BLUE,
-                ':hover': {
-                  color: COLOR_SHADOW_BLUE,
-                },
-              },
-            }}
+            className={classes.tabsConfig}
           />
         </Link>
         <Link to="/featured">
           <Tab
             label="Destaques"
             value={2}
-            sx={{
-              color: COLOR_BDAZZLED_BLUE,
-              ':hover': {
-                color: COLOR_SHADOW_BLUE,
-              },
-              '&.Mui-selected': {
-                color: COLOR_BDAZZLED_BLUE,
-                ':hover': {
-                  color: COLOR_SHADOW_BLUE,
-                },
-              },
-            }}
+            className={classes.tabsConfig}
           />
         </Link>
         <Link to="statistics">
           <Tab
             label="Estatísticas"
             value={3}
-            sx={{
-              color: COLOR_BDAZZLED_BLUE,
-              ':hover': {
-                color: COLOR_SHADOW_BLUE,
-              },
-              '&.Mui-selected': {
-                color: COLOR_BDAZZLED_BLUE,
-                ':hover': {
-                  color: COLOR_SHADOW_BLUE,
-                },
-              },
-            }}
+            className={classes.tabsConfig}
           />
         </Link>
       </Tabs>
-
-
     </TabContext >
   )
 }

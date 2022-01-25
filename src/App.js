@@ -12,6 +12,8 @@ import homePage from './pages/homePage'
 import newStorePage from './pages/newStorePage'
 import featuredPage from './pages/featuredPage'
 import statisticsPage from './pages/statisticsPage'
+import Login from './pages/login'
+import Register from './pages/register'
 
 function App() {
   const user = { name: "Ricardo" }
@@ -45,6 +47,10 @@ function App() {
             path="/wishlist" component={wishlistPage} exact />
           <Route
             path="/gamepage" component={gamePage} exact />
+          <Route
+            path="/login" component={Login} exact />
+          <Route
+            path="/register" component={Register} exact />
         </Switch>
       </div>
       <Footer />

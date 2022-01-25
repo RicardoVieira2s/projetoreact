@@ -205,7 +205,7 @@ export default function PrimarySearchAppBar(props) {
                 },
             }}
         >
-            <Link to="/home">
+            <Link to="/">
                 <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
                     <IconButton
                         color={MOBILE_ICON_BUTTON_COLOR}

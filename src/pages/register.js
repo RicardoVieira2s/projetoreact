@@ -1,222 +1,254 @@
-import Head from 'next/head'
-import NextLink from 'next/link'
-import { useRouter } from 'next/router'
-import { useFormik } from 'formik'
-import * as Yup from 'yup'
-import { Box, Button, Checkbox, Container, FormHelperText, Link, TextField, Typography} from '@mui/material'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import React from 'react'
+import { COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM } from '../components/utils/color'
+import { CardContent, Grid, Divider, Card,Button, TextField } from '@mui/material'
+import { Link } from 'react-router-dom'
+import Title from '../components/utils/Title'
+import Switch from '@mui/material/Switch'
+import FormControlLabel from '@mui/material/FormControlLabel'
 
 const Register = () => {
-  const router = useRouter();
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-      firstName: '',
-      lastName: '',
-      password: '',
-      policy: false
-    },
-    validationSchema: Yup.object({
-      email: Yup
-        .string()
-        .email(
-          'Must be a valid email')
-        .max(255)
-        .required(
-          'Email is required'),
-      firstName: Yup
-        .string()
-        .max(255)
-        .required(
-          'First name is required'),
-      lastName: Yup
-        .string()
-        .max(255)
-        .required(
-          'Last name is required'),
-      password: Yup
-        .string()
-        .max(255)
-        .required(
-          'Password is required'),
-      policy: Yup
-        .boolean()
-        .oneOf(
-          [true],
-          'This field must be checked'
-        )
-    }),
-    onSubmit: () => {
-      router.push('/');
-    }
-  });
 
   return (
-    <>
-      <Head>
-        <title>
-          Register | Material Kit
-        </title>
-      </Head>
-      <Box
-        component="main"
-        sx={{
-          alignItems: 'center',
-          display: 'flex',
-          flexGrow: 1,
-          minHeight: '100%'
+    <form
+      autoComplete="off"
+    >
+      <Card
+        style={{
+          backgroundColor: COLOR_PLATINIUM,
+          color: COLOR_BDAZZLED_BLUE,
+          marginRight: '40px',
+          marginLeft: '40px',
+          paddingLeft: '15px',
+          paddingRight: '15px',
+          paddingBottom: '40px',
         }}
       >
-        <Container maxWidth="sm">
-          <NextLink
-            href="/"
-            passHref
+        <Title
+          name={'Sign up'}
+          color={COLOR_BDAZZLED_BLUE}
+        />
+        <CardContent>
+          <Grid
+            container
+            spacing={3}
           >
-            <Button
-              component="a"
-              startIcon={<ArrowBackIcon fontSize="small" />}
+            <Grid
+              item
+              xs={12}
+              md={6}
             >
-              Dashboard
-            </Button>
-          </NextLink>
-          <form onSubmit={formik.handleSubmit}>
-            <Box sx={{ my: 3 }}>
-              <Typography
-                color="textPrimary"
-                variant="h4"
-              >
-                Create a new account
-              </Typography>
-              <Typography
-                color="textSecondary"
-                gutterBottom
-                variant="body2"
-              >
-                Use your email to create a new account
-              </Typography>
-            </Box>
-            <TextField
-              error={Boolean(formik.touched.firstName && formik.errors.firstName)}
-              fullWidth
-              helperText={formik.touched.firstName && formik.errors.firstName}
-              label="First Name"
-              margin="normal"
-              name="firstName"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              value={formik.values.firstName}
-              variant="outlined"
-            />
-            <TextField
-              error={Boolean(formik.touched.lastName && formik.errors.lastName)}
-              fullWidth
-              helperText={formik.touched.lastName && formik.errors.lastName}
-              label="Last Name"
-              margin="normal"
-              name="lastName"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              value={formik.values.lastName}
-              variant="outlined"
-            />
-            <TextField
-              error={Boolean(formik.touched.email && formik.errors.email)}
-              fullWidth
-              helperText={formik.touched.email && formik.errors.email}
-              label="Email Address"
-              margin="normal"
-              name="email"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              type="email"
-              value={formik.values.email}
-              variant="outlined"
-            />
-            <TextField
-              error={Boolean(formik.touched.password && formik.errors.password)}
-              fullWidth
-              helperText={formik.touched.password && formik.errors.password}
-              label="Password"
-              margin="normal"
-              name="password"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              type="password"
-              value={formik.values.password}
-              variant="outlined"
-            />
-            <Box
-              sx={{
-                alignItems: 'center',
-                display: 'flex',
-                ml: -1
-              }}
-            >
-              <Checkbox
-                checked={formik.values.policy}
-                name="policy"
-                onChange={formik.handleChange}
+              <TextField
+                fullWidth
+                label="Nome Próprio"
+                name="Nome Próprio"
+                required
+                variant="outlined"
               />
-              <Typography
-                color="textSecondary"
-                variant="body2"
-              >
-                I have read the
-                {' '}
-                <NextLink
-                  href="#"
-                  passHref
-                >
-                  <Link
-                    color="primary"
-                    underline="always"
-                    variant="subtitle2"
-                  >
-                    Terms and Conditions
-                  </Link>
-                </NextLink>
-              </Typography>
-            </Box>
-            {Boolean(formik.touched.policy && formik.errors.policy) && (
-              <FormHelperText error>
-                {formik.errors.policy}
-              </FormHelperText>
-            )}
-            <Box sx={{ py: 2 }}>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              md={6}
+            >
+              <TextField
+                fullWidth
+                label="Apelido"
+                name="Apelido"
+                required
+                variant="outlined"
+              />
+            </Grid>
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              <TextField
+                fullWidth
+                type="date"
+                variant="outlined"
+                helperText="Data de nascimento"
+                required
+              />
+            </Grid>
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              <TextField
+                fullWidth
+                label="Número de telemóvel"
+                name="Número de telemóvel"
+                type="tel"
+                inputProps={{ maxLength: 9, pattern: "[9]{1}[0-9]{8}" }}
+                variant="outlined"
+                required
+              />
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              md={6}
+            >
+              <TextField
+                fullWidth
+                label="E-mail"
+                name="E-mail"
+                required
+                variant="outlined"
+                type="email"
+              />
+            </Grid>
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              <TextField
+                fullWidth
+                label="Password"
+                name="Password"
+                type="password"
+                required
+                variant="outlined"
+
+              />
+            </Grid>
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              <TextField
+                fullWidth
+                label="Número de Identificação Fiscal"
+                name="Número de Identificação Fiscal"
+                type="tel"
+                variant="outlined"
+                required
+                inputProps={{
+                  maxLength: 9,
+                  pattern: "[1-9]{1}[0-9]{8}"
+                }}
+              />
+            </Grid>
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              <TextField
+                fullWidth
+                label="Rua"
+                name="Rua"
+                required
+                variant="outlined"
+              />
+            </Grid>
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              <TextField
+                fullWidth
+                label="Número de porta"
+                name="Número de porta"
+                type="tel"
+                inputProps={{ maxLength: 5, pattern: "[1-9]{1}[1-9]{4}" }}
+                required
+                variant="outlined"
+              />
+            </Grid>
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              <TextField
+                fullWidth
+                label="Código Postal"
+                name="Código Postal"
+                required
+                variant="outlined"
+              />
+            </Grid>
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              <TextField
+                fullWidth
+                label="Cidade"
+                name="Cidade"
+                variant="outlined"
+                required
+              />
+            </Grid>
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              <TextField
+                fullWidth
+                label="País"
+                name="País"
+                variant="outlined"
+                required
+              />
+            </Grid>
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              <FormControlLabel
+                style={{ padding: '12px' }}
+                control={<Switch defaultChecked />}
+                label="Subscrição newsletter"
+                labelPlacement="start"
+              />
+            </Grid>
+
+            <Grid
+              item
+              xs={12}
+              md={12}
+            >
               <Button
                 color="primary"
-                disabled={formik.isSubmitting}
                 fullWidth
                 size="large"
                 type="submit"
                 variant="contained"
+                sx={{
+                  cursor: 'pointer'
+                }}
               >
-                Sign Up Now
+                Confirmar
               </Button>
-            </Box>
-            <Typography
-              color="textSecondary"
-              variant="body2"
-            >
-              Have an account?
-              {' '}
-              <NextLink
-                href="/login"
-                passHref
-              >
-                <Link
-                  variant="subtitle2"
-                  underline="hover"
-                >
-                  Sign In
-                </Link>
-              </NextLink>
-            </Typography>
-          </form>
-        </Container>
-      </Box>
-    </>
-  );
-};
+            </Grid>
+
+          </Grid>
+        </CardContent>
+        <Divider
+          style={{ marginTop: '18px' }}
+        />
+        <Link
+          to="/login">
+          <Button
+            fullWidth
+            style={{ marginTop: '30px' }}
+          >
+            Back
+          </Button>
+        </Link>
+      </Card >
+    </form >
+  )
+}
 
 export default Register

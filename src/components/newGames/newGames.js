@@ -6,7 +6,6 @@ import Title from '../utils/Title'
 import { makeStyles } from '@material-ui/core/styles'
 import { storeApi } from '../../api'
 
-
 const useStyles = makeStyles(() => ({
     container: {
         backgroundColor: COLOR_OXFORD_BLUE,

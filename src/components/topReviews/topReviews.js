@@ -113,70 +113,27 @@ class Charts extends Component {
 
         var { isLoaded, topReviews } = this.state;
 
-
-        const labelsMostReviewedGames = topReviews.map(review => review.game.name);
-
-        console.log("teste", labelsMostReviewedGames);
+        const labelsMostReviewedGames = ['CS GO'];
+        //const labelsMostReviewedGames = topReviews.map(review => review.game.name);
 
         const dataMostReviewedGames = {
             labels: labelsMostReviewedGames,
             datasets: [
                 {
-                    data: topReviews.map(review => review.average),
+                    data: [5],
+                    //data: topReviews.map(review => review.average),
                     backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#36a2eb', '#36a2eb', '#36a2eb'],
                     color: '#778DA9'
                 }
             ],
             color: '#778DA9'
-        };
-
-        const labelsMostPlayedGames = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-        const dataMostPlayedGames = {
-            labels: labelsMostPlayedGames,
-            datasets: [
-                {
-                    data: labelsMostPlayedGames.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-                    backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#36a2eb', '#36a2eb', '#36a2eb'],
-                    color: '#778DA9'
-                }
-            ],
-            color: '#778DA9'
-        };
-
-        const labelsMostOwnedGames = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-        const dataMostOwnedGames = {
-            labels: labelsMostOwnedGames,
-            datasets: [
-                {
-                    data: labelsMostOwnedGames.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-                    backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#36a2eb', '#36a2eb', '#36a2eb'],
-                    color: '#778DA9'
-                }
-            ],
-            color: '#778DA9'
-        };
+        }
 
         return (
             <div>
-                <Titles
-                    name={'Estatísticas'}
-                    color={COLOR_SHADOW_BLUE}
-                />
+                
                 <Bar color='#778DA9' options={options} data={dataMostReviewedGames} />
 
-                <SubTitles
-                    name={'Jogos mais jogados nas últimas duas semanas'}
-                    color={COLOR_SHADOW_BLUE}
-                />
-                <Bar options={options} data={dataMostPlayedGames} />
-
-                <SubTitles
-                    name={'Jogos mais vendidos'}
-                    color={COLOR_SHADOW_BLUE}
-                />
-                <Bar options={options} data={dataMostOwnedGames} />
             </div>
         )
     }

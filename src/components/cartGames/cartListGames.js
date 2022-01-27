@@ -68,7 +68,7 @@ export default function CartlistGames({ game, index }) {
                         width={"100%"}
                         textAlign={"center"}
                     >
-                        <img src={game.cover_image} alt="" className={classes.imageBox}></img>
+                        <img src={game.coverImage} alt="" className={classes.imageBox}></img>
                     </Item>
                 </Grid>
 

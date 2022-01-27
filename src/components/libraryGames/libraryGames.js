@@ -6,8 +6,6 @@ import { BORDER_RADIUS_5PX } from '../utils/border'
 import renderDownloadButton from '../utils/downloadButton'
 
 
-
-
 export default function libraryGame({ game }) {
     
     return (

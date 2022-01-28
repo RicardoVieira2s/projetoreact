@@ -1,6 +1,6 @@
 import React from 'react'
 import { COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM } from '../components/utils/color'
-import { Divider, Card, Button } from '@mui/material'
+import { Divider, Card, Button, Grid } from '@mui/material'
 import { Link } from 'react-router-dom'
 import Title from '../components/utils/Title'
 import RegisterContent from '../components/register/registerContent'
@@ -15,8 +15,6 @@ const Register = () => {
         style={{
           backgroundColor: COLOR_PLATINIUM,
           color: COLOR_BDAZZLED_BLUE,
-          marginRight: '40px',
-          marginLeft: '40px',
           paddingLeft: '15px',
           paddingRight: '15px',
           paddingBottom: '40px',

@@ -6,7 +6,9 @@ class loginContent extends Component {
     render() {
 
         return (
-            <CardContent>
+            <CardContent
+                style={{ maxWidth: "50%"}}
+            >
                 <Grid
                     container
                     spacing={3}

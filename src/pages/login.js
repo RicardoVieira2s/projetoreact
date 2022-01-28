@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Button, Card, Divider } from '@mui/material'
+import { Button, Card, Divider, Grid } from '@mui/material'
 import { COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM } from '../components/utils/color'
 import Title from '../components/utils/Title'
 import React from 'react'
@@ -15,8 +15,6 @@ const Login = () => {
         style={{
           backgroundColor: COLOR_PLATINIUM,
           color: COLOR_BDAZZLED_BLUE,
-          marginRight: '40px',
-          marginLeft: '40px',
           paddingLeft: '15px',
           paddingRight: '15px',
           paddingBottom: '40px',
@@ -26,9 +24,16 @@ const Login = () => {
           name={'Sign in'}
           color={COLOR_BDAZZLED_BLUE}
         />
-        <LoginContent />
+        <Grid
+          container
+          direction="column"
+          alignItems="center"
+          justify="center"
+        >
+          <LoginContent />
+        </Grid>
         <Divider
-          style={{ marginTop: '35px' }}/>
+          style={{ marginTop: '35px' }} />
         <Link to="/register">
           <Button
             fullWidth

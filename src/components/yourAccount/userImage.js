@@ -50,7 +50,7 @@ const avatars = {
 }
 
 const user = {
-    avatar: "images/avatar/avatar-Man-1.png",
+    avatar: "images/avatar/avatar-Woman-1.png",
 }
 
 function UserImage() {

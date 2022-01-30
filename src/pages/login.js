@@ -21,7 +21,7 @@ const Login = () => {
         }}
       >
         <Title
-          name={'Sign in'}
+          name={'Entrar'}
           color={COLOR_BDAZZLED_BLUE}
         />
         <Grid
@@ -37,7 +37,12 @@ const Login = () => {
         <Link to="/register">
           <Button
             fullWidth
-            style={{ marginTop: '50px' }}
+            sx={{
+              marginTop: '50px',
+              ':hover': {
+                backgroundColor: COLOR_PLATINIUM,
+              },
+            }}
           >
             Registar
           </Button>

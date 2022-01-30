@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button, CardContent, Grid, TextField, Typography } from '@mui/material'
+import { COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM } from '../utils/color'
 import GoogleIcon from '@mui/icons-material/Google'
 
 class loginContent extends Component {
@@ -7,7 +8,7 @@ class loginContent extends Component {
 
         return (
             <CardContent
-                style={{ maxWidth: "50%"}}
+                style={{ maxWidth: "50%" }}
             >
                 <Grid
                     container
@@ -15,35 +16,17 @@ class loginContent extends Component {
                 >
                     <Grid
                         item
-                        xs={12}
-                        md={12}
-                    >
-                        <Button
-                            fullWidth
-                            color="error"
-                            type="submit"
-                            startIcon={<GoogleIcon />}
-                            size="large"
-                            variant="contained"
-                        >
-                            Ligar conta Google
-                        </Button>
-                    </Grid>
-
-                    <Grid
-                        item
                         md={12}
                         xs={12}
                     >
                         <Typography
-                            align="center"
+                            align="left"
                             variant="body1"
                             color="inherit"
                         >
-                            Ligar conta GOOFR
+                            Iniciar conta GOOFR
                         </Typography>
                     </Grid>
-
                     <Grid
                         item
                         xs={12}
@@ -79,13 +62,33 @@ class loginContent extends Component {
                         xs={12}
                     >
                         <Button
-                            style={{ marginTop: '20px' }}
+                            style={{ 
+                                marginTop: '20px', 
+                                backgroundColor: COLOR_BDAZZLED_BLUE, 
+                                color: COLOR_PLATINIUM 
+                            }}
                             fullWidth
                             size="large"
                             type="submit"
                             variant="contained"
                         >
                             Iniciar sessão
+                        </Button>
+                    </Grid>
+                    <Grid
+                        item
+                        xs={12}
+                        md={12}
+                    >
+                        <Button
+                            fullWidth
+                            color="error"
+                            type="submit"
+                            startIcon={<GoogleIcon />}
+                            size="large"
+                            variant="contained"
+                        >
+                            Iniciar conta Google
                         </Button>
                     </Grid>
                 </Grid>

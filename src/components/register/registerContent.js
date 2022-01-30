@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { CardContent, Grid, Button, TextField } from '@mui/material'
+import { COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM, COLOR_SHADOW_BLUE } from '../utils/color'
 import Switch from '@mui/material/Switch'
 import FormControlLabel from '@mui/material/FormControlLabel'
 
@@ -13,6 +14,35 @@ class registerContent extends Component {
                     container
                     spacing={3}
                 >
+                    <Grid
+                        item
+                        xs={12}
+                        md={6}
+                    >
+                        <TextField
+                            fullWidth
+                            label="E-mail"
+                            name="E-mail"
+                            required
+                            variant="outlined"
+                            type="email"
+                        />
+                    </Grid>
+                    <Grid
+                        item
+                        md={6}
+                        xs={12}
+                    >
+                        <TextField
+                            fullWidth
+                            label="Password"
+                            name="Password"
+                            type="password"
+                            required
+                            variant="outlined"
+
+                        />
+                    </Grid>
                     <Grid
                         item
                         xs={12}
@@ -65,35 +95,6 @@ class registerContent extends Component {
                             inputProps={{ maxLength: 9, pattern: "[9]{1}[0-9]{8}" }}
                             variant="outlined"
                             required
-                        />
-                    </Grid>
-                    <Grid
-                        item
-                        xs={12}
-                        md={6}
-                    >
-                        <TextField
-                            fullWidth
-                            label="E-mail"
-                            name="E-mail"
-                            required
-                            variant="outlined"
-                            type="email"
-                        />
-                    </Grid>
-                    <Grid
-                        item
-                        md={6}
-                        xs={12}
-                    >
-                        <TextField
-                            fullWidth
-                            label="Password"
-                            name="Password"
-                            type="password"
-                            required
-                            variant="outlined"
-
                         />
                     </Grid>
                     <Grid
@@ -191,28 +192,38 @@ class registerContent extends Component {
                             control={<Switch defaultChecked />}
                             label="Subscrição newsletter"
                             labelPlacement="start"
+                            sx={{
+                                '& .MuiSwitch-switchBase.Mui-checked': {
+                                    color: COLOR_BDAZZLED_BLUE,
+                                },
+                                '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
+                                    backgroundColor: COLOR_SHADOW_BLUE,
+                                },
+                            }}
                         />
                     </Grid>
-
                     <Grid
                         item
                         xs={12}
                         md={12}
                     >
                         <Button
-                            color="primary"
                             fullWidth
                             size="large"
                             type="submit"
                             variant="contained"
                             sx={{
-                                cursor: 'pointer'
+                                cursor: 'pointer',
+                                backgroundColor: COLOR_BDAZZLED_BLUE,
+                                color: COLOR_PLATINIUM,
+                                ':hover': {
+                                    backgroundColor: COLOR_BDAZZLED_BLUE,
+                                },
                             }}
                         >
-                            Confirmar
+                            Registar
                         </Button>
                     </Grid>
-
                 </Grid>
             </CardContent >
         )

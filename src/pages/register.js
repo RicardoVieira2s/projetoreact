@@ -1,6 +1,6 @@
 import React from 'react'
 import { COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM } from '../components/utils/color'
-import { Divider, Card, Button, Grid } from '@mui/material'
+import { Divider, Card, Button } from '@mui/material'
 import { Link } from 'react-router-dom'
 import Title from '../components/utils/Title'
 import RegisterContent from '../components/register/registerContent'
@@ -21,7 +21,7 @@ const Register = () => {
         }}
       >
         <Title
-          name={'Sign up'}
+          name={'Registar'}
           color={COLOR_BDAZZLED_BLUE}
         />
         <RegisterContent />
@@ -32,9 +32,14 @@ const Register = () => {
           to="/login">
           <Button
             fullWidth
-            style={{ marginTop: '30px' }}
+            sx={{
+              marginTop: '30px',
+              ':hover': {
+                backgroundColor: COLOR_PLATINIUM,
+              },
+            }}
           >
-            Back
+            Voltar
           </Button>
         </Link>
       </Card >

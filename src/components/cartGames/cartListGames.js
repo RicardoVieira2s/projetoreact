@@ -1,10 +1,10 @@
 import React from 'react'
 import { Typography, Grid, Tooltip, Fade } from '@mui/material'
 import { Item } from '@mui-treasury/components/flex'
-import { makeStyles } from '@material-ui/core/styles'
 import { COLOR_OXFORD_BLUE, COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM } from '../utils/color'
 import { BORDER_RADIUS_10PX, BORDER_RADIUS_5PX } from '../utils/border'
 import DeleteIcon from '@mui/icons-material/Delete';
+import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(() => ({
     container: {
@@ -68,7 +68,7 @@ export default function CartlistGames({ game, index }) {
                         width={"100%"}
                         textAlign={"center"}
                     >
-                        <img src={game.cover_image} alt="" className={classes.imageBox}></img>
+                        <img src={game.coverImage} alt="" className={classes.imageBox}></img>
                     </Item>
                 </Grid>
 

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -9,11 +9,6 @@ import {
     Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import { COLOR_SHADOW_BLUE } from '../utils/color'
-import faker from 'faker'
-import Titles from '../utils/Title'
-import SubTitles from '../utils/subTitle'
-import { topReviewedGames } from '../../api'
 
 ChartJS.register(
     CategoryScale,
@@ -33,9 +28,9 @@ const options = {
         },
         title: {
             display: true,
-            text: 'Jogos com melhores reviews',
+            text: 'Jogos mais jogados nas últimas 2 semanas',
             color: '#778DA9',
-            padding:{
+            padding: {
                 bottom: 20
             },
             font: {
@@ -48,7 +43,7 @@ const options = {
         y: {
             title: {
                 display: true,
-                text: 'Média de Reviews',
+                text: 'Média de horas jogadas',
                 color: '#778DA9',
                 align: 'center',
 
@@ -86,54 +81,49 @@ class Charts extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            topReviews: [],
+            games: [],
             isLoaded: false,
         }
     }
 
     componentDidMount() {
-        topReviewedGames.topReviewsGet((error, data) => {
-
-            if (error) {
-                console.error(error);
-            } else {
-                console.log('API called successfully.');
-            }
-
-            this.setState({
-                isLoaded: true,
-                topReviews: data,
+        console.log("12312313131")
+        fetch('https://api.punkapi.com/v2/beers?food=taco')
+            .then((response) => response.json())
+            .then((json) => {
+                this.setState({
+                    games: json,
+                    isLoaded: true
+                });
             })
-        });
+            .catch((error) => console.error(error))
     }
 
 
 
     render() {
 
-        var { isLoaded, topReviews } = this.state;
+        const { isLoaded, games } = this.state;
 
-        const labelsMostReviewedGames = ['CS GO'];
-        //const labelsMostReviewedGames = topReviews.map(review => review.game.name);
+        console.log("games", games)
 
-        const dataMostReviewedGames = {
-            labels: labelsMostReviewedGames,
+        const labelsMostPlayedGames = games.map(game => game.name);
+
+        const dataMostPlayedGames = {
+            labels: labelsMostPlayedGames,
             datasets: [
                 {
-                    data: [5],
-                    //data: topReviews.map(review => review.average),
+                    data: games.map(game => game.average_2weeks),
                     backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#36a2eb', '#36a2eb', '#36a2eb'],
                     color: '#778DA9'
                 }
             ],
             color: '#778DA9'
-        }
+        };
 
         return (
             <div>
-                
-                <Bar color='#778DA9' options={options} data={dataMostReviewedGames} />
-
+                <Bar options={options} data={dataMostPlayedGames} />
             </div>
         )
     }

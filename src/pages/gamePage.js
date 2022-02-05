@@ -1,10 +1,11 @@
 import React from 'react'
+import Content from '../components/gamePage/content'
 
 
 function gamePage() {
     return (
         <div>
-            <h1>GAME PAGE</h1>
+            <Content/>
         </div>
     )
 }

@@ -22,7 +22,7 @@ const useStyles = makeStyles(() => ({
     },
 }))
 
-export default function Detalhes() {
+export default function Detalhes({userDetails}) {
 
     const classes = useStyles()
 

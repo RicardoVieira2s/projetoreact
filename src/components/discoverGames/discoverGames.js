@@ -65,7 +65,6 @@ const games = [
 ]
 
 export default function DiscoverGames() {
-    const classes = useStyles()
     return (
         <div >
             <Title

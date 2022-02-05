@@ -32,7 +32,7 @@ const useStyles = makeStyles(({ palette, typography }) => ({
     },
     input: {
         minWidth: '100px',
-        width: '350px',
+        maxWidth: '350px',
         fontFamily: 'Viga',
         fontSize: '20px',
         flex: 1,

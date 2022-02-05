@@ -7,7 +7,6 @@ import { makeStyles } from '@material-ui/core/styles'
 import { storeApi } from '../../api'
 import renderIfEmpty from '../utils/messageError'
 
-
 const useStyles = makeStyles(() => ({
     container: {
         backgroundColor: COLOR_OXFORD_BLUE,
@@ -30,7 +29,6 @@ class FeaturedGames extends Component {
 
     componentDidMount() {
         storeApi.noteworthyStoreGet(null, (error, data) => {
-
             if (error) {
                 console.error(error);
             } else {

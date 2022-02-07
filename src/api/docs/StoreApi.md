@@ -98,7 +98,7 @@ No authorization required
 
 <a name="yourStoreGet"></a>
 # **yourStoreGet**
-> YourStoreSchema yourStoreGet(id)
+> YourStoreSchema yourStoreGet(opts)
 
 Client&#x27;s main store
 
@@ -107,9 +107,10 @@ Client&#x27;s main store
 import {GoofrStore} from 'goofr_store';
 
 let apiInstance = new GoofrStore.StoreApi();
-let id = "id_example"; // String | Client ID
-
-apiInstance.yourStoreGet(id, (error, data, response) => {
+let opts = { 
+  'id': "id_example" // String | Client ID
+};
+apiInstance.yourStoreGet(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -122,7 +123,7 @@ apiInstance.yourStoreGet(id, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String**| Client ID | 
+ **id** | **String**| Client ID | [optional] 
 
 ### Return type
 

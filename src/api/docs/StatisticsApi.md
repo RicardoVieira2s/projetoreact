@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 <a name="topReviewsGet"></a>
 # **topReviewsGet**
-> [GameSchema] topReviewsGet()
+> [TopReviewsSchema] topReviewsGet()
 
 Gets the top reviewed games
 
@@ -31,7 +31,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**[GameSchema]**](GameSchema.md)
+[**[TopReviewsSchema]**](TopReviewsSchema.md)
 
 ### Authorization
 

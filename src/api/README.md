@@ -167,6 +167,7 @@ Class | Method | HTTP request | Description
  - [GoofrStore.ReviewSchema](docs/ReviewSchema.md)
  - [GoofrStore.SearchSchema](docs/SearchSchema.md)
  - [GoofrStore.TagSchema](docs/TagSchema.md)
+ - [GoofrStore.TopReviewsSchema](docs/TopReviewsSchema.md)
  - [GoofrStore.VersionSchema](docs/VersionSchema.md)
  - [GoofrStore.YourStoreSchema](docs/YourStoreSchema.md)
 

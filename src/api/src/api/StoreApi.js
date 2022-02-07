@@ -135,23 +135,20 @@ export class StoreApi {
 
     /**
      * Client&#x27;s main store
-     * @param {String} id Client ID
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.id Client ID
      * @param {module:api/StoreApi~yourStoreGetCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
      */
-    yourStoreGet(id, callback) {
-      
+    yourStoreGet(opts, callback) {
+      opts = opts || {};
       let postBody = null;
-      // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling yourStoreGet");
-      }
 
       let pathParams = {
         
       };
       let queryParams = {
-        'id': id
+        'id': opts['id']
       };
       let headerParams = {
         

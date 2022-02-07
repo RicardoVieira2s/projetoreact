@@ -15,7 +15,9 @@ function content() {
                 name={'Mais sobre a editora'}
                 color={COLOR_SHADOW_BLUE}
             />
+
             <MoreAbout />
+            
             <Title
                 name={'Avaliações'}
                 color={COLOR_SHADOW_BLUE}

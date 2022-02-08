@@ -35,7 +35,7 @@ class Detalhes extends Component {
     }
 
     componentDidMount() {
-        clientApi.clientGet({ id: "ac7bd7f5-9678-4a2b-af28-c3e65c8aceae" }, (error, data) => {
+        clientApi.clientGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
 
             if (error) {
                 console.error(error);
@@ -44,7 +44,6 @@ class Detalhes extends Component {
             }
 
             const formatted = data[0].birthdate.toISOString().slice(0, 10);
-            console.log("dasasdasddaasd", data[0])
 
             this.setState({
                 isLoaded: true,

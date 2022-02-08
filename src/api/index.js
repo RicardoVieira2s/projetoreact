@@ -10,7 +10,8 @@ const storeApi = new goofrStore.StoreApi(api);
 const topReviewedGames = new goofrStore.StatisticsApi(api);
 const addressApi = new goofrStore.AddressApi(api);
 const yourStore = new goofrStore.StoreApi(api);
+const walletApi  = new goofrStore.WalletApi(api);
 
 export {
-    libraryApi, clientApi, gameApi, storeApi, topReviewedGames, addressApi, yourStore
+    libraryApi, clientApi, gameApi, storeApi, topReviewedGames, addressApi, yourStore, walletApi
 }

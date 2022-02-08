@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { Component } from 'react'
 import './yourAccount.css'
 import Detalhes from '../yourAccount/detalhes'
 import Endereco from '../yourAccount/endereco'
@@ -8,12 +8,13 @@ import CustomButton from '../utils/customButton'
 import Title from '../utils/Title'
 import { COLOR_OXFORD_BLUE, COLOR_BDAZZLED_BLUE, COLOR_SHADOW_BLUE, COLOR_PLATINIUM } from '../utils/color'
 import { BORDER_RADIUS_10PX } from '../utils/border'
-import { makeStyles } from '@material-ui/core/styles'
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 import { Box, Tab } from '@mui/material'
 import UserImage from './userImage'
+import { withStyles } from '@material-ui/core/styles'
+import { clientApi, walletApi } from '../../api'
 
-const useStyles = makeStyles(() => ({
+const useStyles = theme => ({
 	container: {
 		backgroundColor: COLOR_OXFORD_BLUE,
 		color: COLOR_BDAZZLED_BLUE,
@@ -75,79 +76,117 @@ const useStyles = makeStyles(() => ({
 		margin: '15px',
 		cursor: 'pointer',
 	}
-}))
+});
 
-function YourAccount() {
-	const classes = useStyles()
+class YourAccount extends Component {
 
-	const [value, setValue] = React.useState(0)
-
-	const handleChange = (event, newValue) => {
-		setValue(newValue);
+	constructor(props) {
+		super(props);
+		this.state = {
+			client: null,
+			clientWallet: null,
+			value: 0,
+			isLoaded: false,
+		}
 	}
 
-	const user = {
-		avatar: "images/avatar/avatar-Man-1.png",
-		name: 'Ricardo',
-		surname: "Vieira",
-		balance: {
-			amount: 112,
-			coin: '€'
-		},
+	componentDidMount() {
+
+		clientApi.clientGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
+
+			if (error) {
+				console.error(error);
+			} else {
+				console.log('API called successfully.');
+			}
+
+			this.setState({
+				client: data[0],
+			});
+		});
+
+		walletApi.walletGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
+
+			if (error) {
+				console.error(error);
+			} else {
+				console.log('API called successfully.');
+			}
+			this.setState({
+				isLoaded: true,
+				clientWallet: data,
+			});
+		});
 	}
 
-	return (
-		<div className={classes.container}>
-			<div className={classes.userContainer}>
-				<div class="clearfix">
-					<Title
-						name={user.name+ " " +user.surname}
-						color={COLOR_BDAZZLED_BLUE}
-					/>
+	handleChange(newValue) {
+		this.setState({
+			value: newValue
+		});
+	}
 
-					<UserImage />
+	render() {
+		const { classes } = this.props;
 
-					<div className={classes.userContentContainer}>
-						<p className={classes.userContent}>Saldo: <br />{user.balance.coin}{user.balance.amount}</p>
-						<CustomButton
-							name={"Adicionar saldo"}
+		var { isLoaded, client, clientWallet } = this.state;
+		if (!isLoaded) {
+			return <div>Loading...</div>
+		}
+
+		return (
+
+			<div className={classes.container}>
+				<div className={classes.userContainer}>
+					<div class="clearfix">
+						<Title
+							name={client.name + " " + client.surname}
+							color={COLOR_BDAZZLED_BLUE}
 						/>
+
+						<UserImage />
+
+						<div className={classes.userContentContainer}>
+							<p className={classes.userContent}>Saldo: <br />{clientWallet.coin}{clientWallet.balance}</p>
+							<CustomButton
+								name={"Adicionar saldo"}
+							/>
+						</div>
 					</div>
 				</div>
-			</div>
 
-			<div class="menu-bar">
-				<TabContext value={value}>
-					<Box sx={{ borderBottom: 2, marginBottom: 5 }}>
-						<TabList
-							onChange={handleChange}
-							variant="scrollable"
-							scrollButtons
-							allowScrollButtonsMobile
-							TabIndicatorProps={{ className: classes.indicator }}
-						>
-							<Tab label="Detalhes" value={0} className={classes.tabs} />
-							<Tab label="Endereço" value={1} className={classes.tabs} />
-							<Tab label="Privacidade" value={2} className={classes.tabs} />
-							<Tab label="Histórico de compras" value={3} className={classes.tabs} />
-						</TabList>
-					</Box>
-					<TabPanel value={0}>
-						<Detalhes />
-					</TabPanel>
-					<TabPanel value={1}>
-						<Endereco />
-					</TabPanel>
-					<TabPanel value={2}>
-						<Privacidade />
-					</TabPanel>
-					<TabPanel value={3}>
-						<Historico />
-					</TabPanel>
-				</TabContext>
-			</div>
-		</div >
-	)
+				<div class="menu-bar">
+					<TabContext value={this.state.value}>
+						<Box sx={{ borderBottom: 2, marginBottom: 5 }}>
+							<TabList
+								onChange={(e, newValue) => this.handleChange(newValue)}
+								variant="scrollable"
+								scrollButtons
+								allowScrollButtonsMobile
+								TabIndicatorProps={{ className: classes.indicator }}
+							>
+								<Tab label="Detalhes" value={0} className={classes.tabs} />
+								<Tab label="Endereço" value={1} className={classes.tabs} />
+								<Tab label="Privacidade" value={2} className={classes.tabs} />
+								<Tab label="Histórico de compras" value={3} className={classes.tabs} />
+							</TabList>
+						</Box>
+						<TabPanel value={0}>
+							<Detalhes />
+						</TabPanel>
+						<TabPanel value={1}>
+							<Endereco />
+						</TabPanel>
+						<TabPanel value={2}>
+							<Privacidade />
+						</TabPanel>
+						<TabPanel value={3}>
+							<Historico />
+						</TabPanel>
+					</TabContext>
+				</div>
+			</div >
+		)
+	}
 }
 
-export default YourAccount
+export default withStyles(useStyles)(YourAccount)

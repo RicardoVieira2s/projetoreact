@@ -7,11 +7,12 @@ const clientApi = new goofrStore.ClientApi(api);
 const libraryApi = new goofrStore.LibraryApi(api);
 const gameApi = new goofrStore.GameApi(api);
 const storeApi = new goofrStore.StoreApi(api);
-const topReviewedGames = new goofrStore.StatisticsApi(api);
+const statisticsApi = new goofrStore.StatisticsApi(api);
 const addressApi = new goofrStore.AddressApi(api);
-const yourStore = new goofrStore.StoreApi(api);
+const yourStoreApi = new goofrStore.StoreApi(api);
 const walletApi  = new goofrStore.WalletApi(api);
+const accessApi = new goofrStore.AccessApi(api)
 
 export {
-    libraryApi, clientApi, gameApi, storeApi, topReviewedGames, addressApi, yourStore, walletApi
+    libraryApi, clientApi, gameApi, storeApi, statisticsApi, addressApi, yourStoreApi, walletApi, accessApi
 }

@@ -4,8 +4,8 @@ import { COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM } from '../utils/color'
 import GoogleIcon from '@mui/icons-material/Google'
 
 class loginContent extends Component {
-    render() {
 
+    render() {
         return (
             <CardContent
                 style={{ maxWidth: "50%" }}

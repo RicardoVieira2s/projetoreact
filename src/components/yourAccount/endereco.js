@@ -34,7 +34,7 @@ class Endereco extends Component {
     }
 
     componentDidMount() {
-        addressApi.addressGet('eeae714d-cf5a-419d-bcb6-a1e91a16de67', (error, data) => {
+        addressApi.addressGet('803fa231-8b7d-4b3c-8aee-a43bd17da8d4', (error, data) => {
 
             if (error) {
                 console.error(error);

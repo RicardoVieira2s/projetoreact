@@ -51,7 +51,7 @@ class UserImage extends Component {
 
     componentDidMount() {
 
-        clientApi.clientGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
+        clientApi.clientGet({ id: "803fa231-8b7d-4b3c-8aee-a43bd17da8d4" }, (error, data) => {
 
             if (error) {
                 console.error(error);

@@ -5,7 +5,6 @@ import { Grid } from '@mui/material'
 import Title from '../utils/Title'
 import { makeStyles } from '@material-ui/core/styles'
 import { storeApi } from '../../api'
-import renderIfEmpty from '../utils/messageError'
 
 const useStyles = makeStyles(() => ({
     container: {
@@ -37,8 +36,9 @@ class FeaturedGames extends Component {
 
             this.setState({
                 isLoaded: true,
-                games: data,
+                games: data.noteworthy,
             })
+            
         });
     }
 
@@ -62,7 +62,7 @@ class FeaturedGames extends Component {
                     justifyContent={'center'}
                 >
 
-                    {games.featured.map((game) => {
+                    {games.map((game) => {
                         if (game.state !== "inactive") {
                             return <GameCardMedium key={game.id} game={game} />
                         }

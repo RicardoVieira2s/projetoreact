@@ -13,7 +13,7 @@ import { COLOR_SHADOW_BLUE } from '../utils/color'
 import faker from 'faker'
 import Titles from '../utils/Title'
 import SubTitles from '../utils/subTitle'
-import { topReviewedGames } from '../../api'
+import { statisticsApi } from '../../api'
 
 ChartJS.register(
     CategoryScale,
@@ -92,7 +92,7 @@ class Charts extends Component {
     }
 
     componentDidMount() {
-        topReviewedGames.topReviewsGet((error, data) => {
+        statisticsApi.topReviewsGet((error, data) => {
 
             if (error) {
                 console.error(error);

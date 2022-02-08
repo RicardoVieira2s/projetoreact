@@ -3,7 +3,7 @@ import { Banner } from '../components/floatingBar/banner'
 import RecomendedGames from '../components/recomendedGames/recomendedGames'
 import GamesOnSale from '../components/gamesOnSale/gamesOnSale'
 import DiscoverGames from '../components/discoverGames/discoverGames'
-import { yourStore } from '../api'
+import { yourStoreApi } from '../api'
 
 class Homepage extends Component {
 
@@ -16,7 +16,7 @@ class Homepage extends Component {
     }
 
     componentDidMount() {
-        yourStore.yourStoreGet({ id: 'ac7bd7f5-9678-4a2b-af28-c3e65c8aceae' }, (error, data) => {
+        yourStoreApi.yourStoreGet({ id: '803fa231-8b7d-4b3c-8aee-a43bd17da8d4' }, (error, data) => {
 
             if (error) {
                 console.error(error);

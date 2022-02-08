@@ -9,11 +9,10 @@ import CartButton from '../cartButton'
 import StarsReview from '../starsReview'
 
 export default function GameCardSmall({ game }) {
-
     return (
         <CardContent
             style={{
-                padding: '0px 0px 0px 0px '
+                padding: '0px 0px 0px 0px'
             }}
         >
             <Card
@@ -23,7 +22,7 @@ export default function GameCardSmall({ game }) {
                 }}
             >
                 <GameImage
-                    cover_image={game.cover_image}
+                    cover_image={game.coverImage}
                 />
                 <CardActions
                     style={{
@@ -35,7 +34,8 @@ export default function GameCardSmall({ game }) {
                 >
                     <Box
                         sx={{
-                            width: '100%'
+                            width: '100%',
+                            height: '100%'
                         }}
                     >
                         <Grid
@@ -56,60 +56,62 @@ export default function GameCardSmall({ game }) {
                                     paddingRight: '20px'
                                 }}
                             >
-                            </Grid>
-                            <Grid item xs={6} >
-                                <Typography
+                                <Grid item xs={8}>
+                                    <Typography
+                                        sx={{
+                                            paddingLeft: "13px",
+                                            textOverflow: "ellipsis",
+                                            overflow: 'hidden',
+                                            maxWidth: '290px',
+                                            color: COLOR_BDAZZLED_BLUE,
+                                            fontSize: '27px'
+                                        }}
+                                        variant="p"
+                                    >
+                                        {game.name}
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={4}
                                     sx={{
-                                        paddingLeft: "13px",
-                                        textOverflow: "ellipsis",
-                                        overflow: 'hidden',
-                                        maxWidth: '290px',
-                                        color: COLOR_BDAZZLED_BLUE,
-                                        fontSize: '27px'
+                                        textAlign: 'right',
                                     }}
-                                    variant="p"
                                 >
-                                    {game.name}
-                                </Typography>
+                                    <StarsReview ratingValue={game.rate} />
+                                </Grid>
                             </Grid>
-                            <Grid item xs={6}
-                                textAlign={'right'}
+                            <Grid
+                                sx={{
+                                    width: '100%',
+                                    height: '50%',
+                                    display: 'flex',
+                                    justifyContent: 'space-evenly',
+                                    alignItems: 'center',
+                                    paddingRight: '20px'
+                                }}
                             >
-                                <StarsReview ratingValue={game.rate} />
-                            </Grid>
-                        </Grid>
-                        <Grid
-                            sx={{
-                                width: '100%',
-                                height: '50%',
-                                display: 'flex',
-                                justifyContent: 'space-evenly',
-                                alignItems: 'center',
-                                paddingRight: '20px'
-                            }}
-                        >
-                            <Grid item xs={6}
-                                textAlign={'left'}
-                            >
-                                <WishlistButton />
-                                <CartButton />
-                            </Grid>
-                            <Grid item xs={6}
-                                textAlign={'right'}
-                            >
-                                <Typography
-                                    sx={{
-                                        paddingLeft: "13px",
-                                        textOverflow: "ellipsis",
-                                        overflow: "hidden",
-                                        maxWidth: '290px',
-                                        color: COLOR_BDAZZLED_BLUE,
-                                        fontSize: '20px'
-                                    }}
-                                    variant="p"
+                                <Grid item xs={6}
+                                    textAlign={'left'}
                                 >
-                                    {game.price}
-                                </Typography>
+                                    <WishlistButton />
+                                    <CartButton />
+                                </Grid>
+                                <Grid item xs={6}
+                                    textAlign={'right'}
+                                >
+                                    <Typography
+                                        sx={{
+                                            paddingLeft: "13px",
+                                            textOverflow: "ellipsis",
+                                            overflow: "hidden",
+                                            maxWidth: '290px',
+                                            color: COLOR_BDAZZLED_BLUE,
+                                            fontSize: '20px'
+                                        }}
+                                        variant="p"
+                                    >
+                                        €{game.price}
+                                    </Typography>
+                                </Grid>
                             </Grid>
                         </Grid>
                     </Box>

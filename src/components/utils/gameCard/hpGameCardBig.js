@@ -8,8 +8,7 @@ import WishlistButton from '../wishlistButton'
 import CartButton from '../cartButton'
 import StarsReview from '../starsReview'
 
-export default function GameCardBig({ game }) {
-
+export default function GameCardBig( {game} ) {
     return (
         <CardContent
             style={{
@@ -23,7 +22,7 @@ export default function GameCardBig({ game }) {
                 }}
             >
                 <GameImage
-                    cover_image={game.cover_image}
+                    cover_image={game.coverImage}
                 />
                 <CardActions
                     style={{
@@ -57,7 +56,7 @@ export default function GameCardBig({ game }) {
                                     paddingRight: '20px'
                                 }}
                             >
-                                <Grid item xs={6}>
+                                <Grid item xs={8}>
                                     <Typography
                                         sx={{
                                             paddingLeft: "13px",
@@ -72,7 +71,7 @@ export default function GameCardBig({ game }) {
                                         {game.name}
                                     </Typography>
                                 </Grid>
-                                <Grid item xs={6}
+                                <Grid item xs={4}
                                     sx={{
                                         textAlign: 'right',
                                     }}
@@ -110,7 +109,7 @@ export default function GameCardBig({ game }) {
                                         }}
                                         variant="p"
                                     >
-                                        {game.price}
+                                        €{game.price}
                                     </Typography>
                                 </Grid>
                             </Grid>

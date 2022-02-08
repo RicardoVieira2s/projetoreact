@@ -35,7 +35,7 @@ class Detalhes extends Component {
     }
 
     componentDidMount() {
-        clientApi.clientGet({ id: "3386fbce-bf4d-4f38-bdf2-ccd91d53e32b" }, (error, data) => {
+        clientApi.clientGet({ id: "ac7bd7f5-9678-4a2b-af28-c3e65c8aceae" }, (error, data) => {
 
             if (error) {
                 console.error(error);
@@ -160,7 +160,7 @@ class Detalhes extends Component {
                                     onChange={e => this.handleChange(e)}
                                     type="date"
                                     variant="outlined"
-                                    helperText="Data de nascimento"
+                                    label="Data de nascimento"
                                     required
                                 />
                             </Grid>

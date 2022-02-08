@@ -14,10 +14,7 @@
  *
  */
 import {ApiClient} from "../ApiClient";
-import {ClientAccessSchema} from '../model/ClientAccessSchema';
 import {ClientSchema} from '../model/ClientSchema';
-import {ErrorSchema} from '../model/ErrorSchema';
-import {RegisterClientSchema} from '../model/RegisterClientSchema';
 
 /**
 * Access service.

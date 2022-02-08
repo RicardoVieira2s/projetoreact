@@ -88,7 +88,8 @@ function YourAccount() {
 
 	const user = {
 		avatar: "images/avatar/avatar-Man-1.png",
-		name: 'Ricardo Vieira',
+		name: 'Ricardo',
+		surname: "Vieira",
 		balance: {
 			amount: 112,
 			coin: '€'
@@ -100,7 +101,7 @@ function YourAccount() {
 			<div className={classes.userContainer}>
 				<div class="clearfix">
 					<Title
-						name={user.name}
+						name={user.name+ " " +user.surname}
 						color={COLOR_BDAZZLED_BLUE}
 					/>
 

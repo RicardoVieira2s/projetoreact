@@ -15,7 +15,6 @@
  */
 import {ApiClient} from "../ApiClient";
 import {ClientSchema} from '../model/ClientSchema';
-import {ErrorSchema} from '../model/ErrorSchema';
 
 /**
 * Client service.

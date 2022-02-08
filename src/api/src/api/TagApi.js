@@ -14,7 +14,6 @@
  *
  */
 import {ApiClient} from "../ApiClient";
-import {ErrorSchema} from '../model/ErrorSchema';
 import {TagSchema} from '../model/TagSchema';
 
 /**

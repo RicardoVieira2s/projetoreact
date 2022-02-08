@@ -14,7 +14,6 @@
  *
  */
 import {ApiClient} from "../ApiClient";
-import {ErrorSchema} from '../model/ErrorSchema';
 import {GameSchema} from '../model/GameSchema';
 import {PublisherSchema} from '../model/PublisherSchema';
 

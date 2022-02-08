@@ -62,10 +62,10 @@ class loginContent extends Component {
                         xs={12}
                     >
                         <Button
-                            style={{ 
-                                marginTop: '20px', 
-                                backgroundColor: COLOR_BDAZZLED_BLUE, 
-                                color: COLOR_PLATINIUM 
+                            style={{
+                                marginTop: '20px',
+                                backgroundColor: COLOR_BDAZZLED_BLUE,
+                                color: COLOR_PLATINIUM
                             }}
                             fullWidth
                             size="large"

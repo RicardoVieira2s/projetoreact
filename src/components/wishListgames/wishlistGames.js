@@ -97,7 +97,7 @@ export default function WishlistGames({ game, index }) {
                         <Typography
                             component={'p'}
                         >
-                            Disconto: €{game.discount}
+                            Desconto: {game.discount}%
                         </Typography>
                     </Item>
                 </Grid>

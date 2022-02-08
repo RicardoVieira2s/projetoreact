@@ -4,17 +4,17 @@ import LibraryGame from './libraryGames'
 import { Grid } from '@mui/material'
 import Title from '../utils/Title'
 import RenderIfEmpty from '../utils/messageError'
-import { makeStyles } from '@material-ui/core/styles'
 import { gameApi } from '../../api'
+import { withStyles } from '@material-ui/core/styles'
 
-const useStyles = makeStyles(() => ({
+const useStyles = theme => ({
     container: {
         backgroundColor: COLOR_OXFORD_BLUE,
         color: COLOR_BDAZZLED_BLUE,
         paddingBottom: '40px',
         height: '100%'
     },
-}))
+});
 
 class GameList extends Component {
 
@@ -44,6 +44,7 @@ class GameList extends Component {
 
     render() {
 
+        const { classes } = this.props;
         var { isLoaded, games } = this.state;
 
         if (!isLoaded) {
@@ -51,7 +52,7 @@ class GameList extends Component {
         }
 
         return (
-            <div className={useStyles.container} >
+            <div className={classes.container} >
                 <Title
                     name={'Biblioteca'}
                     color={COLOR_SHADOW_BLUE}
@@ -76,4 +77,4 @@ class GameList extends Component {
     }
 }
 
-export default GameList;
+export default withStyles(useStyles)(GameList)

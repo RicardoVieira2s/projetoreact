@@ -14,7 +14,6 @@
  *
  */
 import {ApiClient} from "../ApiClient";
-import {ErrorSchema} from '../model/ErrorSchema';
 import {GameImageSchema} from '../model/GameImageSchema';
 import {GameSchema} from '../model/GameSchema';
 import {TagSchema} from '../model/TagSchema';

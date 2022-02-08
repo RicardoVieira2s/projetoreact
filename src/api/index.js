@@ -7,7 +7,8 @@ const clientApi = new goofrStore.ClientApi(api);
 const gameApi = new goofrStore.GameApi(api);
 const storeApi = new goofrStore.StoreApi(api);
 const topReviewedGames = new goofrStore.StatisticsApi(api);
+const addressApi = new goofrStore.AddressApi(api);
 
 export {
-    clientApi, gameApi, storeApi, topReviewedGames
+    clientApi, gameApi, storeApi, topReviewedGames, addressApi
 }

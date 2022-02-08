@@ -13,7 +13,6 @@
  * Do not edit the class manually.
  *
  */
-import {ApiClient} from '../ApiClient';
 import {ClientAccessSchema} from './ClientAccessSchema';
 import {ClientAddressSchema} from './ClientAddressSchema';
 import {ClientSchema} from './ClientSchema';

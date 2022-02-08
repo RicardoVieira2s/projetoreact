@@ -14,8 +14,6 @@
  *
  */
 import {ApiClient} from "../ApiClient";
-import {ErrorSchema} from '../model/ErrorSchema';
-import {NewsletterBodySchema} from '../model/NewsletterBodySchema';
 import {NewsletterSchema} from '../model/NewsletterSchema';
 
 /**

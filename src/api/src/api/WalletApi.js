@@ -15,7 +15,6 @@
  */
 import {ApiClient} from "../ApiClient";
 import {ClientWalletSchema} from '../model/ClientWalletSchema';
-import {ErrorSchema} from '../model/ErrorSchema';
 
 /**
 * Wallet service.

@@ -96,7 +96,7 @@ export default function CartlistGames({ game, index }) {
                         <Typography
                             component={'p'}
                         >
-                            Disconto: €{game.discount}
+                            Desconto: {game.discount}%
                         </Typography>
                     </Item>
                 </Grid>

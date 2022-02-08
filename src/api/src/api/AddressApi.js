@@ -15,7 +15,6 @@
  */
 import {ApiClient} from "../ApiClient";
 import {ClientAddressSchema} from '../model/ClientAddressSchema';
-import {ErrorSchema} from '../model/ErrorSchema';
 
 /**
 * Address service.

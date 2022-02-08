@@ -41,7 +41,7 @@ class Homepage extends Component {
             <div>
                 <Banner />
                 <RecomendedGames games={games.recommended} />
-                <GamesOnSale games={games.specialOffers} />
+                <GamesOnSale games={games.specialOffers} /> 
                 <DiscoverGames games={games.discover} />
             </div >
         )

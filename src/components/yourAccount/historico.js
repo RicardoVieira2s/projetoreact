@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => ({
     },
 }))
 
-export default function Historico(props) {
+export default function Historico() {
     const classes = useStyles()
 
     return (

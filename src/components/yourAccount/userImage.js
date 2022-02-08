@@ -43,27 +43,8 @@ class UserImage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            client: null,
             open: false,
-            isLoaded: false,
         }
-    }
-
-    componentDidMount() {
-
-        clientApi.clientGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
-
-            if (error) {
-                console.error(error);
-            } else {
-                console.log('API called successfully.');
-            }
-
-            this.setState({
-                isLoaded: true,
-                client: data[0],
-            });
-        });
     }
 
     handleOpen() {
@@ -79,34 +60,32 @@ class UserImage extends Component {
     }
 
     updateClientAvatar(url) {
-
-        clientApi.clientPut('eeae714d-cf5a-419d-bcb6-a1e91a16de67', (error, data) => {
-
+        console.log(url)
+        let client = this.props.client
+        if (client == null)
+            return
+        client.picture = url
+        clientApi.clientPut(client, client.id, (error, data, response) => {
             if (error) {
                 console.error(error);
+                console.log(response)
             } else {
                 console.log('API called successfully.');
             }
-
-            this.setState({
-                isLoaded: true,
-                clientUpdatePhoto: data,
-            })
         });
-
     }
 
     render() {
         const { classes } = this.props;
 
-        var { isLoaded, client, clientUpdatePhoto } = this.state;
-        if (!isLoaded) {
-            return <div>Loading...</div>
-        }
-
         return (
             <>
-                <img onClick={e => this.handleOpen()} src={client.picture} alt="" className={classes.imageBox}></img>
+                <img
+                    onClick={e => this.handleOpen()}
+                    src={this.props.client.picture}
+                    alt=""
+                    className={classes.imageBox}>
+                </img>
                 <Modal
                     open={this.state.open}
                     onClose={e => this.handleClose()}
@@ -124,8 +103,10 @@ class UserImage extends Component {
                                     textAlign={"center"}
                                 >
                                     <img
-                                        onClick={this.updateClientAvatar("http://localhost:3000/images/avatar/avatar-Man-1.png"), e => this.handleClose()}
-                                        src={"http://localhost:3000/images/avatar/avatar-Man-1.png"} alt="" className={classes.avatares}>
+                                        onClick={e => this.handleClose()}
+                                        src={"http://localhost:3000/images/avatar/avatar-Man-1.png"}
+                                        alt=""
+                                        className={classes.avatares}>
                                     </img>
                                 </Item>
                             </Grid>
@@ -138,8 +119,10 @@ class UserImage extends Component {
                                     textAlign={"center"}
                                 >
                                     <img
-                                        onClick={this.updateClientAvatar("http://localhost:3000/images/avatar/avatar-Man-2.png"), e => this.handleClose()}
-                                        src={"http://localhost:3000/images/avatar/avatar-Man-2.png"} alt="" className={classes.avatares}>
+                                        onClick={this.updateClientAvatar("http://localhost:3000/images/avatar/avatar-Man-2.png")}
+                                        src={"http://localhost:3000/images/avatar/avatar-Man-2.png"}
+                                        alt=""
+                                        className={classes.avatares}>
                                     </img>
                                 </Item>
                             </Grid>
@@ -152,8 +135,10 @@ class UserImage extends Component {
                                     textAlign={"center"}
                                 >
                                     <img
-                                        onClick={this.updateClientAvatar("http://localhost:3000/images/avatar/avatar-Woman-1.png"), e => this.handleClose()}
-                                        src={"http://localhost:3000/images/avatar/avatar-Woman-1.png"} alt="" className={classes.avatares}>
+                                        onClick={this.updateClientAvatar("http://localhost:3000/images/avatar/avatar-Woman-1.png")}
+                                        src={"http://localhost:3000/images/avatar/avatar-Woman-1.png"}
+                                        alt=""
+                                        className={classes.avatares}>
                                     </img>
                                 </Item>
                             </Grid>
@@ -166,8 +151,10 @@ class UserImage extends Component {
                                     textAlign={"center"}
                                 >
                                     <img
-                                        onClick={this.updateClientAvatar("http://localhost:3000/images/avatar/avatar-Woman-2.png"), e => this.handleClose()}
-                                        src={"http://localhost:3000/images/avatar/avatar-Woman-2.png"} alt="" className={classes.avatares}>
+                                        onClick={this.updateClientAvatar("http://localhost:3000/images/avatar/avatar-Woman-2.png")}
+                                        src={"http://localhost:3000/images/avatar/avatar-Woman-2.png"}
+                                        alt=""
+                                        className={classes.avatares}>
                                     </img>
                                 </Item>
                             </Grid>

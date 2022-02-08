@@ -143,7 +143,7 @@ class YourAccount extends Component {
 							color={COLOR_BDAZZLED_BLUE}
 						/>
 
-						<UserImage />
+						<UserImage client={client}/>
 
 						<div className={classes.userContentContainer}>
 							<p className={classes.userContent}>Saldo: <br />{clientWallet.coin}{clientWallet.balance}</p>

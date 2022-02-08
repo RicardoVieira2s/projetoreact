@@ -14,32 +14,37 @@ export default function RecomendedGames({ games }) {
                 color={COLOR_SHADOW_BLUE}
             />
             <div style={{ padding: '0px 14px 0px 14px ' }}>
-                <Grid
-                    container
-                    direction="row"
-                    justify="center"
-                    alignItems="stretch"
-                >
-                    {/*  TODO: align center*/}
+                {() => {
+                    if (games.lenght >= 3) {
+                        <Grid
+                            container
+                            direction="row"
+                            justify="center"
+                            alignItems="stretch"
+                        >
+                            {/*  TODO: align center*/}
 
-                    <Grid item xs={12} sm={12} md={5} lg={5}
-                        style={{ padding: '0px 10px 0px 0px ' }}>
-                        <Grid style={{ height: "100%" }} >
-                            <GameCardBig game={games[0]} />
-                        </Grid>
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={7} lg={7} style={{ padding: '0px 0px 0px 10px' }} >
-                        <Grid container style={{ height: "100%" }} >
-                            <Grid item xs={12} sm={12} md={6} lg={6} style={{ padding: '0px 10px 10px 0px' }}>
-                                <GameCardSmall game={games[1]} />
+                            <Grid item xs={12} sm={12} md={5} lg={5}
+                                style={{ padding: '0px 10px 0px 0px ' }}>
+                                <Grid style={{ height: "100%" }} >
+                                    <GameCardBig game={games[0]} />
+                                </Grid>
                             </Grid>
-                            <Grid item xs={12} sm={12} md={6} lg={6} style={{ padding: '0px 0px 10px 10px' }}>
-                                <GameCardSmall game={games} />
+                            <Grid item xs={12} sm={12} md={7} lg={7} style={{ padding: '0px 0px 0px 10px' }} >
+                                <Grid container style={{ height: "100%" }} >
+                                    <Grid item xs={12} sm={12} md={6} lg={6} style={{ padding: '0px 10px 10px 0px' }}>
+                                        <GameCardSmall game={games[1]} />
+                                    </Grid>
+                                    <Grid item xs={12} sm={12} md={6} lg={6} style={{ padding: '0px 0px 10px 10px' }}>
+                                        <GameCardSmall game={games[2]} />
+                                    </Grid>
+                                </Grid>
                             </Grid>
-                        </Grid>
-                    </Grid>
 
-                </Grid>
+                        </Grid>
+                    }
+                }
+                }
             </div>
         </div>
     )

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Typography, Grid, Tooltip, Fade,Button  } from '@mui/material'
+import { Typography, Grid, Tooltip, Fade  } from '@mui/material'
 import { Item } from '@mui-treasury/components/flex'
 import { COLOR_OXFORD_BLUE, COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM } from '../utils/color'
 import { BORDER_RADIUS_10PX, BORDER_RADIUS_5PX } from '../utils/border'
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from '@mui/icons-material/Delete'
 import { withStyles } from '@material-ui/core/styles'
 import { cartApi } from '../../api'
 
@@ -48,17 +48,14 @@ class CartlistGames extends Component {
     }
 
     deleteGameFromCart(id) {
-        let game = this.props.game
-        if (game == null)
-            return
-        cartApi.cartDelete("eeae714d-cf5a-419d-bcb6-a1e91a16de67", game.id, (error, data) => {
+        cartApi.cartDelete("eeae714d-cf5a-419d-bcb6-a1e91a16de67", {gameID: id}, (error, data) => {
             if (error) {
                 console.error(error);
             } else {
                 console.log('API called successfully.');
             }
         });
-        window.location.reload()
+        document.location.href = "/cart";
     }
 
     render() {

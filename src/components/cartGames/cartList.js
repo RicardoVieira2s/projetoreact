@@ -3,12 +3,12 @@ import Title from '../utils/Title'
 import { COLOR_SHADOW_BLUE, COLOR_PLATINIUM, COLOR_BDAZZLED_BLUE } from '../utils/color'
 import RenderIfEmpty from '../utils/messageError'
 import CartListGames from './cartListGames'
-import { Typography, Grid } from '@mui/material'
+import { Typography, Grid, Button } from '@mui/material'
 import { Item } from '@mui-treasury/components/flex'
 import { cartApi } from '../../api'
 import { withStyles } from '@material-ui/core/styles'
-import { Button } from '@mui/material'
 import { BORDER_RADIUS_5PX } from '../utils/border'
+
 
 const useStyles = theme => ({
     buttonBuy: {
@@ -57,7 +57,18 @@ class CartList extends Component {
                 console.log('API called successfully.');
             }
         });
-        window.location.reload()
+        document.location.href = "/library";
+    }
+
+    deleteAllGamesFromCart() {
+        cartApi.cartDelete("eeae714d-cf5a-419d-bcb6-a1e91a16de67", null, (error, data) => {
+            if (error) {
+                console.error(error);
+            } else {
+                console.log('API called successfully.');
+            }
+        });
+        document.location.href = "/cart";
     }
 
     render() {
@@ -78,6 +89,27 @@ class CartList extends Component {
                     name={'Carrinho'}
                     color={COLOR_SHADOW_BLUE}
                 />
+                <Grid item xs={12} sm={12} md={12} lg={12}
+                    container
+                    alignItems={'center'}
+                    justifyContent={'center'}
+                >
+                    <Grid item xs={7} sm={7} md={7} lg={7}>
+
+                    </Grid>
+                    <Grid item xs={5} sm={5} md={5} lg={5}>
+                        <Item
+                            textAlign={"center"}
+                        >
+                            <Button
+                                className={classes.buttonBuy}
+                                onClick={e => this.deleteAllGamesFromCart()}
+                            >
+                                Remover todos
+                            </Button>
+                        </Item>
+                    </Grid>
+                </Grid>
                 <Grid
                     container
                     alignItems={'center'}

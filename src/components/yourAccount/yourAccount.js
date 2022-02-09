@@ -13,7 +13,6 @@ import { Box, Tab } from '@mui/material'
 import UserImage from './userImage'
 import { withStyles } from '@material-ui/core/styles'
 import { clientApi, walletApi } from '../../api'
-import Cookies from 'universal-cookie'
 
 const useStyles = theme => ({
 	container: {
@@ -93,21 +92,20 @@ class YourAccount extends Component {
 
 	componentDidMount() {
 
-		const cookies = new Cookies().get('clientID');
-
-		clientApi.clientGet({ id: cookies }, (error, data) => {
+		clientApi.clientGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
 
 			if (error) {
 				console.error(error);
 			} else {
 				console.log('API called successfully.');
 			}
+			console.log("dasdsadasdasads", data[0])
 			this.setState({
 				client: data[0],
 			});
 		});
 
-		walletApi.walletGet({ id: cookies }, (error, data) => {
+		walletApi.walletGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
 
 			if (error) {
 				console.error(error);

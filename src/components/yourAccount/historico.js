@@ -8,6 +8,7 @@ import HistoryList from './historyList'
 import RenderIfEmpty from '../utils/messageError'
 import { withStyles } from '@material-ui/core/styles'
 import { invoiceApi } from '../../api'
+import Cookies from 'universal-cookie'
 
 const useStyles = theme => ({
     container: {
@@ -30,7 +31,10 @@ class Historico extends Component {
     }
 
     componentDidMount() {
-        invoiceApi.invoiceGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
+
+        const cookies = new Cookies().get('clientID');
+
+        invoiceApi.invoiceGet({ id: cookies }, (error, data) => {
 
             if (error) {
                 console.error(error);

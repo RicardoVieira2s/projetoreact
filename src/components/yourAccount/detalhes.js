@@ -35,7 +35,10 @@ class Detalhes extends Component {
     }
 
     componentDidMount() {
-        clientApi.clientGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
+
+        const cookies = new Cookies().get('clientID');
+
+        clientApi.clientGet({ id: cookies }, (error, data) => {
 
             if (error) {
                 console.error(error);

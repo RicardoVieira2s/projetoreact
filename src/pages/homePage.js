@@ -3,7 +3,7 @@ import { Banner } from '../components/floatingBar/banner'
 import RecomendedGames from '../components/recomendedGames/recomendedGames'
 import GamesOnSale from '../components/gamesOnSale/gamesOnSale'
 import DiscoverGames from '../components/discoverGames/discoverGames'
-import Cookies from 'universal-cookie';
+import Cookies from 'universal-cookie'
 import { yourStoreApi } from '../api'
 
 class Homepage extends Component {

@@ -7,6 +7,7 @@ import CustomButton from '../utils/customButton'
 import Title from '../utils/Title'
 import { withStyles } from '@material-ui/core/styles'
 import { addressApi } from '../../api'
+import Cookies from 'universal-cookie'
 
 const useStyles = theme => ({
     container: {
@@ -34,7 +35,10 @@ class Endereco extends Component {
     }
 
     componentDidMount() {
-        addressApi.addressGet('eeae714d-cf5a-419d-bcb6-a1e91a16de67', (error, data) => {
+
+        const cookies = new Cookies().get('clientID');
+
+        addressApi.addressGet(cookies, (error, data) => {
 
             if (error) {
                 console.error(error);

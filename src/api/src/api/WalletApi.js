@@ -113,7 +113,7 @@ export class WalletApi {
         
       };
       let queryParams = {
-        'id': id
+        'id': id['id']
       };
       let headerParams = {
         

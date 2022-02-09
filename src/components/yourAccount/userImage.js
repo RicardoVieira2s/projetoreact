@@ -47,6 +47,20 @@ class UserImage extends Component {
         }
     }
 
+    updateClientAvatar(url) {
+        let client = this.props.client
+        if (client == null)
+            return
+        client.picture = url
+        clientApi.clientPut(client, client.id, (error, data) => {
+            if (error) {
+                console.error(error);
+            } else {
+                console.log('API called successfully.');
+            }
+        });
+    }
+
     handleOpen() {
         this.setState({
             open: true
@@ -56,22 +70,6 @@ class UserImage extends Component {
     handleClose() {
         this.setState({
             open: false
-        });
-    }
-
-    updateClientAvatar(url) {
-        console.log(url)
-        let client = this.props.client
-        if (client == null)
-            return
-        client.picture = url
-        clientApi.clientPut(client, client.id, (error, data, response) => {
-            if (error) {
-                console.error(error);
-                console.log(response)
-            } else {
-                console.log('API called successfully.');
-            }
         });
     }
 
@@ -103,7 +101,7 @@ class UserImage extends Component {
                                     textAlign={"center"}
                                 >
                                     <img
-                                        onClick={e => this.handleClose()}
+                                        onClick={this.updateClientAvatar("http://localhost:3000/images/avatar/avatar-Man-1.png")}
                                         src={"http://localhost:3000/images/avatar/avatar-Man-1.png"}
                                         alt=""
                                         className={classes.avatares}>

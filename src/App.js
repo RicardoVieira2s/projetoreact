@@ -15,6 +15,7 @@ import statisticsPage from './pages/statisticsPage'
 import Login from './pages/login'
 import Register from './pages/register'
 import { clientApi, walletApi, cartApi } from './api'
+import Cookies from 'universal-cookie'
 
 class App extends Component {
 
@@ -30,7 +31,9 @@ class App extends Component {
 
   componentDidMount() {
 
-    clientApi.clientGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
+    const cookies = new Cookies().get('clientID');
+
+    clientApi.clientGet({ id: cookies }, (error, data) => {
 
       if (error) {
         console.error(error);
@@ -43,7 +46,7 @@ class App extends Component {
       });
     });
 
-    walletApi.walletGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
+    walletApi.walletGet({ id: cookies }, (error, data) => {
 
       if (error) {
         console.error(error);
@@ -55,7 +58,7 @@ class App extends Component {
       });
     });
 
-    cartApi.cartGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
+    cartApi.cartGet({ id: cookies }, (error, data) => {
 
       if (error) {
           console.error(error);

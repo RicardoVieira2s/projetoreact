@@ -3,6 +3,7 @@ import { Banner } from '../components/floatingBar/banner'
 import RecomendedGames from '../components/recomendedGames/recomendedGames'
 import GamesOnSale from '../components/gamesOnSale/gamesOnSale'
 import DiscoverGames from '../components/discoverGames/discoverGames'
+import Cookies from 'universal-cookie';
 import { yourStoreApi } from '../api'
 
 class Homepage extends Component {
@@ -16,7 +17,10 @@ class Homepage extends Component {
     }
 
     componentDidMount() {
-        yourStoreApi.yourStoreGet({ id: '803fa231-8b7d-4b3c-8aee-a43bd17da8d4' }, (error, data) => {
+        
+        const cookies = new Cookies().get('clientID');
+
+        yourStoreApi.yourStoreGet({ id: cookies }, (error, data) => {
 
             if (error) {
                 console.error(error);
@@ -41,7 +45,7 @@ class Homepage extends Component {
             <div>
                 <Banner />
                 <RecomendedGames games={games.recommended} />
-                <GamesOnSale games={games.specialOffers} /> 
+                <GamesOnSale games={games.specialOffers} />
                 <DiscoverGames games={games.discover} />
             </div >
         )

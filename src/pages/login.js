@@ -11,6 +11,8 @@ import Cookies from 'universal-cookie'
 export default function Login() {
 
   const handleSubmit = async e => {
+    e.preventDefault();
+    e.stopPropagation();
 
     let body = new ClientAccessSchema(false, email)
     body.password = password;
@@ -21,21 +23,19 @@ export default function Login() {
       //   alert("custom")
       // } else
       if (error) {
-        console.error(error);
-        alert("123")
+        alert(JSON.parse(response.text).error);
       }
       else {
-        // const cookies = new Cookies();
-        // cookies.set("client", JSON.stringify(data), { path: '/' });
-        // cookies.set("clientEmail", String(email), { path: '/' });
+        const cookies = new Cookies();
+        cookies.set("client", data, { path: '/' });
+        cookies.set("clientEmail", email, { path: '/' });
+        cookies.set("clientID", data.id, { path: '/' });
 
-
-        // console.log(cookies.get('client'));
-        console.log(data)
-        alert("asdasdasdas")
-
+        document.location.href = "/";
       }
+
     })
+    return false;
   };
 
   const [email, setEmail] = useState("");

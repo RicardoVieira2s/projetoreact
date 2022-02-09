@@ -9,7 +9,6 @@ import { cartApi } from '../../api'
 import { withStyles } from '@material-ui/core/styles'
 import { Button } from '@mui/material'
 import { BORDER_RADIUS_5PX } from '../utils/border'
-import Cookies from 'universal-cookie'
 
 const useStyles = theme => ({
     buttonBuy: {
@@ -35,10 +34,7 @@ class CartList extends Component {
     }
 
     componentDidMount() {
-
-        const cookies = new Cookies().get('clientID');
-
-        cartApi.cartGet({ id: cookies }, (error, data) => {
+        cartApi.cartGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
 
             if (error) {
                 console.error(error);

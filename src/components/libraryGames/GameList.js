@@ -6,7 +6,6 @@ import Title from '../utils/Title'
 import RenderIfEmpty from '../utils/messageError'
 import { libraryApi } from '../../api'
 import { withStyles } from '@material-ui/core/styles'
-import Cookies from 'universal-cookie'
 
 const useStyles = theme => ({
     container: {
@@ -28,10 +27,7 @@ class GameList extends Component {
     }
 
     componentDidMount() {
-
-        const cookies = new Cookies().get('clientID');
-        
-        libraryApi.libraryGet({ id: cookies }, (error, data) => {
+        libraryApi.libraryGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
 
             if (error) {
                 console.error(error);

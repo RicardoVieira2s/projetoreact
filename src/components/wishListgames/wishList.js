@@ -6,6 +6,7 @@ import RenderIfEmpty from '../utils/messageError'
 import WishlistGames from './wishlistGames'
 import CustomButton from '../utils/customButton'
 import { wishlistApi } from '../../api'
+import Cookies from 'universal-cookie'
 
 class WishList extends Component {
 
@@ -19,7 +20,10 @@ class WishList extends Component {
     }
 
     componentDidMount() {
-        wishlistApi.wishlistGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
+        
+        const cookies = new Cookies().get('clientID');
+        
+        wishlistApi.wishlistGet({ id: cookies }, (error, data) => {
 
             if (error) {
                 console.error(error);

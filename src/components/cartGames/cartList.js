@@ -1,12 +1,28 @@
 import React, { Component } from 'react'
 import Title from '../utils/Title'
-import { COLOR_SHADOW_BLUE, COLOR_PLATINIUM } from '../utils/color'
+import { COLOR_SHADOW_BLUE, COLOR_PLATINIUM, COLOR_BDAZZLED_BLUE } from '../utils/color'
 import RenderIfEmpty from '../utils/messageError'
 import CartListGames from './cartListGames'
 import { Typography, Grid } from '@mui/material'
 import { Item } from '@mui-treasury/components/flex'
-import CustomButton from '../utils/customButton'
-import { gameApi } from '../../api'
+import { cartApi } from '../../api'
+import { withStyles } from '@material-ui/core/styles'
+import { Button } from '@mui/material'
+import { BORDER_RADIUS_5PX } from '../utils/border'
+
+const useStyles = theme => ({
+    buttonBuy: {
+        backgroundColor: COLOR_BDAZZLED_BLUE,
+        color: COLOR_PLATINIUM,
+        ':hover': {
+            backgroundColor: COLOR_BDAZZLED_BLUE,
+            color: COLOR_PLATINIUM,
+        },
+        borderRadius: BORDER_RADIUS_5PX,
+        fontFamily: 'Viga',
+        height: '40px',
+    }
+});
 
 class CartList extends Component {
     constructor(props) {
@@ -18,7 +34,7 @@ class CartList extends Component {
     }
 
     componentDidMount() {
-        gameApi.gameGet(null, (error, data) => {
+        cartApi.cartGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
 
             if (error) {
                 console.error(error);
@@ -33,12 +49,27 @@ class CartList extends Component {
         });
     }
 
+    buyGamesFromCart() {
+        cartApi.cartPurchaseGet("eeae714d-cf5a-419d-bcb6-a1e91a16de67", (error, data) => {
+            if (error) {
+                console.error(error);
+            } else {
+                console.log('API called successfully.');
+            }
+        });
+        window.location.reload()
+    }
+
     render() {
+        const { classes } = this.props;
+
         var { games, isLoaded } = this.state;
+        let total = 0
 
         if (!isLoaded) {
-            return null
+            return <div>Loading...</div>
         }
+
         return (
             <div style={{
                 paddingBottom: "40px",
@@ -54,8 +85,10 @@ class CartList extends Component {
                     display={'flex'}
                 >
                     {RenderIfEmpty(games.length, "Sem jogos no carrinho")}
-                    {games.map((game, i) =>
-                        <CartListGames key={game.id} game={game} index={i + 1} />
+                    {games.map((game, i) => {
+                        total += game.price * (1 - game.discount)
+                        return <CartListGames key={game.id} game={game} index={i + 1} />
+                    }
                     )}
                 </Grid>
 
@@ -75,7 +108,7 @@ class CartList extends Component {
                             <Typography
                                 component={'p'}
                             >
-                                Total: €
+                                Total: €{total}
                             </Typography>
                         </Item>
                     </Grid>
@@ -83,9 +116,12 @@ class CartList extends Component {
                         <Item
                             textAlign={"center"}
                         >
-                            <CustomButton
-                                name={"Comprar"}
-                            />
+                            <Button
+                                className={classes.buttonBuy}
+                                onClick={e => this.buyGamesFromCart()}
+                            >
+                                Comprar
+                            </Button>
                         </Item>
                     </Grid>
                 </Grid>
@@ -94,4 +130,4 @@ class CartList extends Component {
     }
 }
 
-export default CartList
+export default withStyles(useStyles)(CartList)

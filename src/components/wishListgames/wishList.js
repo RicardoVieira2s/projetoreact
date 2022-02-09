@@ -5,7 +5,7 @@ import { Grid, Box } from '@mui/material'
 import RenderIfEmpty from '../utils/messageError'
 import WishlistGames from './wishlistGames'
 import CustomButton from '../utils/customButton'
-import { gameApi } from '../../api'
+import { wishlistApi } from '../../api'
 
 class WishList extends Component {
 
@@ -19,7 +19,7 @@ class WishList extends Component {
     }
 
     componentDidMount() {
-        gameApi.gameGet(null, (error, data) => {
+        wishlistApi.wishlistGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
 
             if (error) {
                 console.error(error);
@@ -38,7 +38,7 @@ class WishList extends Component {
         var { games, isLoaded } = this.state;
 
         if (!isLoaded) {
-            return null
+            return <div>Loading...</div>
         }
 
         return (

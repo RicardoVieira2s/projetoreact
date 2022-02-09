@@ -4,6 +4,8 @@ import { Box, Modal, Grid } from '@mui/material'
 import { Item } from '@mui-treasury/components/flex'
 import { clientApi } from '../../api'
 import { withStyles } from '@material-ui/core/styles'
+import { dateWithoutTimeZone } from '../utils/date'
+import { ClientSchema } from '../../api/src'
 
 const useStyles = theme => ({
     boxModalStyle: {
@@ -52,13 +54,19 @@ class UserImage extends Component {
         if (client == null)
             return
         client.picture = url
+        client.birthdate = dateWithoutTimeZone(client.birthdate)
         clientApi.clientPut(client, client.id, (error, data) => {
             if (error) {
                 console.error(error);
             } else {
                 console.log('API called successfully.');
+                let obj
+                obj = ClientSchema.constructFromObject(data, obj)
             }
         });
+
+        this.handleClose()
+        // window.location.reload()
     }
 
     handleOpen() {
@@ -89,67 +97,49 @@ class UserImage extends Component {
                     onClose={e => this.handleClose()}
                 >
                     <Box className={classes.boxModalStyle}>
-                        <Grid
-                            container
-                        >
-                            <Grid
-                                item
-                                md={6}
-                                xs={12}
-                            >
-                                <Item
-                                    textAlign={"center"}
-                                >
+                        <Grid container>
+                            <Grid item md={6} xs={12}>
+                                <Item textAlign={"center"}>
                                     <img
-                                        onClick={this.updateClientAvatar("http://localhost:3000/images/avatar/avatar-Man-1.png")}
+                                        onClick={
+                                            e => this.updateClientAvatar("http://localhost:3000/images/avatar/avatar-Man-1.png")
+                                        }
                                         src={"http://localhost:3000/images/avatar/avatar-Man-1.png"}
                                         alt=""
                                         className={classes.avatares}>
                                     </img>
                                 </Item>
                             </Grid>
-                            <Grid
-                                item
-                                md={6}
-                                xs={12}
-                            >
-                                <Item
-                                    textAlign={"center"}
-                                >
+                            <Grid item md={6} xs={12}>
+                                <Item textAlign={"center"}>
                                     <img
-                                        onClick={this.updateClientAvatar("http://localhost:3000/images/avatar/avatar-Man-2.png")}
+                                        onClick={
+                                            e => this.updateClientAvatar("http://localhost:3000/images/avatar/avatar-Man-2.png")
+                                        }
                                         src={"http://localhost:3000/images/avatar/avatar-Man-2.png"}
                                         alt=""
                                         className={classes.avatares}>
                                     </img>
                                 </Item>
                             </Grid>
-                            <Grid
-                                item
-                                md={6}
-                                xs={12}
-                            >
-                                <Item
-                                    textAlign={"center"}
-                                >
+                            <Grid item md={6} xs={12}>
+                                <Item textAlign={"center"}>
                                     <img
-                                        onClick={this.updateClientAvatar("http://localhost:3000/images/avatar/avatar-Woman-1.png")}
+                                        onClick={
+                                            e => this.updateClientAvatar("http://localhost:3000/images/avatar/avatar-Woman-1.png")
+                                        }
                                         src={"http://localhost:3000/images/avatar/avatar-Woman-1.png"}
                                         alt=""
                                         className={classes.avatares}>
                                     </img>
                                 </Item>
                             </Grid>
-                            <Grid
-                                item
-                                md={6}
-                                xs={12}
-                            >
-                                <Item
-                                    textAlign={"center"}
-                                >
+                            <Grid item md={6} xs={12}>
+                                <Item textAlign={"center"}>
                                     <img
-                                        onClick={this.updateClientAvatar("http://localhost:3000/images/avatar/avatar-Woman-2.png")}
+                                        onClick={
+                                            e => this.updateClientAvatar("http://localhost:3000/images/avatar/avatar-Woman-2.png")
+                                        }
                                         src={"http://localhost:3000/images/avatar/avatar-Woman-2.png"}
                                         alt=""
                                         className={classes.avatares}>

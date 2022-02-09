@@ -85,7 +85,7 @@ class YourAccount extends Component {
 		this.state = {
 			client: null,
 			clientWallet: null,
-			value: 0,
+			value: "0",
 			isLoaded: false,
 		}
 	}
@@ -99,7 +99,7 @@ class YourAccount extends Component {
 			} else {
 				console.log('API called successfully.');
 			}
-
+			console.log("dasdsadasdasads", data[0])
 			this.setState({
 				client: data[0],
 			});
@@ -137,7 +137,7 @@ class YourAccount extends Component {
 
 			<div className={classes.container}>
 				<div className={classes.userContainer}>
-					<div class="clearfix">
+					<div className="clearfix">
 						<Title
 							name={client.name + " " + client.surname}
 							color={COLOR_BDAZZLED_BLUE}
@@ -154,7 +154,7 @@ class YourAccount extends Component {
 					</div>
 				</div>
 
-				<div class="menu-bar">
+				<div className="menu-bar">
 					<TabContext value={this.state.value}>
 						<Box sx={{ borderBottom: 2, marginBottom: 5 }}>
 							<TabList
@@ -164,22 +164,22 @@ class YourAccount extends Component {
 								allowScrollButtonsMobile
 								TabIndicatorProps={{ className: classes.indicator }}
 							>
-								<Tab label="Detalhes" value={0} className={classes.tabs} />
-								<Tab label="Endereço" value={1} className={classes.tabs} />
-								<Tab label="Privacidade" value={2} className={classes.tabs} />
-								<Tab label="Histórico de compras" value={3} className={classes.tabs} />
+								<Tab label="Detalhes" value={"0"} className={classes.tabs} />
+								<Tab label="Endereço" value={"1"} className={classes.tabs} />
+								<Tab label="Privacidade" value={"2"} className={classes.tabs} />
+								<Tab label="Histórico de compras" value={"3"} className={classes.tabs} />
 							</TabList>
 						</Box>
-						<TabPanel value={0}>
+						<TabPanel value={"0"}>
 							<Detalhes />
 						</TabPanel>
-						<TabPanel value={1}>
+						<TabPanel value={"1"}>
 							<Endereco />
 						</TabPanel>
-						<TabPanel value={2}>
+						<TabPanel value={"2"}>
 							<Privacidade />
 						</TabPanel>
-						<TabPanel value={3}>
+						<TabPanel value={"3"}>
 							<Historico />
 						</TabPanel>
 					</TabContext>

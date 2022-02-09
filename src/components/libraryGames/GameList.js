@@ -4,7 +4,7 @@ import LibraryGame from './libraryGames'
 import { Grid } from '@mui/material'
 import Title from '../utils/Title'
 import RenderIfEmpty from '../utils/messageError'
-import { gameApi } from '../../api'
+import { libraryApi } from '../../api'
 import { withStyles } from '@material-ui/core/styles'
 
 const useStyles = theme => ({
@@ -27,7 +27,7 @@ class GameList extends Component {
     }
 
     componentDidMount() {
-        gameApi.gameGet(null, (error, data) => {
+        libraryApi.libraryGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
 
             if (error) {
                 console.error(error);

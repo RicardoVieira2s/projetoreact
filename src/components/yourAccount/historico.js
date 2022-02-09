@@ -1,15 +1,15 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './yourAccount.css'
 import { COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM } from '../utils/color'
 import { BORDER_RADIUS_10PX } from '../utils/border'
 import { Card, CardContent, Grid } from '@mui/material'
 import Title from '../utils/Title'
-import { makeStyles } from '@material-ui/core/styles'
-import mocksHistory from '../__mocks__/history'
 import HistoryList from './historyList'
 import RenderIfEmpty from '../utils/messageError'
+import { withStyles } from '@material-ui/core/styles'
+import { invoiceApi } from '../../api'
 
-const useStyles = makeStyles(() => ({
+const useStyles = theme => ({
     container: {
         backgroundColor: COLOR_PLATINIUM,
         color: COLOR_BDAZZLED_BLUE,
@@ -17,14 +17,45 @@ const useStyles = makeStyles(() => ({
         paddingRight: '15px',
         paddingLeft: '15px',
     },
-}))
+});
 
-export default function Historico() {
-    const classes = useStyles()
+class Historico extends Component {
 
-    return (
+    constructor(props) {
+        super(props);
+        this.state = {
+            invoice: null,
+            isLoaded: false,
+        }
+    }
 
-            <Card className={classes.container}>
+    componentDidMount() {
+        invoiceApi.invoiceGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
+
+            if (error) {
+                console.error(error);
+            } else {
+                console.log('API called successfully.');
+            }
+
+            this.setState({
+                isLoaded: true,
+                invoice: data,
+            })
+        });
+    }
+
+    render() {
+        const { classes } = this.props;
+
+        var { isLoaded, invoice } = this.state;
+        if (!isLoaded) {
+            return <div>Loading...</div>
+        }
+
+        return (
+
+            <Card className={classes.container} >
                 <Title
                     name='Histórico de Compras'
                     color={COLOR_BDAZZLED_BLUE}
@@ -35,15 +66,20 @@ export default function Historico() {
                         md={12}
                         xs={12}
                     >
-                        {RenderIfEmpty(mocksHistory.length, "Sem Histórico")}
-                        {mocksHistory.map((history) =>
+                        {RenderIfEmpty(invoice.length, "Sem Histórico")}
+
+                        {invoice.map((history, index) =>
                             <HistoryList
-                                key={history.id}
                                 history={history}
+                                index={index}
+                                key={index}
                             />
                         )}
                     </Grid>
                 </CardContent>
             </Card>
-    )
+        )
+    }
 }
+
+export default withStyles(useStyles)(Historico)

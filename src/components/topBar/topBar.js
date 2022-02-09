@@ -155,7 +155,7 @@ export default function PrimarySearchAppBar(props) {
                 }}
                 disableRipple
             >
-                <p>Saldo: {props.userBalance.coin}{props.userBalance.amount}</p>
+                <p>Saldo: {props.userCoin}{props.userBalance}</p>
             </MenuItem>
             <Divider
                 variant="middle"
@@ -259,7 +259,7 @@ export default function PrimarySearchAppBar(props) {
                         disableRipple
                     >
                         <Badge
-                            variant="dot" invisible={props.userCart.count <= 0}
+                            variant="dot" invisible={props.userCart <= 0}
                             color="error"
                         >
                             <ShoppingCartIcon fontSize="small" />
@@ -348,7 +348,7 @@ export default function PrimarySearchAppBar(props) {
                                 color="inherit"
                             >
                                 <Badge
-                                    badgeContent={props.userCart.count}
+                                    badgeContent={props.userCart}
                                     color='error'
                                 >
                                     <ShoppingCartIcon
@@ -396,7 +396,7 @@ export default function PrimarySearchAppBar(props) {
                                     boxShadow: 'none',
                                 }}
                                 >
-                                    <img src="/images/avatar/avatar-Man-1.png" alt="" height='30px' />
+                                    <img src={props.userPic} alt="" height='30px' />
                                 </Paper>
                                 <p
                                     style={{
@@ -405,7 +405,7 @@ export default function PrimarySearchAppBar(props) {
                                         maxWidth: '150px',
                                     }}
                                 >
-                                    {props.userAccount.name}
+                                    {props.userAccount}
                                 </p>
                             </Button>
                         </IconButton>

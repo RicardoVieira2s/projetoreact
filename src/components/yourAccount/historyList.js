@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
     },
 }))
 
-export default function HistoryList({ history }) {
+export default function HistoryList({ history, index }) {
     const classes = useStyles()
     const [expanded, setExpanded] = React.useState(false)
 
@@ -23,8 +23,8 @@ export default function HistoryList({ history }) {
 
     return (
         <Accordion
-            expanded={expanded === history.id}
-            onChange={handleChangeAccordion(history.id)}
+            expanded={expanded === index}
+            onChange={handleChangeAccordion(index)}
             className={classes.accordion}
         >
             <AccordionSummary
@@ -38,8 +38,8 @@ export default function HistoryList({ history }) {
                 </Typography>
             </AccordionSummary>
             <AccordionDetails>
-                {history.games.map((game) =>
-                    <Typography>
+                {history.games.map((game, index) =>
+                    <Typography key={index}>
                         Id do jogo: {game.idGame}
                     </Typography>
                 )}

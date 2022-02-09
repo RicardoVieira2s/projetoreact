@@ -7,7 +7,6 @@ import { BORDER_RADIUS_10PX } from '../utils/border'
 import Title from '../utils/Title'
 import { withStyles } from '@material-ui/core/styles'
 import { clientApi } from '../../api'
-import Cookies from 'universal-cookie'
 
 const useStyles = theme => ({
     container: {

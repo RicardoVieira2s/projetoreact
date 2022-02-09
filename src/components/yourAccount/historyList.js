@@ -4,6 +4,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { COLOR_PLATINIUM, COLOR_RICH_BLACK } from '../utils/color'
 import { makeStyles } from '@material-ui/core/styles'
 import InvoiceButton from '../utils/invoiceButton'
+import { dateToString } from '../utils/date'
 
 const useStyles = makeStyles(() => ({
     accordion: {
@@ -30,7 +31,7 @@ export default function HistoryList({ history }) {
                 expandIcon={<ExpandMoreIcon />}
             >
                 <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                    {history.purchase_date}
+                    {dateToString(history.purchaseDate)}
                 </Typography>
                 <Typography>
                     {history.games.length} jogo(s)
@@ -39,7 +40,7 @@ export default function HistoryList({ history }) {
             <AccordionDetails>
                 {history.games.map((game) =>
                     <Typography>
-                        {game.id_game}
+                        Id do jogo: {game.idGame}
                     </Typography>
                 )}
             </AccordionDetails>

@@ -11,11 +11,13 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import MoreIcon from '@mui/icons-material/MoreVert'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import LogoutIcon from '@mui/icons-material/Logout'
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks'
 import PersonIcon from '@mui/icons-material/Person'
 import HomeIcon from '@mui/icons-material/Home'
 import ImageLogo from './imageLogo'
+import Cookies from 'universal-cookie'
 
 const DESKTOP_ITEM_HEIGHT = '27px'
 const MOBILE_ITEM_HEIGHT = '50px'
@@ -80,7 +82,13 @@ export default function PrimarySearchAppBar(props) {
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
 
     const handleProfileMenuOpen = (event) => {
-        setAnchorEl(event.currentTarget)
+        
+        if (props.user) {
+            setAnchorEl(event.currentTarget)
+        } else {
+            document.location.href = "/login"
+        }
+
     }
 
     const handleMobileMenuClose = () => {
@@ -92,8 +100,57 @@ export default function PrimarySearchAppBar(props) {
         handleMobileMenuClose()
     }
 
+    const handleLogout = () => {
+
+        const cookie = new Cookies();
+        cookie.remove("clientEmail");
+        cookie.remove("clientID",);
+
+        setAnchorEl(null)
+        handleMobileMenuClose()
+        document.location.href = "/";
+    }
+
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget)
+    }
+
+
+    function renderMenuFunc(client) {
+        if (client !== undefined && client !== null) {
+            return (
+                <div>
+                    {renderMobileMenu}
+                    {renderMenu}
+                </div>
+            )
+        }
+    }
+
+    function renderNameFunc(client) {
+
+        if (client !== undefined && client !== null) {
+            return client[0].name
+        } else {
+            return "Login"
+        }
+    }
+
+
+    function renderArrowFunc(client) {
+
+        if (client !== undefined && client !== null) {
+            return <KeyboardArrowDownIcon />
+        } else {
+            return <KeyboardArrowRightIcon />
+        }
+    }
+
+    let cartCounter
+    if (props.userCart === null) {
+        cartCounter = null
+    } else {
+        cartCounter = props.userCart.length
     }
 
     const menuId = 'primary-search-account-menu'
@@ -155,24 +212,22 @@ export default function PrimarySearchAppBar(props) {
                 }}
                 disableRipple
             >
-                <p>Saldo: {props.userCoin}{props.userBalance}</p>
+                {props.wallet && <p>Saldo: {props.wallet.coin}{props.wallet.balance.toFixed(2)}</p>}
             </MenuItem>
             <Divider
                 variant="middle"
                 sx={{ marginTop: 1.3 }}
             />
-            <Link to="/login">
-                <MenuItem
-                    onClick={handleMenuClose}
-                    style={{
-                        height: DESKTOP_ITEM_HEIGHT,
-                        fontSize: FONT_SECUNDARY_SIZE
-                    }}
-                    disableRipple
-                >
-                    <p>Logout</p>
-                </MenuItem>
-            </Link>
+            <MenuItem
+                onClick={handleLogout}
+                style={{
+                    height: DESKTOP_ITEM_HEIGHT,
+                    fontSize: FONT_SECUNDARY_SIZE
+                }}
+                disableRipple
+            >
+                <p>Logout</p>
+            </MenuItem>
         </Menu>
     )
 
@@ -251,25 +306,28 @@ export default function PrimarySearchAppBar(props) {
                     </p>
                 </MenuItem>
             </Link>
-            <Link to="/cart">
-                <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
-                    <IconButton
-                        color={MOBILE_ICON_BUTTON_COLOR}
-                        style={MOBILE_ICON_BUTTON_STYLE}
-                        disableRipple
-                    >
-                        <Badge
-                            variant="dot" invisible={props.userCart <= 0}
-                            color="error"
+            {
+                props.userCart &&
+                <Link to="/cart">
+                    <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
+                        <IconButton
+                            color={MOBILE_ICON_BUTTON_COLOR}
+                            style={MOBILE_ICON_BUTTON_STYLE}
+                            disableRipple
                         >
-                            <ShoppingCartIcon fontSize="small" />
-                        </Badge>
-                    </IconButton>
-                    <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
-                        Carrinho
-                    </p>
-                </MenuItem>
-            </Link>
+                            <Badge
+                                variant="dot" invisible={props.userCart.length <= 0}
+                                color="error"
+                            >
+                                <ShoppingCartIcon fontSize="small" />
+                            </Badge>
+                        </IconButton>
+                        <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
+                            Carrinho
+                        </p>
+                    </MenuItem>
+                </Link>
+            }
             <Link to="/library">
                 <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
                     <IconButton
@@ -288,7 +346,9 @@ export default function PrimarySearchAppBar(props) {
                 variant="middle"
                 sx={{ marginTop: 1.5 }}
             />
-            <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
+            <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}
+                onClick={handleLogout}
+            >
                 <IconButton
                     color={MOBILE_ICON_BUTTON_COLOR}
                     style={MOBILE_ICON_BUTTON_STYLE}
@@ -329,41 +389,47 @@ export default function PrimarySearchAppBar(props) {
                     </Search>
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', sm: 'none', md: 'flex' } }}>
-                        <Link to="/wishlist">
-                            <IconButton color="inherit">
-                                <FavoriteIcon
-                                    sx={{
-                                        color: COLOR_BDAZZLED_BLUE,
-                                        ':hover': {
-                                            color: COLOR_PLATINIUM,
-                                        },
-                                        mt: '6px',
-                                    }}
-                                    fontSize="medium"
-                                />
-                            </IconButton>
-                        </Link>
-                        <Link to="/cart">
-                            <IconButton
-                                color="inherit"
-                            >
-                                <Badge
-                                    badgeContent={props.userCart}
-                                    color='error'
-                                >
-                                    <ShoppingCartIcon
+                        {
+                            props.user &&
+                            <Link to="/wishlist">
+                                <IconButton color="inherit">
+                                    <FavoriteIcon
                                         sx={{
                                             color: COLOR_BDAZZLED_BLUE,
                                             ':hover': {
-                                                color: COLOR_PLATINIUM
+                                                color: COLOR_PLATINIUM,
                                             },
                                             mt: '6px',
                                         }}
                                         fontSize="medium"
                                     />
-                                </Badge>
-                            </IconButton>
-                        </Link>
+                                </IconButton>
+                            </Link>}
+                        {
+                            props.user &&
+                            <Link to="/cart">
+                                <IconButton
+                                    color="inherit"
+                                >
+                                    <Badge
+                                        badgeContent={cartCounter}
+                                        color='error'
+                                    >
+                                        <ShoppingCartIcon
+                                            sx={{
+                                                color: COLOR_BDAZZLED_BLUE,
+                                                ':hover': {
+                                                    color: COLOR_PLATINIUM
+                                                },
+                                                mt: '6px',
+                                            }}
+                                            fontSize="medium"
+                                        />
+                                    </Badge>
+                                </IconButton>
+                            </Link>
+                        }
+
                         <IconButton>
                             <Button
                                 edge="end"
@@ -384,8 +450,7 @@ export default function PrimarySearchAppBar(props) {
                                 aria-expanded={isMenuOpen ? 'true' : undefined}
                                 variant="contained"
                                 onClick={handleProfileMenuOpen}
-                                endIcon={<KeyboardArrowDownIcon />}
-
+                                endIcon={renderArrowFunc(props.user)}
                             >
                                 <Paper sx={{
                                     width: '30px',
@@ -396,7 +461,9 @@ export default function PrimarySearchAppBar(props) {
                                     boxShadow: 'none',
                                 }}
                                 >
-                                    <img src={props.userPic} alt="" height='30px' />
+                                    {
+                                        props.user && <img src={props.user.picture} alt="" height='30px' />
+                                    }
                                 </Paper>
                                 <p
                                     style={{
@@ -405,7 +472,7 @@ export default function PrimarySearchAppBar(props) {
                                         maxWidth: '150px',
                                     }}
                                 >
-                                    {props.userAccount}
+                                    {renderNameFunc(props.user)}
                                 </p>
                             </Button>
                         </IconButton>
@@ -422,8 +489,8 @@ export default function PrimarySearchAppBar(props) {
                     </Box>
                 </Toolbar>
             </AppBar>
-            {renderMobileMenu}
-            {renderMenu}
+            
+            {renderMenuFunc(props.user)}
         </Box>
     )
 }

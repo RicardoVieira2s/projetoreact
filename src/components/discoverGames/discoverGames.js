@@ -43,7 +43,7 @@ export default function DiscoverGames({ games }) {
     return (
         <div >
             <Title
-                name={'Recomendados'}
+                name={'Descobertas'}
                 color={COLOR_SHADOW_BLUE}
             />
             <div style={{ padding: '0px 14px 0px 14px ' }}>

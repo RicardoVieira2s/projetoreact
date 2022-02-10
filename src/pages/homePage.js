@@ -18,7 +18,11 @@ class Homepage extends Component {
 
     componentDidMount() {
         
-        const cookies = new Cookies().get('clientID');
+        let cookies = new Cookies().get('clientID');
+
+        if (cookies === undefined){
+            cookies = null
+        }
 
         yourStoreApi.yourStoreGet({ id: cookies }, (error, data) => {
 

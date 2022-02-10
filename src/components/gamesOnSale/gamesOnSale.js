@@ -44,7 +44,7 @@ export default function GamesOnSale({ games }) {
     return (
         <div >
             <Title
-                name={'Recomendados'}
+                name={'Promoções'}
                 color={COLOR_SHADOW_BLUE}
             />
             <div style={{ padding: '0px 14px 0px 14px ' }}>

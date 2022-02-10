@@ -14,76 +14,79 @@ import featuredPage from './pages/featuredPage'
 import statisticsPage from './pages/statisticsPage'
 import Login from './pages/login'
 import Register from './pages/register'
+import Cookies from 'universal-cookie';
 import { clientApi, walletApi, cartApi } from './api'
 
 class App extends Component {
 
   constructor(props) {
-		super(props);
-		this.state = {
-			client: null,
+    super(props);
+    this.state = {
+      client: null,
       games: null,
-			clientWallet: null,
-			isLoaded: false,
-		}
-	}
+      clientWallet: null,
+      isLoaded: false,
+    }
+  }
 
   componentDidMount() {
 
-    clientApi.clientGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
+    let cookie = new Cookies().get('clientID');
 
-      if (error) {
-        console.error(error);
-      } else {
-        console.log('API called successfully.');
-      }
+    if (cookie !== undefined) {
 
-      this.setState({
-        client: data[0],
-      });
-    });
 
-    walletApi.walletGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
+      clientApi.clientGet({ id: cookie }, (error, data) => {
 
-      if (error) {
-        console.error(error);
-      } else {
-        console.log('API called successfully.');
-      }
-      this.setState({
-        clientWallet: data,
-      });
-    });
 
-    cartApi.cartGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
-
-      if (error) {
+        if (error) {
           console.error(error);
-      } else {
+        } else {
           console.log('API called successfully.');
-      }
+        }
 
-      this.setState({
+        this.setState({
+          client: data,
+        });
+      });
+
+      walletApi.walletGet({ id: cookie }, (error, data) => {
+
+        if (error) {
+          console.error(error);
+        } else {
+          console.log('API called successfully.');
+        }
+        this.setState({
+          clientWallet: data,
+        });
+      });
+
+      cartApi.cartGet({ id: cookie }, (error, data) => {
+
+        if (error) {
+          console.error(error);
+        } else {
+          console.log('API called successfully.');
+        }
+
+        this.setState({
           isLoaded: true,
           games: data,
-      })
-  });
+        })
+      });
+    }
   }
 
   render() {
-    var { isLoaded, client, clientWallet, games} = this.state
-    if (!isLoaded) {
-			return <div>Loading...</div>
-		}
-
+    var { client, clientWallet, games } = this.state
+    //console.log("client app",client)
     return (
       <Router>
         <TopBar
-          userAccount={client.name}
-          userCart={games.length}
-          userBalance={clientWallet.balance}
-          userCoin={clientWallet.coin}
-          userPic={client.picture}
+          user={client}
+          userCart={games}
+          wallet={clientWallet}
         />
         <div className='content-body'>
           <Switch>

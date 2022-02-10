@@ -26,10 +26,9 @@ export default function Login() {
         alert(JSON.parse(response.text).error);
       }
       else {
-        const cookies = new Cookies();
-        cookies.set("client", data, { path: '/' });
-        cookies.set("clientEmail", email, { path: '/' });
-        cookies.set("clientID", data.id, { path: '/' });
+        const cookie = new Cookies();
+        cookie.set("clientEmail", email, { path: '/' });
+        cookie.set("clientID", data.id, { path: '/' });
 
         document.location.href = "/";
       }

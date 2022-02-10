@@ -5,7 +5,6 @@ import { Card, CardContent, Grid, CardActions, Typography } from '@mui/material'
 import { BORDER_RADIUS_5PX } from '../utils/border'
 import renderDownloadButton from '../utils/downloadButton'
 
-
 export default function libraryGame({ game }) {
     
     return (
@@ -13,7 +12,7 @@ export default function libraryGame({ game }) {
             <Grid item>
                 <Card
                     sx={{
-                        maxWidth: '400px',
+                        width: '400px',
                         borderRadius: BORDER_RADIUS_5PX,
                     }}
                 >
@@ -49,4 +48,3 @@ export default function libraryGame({ game }) {
         </CardContent >
     )
 }
-

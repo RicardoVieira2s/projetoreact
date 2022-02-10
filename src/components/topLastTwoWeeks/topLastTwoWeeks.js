@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react'
+import React, { Component } from 'react'
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -75,7 +75,6 @@ const options = {
 
 };
 
-
 class Charts extends Component {
 
     constructor(props) {
@@ -87,7 +86,6 @@ class Charts extends Component {
     }
 
     componentDidMount() {
-        console.log("12312313131")
         fetch('https://api.punkapi.com/v2/beers?food=taco')
             .then((response) => response.json())
             .then((json) => {
@@ -98,8 +96,6 @@ class Charts extends Component {
             })
             .catch((error) => console.error(error))
     }
-
-
 
     render() {
 
@@ -129,6 +125,5 @@ class Charts extends Component {
     }
 
 }
-
 
 export default Charts;

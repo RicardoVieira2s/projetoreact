@@ -6,6 +6,7 @@ import { BORDER_RADIUS_10PX, BORDER_RADIUS_5PX } from '../utils/border'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { withStyles } from '@material-ui/core/styles'
 import { cartApi } from '../../api'
+import Cookies from 'universal-cookie'
 
 const useStyles = theme => ({
     container: {
@@ -42,13 +43,10 @@ const useStyles = theme => ({
 
 class CartlistGames extends Component {
 
-    constructor(props) {
-        super(props);
-
-    }
-
     deleteGameFromCart(id) {
-        cartApi.cartDelete("eeae714d-cf5a-419d-bcb6-a1e91a16de67", {gameID: id}, (error, data) => {
+        let clientId = new Cookies().get('clientID');
+
+        cartApi.cartDelete(clientId, {gameID: id}, (error, data) => {
             if (error) {
                 console.error(error);
             } else {

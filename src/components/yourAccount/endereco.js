@@ -7,6 +7,8 @@ import CustomButton from '../utils/customButton'
 import Title from '../utils/Title'
 import { withStyles } from '@material-ui/core/styles'
 import { addressApi } from '../../api'
+import camelCaseKeysToUnderscore from '../utils/api/camelCaseKeysToUnderscore'
+import Cookies from 'universal-cookie';
 
 const useStyles = theme => ({
     container: {
@@ -28,13 +30,16 @@ class Endereco extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            client: [],
+            client: null,
             isLoaded: false,
         }
     }
 
     componentDidMount() {
-        addressApi.addressGet('eeae714d-cf5a-419d-bcb6-a1e91a16de67', (error, data) => {
+
+        let clientId = new Cookies().get('clientID');
+
+        addressApi.addressGet(clientId, (error, data) => {
 
             if (error) {
                 console.error(error);
@@ -49,10 +54,23 @@ class Endereco extends Component {
         });
     }
 
+    updateClient() {
+        if (this.state.client == null)
+            return
+        let obj = camelCaseKeysToUnderscore(this.state.client)
+        addressApi.addressPut(obj, obj.id, (error, data) => {
+            if (error) {
+                console.error(error);
+            } else {
+                console.log('API called successfully.');
+            }
+        });
+    }
+
     render() {
 
         const { classes } = this.props;
-        var { isLoaded, client } = this.state;
+        const { isLoaded, client } = this.state;
 
         if (!isLoaded) {
             return <div>Loading...</div>
@@ -81,6 +99,12 @@ class Endereco extends Component {
                                     fullWidth
                                     label="Rua"
                                     value={client.street}
+                                    onChange={e => this.setState({
+                                        client: {
+                                            ...this.state.client,
+                                            street: e.target.value
+                                        }
+                                    })}
                                     name="Rua"
                                     required
                                     variant="outlined"
@@ -95,6 +119,12 @@ class Endereco extends Component {
                                     fullWidth
                                     label="Número de porta"
                                     value={client.doorNumber}
+                                    onChange={e => this.setState({
+                                        client: {
+                                            ...this.state.client,
+                                            doorNumber: e.target.value
+                                        }
+                                    })}
                                     name="Número de porta"
                                     type="tel"
                                     inputProps={{ maxLength: 5, pattern: "[1-9]{1}" }}
@@ -111,6 +141,12 @@ class Endereco extends Component {
                                     fullWidth
                                     label="Código Postal"
                                     value={client.zipCode}
+                                    onChange={e => this.setState({
+                                        client: {
+                                            ...this.state.client,
+                                            zipCode: e.target.value
+                                        }
+                                    })}
                                     name="Código Postal"
                                     required
                                     variant="outlined"
@@ -125,6 +161,12 @@ class Endereco extends Component {
                                     fullWidth
                                     label="Cidade"
                                     value={client.city}
+                                    onChange={e => this.setState({
+                                        client: {
+                                            ...this.state.client,
+                                            city: e.target.value
+                                        }
+                                    })}
                                     name="Cidade"
                                     variant="outlined"
                                     required
@@ -138,6 +180,12 @@ class Endereco extends Component {
                                 <TextField
                                     fullWidth
                                     value={client.country}
+                                    onChange={e => this.setState({
+                                        client: {
+                                            ...this.state.client,
+                                            country: e.target.value
+                                        }
+                                    })}
                                     label="País"
                                     name="País"
                                     variant="outlined"
@@ -149,6 +197,7 @@ class Endereco extends Component {
                     <Divider />
                     <Box className={classes.finalBox}>
                         <CustomButton
+                            onClick={e => this.updateClient()}
                             name={"Guardar alterações"}
                         />
                     </Box>

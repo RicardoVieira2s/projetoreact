@@ -9,6 +9,7 @@ import CustomButton from '../utils/customButton'
 import Title from '../utils/Title'
 import { withStyles } from '@material-ui/core/styles'
 import { clientApi } from '../../api'
+import Cookies from 'universal-cookie';
 
 const useStyles = theme => ({
     container: {
@@ -38,13 +39,14 @@ class Privacidade extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            client: [],
+            client: {},
             isLoaded: false,
         }
     }
 
     componentDidMount() {
-        // clientApi.clientGet('eeae714d-cf5a-419d-bcb6-a1e91a16de67', (error, data) => {
+        let clientId = new Cookies().get('clientID');
+        // clientApi.clientGet({ id: clientId }, (error, data) => {
 
         //     if (error) {
         //         console.error(error);
@@ -62,7 +64,7 @@ class Privacidade extends Component {
     render() {
 
         const { classes } = this.props;
-        var { isLoaded, client } = this.state;
+        const { isLoaded, client } = this.state;
         if (!isLoaded) {
             return <div>Loading...</div>
         }

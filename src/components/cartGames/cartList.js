@@ -8,13 +8,13 @@ import { Item } from '@mui-treasury/components/flex'
 import { cartApi } from '../../api'
 import { withStyles } from '@material-ui/core/styles'
 import { BORDER_RADIUS_5PX } from '../utils/border'
-
+import Cookies from 'universal-cookie'
 
 const useStyles = theme => ({
     buttonBuy: {
         backgroundColor: COLOR_BDAZZLED_BLUE,
         color: COLOR_PLATINIUM,
-        ':hover': {
+        '&:hover': {
             backgroundColor: COLOR_BDAZZLED_BLUE,
             color: COLOR_PLATINIUM,
         },
@@ -34,7 +34,10 @@ class CartList extends Component {
     }
 
     componentDidMount() {
-        cartApi.cartGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
+
+        let clientId = new Cookies().get('clientID')
+
+        cartApi.cartGet(clientId, (error, data) => {
 
             if (error) {
                 console.error(error);
@@ -50,7 +53,9 @@ class CartList extends Component {
     }
 
     buyGamesFromCart() {
-        cartApi.cartPurchaseGet("eeae714d-cf5a-419d-bcb6-a1e91a16de67", (error, data) => {
+        let clientId = new Cookies().get('clientID');
+
+        cartApi.cartPurchaseGet(clientId, (error, data) => {
             if (error) {
                 console.error(error);
             } else {
@@ -61,7 +66,9 @@ class CartList extends Component {
     }
 
     deleteAllGamesFromCart() {
-        cartApi.cartDelete("eeae714d-cf5a-419d-bcb6-a1e91a16de67", null, (error, data) => {
+        let clientId = new Cookies().get('clientID');
+
+        cartApi.cartDelete(clientId, null, (error, data) => {
             if (error) {
                 console.error(error);
             } else {
@@ -74,7 +81,7 @@ class CartList extends Component {
     render() {
         const { classes } = this.props;
 
-        var { games, isLoaded } = this.state;
+        const { games, isLoaded } = this.state;
         let total = 0
 
         if (!isLoaded) {
@@ -140,7 +147,7 @@ class CartList extends Component {
                             <Typography
                                 component={'p'}
                             >
-                                Total: €{total}
+                                Total: €{total.toFixed(2)}
                             </Typography>
                         </Item>
                     </Grid>

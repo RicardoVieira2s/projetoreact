@@ -2,7 +2,7 @@ import { Button } from '@mui/material'
 import { COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM } from './color'
 import { BORDER_RADIUS_5PX } from './border'
 
-export default function InvoiceButton({ name }) {
+export default function InvoiceButton({ name , onClick}) {
 
     return (
         <Button
@@ -14,6 +14,7 @@ export default function InvoiceButton({ name }) {
                 height: '40px',
                 margin: '10px',
             }}
+            onClick={onClick}
         >
             {name}
         </Button>

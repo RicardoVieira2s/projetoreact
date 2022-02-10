@@ -62,7 +62,7 @@ export class InvoiceApi {
         
       };
       let queryParams = {
-        'id': id['id']
+        'id': id
       };
       let headerParams = {
         

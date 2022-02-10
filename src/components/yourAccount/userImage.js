@@ -5,7 +5,7 @@ import { Item } from '@mui-treasury/components/flex'
 import { clientApi } from '../../api'
 import { withStyles } from '@material-ui/core/styles'
 import { dateWithoutTimeZone } from '../utils/date'
-import { ClientSchema } from '../../api/src'
+import camelCaseKeysToUnderscore from '../utils/api/camelCaseKeysToUnderscore'
 
 const useStyles = theme => ({
     boxModalStyle: {
@@ -55,18 +55,18 @@ class UserImage extends Component {
             return
         client.picture = url
         client.birthdate = dateWithoutTimeZone(client.birthdate)
-        clientApi.clientPut(client, client.id, (error, data) => {
+        let obj = camelCaseKeysToUnderscore(client)
+        clientApi.clientPut(obj, obj.id, (error, data) => {
             if (error) {
                 console.error(error);
             } else {
                 console.log('API called successfully.');
-                let obj
-                obj = ClientSchema.constructFromObject(data, obj)
             }
         });
 
         this.handleClose()
-        // window.location.reload()
+
+        document.location.href = "/account"
     }
 
     handleOpen() {

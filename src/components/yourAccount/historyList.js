@@ -5,6 +5,7 @@ import { COLOR_PLATINIUM, COLOR_RICH_BLACK } from '../utils/color'
 import { makeStyles } from '@material-ui/core/styles'
 import InvoiceButton from '../utils/invoiceButton'
 import { dateToString } from '../utils/date'
+import jsPDF from 'jspdf'
 
 const useStyles = makeStyles(() => ({
     accordion: {
@@ -12,6 +13,14 @@ const useStyles = makeStyles(() => ({
         color: COLOR_RICH_BLACK,
     },
 }))
+
+function printDocument() {
+    const doc = new jsPDF();
+
+    doc.text("Hello world!", 10, 10);
+    doc.output('dataurlnewwindow');
+    doc.save("download.pdf");
+}
 
 export default function HistoryList({ history, index }) {
     const classes = useStyles()
@@ -30,22 +39,27 @@ export default function HistoryList({ history, index }) {
             <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
             >
-                <Typography sx={{ width: '33%', flexShrink: 0 }}>
+                <Typography sx={{ width: '50%' }}>
                     {dateToString(history.purchaseDate)}
                 </Typography>
-                <Typography>
+                <Typography sx={{ width: '33%' }}>
                     {history.games.length} jogo(s)
                 </Typography>
             </AccordionSummary>
             <AccordionDetails>
                 {history.games.map((game, index) =>
                     <Typography key={index}>
-                        Id do jogo: {game.idGame}
+                        Id do jogo:
+                        <br />
+                        {game.idGame}
+                        <br />
+                        ----------------------------------
                     </Typography>
                 )}
             </AccordionDetails>
             <InvoiceButton
                 name="Guardar fatura"
+                onClick={e => printDocument()}
             />
         </Accordion>
     )

@@ -7,6 +7,9 @@ import { BORDER_RADIUS_10PX } from '../utils/border'
 import Title from '../utils/Title'
 import { withStyles } from '@material-ui/core/styles'
 import { clientApi } from '../../api'
+import camelCaseKeysToUnderscore from '../utils/api/camelCaseKeysToUnderscore'
+import { dateWithoutTimeZone } from '../utils/date'
+import Cookies from 'universal-cookie';
 
 const useStyles = theme => ({
     container: {
@@ -35,7 +38,9 @@ class Detalhes extends Component {
     }
 
     componentDidMount() {
-        clientApi.clientGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
+        let clientId = new Cookies().get('clientID');
+
+        clientApi.clientGet({ id: clientId }, (error, data) => {
 
             if (error) {
                 console.error(error);
@@ -53,25 +58,43 @@ class Detalhes extends Component {
         });
     }
 
+    updateClient() {
+        if (this.state.client == null)
+            return
+        let obj = camelCaseKeysToUnderscore(this.state.client)
+        obj.birthdate = dateWithoutTimeZone(obj.birthdate)
+        obj.vat_id = parseInt(obj.vat_id, 10)
+        clientApi.clientPut(obj, obj.id, (error, data) => {
+            if (error) {
+                console.error(error);
+            } else {
+                console.log('API called successfully.');
+
+            }
+        });
+    }
+
     handleChange(e) {
         const date = e.target.valueAsDate
         const formatted = date.toISOString().slice(0, 10);
         this.setState({
-            date: formatted
+            date: formatted,
+            client: {
+                ...this.state.client,
+                birthdate: formatted
+            }
         });
     }
 
     render() {
 
         const { classes } = this.props;
-
-        var { isLoaded, client } = this.state;
+        const { isLoaded, client, date } = this.state;
         if (!isLoaded) {
             return <div>Loading...</div>
         }
 
         return (
-
             <form
                 autoComplete="off"
             >
@@ -94,6 +117,12 @@ class Detalhes extends Component {
                                     fullWidth
                                     label="Nome Próprio"
                                     value={client.name}
+                                    onChange={e => this.setState({
+                                        client: {
+                                            ...this.state.client,
+                                            name: e.target.value
+                                        }
+                                    })}
                                     name="Nome Próprio"
                                     required
                                     variant="outlined"
@@ -108,6 +137,12 @@ class Detalhes extends Component {
                                     fullWidth
                                     label="Apelido"
                                     value={client.surname}
+                                    onChange={e => this.setState({
+                                        client: {
+                                            ...this.state.client,
+                                            surname: e.target.value
+                                        }
+                                    })}
                                     name="Apelido"
                                     required
                                     variant="outlined"
@@ -122,6 +157,12 @@ class Detalhes extends Component {
                                     fullWidth
                                     label="Número de telemóvel"
                                     value={client.phoneNumber}
+                                    onChange={e => this.setState({
+                                        client: {
+                                            ...this.state.client,
+                                            phoneNumber: e.target.value
+                                        }
+                                    })}
                                     name="Número de telemóvel"
                                     type="tel"
                                     inputProps={{ maxLength: 9, pattern: "[9]{1}[0-9]{8}" }}
@@ -139,6 +180,12 @@ class Detalhes extends Component {
                                     label="Número de Identificação Fiscal"
                                     name="Número de Identificação Fiscal"
                                     value={client.vatId}
+                                    onChange={e => this.setState({
+                                        client: {
+                                            ...this.state.client,
+                                            vatId: e.target.value
+                                        }
+                                    })}
                                     type="tel"
                                     variant="outlined"
                                     required
@@ -155,7 +202,7 @@ class Detalhes extends Component {
                             >
                                 <TextField
                                     fullWidth
-                                    value={this.state.date}
+                                    value={date}
                                     onChange={e => this.handleChange(e)}
                                     type="date"
                                     variant="outlined"
@@ -168,6 +215,7 @@ class Detalhes extends Component {
                     <Divider />
                     <Box className={classes.finalBox}>
                         <CustomButton
+                            onClick={e => this.updateClient()}
                             name={"Guardar Alterações"}
                         />
                     </Box>

@@ -1,12 +1,27 @@
 import React, { Component } from 'react'
 import Title from '../utils/Title'
-import { COLOR_SHADOW_BLUE } from '../utils/color'
-import { Grid, Box } from '@mui/material'
+import { COLOR_SHADOW_BLUE,COLOR_PLATINIUM, COLOR_BDAZZLED_BLUE } from '../utils/color'
+import { Grid, Box, Button } from '@mui/material'
 import RenderIfEmpty from '../utils/messageError'
 import WishlistGames from './wishlistGames'
-import CustomButton from '../utils/customButton'
 import { wishlistApi } from '../../api'
+import { withStyles } from '@material-ui/core/styles'
+import { BORDER_RADIUS_5PX } from '../utils/border'
+import Cookies from 'universal-cookie'
 
+const useStyles = theme => ({
+    button: {
+        backgroundColor: COLOR_BDAZZLED_BLUE,
+        color: COLOR_PLATINIUM,
+        '&:hover': {
+            backgroundColor: COLOR_BDAZZLED_BLUE,
+            color: COLOR_PLATINIUM,
+        },
+        borderRadius: BORDER_RADIUS_5PX,
+        fontFamily: 'Viga',
+        height: '40px',
+    }
+});
 class WishList extends Component {
 
     constructor(props) {
@@ -19,7 +34,10 @@ class WishList extends Component {
     }
 
     componentDidMount() {
-        wishlistApi.wishlistGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
+
+        let clientId = new Cookies().get('clientID')
+
+        wishlistApi.wishlistGet(clientId, (error, data) => {
 
             if (error) {
                 console.error(error);
@@ -34,8 +52,21 @@ class WishList extends Component {
         });
     }
 
+    deleteAllGamesFromWishList() {
+        let clientId = new Cookies().get('clientID')
+        wishlistApi.wishlistDelete(clientId, null, (error, data) => {
+            if (error) {
+                console.error(error);
+            } else {
+                console.log('API called successfully.');
+            }
+        });
+        document.location.href = "/wishlist";
+    }
+
     render() {
-        var { games, isLoaded } = this.state;
+        const { classes } = this.props;
+        const { games, isLoaded } = this.state;
 
         if (!isLoaded) {
             return <div>Loading...</div>
@@ -55,9 +86,12 @@ class WishList extends Component {
                     justifyContent: 'flex-end',
                     width: "90%",
                 }}>
-                    <CustomButton
-                        name={"Remover todos"}
-                    />
+                    <Button
+                        className={classes.button}
+                        onClick={e => this.deleteAllGamesFromWishList()}
+                    >
+                        Remover todos
+                    </Button>
                 </Box>
                 <Grid
                     container
@@ -75,4 +109,4 @@ class WishList extends Component {
     }
 }
 
-export default WishList
+export default withStyles(useStyles)(WishList)

@@ -14,7 +14,7 @@ import featuredPage from './pages/featuredPage'
 import statisticsPage from './pages/statisticsPage'
 import Login from './pages/login'
 import Register from './pages/register'
-import Cookies from 'universal-cookie';
+import Cookies from 'universal-cookie'
 import { clientApi, walletApi, cartApi } from './api'
 
 class App extends Component {
@@ -31,13 +31,11 @@ class App extends Component {
 
   componentDidMount() {
 
-    let cookie = new Cookies().get('clientID');
+    let clientId = new Cookies().get('clientID')
 
-    if (cookie !== undefined) {
+    if (clientId !== undefined) {
 
-
-      clientApi.clientGet({ id: cookie }, (error, data) => {
-
+      clientApi.clientGet({ id: clientId }, (error, data) => {
 
         if (error) {
           console.error(error);
@@ -50,7 +48,7 @@ class App extends Component {
         });
       });
 
-      walletApi.walletGet({ id: cookie }, (error, data) => {
+      walletApi.walletGet(clientId, (error, data) => {
 
         if (error) {
           console.error(error);
@@ -62,7 +60,7 @@ class App extends Component {
         });
       });
 
-      cartApi.cartGet({ id: cookie }, (error, data) => {
+      cartApi.cartGet(clientId, (error, data) => {
 
         if (error) {
           console.error(error);
@@ -80,7 +78,6 @@ class App extends Component {
 
   render() {
     var { client, clientWallet, games } = this.state
-    //console.log("client app",client)
     return (
       <Router>
         <TopBar

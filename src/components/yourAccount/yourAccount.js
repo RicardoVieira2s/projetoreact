@@ -4,7 +4,6 @@ import Detalhes from '../yourAccount/detalhes'
 import Endereco from '../yourAccount/endereco'
 import Privacidade from '../yourAccount/privacidade'
 import Historico from '../yourAccount/historico'
-import CustomButton from '../utils/customButton'
 import Title from '../utils/Title'
 import { COLOR_OXFORD_BLUE, COLOR_BDAZZLED_BLUE, COLOR_SHADOW_BLUE, COLOR_PLATINIUM } from '../utils/color'
 import { BORDER_RADIUS_10PX } from '../utils/border'
@@ -13,6 +12,9 @@ import { Box, Tab } from '@mui/material'
 import UserImage from './userImage'
 import { withStyles } from '@material-ui/core/styles'
 import { clientApi, walletApi } from '../../api'
+import { Button, TextField } from '@mui/material'
+import { BORDER_RADIUS_5PX } from '../utils/border'
+import Cookies from 'universal-cookie';
 
 const useStyles = theme => ({
 	container: {
@@ -35,18 +37,18 @@ const useStyles = theme => ({
 	userContent: {
 		textOverflow: "ellipsis",
 		overflow: "hidden",
-		maxWidth: '140px',
+		maxWidth: '100%',
 	},
 	tabs: {
 		padding: '20px',
 		color: COLOR_BDAZZLED_BLUE,
-		':hover': {
+		'&:hover': {
 			color: COLOR_SHADOW_BLUE,
 		},
 		'&.Mui-selected': {
 			color: COLOR_PLATINIUM,
 			backgroundColor: COLOR_BDAZZLED_BLUE,
-			':hover': {
+			'&:hover': {
 				color: COLOR_SHADOW_BLUE,
 			},
 		},
@@ -75,6 +77,17 @@ const useStyles = theme => ({
 		padding: '5px',
 		margin: '15px',
 		cursor: 'pointer',
+	},
+	saldo: {
+		backgroundColor: COLOR_BDAZZLED_BLUE,
+		color: COLOR_PLATINIUM,
+		'&:hover': {
+			backgroundColor: COLOR_BDAZZLED_BLUE,
+			color: COLOR_PLATINIUM,
+		},
+		borderRadius: BORDER_RADIUS_5PX,
+		fontFamily: 'Viga',
+		height: '50px',
 	}
 });
 
@@ -87,25 +100,27 @@ class YourAccount extends Component {
 			clientWallet: null,
 			value: "0",
 			isLoaded: false,
+			addBalance: 0,
 		}
 	}
 
 	componentDidMount() {
 
-		clientApi.clientGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
+		let clientId = new Cookies().get('clientID');
+
+		clientApi.clientGet({ id: clientId }, (error, data) => {
 
 			if (error) {
 				console.error(error);
 			} else {
 				console.log('API called successfully.');
 			}
-			console.log("dasdsadasdasads", data[0])
 			this.setState({
 				client: data[0],
 			});
 		});
 
-		walletApi.walletGet({ id: "eeae714d-cf5a-419d-bcb6-a1e91a16de67" }, (error, data) => {
+		walletApi.walletGet(clientId, (error, data) => {
 
 			if (error) {
 				console.error(error);
@@ -119,6 +134,19 @@ class YourAccount extends Component {
 		});
 	}
 
+	addBalance() {
+		let clientId = new Cookies().get('clientID');
+
+		walletApi.addBalanceGet(clientId, this.state.addBalance, (error, data) => {
+			if (error) {
+				console.error(error);
+			} else {
+				console.log('API called successfully.');
+			}
+		});
+		document.location.href = "/account"
+	}
+
 	handleChange(newValue) {
 		this.setState({
 			value: newValue
@@ -128,13 +156,12 @@ class YourAccount extends Component {
 	render() {
 		const { classes } = this.props;
 
-		var { isLoaded, client, clientWallet } = this.state;
+		const { isLoaded, client, clientWallet, addBalance, value } = this.state;
 		if (!isLoaded) {
 			return <div>Loading...</div>
 		}
 
 		return (
-
 			<div className={classes.container}>
 				<div className={classes.userContainer}>
 					<div className="clearfix">
@@ -143,19 +170,40 @@ class YourAccount extends Component {
 							color={COLOR_BDAZZLED_BLUE}
 						/>
 
-						<UserImage client={client}/>
+						<UserImage client={client} />
 
 						<div className={classes.userContentContainer}>
-							<p className={classes.userContent}>Saldo: <br />{clientWallet.coin}{clientWallet.balance}</p>
-							<CustomButton
-								name={"Adicionar saldo"}
-							/>
+							<p className={classes.userContent}>Saldo: {clientWallet.coin}{clientWallet.balance.toFixed(2)}</p>
+							<Box
+								component="form"
+								sx={{
+									'& .MuiTextField-root': { m: 1, width: '140px' },
+								}}
+								display="flex"
+								flexDirection="row"
+								justifyContent="center"
+								alignItems= "center"
+							>
+								<TextField
+									onChange={e => this.setState({ addBalance: e.target.value })}
+									value={addBalance}
+									type="number"
+									size="small"
+								/>
+								<Button
+									onClick={e => this.addBalance()}
+									className={classes.saldo}
+								>
+									Adicionar Saldo
+								</Button>
+							</Box>
+
 						</div>
 					</div>
 				</div>
 
 				<div className="menu-bar">
-					<TabContext value={this.state.value}>
+					<TabContext value={value}>
 						<Box sx={{ borderBottom: 2, marginBottom: 5 }}>
 							<TabList
 								onChange={(e, newValue) => this.handleChange(newValue)}

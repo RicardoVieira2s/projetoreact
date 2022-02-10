@@ -2,7 +2,7 @@ import { Button } from '@mui/material'
 import { COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM } from './color'
 import { BORDER_RADIUS_5PX } from './border'
 
-export default function CustomButton({ name }) {
+export default function CustomButton({ name, onClick }) {
 
     return (
         <Button
@@ -18,6 +18,7 @@ export default function CustomButton({ name }) {
                 height: '40px',
             }}
             type='submit'
+            onClick={onClick}
         >
             {name}
         </Button>

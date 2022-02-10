@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
 function printDocument() {
     const doc = new jsPDF();
 
-    doc.text("Hello world!", 10, 10);
+    doc.text("GOOFR STORE", 10, 10);
     doc.output('dataurlnewwindow');
     doc.save("download.pdf");
 }
@@ -29,7 +29,6 @@ export default function HistoryList({ history, index }) {
     const handleChangeAccordion = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     }
-
     return (
         <Accordion
             expanded={expanded === index}
@@ -40,22 +39,14 @@ export default function HistoryList({ history, index }) {
                 expandIcon={<ExpandMoreIcon />}
             >
                 <Typography sx={{ width: '50%' }}>
-                    {dateToString(history.purchaseDate)}
+                    {history.purchaseDate}
                 </Typography>
                 <Typography sx={{ width: '33%' }}>
                     {history.games.length} jogo(s)
                 </Typography>
             </AccordionSummary>
             <AccordionDetails>
-                {history.games.map((game, index) =>
-                    <Typography key={index}>
-                        Id do jogo:
-                        <br />
-                        {game.idGame}
-                        <br />
-                        ----------------------------------
-                    </Typography>
-                )}
+               
             </AccordionDetails>
             <InvoiceButton
                 name="Guardar fatura"

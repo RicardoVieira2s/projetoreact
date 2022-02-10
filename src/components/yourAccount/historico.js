@@ -7,8 +7,9 @@ import Title from '../utils/Title'
 import HistoryList from './historyList'
 import RenderIfEmpty from '../utils/messageError'
 import { withStyles } from '@material-ui/core/styles'
-import { invoiceApi } from '../../api'
-import Cookies from 'universal-cookie';
+import { gameApi, invoiceApi } from '../../api'
+import Cookies from 'universal-cookie'
+import { dateToString } from '../utils/date'
 
 const useStyles = theme => ({
     container: {
@@ -25,26 +26,53 @@ class Historico extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            invoice: null,
+            invoice: [],
             isLoaded: false,
         }
     }
 
     componentDidMount() {
         let clientId = new Cookies().get('clientID');
-
+        let invoiceList = [{}]
         invoiceApi.invoiceGet(clientId, (error, data) => {
             if (error) {
                 console.error(error);
-            } else {
-                console.log('API called successfully.');
+                return
             }
 
-            this.setState({
-                isLoaded: true,
-                invoice: data,
+            data.map(header => {
+                let games = []
+
+                header.games.map(game => {
+                    gameApi.gameGet({ id: game.idGame }, (error, tempGames) => {
+                        if (error) {
+                            console.error(error);
+                            return
+                        }
+
+                        let g=tempGames[0]
+                        g.price = game.price
+                        g.discount = game.discount
+                        g.releaseDate = dateToString(g.releaseDate)
+                        games.push(g)
+                    });
+                })
+
+                invoiceList.push({
+                    id: header.id,
+                    idClient: header.idClient,
+                    purchaseDate: dateToString(header.purchaseDate),
+                    vatId: header.vatId,
+                    games: games,
+                })
+
             })
         });
+
+        this.setState({
+            isLoaded: true,
+            invoice: invoiceList,
+        })
     }
 
     render() {
@@ -54,7 +82,6 @@ class Historico extends Component {
         if (!isLoaded) {
             return <div>Loading...</div>
         }
-
         return (
 
             <Card className={classes.container} >

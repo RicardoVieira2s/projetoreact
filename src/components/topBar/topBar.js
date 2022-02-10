@@ -462,7 +462,7 @@ export default function PrimarySearchAppBar(props) {
                                 }}
                                 >
                                     {
-                                        props.user && <img src={props.user.picture} alt="" height='30px' />
+                                        props.user && <img src={props.user[0].picture} alt="" height='30px' />
                                     }
                                 </Paper>
                                 <p

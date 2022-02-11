@@ -8,7 +8,7 @@ import Title from '../utils/Title'
 import { withStyles } from '@material-ui/core/styles'
 import { addressApi } from '../../api'
 import camelCaseKeysToUnderscore from '../utils/api/camelCaseKeysToUnderscore'
-import Cookies from 'universal-cookie';
+import Cookies from 'universal-cookie'
 
 const useStyles = theme => ({
     container: {
@@ -23,7 +23,7 @@ const useStyles = theme => ({
         justifyContent: 'flex-end',
         padding: '16px',
     },
-});
+})
 
 class Endereco extends Component {
 
@@ -37,14 +37,14 @@ class Endereco extends Component {
 
     componentDidMount() {
 
-        let clientId = new Cookies().get('clientID');
+        let clientId = new Cookies().get('clientID')
 
         addressApi.addressGet(clientId, (error, data) => {
 
             if (error) {
-                console.error(error);
+                console.error(error)
             } else {
-                console.log('API called successfully.');
+                console.log('API called successfully.')
             }
 
             this.setState({
@@ -60,17 +60,17 @@ class Endereco extends Component {
         let obj = camelCaseKeysToUnderscore(this.state.client)
         addressApi.addressPut(obj, obj.id, (error, data) => {
             if (error) {
-                console.error(error);
+                console.error(error)
             } else {
-                console.log('API called successfully.');
+                console.log('API called successfully.')
             }
         });
     }
 
     render() {
 
-        const { classes } = this.props;
-        const { isLoaded, client } = this.state;
+        const { classes } = this.props
+        const { isLoaded, client } = this.state
 
         if (!isLoaded) {
             return <div>Loading...</div>

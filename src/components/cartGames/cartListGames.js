@@ -39,25 +39,25 @@ const useStyles = theme => ({
     paddingItem: {
         paddingLeft: "50px",
     }
-});
+})
 
 class CartlistGames extends Component {
 
     deleteGameFromCart(id) {
-        let clientId = new Cookies().get('clientID');
+        let clientId = new Cookies().get('clientID')
 
         cartApi.cartDelete(clientId, {gameID: id}, (error, data) => {
             if (error) {
-                console.error(error);
+                console.error(error)
             } else {
-                console.log('API called successfully.');
+                console.log('API called successfully.')
             }
         });
-        document.location.href = "/cart";
+        document.location.href = "/cart"
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes } = this.props
 
         return (
             <div className={classes.container} >

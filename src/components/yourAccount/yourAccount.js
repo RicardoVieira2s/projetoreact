@@ -14,7 +14,7 @@ import { withStyles } from '@material-ui/core/styles'
 import { clientApi, walletApi } from '../../api'
 import { Button, TextField } from '@mui/material'
 import { BORDER_RADIUS_5PX } from '../utils/border'
-import Cookies from 'universal-cookie';
+import Cookies from 'universal-cookie'
 
 const useStyles = theme => ({
 	container: {
@@ -89,7 +89,7 @@ const useStyles = theme => ({
 		fontFamily: 'Viga',
 		height: '50px',
 	}
-});
+})
 
 class YourAccount extends Component {
 
@@ -106,14 +106,14 @@ class YourAccount extends Component {
 
 	componentDidMount() {
 
-		let clientId = new Cookies().get('clientID');
+		let clientId = new Cookies().get('clientID')
 
 		clientApi.clientGet({ id: clientId }, (error, data) => {
 
 			if (error) {
-				console.error(error);
+				console.error(error)
 			} else {
-				console.log('API called successfully.');
+				console.log('API called successfully.')
 			}
 			this.setState({
 				client: data[0],
@@ -125,7 +125,7 @@ class YourAccount extends Component {
 			if (error) {
 				console.error(error);
 			} else {
-				console.log('API called successfully.');
+				console.log('API called successfully.')
 			}
 			this.setState({
 				isLoaded: true,
@@ -135,13 +135,13 @@ class YourAccount extends Component {
 	}
 
 	addBalance() {
-		let clientId = new Cookies().get('clientID');
+		let clientId = new Cookies().get('clientID')
 
 		walletApi.addBalanceGet(clientId, this.state.addBalance, (error, data) => {
 			if (error) {
-				console.error(error);
+				console.error(error)
 			} else {
-				console.log('API called successfully.');
+				console.log('API called successfully.')
 			}
 		});
 		document.location.href = "/account"
@@ -154,9 +154,9 @@ class YourAccount extends Component {
 	}
 
 	render() {
-		const { classes } = this.props;
-
-		const { isLoaded, client, clientWallet, addBalance, value } = this.state;
+		const { classes } = this.props
+		const { isLoaded, client, clientWallet, addBalance, value } = this.state
+		
 		if (!isLoaded) {
 			return <div>Loading...</div>
 		}

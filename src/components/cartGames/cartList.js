@@ -42,7 +42,7 @@ class CartList extends Component {
             if (error) {
                 console.error(error);
             } else {
-                console.log('API called successfully.');
+                console.log('API called successfully.')
             }
 
             this.setState({
@@ -53,35 +53,35 @@ class CartList extends Component {
     }
 
     buyGamesFromCart() {
-        let clientId = new Cookies().get('clientID');
+        let clientId = new Cookies().get('clientID')
 
         cartApi.cartPurchaseGet(clientId, (error, data) => {
             if (error) {
                 console.error(error);
             } else {
-                console.log('API called successfully.');
+                console.log('API called successfully.')
             }
         });
-        document.location.href = "/library";
+        document.location.href = "/library"
     }
 
     deleteAllGamesFromCart() {
-        let clientId = new Cookies().get('clientID');
+        let clientId = new Cookies().get('clientID')
 
         cartApi.cartDelete(clientId, null, (error, data) => {
             if (error) {
-                console.error(error);
+                console.error(error)
             } else {
-                console.log('API called successfully.');
+                console.log('API called successfully.')
             }
         });
-        document.location.href = "/cart";
+        document.location.href = "/cart"
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes } = this.props
 
-        const { games, isLoaded } = this.state;
+        const { games, isLoaded } = this.state
         let total = 0
 
         if (!isLoaded) {

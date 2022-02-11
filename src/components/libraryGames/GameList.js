@@ -15,7 +15,7 @@ const useStyles = theme => ({
         paddingBottom: '40px',
         height: '100%'
     },
-});
+})
 
 class GameList extends Component {
 
@@ -28,14 +28,14 @@ class GameList extends Component {
     }
 
     componentDidMount() {
-        let clientId = new Cookies().get('clientID');
+        let clientId = new Cookies().get('clientID')
 
         libraryApi.libraryGet(clientId, (error, data) => {
 
             if (error) {
-                console.error(error);
+                console.error(error)
             } else {
-                console.log('API called successfully.');
+                console.log('API called successfully.')
             }
 
             this.setState({
@@ -47,8 +47,8 @@ class GameList extends Component {
 
     render() {
 
-        const { classes } = this.props;
-        const { isLoaded, games } = this.state;
+        const { classes } = this.props
+        const { isLoaded, games } = this.state
 
         if (!isLoaded) {
             return <div>Loading....</div>

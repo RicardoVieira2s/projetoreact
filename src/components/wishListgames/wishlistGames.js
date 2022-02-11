@@ -41,7 +41,7 @@ const useStyles = theme => ({
     paddingItem: {
         paddingLeft: "50px",
     }
-});
+})
 
 class WishlistGames extends Component {
 
@@ -49,24 +49,24 @@ class WishlistGames extends Component {
         let clientId = new Cookies().get('clientID')
         wishlistApi.wishlistDelete(clientId, { gameID: id }, (error, data) => {
             if (error) {
-                console.error(error);
+                console.error(error)
             } else {
-                console.log('API called successfully.');
+                console.log('API called successfully.')
             }
         });
-        document.location.href = "/wishlist";
+        document.location.href = "/wishlist"
     }
 
     addGameToClientCart(id) {
         let clientId = new Cookies().get('clientID')
         cartApi.cartPost(clientId, id , (error, data) => {
             if (error) {
-                console.error(error);
+                console.error(error)
             } else {
-                console.log('API called successfully.');
+                console.log('API called successfully.')
             }
         });
-        document.location.href = "/wishlist";
+        document.location.href = "/wishlist"
     }
 
     render() {

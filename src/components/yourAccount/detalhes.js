@@ -9,7 +9,7 @@ import { withStyles } from '@material-ui/core/styles'
 import { clientApi } from '../../api'
 import camelCaseKeysToUnderscore from '../utils/api/camelCaseKeysToUnderscore'
 import { dateWithoutTimeZone } from '../utils/date'
-import Cookies from 'universal-cookie';
+import Cookies from 'universal-cookie'
 
 const useStyles = theme => ({
     container: {
@@ -24,7 +24,7 @@ const useStyles = theme => ({
         justifyContent: 'flex-end',
         padding: '16px',
     },
-});
+})
 
 class Detalhes extends Component {
 
@@ -38,14 +38,14 @@ class Detalhes extends Component {
     }
 
     componentDidMount() {
-        let clientId = new Cookies().get('clientID');
+        let clientId = new Cookies().get('clientID')
 
         clientApi.clientGet({ id: clientId }, (error, data) => {
 
             if (error) {
-                console.error(error);
+                console.error(error)
             } else {
-                console.log('API called successfully.');
+                console.log('API called successfully.')
             }
 
             const formatted = data[0].birthdate.toISOString().slice(0, 10);
@@ -66,9 +66,9 @@ class Detalhes extends Component {
         obj.vat_id = parseInt(obj.vat_id, 10)
         clientApi.clientPut(obj, obj.id, (error, data) => {
             if (error) {
-                console.error(error);
+                console.error(error)
             } else {
-                console.log('API called successfully.');
+                console.log('API called successfully.')
 
             }
         });
@@ -76,7 +76,7 @@ class Detalhes extends Component {
 
     handleChange(e) {
         const date = e.target.valueAsDate
-        const formatted = date.toISOString().slice(0, 10);
+        const formatted = date.toISOString().slice(0, 10)
         this.setState({
             date: formatted,
             client: {
@@ -88,8 +88,8 @@ class Detalhes extends Component {
 
     render() {
 
-        const { classes } = this.props;
-        const { isLoaded, client, date } = this.state;
+        const { classes } = this.props
+        const { isLoaded, client, date } = this.state
         if (!isLoaded) {
             return <div>Loading...</div>
         }

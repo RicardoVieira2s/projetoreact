@@ -21,7 +21,7 @@ const useStyles = theme => ({
         fontFamily: 'Viga',
         height: '40px',
     }
-});
+})
 class WishList extends Component {
 
     constructor(props) {
@@ -42,7 +42,7 @@ class WishList extends Component {
             if (error) {
                 console.error(error);
             } else {
-                console.log('API called successfully.');
+                console.log('API called successfully.')
             }
 
             this.setState({
@@ -56,17 +56,17 @@ class WishList extends Component {
         let clientId = new Cookies().get('clientID')
         wishlistApi.wishlistDelete(clientId, null, (error, data) => {
             if (error) {
-                console.error(error);
+                console.error(error)
             } else {
-                console.log('API called successfully.');
+                console.log('API called successfully.')
             }
         });
-        document.location.href = "/wishlist";
+        document.location.href = "/wishlist"
     }
 
     render() {
-        const { classes } = this.props;
-        const { games, isLoaded } = this.state;
+        const { classes } = this.props
+        const { games, isLoaded } = this.state
 
         if (!isLoaded) {
             return <div>Loading...</div>

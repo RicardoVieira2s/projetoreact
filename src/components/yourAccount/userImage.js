@@ -38,7 +38,7 @@ const useStyles = theme => ({
         margin: '15px',
         cursor: 'pointer',
     },
-});
+})
 
 class UserImage extends Component {
 
@@ -58,9 +58,9 @@ class UserImage extends Component {
         let obj = camelCaseKeysToUnderscore(client)
         clientApi.clientPut(obj, obj.id, (error, data) => {
             if (error) {
-                console.error(error);
+                console.error(error)
             } else {
-                console.log('API called successfully.');
+                console.log('API called successfully.')
             }
         });
 

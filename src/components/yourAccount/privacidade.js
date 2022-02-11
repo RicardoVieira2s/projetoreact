@@ -9,7 +9,7 @@ import CustomButton from '../utils/customButton'
 import Title from '../utils/Title'
 import { withStyles } from '@material-ui/core/styles'
 import { clientApi } from '../../api'
-import Cookies from 'universal-cookie';
+import Cookies from 'universal-cookie'
 
 const useStyles = theme => ({
     container: {
@@ -32,7 +32,7 @@ const useStyles = theme => ({
         justifyContent: 'flex-end',
         padding: '16px',
     },
-});
+})
 
 class Privacidade extends Component {
 
@@ -45,26 +45,30 @@ class Privacidade extends Component {
     }
 
     componentDidMount() {
-        let clientId = new Cookies().get('clientID');
-        // clientApi.clientGet({ id: clientId }, (error, data) => {
+        let clientId = new Cookies().get('clientID')
+        clientApi.clientGet({ id: clientId }, (error, data) => {
 
-        //     if (error) {
-        //         console.error(error);
-        //     } else {
-        //         console.log('API called successfully.');
-        //     }
+            if (error) {
+                console.error(error)
+            } else {
+                console.log('API called successfully.')
+            }
 
-        //     this.setState({
-        //         isLoaded: true,
-        //         client: data,
-        //     })
-        // });
+            this.setState({
+                isLoaded: true,
+                client: data,
+            })
+        });
+    }
+
+    updateClient() {
+        
     }
 
     render() {
+        const { classes } = this.props
+        const { isLoaded, client } = this.state
 
-        const { classes } = this.props;
-        const { isLoaded, client } = this.state;
         if (!isLoaded) {
             return <div>Loading...</div>
         }
@@ -109,7 +113,7 @@ class Privacidade extends Component {
                                     type="password"
                                     required
                                     variant="outlined"
-                                    
+
                                 />
                             </Grid>
                             <Grid
@@ -130,6 +134,7 @@ class Privacidade extends Component {
                     <Divider />
                     <Box className={classes.finalBox}>
                         <CustomButton
+                            onClick={e => this.updateClient()}
                             name={"Guardar alterações"}
                         />
                     </Box>

@@ -19,7 +19,7 @@ export default function HistoryList({ history, index }) {
     let total = 0
 
     const handleChangeAccordion = (panel) => (event, isExpanded) => {
-        setExpanded(isExpanded ? panel : false);
+        setExpanded(isExpanded ? panel : false)
     }
 
     function printDocument() {
@@ -28,7 +28,7 @@ export default function HistoryList({ history, index }) {
         const doc = new jsPDF()
         let lastGamePositionY = 0
 
-        doc.text("GOOFR STORE", 10, 10);
+        doc.text("GOOFR STORE", 10, 10)
         doc.text("Data de compra: " + history.purchaseDate, positionX, 30)
         doc.text("Nif: " + history.vatId, positionX, 40)
         doc.text("Número de jogos: " + history.games.length, positionX, 50)

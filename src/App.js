@@ -38,9 +38,9 @@ class App extends Component {
       clientApi.clientGet({ id: clientId }, (error, data) => {
 
         if (error) {
-          console.error(error);
+          console.error(error)
         } else {
-          console.log('API called successfully.');
+          console.log('API called successfully.')
         }
 
         this.setState({
@@ -51,9 +51,9 @@ class App extends Component {
       walletApi.walletGet(clientId, (error, data) => {
 
         if (error) {
-          console.error(error);
+          console.error(error)
         } else {
-          console.log('API called successfully.');
+          console.log('API called successfully.')
         }
         this.setState({
           clientWallet: data,
@@ -63,9 +63,9 @@ class App extends Component {
       cartApi.cartGet(clientId, (error, data) => {
 
         if (error) {
-          console.error(error);
+          console.error(error)
         } else {
-          console.log('API called successfully.');
+          console.log('API called successfully.')
         }
 
         this.setState({
@@ -78,6 +78,7 @@ class App extends Component {
 
   render() {
     var { client, clientWallet, games } = this.state
+    
     return (
       <Router>
         <TopBar

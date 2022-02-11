@@ -19,7 +19,7 @@ const useStyles = theme => ({
         paddingRight: '15px',
         paddingLeft: '15px',
     },
-});
+})
 
 class Historico extends Component {
 
@@ -32,11 +32,11 @@ class Historico extends Component {
     }
 
     componentDidMount() {
-        let clientId = new Cookies().get('clientID');
+        let clientId = new Cookies().get('clientID')
         let invoiceList = []
         invoiceApi.invoiceGet(clientId, (error, data) => {
             if (error) {
-                console.error(error);
+                console.error(error)
                 return
             }
 
@@ -75,9 +75,9 @@ class Historico extends Component {
     }
 
     render() {
-        const { classes } = this.props;
-
-        const { isLoaded, invoice } = this.state;
+        const { classes } = this.props
+        const { isLoaded, invoice } = this.state
+        
         if (!isLoaded) {
             return <div>Loading...</div>
         }

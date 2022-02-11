@@ -7,10 +7,18 @@ export default function MoreAbout({ cover_image }) {
     return (
         <Grid
             container
+
         >
-            <Grid xs={12} md={4}>
+            <Grid xs={12} md={4}
+                sx={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    display: 'flex',
+                }}
+            >
                 <Card
                     sx={{
+                        width: '400px',
                         borderRadius: BORDER_RADIUS_5PX,
                         margin: "15px",
                     }}
@@ -20,11 +28,18 @@ export default function MoreAbout({ cover_image }) {
                     />
                 </Card>
             </Grid>
-            <Grid xs={12} md={4}>
+            <Grid xs={12} md={4}
+                sx={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    display: 'flex',
+                }}
+            >
                 <Card
                     sx={{
                         borderRadius: BORDER_RADIUS_5PX,
                         margin: "15px",
+                        width: '400px',
                     }}
                 >
                     <Image
@@ -32,11 +47,18 @@ export default function MoreAbout({ cover_image }) {
                     />
                 </Card>
             </Grid>
-            <Grid xs={12} md={4}>
+            <Grid xs={12} md={4}
+                sx={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    display: 'flex',
+                }}
+            >
                 <Card
                     sx={{
                         borderRadius: BORDER_RADIUS_5PX,
                         margin: "15px",
+                        width: '400px',
                     }}
                 >
                     <Image

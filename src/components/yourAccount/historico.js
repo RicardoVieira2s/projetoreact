@@ -44,7 +44,7 @@ class Historico extends Component {
                 let games = []
 
                 header.games.map(game => {
-                    gameApi.gameGet({ id: game.idGame }, (error, tempGames) => {
+                    return gameApi.gameGet({ id: game.idGame }, (error, tempGames) => {
                         if (error) {
                             console.error(error);
                             return
@@ -65,7 +65,6 @@ class Historico extends Component {
                     vatId: header.vatId,
                     games: games,
                 })
-                console.log("dasads", invoiceList)
             })
 
             this.setState({

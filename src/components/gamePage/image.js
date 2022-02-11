@@ -5,7 +5,7 @@ export default function Image({ cover_image }) {
     return (
         <CardMedia
             component="img"
-            height= "238"
+            height= "230px"
             image={cover_image}
             alt=""
         />

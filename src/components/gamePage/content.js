@@ -22,6 +22,8 @@ function content() {
                 name={'Avaliações'}
                 color={COLOR_SHADOW_BLUE}
             />
+
+            <div>dasdas</div>
         </div>
     )
 }

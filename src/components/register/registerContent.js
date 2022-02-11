@@ -3,10 +3,46 @@ import { CardContent, Grid, Button, TextField } from '@mui/material'
 import { COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM, COLOR_SHADOW_BLUE } from '../utils/color'
 import Switch from '@mui/material/Switch'
 import FormControlLabel from '@mui/material/FormControlLabel'
+import GoogleIcon from '@mui/icons-material/Google'
+import GoogleLogin from 'react-google-login'
+import { ClientAccessSchema } from '../../api/src'
 
 class registerContent extends Component {
-
     render() {
+
+        const handleRegister = async googleData => {
+
+            const { OAuth2Client } = require('google-auth-library')
+            const client = new OAuth2Client(process.env.CLIENT_ID)
+
+            const ticket = await client.verifyIdToken({
+                idToken: googleData.tokenId,
+                audience: process.env.CLIENT_ID
+            });
+            const { email } = ticket.getPayload();
+
+            let body = new ClientAccessSchema(true, email)
+
+
+            accessApi.loginPost(body, (error, data, response) => {
+                if (error) {
+                    alert(JSON.parse(response.text).error);
+                }
+                else {
+                    const cookie = new Cookies();
+                    cookie.set("clientEmail", email, { path: '/' });
+                    cookie.set("clientID", data.id, { path: '/' });
+                    cookie.set("clientOAuth", "false", { path: '/' });
+
+                    alert(email)
+                    console.log(email)
+
+                    document.location.href = "/";
+                }
+
+            })
+
+        }
 
         return (
             < CardContent >
@@ -223,6 +259,33 @@ class registerContent extends Component {
                         >
                             Registar
                         </Button>
+                    </Grid>
+                    <Grid
+                        item
+                        xs={12}
+                        md={12}
+                    >
+                        <GoogleLogin
+                            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                            buttonText="Entrar com conta Google"
+                            onSuccess={handleRegister}
+                            onFailure={handleRegister}
+                            cookiePolicy={'single_host_origin'}
+                            render={renderProps => (
+                                <Button
+                                    // onClick={renderProps.onClick}
+                                    // disabled={renderProps.disabled}
+                                    fullWidth
+                                    color="error"
+                                    startIcon={<GoogleIcon />}
+                                    size="large"
+                                    variant="contained"
+                                >
+                                    Registar com Conta Google
+                                </Button>
+                            )}
+
+                        />
                     </Grid>
                 </Grid>
             </CardContent >

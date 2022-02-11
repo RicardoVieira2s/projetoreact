@@ -4,11 +4,16 @@ import { COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM } from '../components/utils/color'
 import Title from '../components/utils/Title'
 import React, { useState } from 'react'
 import GoogleIcon from '@mui/icons-material/Google'
+import GoogleLogin from 'react-google-login'
 import { accessApi } from '../api'
 import { ClientAccessSchema } from '../api/src'
 import Cookies from 'universal-cookie'
 
 export default function Login() {
+
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -18,10 +23,6 @@ export default function Login() {
     body.password = password;
 
     accessApi.loginPost(body, (error, data, response) => {
-      // if (response !== undefined && response !== null && response.statusCode !== 200) {
-      //   //alert(JSON.parse(response.text).error);
-      //   alert("custom")
-      // } else
       if (error) {
         alert(JSON.parse(response.text).error);
       }
@@ -29,6 +30,7 @@ export default function Login() {
         const cookie = new Cookies();
         cookie.set("clientEmail", email, { path: '/' });
         cookie.set("clientID", data.id, { path: '/' });
+        cookie.set("clientOAuth", "false", { path: '/' });
 
         document.location.href = "/";
       }
@@ -37,9 +39,39 @@ export default function Login() {
     return false;
   };
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const handleLogin = async googleData => {
 
+    const { OAuth2Client } = require('google-auth-library')
+    const client = new OAuth2Client(process.env.CLIENT_ID)
+
+    const ticket = await client.verifyIdToken({
+      idToken: googleData.tokenId,
+      audience: process.env.CLIENT_ID
+    });
+    const { email } = ticket.getPayload();
+
+    let body = new ClientAccessSchema(true, email)
+
+
+    accessApi.loginPost(body, (error, data, response) => {
+      if (error) {
+        alert(JSON.parse(response.text).error);
+      }
+      else {
+        const cookie = new Cookies();
+        cookie.set("clientEmail", email, { path: '/' });
+        cookie.set("clientID", data.id, { path: '/' });
+        cookie.set("clientOAuth", "false", { path: '/' });
+
+        alert(email)
+        console.log(email)
+
+        document.location.href = "/";
+      }
+
+    })
+
+  }
   return (
 
     <form
@@ -140,7 +172,29 @@ export default function Login() {
                 xs={12}
                 md={12}
               >
-                <Button
+                {console.log(process.env.REACT_APP_GOOGLE_CLIENT_ID)}
+                <GoogleLogin
+                  clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                  buttonText="Entrar com conta Google"
+                  onSuccess={handleLogin}
+                  onFailure={handleLogin}
+                  cookiePolicy={'single_host_origin'}
+                  render={renderProps => (
+                    <Button
+                      onClick={renderProps.onClick}
+                      disabled={renderProps.disabled}
+                      fullWidth
+                      color="error"
+                      startIcon={<GoogleIcon />}
+                      size="large"
+                      variant="contained"
+                    >
+                      Iniciar conta Google
+                    </Button>
+                  )}
+
+                />
+                {/* <Button
                   fullWidth
                   color="error"
                   startIcon={<GoogleIcon />}
@@ -148,7 +202,7 @@ export default function Login() {
                   variant="contained"
                 >
                   Iniciar conta Google
-                </Button>
+                </Button> */}
               </Grid>
             </Grid>
           </CardContent>

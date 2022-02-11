@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container'
 import Divider from '@material-ui/core/Divider'
@@ -11,6 +11,7 @@ import InstagramIcon from '@mui/icons-material/Instagram'
 import { makeStyles } from '@material-ui/core/styles'
 import { Item, Row } from '@mui-treasury/components/flex'
 import { EmailSubscribe, EmailTextInput } from '@mui-treasury/components/EmailSubscribe'
+import { newsletterApi } from '../../api'
 
 const useStyles = makeStyles(({ palette, typography }) => ({
 
@@ -109,8 +110,27 @@ const useStyles = makeStyles(({ palette, typography }) => ({
     }
 }))
 
+
+
 export const Footer = React.memo(function GOOFRFooter() {
     const classes = useStyles()
+    const [email, setEmail] = useState("");
+
+    const handleSubmit = async e => {
+
+        console.log("email", email)
+
+        newsletterApi.newsletterPost(email, (error, data, response) => {
+            if (error) {
+                alert(JSON.parse(response.text).error);
+            }
+            else {
+                alert("Nesletter subscrita com sucesso");
+            }
+
+        })
+    };
+
     return (
         <footer>
             <Box className={classes.footer} >
@@ -158,12 +178,12 @@ export const Footer = React.memo(function GOOFRFooter() {
                             <Item>
                                 <EmailSubscribe
                                     className={classes.form}
-                                    onSubmit={email => alert(`Newsletter subscrita com sucesso ${email}.`)}
+                                    onSubmit={handleSubmit}
                                     useStyles={useStyles}
                                     inputClearedAfterSubmit
                                 >
-                                    <EmailTextInput placeholder="Email..." />
-                                    <input type="submit" className={classes.submit} value="Subscrever" />
+                                    <EmailTextInput placeholder="Email..." onChange={e => setEmail(e.target.value)} />
+                                    <input method='POST' type="submit" className={classes.submit} value="Subscrever" />
                                 </EmailSubscribe>
                             </Item>
                         </Row>

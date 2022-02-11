@@ -36,7 +36,7 @@ function renderGames(games) {
             </Grid>
         )
     }
-    return null
+    return "Sem jogos a apresentar"
 }
 
 export default function DiscoverGames({ games }) {

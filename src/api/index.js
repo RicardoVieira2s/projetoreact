@@ -30,5 +30,5 @@ export {
     invoiceApi,
     cartApi,
     wishlistApi,
-    newsletterApi,
+    newsletterApi
 }

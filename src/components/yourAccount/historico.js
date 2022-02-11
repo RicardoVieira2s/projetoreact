@@ -33,7 +33,7 @@ class Historico extends Component {
 
     componentDidMount() {
         let clientId = new Cookies().get('clientID');
-        let invoiceList = [{}]
+        let invoiceList = []
         invoiceApi.invoiceGet(clientId, (error, data) => {
             if (error) {
                 console.error(error);
@@ -50,7 +50,7 @@ class Historico extends Component {
                             return
                         }
 
-                        let g=tempGames[0]
+                        let g = tempGames[0]
                         g.price = game.price
                         g.discount = game.discount
                         g.releaseDate = dateToString(g.releaseDate)
@@ -65,14 +65,14 @@ class Historico extends Component {
                     vatId: header.vatId,
                     games: games,
                 })
+                console.log("dasads", invoiceList)
+            })
 
+            this.setState({
+                invoice: invoiceList,
+                isLoaded: true,
             })
         });
-
-        this.setState({
-            isLoaded: true,
-            invoice: invoiceList,
-        })
     }
 
     render() {

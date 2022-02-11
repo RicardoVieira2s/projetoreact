@@ -7,9 +7,8 @@ export default function MoreAbout({ cover_image }) {
     return (
         <Grid
             container
-
         >
-            <Grid xs={12} md={4}
+            <Grid item xs={12} md={4}
                 sx={{
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -28,7 +27,7 @@ export default function MoreAbout({ cover_image }) {
                     />
                 </Card>
             </Grid>
-            <Grid xs={12} md={4}
+            <Grid item xs={12} md={4}
                 sx={{
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -47,7 +46,7 @@ export default function MoreAbout({ cover_image }) {
                     />
                 </Card>
             </Grid>
-            <Grid xs={12} md={4}
+            <Grid item xs={12} md={4}
                 sx={{
                     justifyContent: 'center',
                     alignItems: 'center',

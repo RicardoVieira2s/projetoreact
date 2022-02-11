@@ -5,12 +5,14 @@ import Switch from '@mui/material/Switch'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import GoogleIcon from '@mui/icons-material/Google'
 import GoogleLogin from 'react-google-login'
-import { ClientAccessSchema } from '../../api/src'
+import Cookies from 'universal-cookie'
+import { ClientAccessSchema, ClientSchema, ClientAddressSchema, ClientWalletSchema } from '../../api/src'
+import { accessApi } from '../../api'
 
 class registerContent extends Component {
     render() {
 
-        const handleRegister = async googleData => {
+        const handleRegisterGoogle = async googleData => {
 
             const { OAuth2Client } = require('google-auth-library')
             const client = new OAuth2Client(process.env.CLIENT_ID)
@@ -32,7 +34,7 @@ class registerContent extends Component {
                     const cookie = new Cookies();
                     cookie.set("clientEmail", email, { path: '/' });
                     cookie.set("clientID", data.id, { path: '/' });
-                    cookie.set("clientOAuth", "false", { path: '/' });
+                    cookie.set("clientOAuth", "true", { path: '/' });
 
                     alert(email)
                     console.log(email)
@@ -268,13 +270,13 @@ class registerContent extends Component {
                         <GoogleLogin
                             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                             buttonText="Entrar com conta Google"
-                            onSuccess={handleRegister}
-                            onFailure={handleRegister}
+                            onSuccess={handleRegisterGoogle}
+                            onFailure={handleRegisterGoogle}
                             cookiePolicy={'single_host_origin'}
                             render={renderProps => (
                                 <Button
-                                    // onClick={renderProps.onClick}
-                                    // disabled={renderProps.disabled}
+                                    onClick={renderProps.onClick}
+                                    disabled={renderProps.disabled}
                                     fullWidth
                                     color="error"
                                     startIcon={<GoogleIcon />}

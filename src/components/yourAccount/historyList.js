@@ -23,9 +23,9 @@ export default function HistoryList({ history, index }) {
     }
 
     function printDocument() {
+        const doc = new jsPDF()
         let totalOfGames = 0
         const positionX = 25
-        const doc = new jsPDF()
         let lastGamePositionY = 0
 
         doc.text("GOOFR STORE", 10, 10)
@@ -33,18 +33,24 @@ export default function HistoryList({ history, index }) {
         doc.text("Nif: " + history.vatId, positionX, 40)
         doc.text("Número de jogos: " + history.games.length, positionX, 50)
 
+        lastGamePositionY = 80
         history.games.forEach((game, index) => {
             totalOfGames += game.price * (1 - game.discount)
-            const spacing = 30
-            const positionY = 60 + ((index + 1) * spacing)
+
+            if (lastGamePositionY / 250 >= 1) {
+                lastGamePositionY = 15
+                doc.addPage()
+            }
+            const positionY = lastGamePositionY
 
             doc.text("Jogo: " + game.name, positionX, positionY)
             doc.text("Preço : €" + game.price.toFixed(2), positionX, positionY + 10)
             doc.text("Desconto : " + game.discount * 100 + "%", positionX, positionY + 20)
-            if (history.games.length - 1 === index)
-                lastGamePositionY = positionY + 20
+            lastGamePositionY = positionY + 40
+
         })
-        doc.text("Total : €" + totalOfGames.toFixed(2), positionX, lastGamePositionY + 10)
+        doc.text("Total : €" + totalOfGames.toFixed(2), positionX, lastGamePositionY)
+
         doc.output('dataurlnewwindow')
     }
 
@@ -75,6 +81,7 @@ export default function HistoryList({ history, index }) {
                 {history.games.map((game, index) => {
                     total += game.price * (1 - game.discount)
                     return <Typography key={index} >
+                        <br />
                         Jogo: {game.name}
                         <br />
                         Preço: €{game.price.toFixed(2)}

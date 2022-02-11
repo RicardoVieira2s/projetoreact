@@ -52,16 +52,21 @@ No authorization required
 
 <a name="newsletterGet"></a>
 # **newsletterGet**
-> [NewsletterSchema] newsletterGet()
+> [NewsletterSchema] newsletterGet(opts)
 
 Gets the list of emails subscribed to the newsletter
+
+Gets one registered email or all registered emails
 
 ### Example
 ```javascript
 import {GoofrStore} from 'goofr_store';
 
 let apiInstance = new GoofrStore.NewsletterApi();
-apiInstance.newsletterGet((error, data, response) => {
+let opts = { 
+  'email': "email_example" // String | Email to search
+};
+apiInstance.newsletterGet(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -71,7 +76,10 @@ apiInstance.newsletterGet((error, data, response) => {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **email** | **String**| Email to search | [optional] 
 
 ### Return type
 

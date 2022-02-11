@@ -93,18 +93,21 @@ export class NewsletterApi {
 
     /**
      * Gets the list of emails subscribed to the newsletter
+     * Gets one registered email or all registered emails
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.email Email to search
      * @param {module:api/NewsletterApi~newsletterGetCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
      */
-    newsletterGet(callback) {
-      
+    newsletterGet(opts, callback) {
+      opts = opts || {};
       let postBody = null;
 
       let pathParams = {
         
       };
       let queryParams = {
-        
+        'email': opts['email']
       };
       let headerParams = {
         

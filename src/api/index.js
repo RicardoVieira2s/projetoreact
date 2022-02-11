@@ -15,6 +15,7 @@ const accessApi = new goofrStore.AccessApi(api)
 const invoiceApi = new goofrStore.InvoiceApi(api)
 const cartApi = new goofrStore.CartApi(api)
 const wishlistApi = new goofrStore.WishlistApi(api)
+const newsletterApi = new goofrStore.NewsletterApi(api)
 
 export {
     libraryApi, 
@@ -29,4 +30,5 @@ export {
     invoiceApi,
     cartApi,
     wishlistApi,
+    newsletterApi,
 }

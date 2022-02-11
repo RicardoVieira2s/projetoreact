@@ -40,11 +40,11 @@ class Historico extends Component {
                 return
             }
 
-            data.map(header => {
+            data.forEach(header => {
                 let games = []
 
-                header.games.map(game => {
-                    return gameApi.gameGet({ id: game.idGame }, (error, tempGames) => {
+                header.games.forEach(game => {
+                    gameApi.gameGet({ id: game.idGame }, (error, tempGames) => {
                         if (error) {
                             console.error(error);
                             return
@@ -57,6 +57,7 @@ class Historico extends Component {
                         games.push(g)
                     });
                 })
+
 
                 invoiceList.push({
                     id: header.id,
@@ -77,7 +78,7 @@ class Historico extends Component {
     render() {
         const { classes } = this.props
         const { isLoaded, invoice } = this.state
-        
+
         if (!isLoaded) {
             return <div>Loading...</div>
         }

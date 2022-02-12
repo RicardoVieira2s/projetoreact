@@ -117,9 +117,9 @@ export const Footer = React.memo(function GOOFRFooter() {
     const [email, setEmail] = useState("");
 
     const handleSubmit = async e => {
-        e.preventDefault();
-        e.stopPropagation();
+
         newsletterApi.newsletterPost(email, (error, data, response) => {
+            console.log("email", email)
             if (error) {
                 alert(JSON.parse(response.text).error);
             }
@@ -174,19 +174,16 @@ export const Footer = React.memo(function GOOFRFooter() {
                                 </Typography>
                             </Item>
                             <Item>
-                                <form>
-                                    <EmailSubscribe
-                                        className={classes.form}
-                                        onSubmit={handleSubmit}
-                                        useStyles={useStyles}
-                                        inputClearedAfterSubmit
-                                    >
-                                        <EmailTextInput placeholder="Email..." onChange={e => setEmail(e.target.value)} />
-
-                                        <input type="submit" className={classes.submit} value="Subscrever" />
-
-                                    </EmailSubscribe>
-                                </form>
+                                <EmailSubscribe
+                                    className={classes.form}
+                                    onSubmit={handleSubmit}
+                                    useStyles={useStyles}
+                                    inputClearedAfterSubmit
+                                    method='POST'
+                                >
+                                    <EmailTextInput placeholder="Email..." onChange={e => setEmail(e.target.value)} />
+                                    <input type="submit" className={classes.submit} value="Subscrever" />
+                                </EmailSubscribe>
                             </Item>
                         </Row>
                     </Box>

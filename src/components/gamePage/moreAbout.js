@@ -7,6 +7,9 @@ export default function MoreAbout({ cover_image }) {
     return (
         <Grid
             container
+            style={{
+                padding: "20px",
+            }}
         >
             <Grid item xs={12} md={4}
                 sx={{

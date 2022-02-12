@@ -191,15 +191,6 @@ export default function Login() {
                   )}
 
                 />
-                {/* <Button
-                  fullWidth
-                  color="error"
-                  startIcon={<GoogleIcon />}
-                  size="large"
-                  variant="contained"
-                >
-                  Iniciar conta Google
-                </Button> */}
               </Grid>
             </Grid>
           </CardContent>

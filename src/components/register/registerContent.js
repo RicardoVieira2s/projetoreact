@@ -20,6 +20,7 @@ class registerContent extends Component {
             clientAccess: new ClientAccessSchema(),
             clientAddress: new ClientAddressSchema(),
             clientNewsletter: false,
+            google: false,
         }
     }
 
@@ -59,6 +60,7 @@ class registerContent extends Component {
             this.setState({
                 client: client,
                 clientAccess: access,
+                google: true
             })
         }
 
@@ -125,10 +127,14 @@ class registerContent extends Component {
                                 fullWidth
                                 label="E-mail"
                                 name="E-mail"
+                                value={this.state.clientAccess.email}
                                 required
                                 variant="outlined"
                                 type="email"
                                 variant="outlined"
+                                disabled={this.state.google}
+                                InputLabelProps={{ shrink: (this.state.clientAccess.email !== undefined && this.state.clientAccess.email !== "") }}
+                                autoFocus={true}
                                 onChange={e => this.setState({
                                     clientAccess: {
                                         ...this.state.clientAccess,
@@ -147,6 +153,7 @@ class registerContent extends Component {
                                 label="Password"
                                 name="Password"
                                 type="password"
+                                disabled={this.state.google}
                                 required
                                 variant="outlined"
                                 onChange={e => this.setState({
@@ -166,8 +173,10 @@ class registerContent extends Component {
                                 fullWidth
                                 label="Nome Próprio"
                                 name="Nome Próprio"
+                                InputLabelProps={{ shrink: (this.state.client.name !== undefined && this.state.client.name !== "") }}
                                 required
                                 variant="outlined"
+                                value={this.state.client.name}
                                 onChange={e => this.setState({
                                     client: {
                                         ...this.state.client,
@@ -185,8 +194,10 @@ class registerContent extends Component {
                                 fullWidth
                                 label="Apelido"
                                 name="Apelido"
+                                InputLabelProps={{ shrink: (this.state.client.surname !== undefined && this.state.client.surname !== "") }}
                                 required
                                 variant="outlined"
+                                value={this.state.client.surname}
                                 onChange={e => this.setState({
                                     client: {
                                         ...this.state.client,
@@ -203,7 +214,7 @@ class registerContent extends Component {
                             <TextField
                                 fullWidth
                                 type="date"
-                                focused
+                                InputLabelProps={{ shrink: (true) }}
                                 variant="outlined"
                                 label="Data de nascimento"
                                 required
@@ -410,7 +421,7 @@ class registerContent extends Component {
                                 cookiePolicy={'single_host_origin'}
                                 render={renderProps => (
                                     <Button
-                                        //onClick={handleRegisterGoogle}
+                                        onClick={renderProps.onClick}
                                         disabled={renderProps.disabled}
                                         fullWidth
                                         color="error"

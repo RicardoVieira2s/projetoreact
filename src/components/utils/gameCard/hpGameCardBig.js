@@ -8,7 +8,110 @@ import WishlistButton from '../wishlistButton'
 import CartButton from '../cartButton'
 import StarsReview from '../starsReview'
 
-export default function GameCardBig( {game} ) {
+export default function GameCardBig({ game }) {
+
+    function renderGamePrice() {
+        console.log(game.discount)
+        let gamePrice
+        if (game.discount === 0) {
+            gamePrice = game.price
+            return (
+                <Grid
+                    item xs={6}
+                    sx={{
+                        textAlign: 'right',
+                        paddingRight: '8px'
+                    }}
+                >
+                    <Typography
+                        sx={{
+                            textOverflow: "ellipsis",
+                            overflow: "hidden",
+                            maxWidth: '290px',
+                            color: COLOR_BDAZZLED_BLUE,
+                            fontSize: '20px',
+                            justifyContent: 'flex-end',
+                        }}
+                        variant="p"
+                    >
+                        €{gamePrice}
+                    </Typography>
+
+                </Grid>
+            )
+        } else {
+            gamePrice = game.price + (game.price * game.discount)
+            return (
+                <Grid
+                    sx={{
+                        width: '100%',
+                        height: '100%',
+                        alignItems: 'center',
+                        textAlign: 'right',
+                        paddingRight: '8px'
+                    }}
+                >
+                    <Grid
+                        sx={{
+                            width: '100%',
+                            height: '50%',
+                            display: 'flex',
+                            justifyContent: 'flex-end',
+                            alignItems: 'center',
+                            textAlign: 'right',
+                        }}
+                    >
+                        <Grid item xs={6}
+                            textAlign={'right'}
+                        >
+                            <Typography
+                                sx={{
+                                    textOverflow: "ellipsis",
+                                    overflow: "hidden",
+                                    maxWidth: '290px',
+                                    color: COLOR_BDAZZLED_BLUE,
+                                    fontSize: '13px',
+                                    textDecoration: 'line-through'
+                                }}
+                                variant="p"
+                            >
+                                €{gamePrice.toFixed(2)}
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                    <Grid
+                        sx={{
+                            width: '100%',
+                            height: '50%',
+                            display: 'flex',
+                            justifyContent: 'flex-end',
+                            alignItems: 'center',
+                            textAlign: 'right',
+                        }}
+                    >
+                        <Grid item xs={6}
+                            textAlign={'right'}
+                        >
+                            <Typography
+                                sx={{
+                                    textOverflow: "ellipsis",
+                                    overflow: "hidden",
+                                    maxWidth: '290px',
+                                    color: COLOR_BDAZZLED_BLUE,
+                                    fontSize: '20px'
+                                }}
+                                variant="p"
+                            >
+                                €{game.price}
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            )
+        }
+
+    }
+
     return (
         <CardContent
             style={{
@@ -28,7 +131,7 @@ export default function GameCardBig( {game} ) {
                     style={{
                         position: 'relative',
                         backgroundColor: COLOR_PLATINIUM,
-                        padding: '0px',
+                        padding: '5px 15px',
                         height: '80px'
                     }}
                 >
@@ -43,7 +146,7 @@ export default function GameCardBig( {game} ) {
                             sx={{
                                 display: 'flex',
                                 width: '100%',
-                                height: '100%'
+                                height: '100%',
                             }}
                         >
                             <Grid
@@ -53,13 +156,11 @@ export default function GameCardBig( {game} ) {
                                     display: 'flex',
                                     justifyContent: 'space-evenly',
                                     alignItems: 'center',
-                                    paddingRight: '20px'
                                 }}
                             >
                                 <Grid item xs={8}>
                                     <Typography
                                         sx={{
-                                            paddingLeft: "13px",
                                             textOverflow: "ellipsis",
                                             overflow: 'hidden',
                                             maxWidth: '290px',
@@ -76,7 +177,7 @@ export default function GameCardBig( {game} ) {
                                         textAlign: 'right',
                                     }}
                                 >
-                                    <StarsReview ratingValue={game.rate} />
+                                    <StarsReview gameId={game.id} />
                                 </Grid>
                             </Grid>
                             <Grid
@@ -86,7 +187,6 @@ export default function GameCardBig( {game} ) {
                                     display: 'flex',
                                     justifyContent: 'space-evenly',
                                     alignItems: 'center',
-                                    paddingRight: '20px'
                                 }}
                             >
                                 <Grid item xs={6}
@@ -95,23 +195,7 @@ export default function GameCardBig( {game} ) {
                                     <WishlistButton gameId={game.id} />
                                     <CartButton gameId={game.id} />
                                 </Grid>
-                                <Grid item xs={6}
-                                    textAlign={'right'}
-                                >
-                                    <Typography
-                                        sx={{
-                                            paddingLeft: "13px",
-                                            textOverflow: "ellipsis",
-                                            overflow: "hidden",
-                                            maxWidth: '290px',
-                                            color: COLOR_BDAZZLED_BLUE,
-                                            fontSize: '20px'
-                                        }}
-                                        variant="p"
-                                    >
-                                        €{game.price}
-                                    </Typography>
-                                </Grid>
+                                {renderGamePrice(game)}
                             </Grid>
                         </Grid>
                     </Box>

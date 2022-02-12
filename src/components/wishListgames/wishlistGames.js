@@ -47,26 +47,25 @@ class WishlistGames extends Component {
 
     deleteGameFromWishList(id) {
         let clientId = new Cookies().get('clientID')
-        wishlistApi.wishlistDelete(clientId, { gameID: id }, (error, data) => {
+        wishlistApi.wishlistDelete(clientId, { gameID: id }, (error, data, response) => {
             if (error) {
-                console.error(error)
+                alert(JSON.parse(response.text).error);
             } else {
-                console.log('API called successfully.')
+                window.location.reload(true);
             }
         });
-        document.location.href = "/wishlist"
     }
 
     addGameToClientCart(id) {
         let clientId = new Cookies().get('clientID')
-        cartApi.cartPost(clientId, id , (error, data) => {
+        cartApi.cartPost(clientId, id, (error, data, response) => {
             if (error) {
-                console.error(error)
+                alert(JSON.parse(response.text).error);
             } else {
-                console.log('API called successfully.')
+                window.location.reload(true);
             }
         });
-        document.location.href = "/wishlist"
+        window.location.reload(true);
     }
 
     render() {

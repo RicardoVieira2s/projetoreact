@@ -63,9 +63,6 @@ export default function Login() {
         cookie.set("clientID", data.id, { path: '/' });
         cookie.set("clientOAuth", "false", { path: '/' });
 
-        alert(email)
-        console.log(email)
-
         document.location.href = "/";
       }
 

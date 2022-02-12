@@ -88,8 +88,8 @@ export default function GameCardMedium({ game }) {
                                 <Grid item xs={6}
                                     textAlign={'left'}
                                 >
-                                    <WishlistButton />
-                                    <CartButton />
+                                    <WishlistButton gameId={game.id} />
+                                    <CartButton gameId={game.id} />
                                 </Grid>
                                 <Grid item xs={6}
                                     textAlign={'right'}

@@ -13,6 +13,7 @@ import MoreIcon from '@mui/icons-material/MoreVert'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import LogoutIcon from '@mui/icons-material/Logout'
+import LoginIcon from '@mui/icons-material/Login'
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks'
 import PersonIcon from '@mui/icons-material/Person'
 import HomeIcon from '@mui/icons-material/Home'
@@ -60,7 +61,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     height: '40px',
     '& .MuiInputBase-input': {
         padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
         transition: theme.transitions.create('width'),
         width: '295px',
@@ -82,7 +82,7 @@ export default function PrimarySearchAppBar(props) {
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
 
     const handleProfileMenuOpen = (event) => {
-        
+
         if (props.user) {
             setAnchorEl(event.currentTarget)
         } else {
@@ -122,6 +122,12 @@ export default function PrimarySearchAppBar(props) {
                 <div>
                     {renderMobileMenu}
                     {renderMenu}
+                </div>
+            )
+        } else {
+            return (
+                <div>
+                    {renderMobileMenu}
                 </div>
             )
         }
@@ -231,6 +237,152 @@ export default function PrimarySearchAppBar(props) {
         </Menu>
     )
 
+    function renderMobileMenuTest(client) {
+        if (client !== undefined && client !== null) {
+            return (
+                <>
+                    <Link to="/">
+                        <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
+                            <IconButton
+                                color={MOBILE_ICON_BUTTON_COLOR}
+                                style={MOBILE_ICON_BUTTON_STYLE}
+                                disableRipple
+                            >
+                                <HomeIcon fontSize="small" />
+                            </IconButton>
+                            <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
+                                Página Principal
+                            </p>
+                        </MenuItem>
+                    </Link>
+                    <Link to="/account">
+                        <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
+                            <IconButton
+                                color={MOBILE_ICON_BUTTON_COLOR}
+                                style={MOBILE_ICON_BUTTON_STYLE}
+                                disableRipple
+                            >
+                                <PersonIcon fontSize="small" />
+                            </IconButton>
+                            <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
+                                Perfil
+                            </p>
+                        </MenuItem>
+                    </Link>
+                    <Link to="/wishlist">
+                        <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
+                            <IconButton
+                                color={MOBILE_ICON_BUTTON_COLOR}
+                                style={MOBILE_ICON_BUTTON_STYLE}
+                                disableRipple
+                            >
+                                <Badge
+                                    color="error"
+                                >
+                                    <FavoriteIcon fontSize="small" />
+                                </Badge>
+                            </IconButton>
+                            <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
+                                Lista de Desejos
+                            </p>
+                        </MenuItem>
+                    </Link>
+                    {
+                        props.userCart &&
+                        <Link to="/cart">
+                            <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
+                                <IconButton
+                                    color={MOBILE_ICON_BUTTON_COLOR}
+                                    style={MOBILE_ICON_BUTTON_STYLE}
+                                    disableRipple
+                                >
+                                    <Badge
+                                        variant="dot" invisible={props.userCart.length <= 0}
+                                        color="error"
+                                    >
+                                        <ShoppingCartIcon fontSize="small" />
+                                    </Badge>
+                                </IconButton>
+                                <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
+                                    Carrinho
+                                </p>
+                            </MenuItem>
+                        </Link>
+                    }
+                    <Link to="/library">
+                        <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
+                            <IconButton
+                                color={MOBILE_ICON_BUTTON_COLOR}
+                                style={MOBILE_ICON_BUTTON_STYLE}
+                                disableRipple
+                            >
+                                <LibraryBooksIcon fontSize="small" />
+                            </IconButton>
+                            <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
+                                Biblioteca
+                            </p>
+                        </MenuItem>
+                    </Link>
+                    <Divider
+                        variant="middle"
+                        sx={{ marginTop: 1.5 }}
+                    />
+                    <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}
+                        onClick={handleLogout}
+                    >
+                        <IconButton
+                            color={MOBILE_ICON_BUTTON_COLOR}
+                            style={MOBILE_ICON_BUTTON_STYLE}
+                            disableRipple
+                        >
+                            <LogoutIcon fontSize="small" />
+                        </IconButton>
+                        <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
+                            Logout
+                        </p>
+                    </MenuItem>
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <Link to="/">
+                        <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
+                            <IconButton
+                                color={MOBILE_ICON_BUTTON_COLOR}
+                                style={MOBILE_ICON_BUTTON_STYLE}
+                                disableRipple
+                            >
+                                <HomeIcon fontSize="small" />
+                            </IconButton>
+                            <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
+                                Página Principal
+                            </p>
+                        </MenuItem>
+                    </Link>
+                    <Divider
+                        variant="middle"
+                        sx={{ marginTop: 1.5 }}
+                    />
+                    <Link to="/login">
+                        <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
+                            <IconButton
+                                color={MOBILE_ICON_BUTTON_COLOR}
+                                style={MOBILE_ICON_BUTTON_STYLE}
+                                disableRipple
+                            >
+                                <LoginIcon fontSize="small" />
+                            </IconButton>
+                            <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
+                                Login
+                            </p>
+                        </MenuItem>
+                    </Link>
+                </>
+            )
+        }
+    }
+
     const mobileMenuId = 'primary-search-account-menu-mobile'
     const renderMobileMenu = (
         <Menu
@@ -260,108 +412,11 @@ export default function PrimarySearchAppBar(props) {
                 },
             }}
         >
-            <Link to="/">
-                <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
-                    <IconButton
-                        color={MOBILE_ICON_BUTTON_COLOR}
-                        style={MOBILE_ICON_BUTTON_STYLE}
-                        disableRipple
-                    >
-                        <HomeIcon fontSize="small" />
-                    </IconButton>
-                    <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
-                        Página Principal
-                    </p>
-                </MenuItem>
-            </Link>
-            <Link to="/account">
-                <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
-                    <IconButton
-                        color={MOBILE_ICON_BUTTON_COLOR}
-                        style={MOBILE_ICON_BUTTON_STYLE}
-                        disableRipple
-                    >
-                        <PersonIcon fontSize="small" />
-                    </IconButton>
-                    <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
-                        Perfil
-                    </p>
-                </MenuItem>
-            </Link>
-            <Link to="/wishlist">
-                <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
-                    <IconButton
-                        color={MOBILE_ICON_BUTTON_COLOR}
-                        style={MOBILE_ICON_BUTTON_STYLE}
-                        disableRipple
-                    >
-                        <Badge
-                            color="error"
-                        >
-                            <FavoriteIcon fontSize="small" />
-                        </Badge>
-                    </IconButton>
-                    <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
-                        Lista de Desejos
-                    </p>
-                </MenuItem>
-            </Link>
-            {
-                props.userCart &&
-                <Link to="/cart">
-                    <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
-                        <IconButton
-                            color={MOBILE_ICON_BUTTON_COLOR}
-                            style={MOBILE_ICON_BUTTON_STYLE}
-                            disableRipple
-                        >
-                            <Badge
-                                variant="dot" invisible={props.userCart.length <= 0}
-                                color="error"
-                            >
-                                <ShoppingCartIcon fontSize="small" />
-                            </Badge>
-                        </IconButton>
-                        <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
-                            Carrinho
-                        </p>
-                    </MenuItem>
-                </Link>
-            }
-            <Link to="/library">
-                <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
-                    <IconButton
-                        color={MOBILE_ICON_BUTTON_COLOR}
-                        style={MOBILE_ICON_BUTTON_STYLE}
-                        disableRipple
-                    >
-                        <LibraryBooksIcon fontSize="small" />
-                    </IconButton>
-                    <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
-                        Biblioteca
-                    </p>
-                </MenuItem>
-            </Link>
-            <Divider
-                variant="middle"
-                sx={{ marginTop: 1.5 }}
-            />
-            <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}
-                onClick={handleLogout}
-            >
-                <IconButton
-                    color={MOBILE_ICON_BUTTON_COLOR}
-                    style={MOBILE_ICON_BUTTON_STYLE}
-                    disableRipple
-                >
-                    <LogoutIcon fontSize="small" />
-                </IconButton>
-                <p style={{ marginLeft: TYPOGRAPHY_MARGIN_LEFT }}>
-                    Logout
-                </p>
-            </MenuItem>
+            {renderMobileMenuTest(props.user)}
         </Menu >
+
     )
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar
@@ -489,7 +544,7 @@ export default function PrimarySearchAppBar(props) {
                     </Box>
                 </Toolbar>
             </AppBar>
-            
+
             {renderMenuFunc(props.user)}
         </Box>
     )

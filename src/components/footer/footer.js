@@ -117,9 +117,8 @@ export const Footer = React.memo(function GOOFRFooter() {
     const [email, setEmail] = useState("");
 
     const handleSubmit = async e => {
-
-        console.log("email", email)
-
+        e.preventDefault();
+        e.stopPropagation();
         newsletterApi.newsletterPost(email, (error, data, response) => {
             if (error) {
                 alert(JSON.parse(response.text).error);
@@ -127,7 +126,6 @@ export const Footer = React.memo(function GOOFRFooter() {
             else {
                 alert("Nesletter subscrita com sucesso");
             }
-
         })
     };
 
@@ -176,15 +174,19 @@ export const Footer = React.memo(function GOOFRFooter() {
                                 </Typography>
                             </Item>
                             <Item>
-                                <EmailSubscribe
-                                    className={classes.form}
-                                    onSubmit={handleSubmit}
-                                    useStyles={useStyles}
-                                    inputClearedAfterSubmit
-                                >
-                                    <EmailTextInput placeholder="Email..." onChange={e => setEmail(e.target.value)} />
-                                    <input method='POST' type="submit" className={classes.submit} value="Subscrever" />
-                                </EmailSubscribe>
+                                <form>
+                                    <EmailSubscribe
+                                        className={classes.form}
+                                        onSubmit={handleSubmit}
+                                        useStyles={useStyles}
+                                        inputClearedAfterSubmit
+                                    >
+                                        <EmailTextInput placeholder="Email..." onChange={e => setEmail(e.target.value)} />
+
+                                        <input type="submit" className={classes.submit} value="Subscrever" />
+
+                                    </EmailSubscribe>
+                                </form>
                             </Item>
                         </Row>
                     </Box>

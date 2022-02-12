@@ -127,7 +127,7 @@ class Endereco extends Component {
                                     })}
                                     name="Número de porta"
                                     type="tel"
-                                    inputProps={{ maxLength: 5, pattern: "[1-9]{1}" }}
+                                    inputProps={{ maxLength: 5 }}
                                     required
                                     variant="outlined"
                                 />

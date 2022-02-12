@@ -1,10 +1,10 @@
-export default function camelCaseKeysToUnderscore(obj){
-    if (typeof(obj) != "object") return obj
+export default function camelCaseKeysToUnderscore(obj) {
+    if (typeof (obj) != "object") return obj
 
-    for(var oldName in obj){
-        
+    for (var oldName in obj) {
+
         // Camel to underscore
-        let newName = oldName.replace(/([A-Z])/g, function($1){return "_"+$1.toLowerCase()})
+        let newName = oldName.replace(/([A-Z])/g, function ($1) { return "_" + $1.toLowerCase() })
 
         // Only process if names are different
         if (newName !== oldName) {
@@ -16,7 +16,7 @@ export default function camelCaseKeysToUnderscore(obj){
         }
 
         // Recursion
-        if (typeof(obj[newName]) == "object") {
+        if (typeof (obj[newName]) == "object") {
             obj[newName] = camelCaseKeysToUnderscore(obj[newName])
         }
 

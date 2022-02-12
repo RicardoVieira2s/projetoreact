@@ -131,8 +131,7 @@ class Privacidade extends Component {
         }
 
         return (
-            // <form autoComplete="off">
-            <>
+            <form autoComplete="off">
                 <Card className={classes.container}>
                     <Title
                         name={'Privacidade'}
@@ -187,7 +186,7 @@ class Privacidade extends Component {
                             name={"Guardar alterações"} />
                     </Box>
                 </Card>
-            </>
+            </form>
         )
     }
 }

@@ -74,6 +74,7 @@ class registerContent extends Component {
             let client = this.state.client
             let address = this.state.clientAddress
             client.picture = 'http://localhost:3000/images/avatar/avatar-Man-1.png'
+            client.active = true
 
             client = camelCaseKeysToUnderscore(client)
             address = camelCaseKeysToUnderscore(address)

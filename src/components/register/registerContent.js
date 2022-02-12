@@ -202,7 +202,7 @@ class registerContent extends Component {
                             <TextField
                                 fullWidth
                                 type="date"
-                                defaultValue={dateWithoutTimeZone(new Date(Date.now()))}
+                                focused
                                 variant="outlined"
                                 label="Data de nascimento"
                                 required

@@ -14,6 +14,7 @@
  *
  */
 import {ApiClient} from "../ApiClient";
+import {BestSellersSchema} from '../model/BestSellersSchema';
 import {TopReviewsSchema} from '../model/TopReviewsSchema';
 
 /**
@@ -35,6 +36,47 @@ export class StatisticsApi {
         this.apiClient = apiClient || ApiClient.instance;
     }
 
+    /**
+     * Callback function to receive the result of the bestSellersGet operation.
+     * @callback moduleapi/StatisticsApi~bestSellersGetCallback
+     * @param {String} error Error message, if any.
+     * @param {Array.<module:model/BestSellersSchema>{ data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Gets the bestselling games
+     * @param {module:api/StatisticsApi~bestSellersGetCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+     */
+    bestSellersGet(callback) {
+      
+      let postBody = null;
+
+      let pathParams = {
+        
+      };
+      let queryParams = {
+        
+      };
+      let headerParams = {
+        
+      };
+      let formParams = {
+        
+      };
+
+      let authNames = [];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = [BestSellersSchema];
+
+      return this.apiClient.callApi(
+        '/bestSellers', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
     /**
      * Callback function to receive the result of the topReviewsGet operation.
      * @callback moduleapi/StatisticsApi~topReviewsGetCallback

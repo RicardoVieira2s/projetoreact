@@ -14,6 +14,7 @@
  *
  */
 import {ApiClient} from './ApiClient';
+import {BestSellersSchema} from './model/BestSellersSchema';
 import {ClientAccessSchema} from './model/ClientAccessSchema';
 import {ClientAddressSchema} from './model/ClientAddressSchema';
 import {ClientSchema} from './model/ClientSchema';
@@ -90,6 +91,12 @@ export {
      * @property {module:ApiClient}
      */
     ApiClient,
+
+    /**
+     * The BestSellersSchema model constructor.
+     * @property {module:model/BestSellersSchema}
+     */
+    BestSellersSchema,
 
     /**
      * The ClientAccessSchema model constructor.

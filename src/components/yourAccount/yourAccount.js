@@ -107,6 +107,9 @@ class YourAccount extends Component {
 	componentDidMount() {
 
 		let clientId = new Cookies().get('clientID')
+		
+		if (clientId === undefined || clientId === null)
+			return
 
 		clientApi.clientGet({ id: clientId }, (error, data) => {
 
@@ -156,7 +159,7 @@ class YourAccount extends Component {
 	render() {
 		const { classes } = this.props
 		const { isLoaded, client, clientWallet, addBalance, value } = this.state
-		
+
 		if (!isLoaded) {
 			return <div>Loading...</div>
 		}
@@ -182,7 +185,7 @@ class YourAccount extends Component {
 								display="flex"
 								flexDirection="row"
 								justifyContent="center"
-								alignItems= "center"
+								alignItems="center"
 							>
 								<TextField
 									onChange={e => this.setState({ addBalance: e.target.value })}

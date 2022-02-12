@@ -12,6 +12,7 @@ import { clientApi, accessApi, newsletterApi } from '../../api'
 import Cookies from 'universal-cookie'
 import camelCaseKeysToUnderscore from '../utils/api/camelCaseKeysToUnderscore'
 import { ClientAccessSchema } from '../../api/src'
+import { stringToBolean } from '../utils/boolean'
 
 const useStyles = theme => ({
     container: {
@@ -26,6 +27,15 @@ const useStyles = theme => ({
         justifyContent: 'flex-end',
         padding: '16px',
     },
+    switch: {
+        '& .MuiSwitch-switchBase.Mui-checked': {
+            color: COLOR_BDAZZLED_BLUE,
+        },
+        '& .MuiSwitch-switchBase.Mui-checked.MuiSwitch-track': {
+            backgroundColor: COLOR_SHADOW_BLUE,
+        },
+        padding: '12px',
+    }
 })
 
 class Privacidade extends Component {
@@ -37,14 +47,38 @@ class Privacidade extends Component {
             emailClient: null,
             password: null,
             isLoaded: false,
-            oauth: null,
+            oauth: false,
+            defaultSwitchValue: false,
         }
     }
 
     componentDidMount() {
         let clientId = new Cookies().get('clientID')
         let emailClient = new Cookies().get('clientEmail')
-        let oauth = new Cookies().get("clientOauth")
+        let oauth = new Cookies().get("clientOAuth")
+
+        oauth = stringToBolean(oauth)
+
+        if (clientId === undefined || clientId === null)
+            return
+
+        if (emailClient === undefined || emailClient === null)
+            return
+
+        if (oauth === undefined || oauth === null)
+            return
+
+        let defaultSwitchValue = false
+        newsletterApi.newsletterGet({ email: emailClient }, (error, data, response) => {
+            if (error) {
+                defaultSwitchValue = false
+            } else {
+                if (response.statusCode === 200) {
+                    defaultSwitchValue = true
+                }
+            }
+        })
+
         clientApi.clientGet({ id: clientId }, (error, data) => {
             if (error) {
                 console.error(error)
@@ -57,49 +91,15 @@ class Privacidade extends Component {
                 client: data[0],
                 emailClient: emailClient,
                 oauth: oauth,
+                defaultSwitchValue: defaultSwitchValue,
             })
         })
     }
 
-    newsletter(email) {
-        newsletterApi.newsletterGet({ email }, (error, data) => {
-            if (error) {
-                return <FormControlLabel
-                    style={{
-                        padding: '12px',
-                        '& .MuiSwitch-switchBase.Mui-checked': {
-                            color: COLOR_BDAZZLED_BLUE,
-                        },
-                        '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                            backgroundColor: COLOR_SHADOW_BLUE,
-                        },
-                    }}
-                    control={<Switch />}
-                    label="Subscrição newsletter"
-                    labelPlacement="start" />
-            } else {
-                return <FormControlLabel
-                    style={{
-                        padding: '12px',
-                        '& .MuiSwitch-switchBase.Mui-checked': {
-                            color: COLOR_BDAZZLED_BLUE,
-                        },
-                        '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                            backgroundColor: COLOR_SHADOW_BLUE,
-                        },
-                    }}
-                    control={<Switch defaultChecked />}
-                    label="Subscrição newsletter"
-                    labelPlacement="start" />
-            }
-        })
-    }
-
     updateClient() {
-        let body = new ClientAccessSchema(false, this.state.emailClient)
+        let body = new ClientAccessSchema(this.state.oauth, this.state.emailClient)
         body.emailClient = this.state.emailClient
         body.password = this.state.password
-        body.oauth = this.state.oauth
 
         if (this.state.client == null)
             return
@@ -112,18 +112,19 @@ class Privacidade extends Component {
             if (error) {
                 console.error(error)
             } else {
-                console.log(body.emailClient)
-                console.log(body.password)
-                console.log(body)
-                console.log(obj.id)
                 console.log('API called successfully.')
             }
         })
+
+        if (this.state.defaultSwitchValue === true)
+            newsletterApi.newsletterPost(this.state.emailClient, null)
+        else
+            newsletterApi.newsletterDelete(this.state.emailClient, null)
     }
 
     render() {
         const { classes } = this.props
-        const { isLoaded, emailClient } = this.state
+        const { isLoaded, emailClient, oauth, defaultSwitchValue } = this.state
 
         if (!isLoaded) {
             return <div>Loading...</div>
@@ -160,11 +161,22 @@ class Privacidade extends Component {
                                     label="Password"
                                     name="Password"
                                     type="password"
-                                    required
+                                    disabled={oauth}
                                     variant="outlined" />
                             </Grid>
                             <Grid item md={6} xs={12}>
-                                {this.newsletter(emailClient)}
+                                <FormControlLabel
+                                    className={classes.switch}
+                                    control=
+                                    {<Switch
+                                        checked={defaultSwitchValue}
+                                        onChange={e => this.setState({
+                                            defaultSwitchValue: e.target.checked
+                                        })}
+                                    />
+                                    }
+                                    label="Subscrição newsletter"
+                                    labelPlacement="start" />
                             </Grid>
                         </Grid>
                     </CardContent>

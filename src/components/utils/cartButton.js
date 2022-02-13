@@ -4,7 +4,7 @@ import { IconButton } from '@mui/material'
 import { cartApi } from '../../api'
 import Cookies from 'universal-cookie'
 
-export default function CartButton({ gameId }) {
+export default function CartButton( { gameId, size="medium" }) {
 
     function addGameToClientCart(gameId) {
 
@@ -30,6 +30,7 @@ export default function CartButton({ gameId }) {
                         color: COLOR_SHADOW_BLUE,
                     },
                 }}
+                fontSize={size}
             />
         </IconButton>
     )

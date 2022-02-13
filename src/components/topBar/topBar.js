@@ -1,11 +1,11 @@
 import * as React from 'react'
 import './topbar.css'
-import { COLOR_RICH_BLACK, COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM } from '../utils/color'
+import { COLOR_RICH_BLACK, COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM, COLOR_SHADOW_BLUE, } from '../utils/color'
 import { FONT_SECUNDARY_SIZE } from '../utils/font'
-import { BORDER_RADIUS_20PX } from '../utils/border'
+import { BORDER_RADIUS_10PX, BORDER_RADIUS_20PX, BORDER_RADIUS_5PX } from '../utils/border'
 import { Link } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
-import { IconButton, Toolbar, Paper, Button, Divider, Menu, MenuItem, Badge, InputBase, Box, AppBar } from '@mui/material'
+import { IconButton, Toolbar, Paper, Button, Divider, Menu, MenuItem, Badge, InputBase, Box, AppBar, Grid, CardMedia, Typography } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import FavoriteIcon from '@mui/icons-material/Favorite'
@@ -19,6 +19,10 @@ import PersonIcon from '@mui/icons-material/Person'
 import HomeIcon from '@mui/icons-material/Home'
 import ImageLogo from './imageLogo'
 import Cookies from 'universal-cookie'
+import { useState } from 'react'
+import { searchApi } from '../../api'
+import CartButton from '../utils/cartButton'
+import WishlistButton from '../utils/wishlistButton'
 
 const DESKTOP_ITEM_HEIGHT = '27px'
 const MOBILE_ITEM_HEIGHT = '50px'
@@ -32,10 +36,10 @@ const MOBILE_ICON_BUTTON_COLOR = "inherit"
 const Search = styled('div')(({ theme }) => ({
     height: '40px',
     position: 'relative',
-    borderRadius: '20px',
+    borderRadius: BORDER_RADIUS_20PX,
     background: COLOR_PLATINIUM,
     color: COLOR_RICH_BLACK,
-    marginRight: theme.spacing(1),
+    //marginRight: theme.spacing(1),
     marginLeft: 0,
     width: '360px',
     [theme.breakpoints.up('lg')]: {
@@ -237,10 +241,10 @@ export default function PrimarySearchAppBar(props) {
         </Menu>
     )
 
-    function renderMobileMenuTest(client) {
+    function renderMobileMenuFunc(client) {
         if (client !== undefined && client !== null) {
             return (
-                <>
+                <div>
                     <Link to="/">
                         <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
                             <IconButton
@@ -341,11 +345,11 @@ export default function PrimarySearchAppBar(props) {
                             Logout
                         </p>
                     </MenuItem>
-                </>
+                </div>
             )
         } else {
             return (
-                <>
+                <div>
                     <Link to="/">
                         <MenuItem style={{ height: MOBILE_ITEM_HEIGHT }}>
                             <IconButton
@@ -378,7 +382,71 @@ export default function PrimarySearchAppBar(props) {
                             </p>
                         </MenuItem>
                     </Link>
-                </>
+                </div>
+            )
+        }
+    }
+
+    function renderDivider(suggestions, i) {
+        if (i !== suggestions.length - 1) {
+            return (
+                <Divider
+                    variant="middle"
+                    style={{ height: "1px", backgroundColor: COLOR_SHADOW_BLUE }}
+                />
+            )
+        } else {
+            return null
+        }
+    }
+
+    function renderPrice(suggestion) {
+        let gamePrice
+        if (suggestion.price === 0) {
+            return (
+                <Grid item xs={12} style={{ fontSize: "20px" }}>
+                    <Typography
+                        sx={{
+                            textOverflow: "ellipsis",
+                            overflow: "hidden",
+                            maxWidth: '290px',
+                            color: COLOR_BDAZZLED_BLUE,
+                            fontSize: '20px',
+                        }}
+                        variant="p"
+                    >
+                        Gratuito
+                    </Typography>
+
+                </Grid>
+            )
+        } else if (suggestion.discount === 0) {
+            gamePrice = suggestion.price
+            return (
+                <Typography>
+                    €{gamePrice}
+                </Typography>
+            )
+        } else {
+            gamePrice = suggestion.price - (suggestion.price * suggestion.discount)
+            return (
+                <Box>
+                    <Grid item xs={12} style={{ fontSize: "20px" }}>
+                        <Typography
+                            sx={{
+                                fontSize: '15px !important',
+                                textDecoration: 'line-through'
+                            }}
+                        >
+                            €{suggestion.price.toFixed(2)}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={12} style={{ fontSize: "20px" }}>
+                        <Typography>
+                            €{gamePrice.toFixed(2)}
+                        </Typography>
+                    </Grid>
+                </Box>
             )
         }
     }
@@ -412,10 +480,35 @@ export default function PrimarySearchAppBar(props) {
                 },
             }}
         >
-            {renderMobileMenuTest(props.user)}
+            {renderMobileMenuFunc(props.user)}
         </Menu >
 
     )
+
+    const [text, setText] = useState("")
+    const [suggestions, setSuggestions] = useState([])
+    const onChangeHandler = (text) => {
+
+        setText(text)
+        let matches = []
+
+        searchApi.searchGameGet(text, (error, data) => {
+
+            if (error) {
+                console.error(error);
+            }
+
+            if (text.length >= 4) {
+                matches = data.filter(game => {
+                    const regex = new RegExp(`${text}`, "gi")
+                    return game.name.match(regex)
+                })
+            }
+            setSuggestions(matches)
+        })
+    }
+
+    let userId = new Cookies().get("clientID")
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -439,9 +532,78 @@ export default function PrimarySearchAppBar(props) {
                         <StyledInputBase
                             placeholder="Pesquisar jogo..."
                             inputProps={{ 'aria-label': 'search' }}
-
+                            onChange={e => onChangeHandler(e.target.value)}
+                            value={text}
                         />
+                        {suggestions &&
+                            <Box
+                                style={{
+                                    width: '100%',
+                                    position: 'absolute',
+                                    left: 0,
+                                    right: 0,
+                                    marginLeft: 'auto',
+                                    marginRight: 'auto',
+                                    top: '55px',
+                                    zIndex: '1',
+                                    overflow: 'visible',
+                                    borderRadius: BORDER_RADIUS_10PX,
+                                    backgroundColor: COLOR_PLATINIUM,
+                                    color: COLOR_BDAZZLED_BLUE
+                                }}
+                            >
+                                {suggestions.map((suggestion, i) =>
+                                    <Grid>
+                                        <Grid
+                                            key={i}
+                                            //onClick={e => alert(suggestion.name)}
+                                            container
+                                            direction="row"
+                                            justify="center"
+                                            style={{
+                                                padding: '10px',
+                                                alignItems: 'center',
+                                            }}>
+                                            <Grid item xs={12} style={{ maxWidth: "30%" }}>
+                                                <Grid>
+                                                    <CardMedia
+                                                        component="img"
+                                                        image={suggestion.coverImage}
+                                                        style={{
+                                                            borderRadius: BORDER_RADIUS_5PX
+                                                        }}
+                                                    />
+                                                </Grid>
+                                            </Grid>
+                                            <Grid item xs={12} style={{ maxWidth: "70%", paddingLeft: "5px", color: COLOR_BDAZZLED_BLUE }}>
+                                                <Grid container >
+                                                    <Grid item xs={12} style={{ fontSize: "20px" }}>
+                                                        {suggestion.name}
+                                                        {/* <CartButton gameId={suggestion.id}/> */}
+                                                    </Grid>
+                                                    <Grid item xs={6}>
+                                                        {renderPrice(suggestion)}
+                                                    </Grid>
+                                                    <Grid item xs={6}>
+                                                        {userId &&
+                                                            <Grid>
+                                                                <CartButton size="small" gameId={suggestion.id} />
+                                                                <WishlistButton size="small" gameId={suggestion.id} />
+                                                            </Grid>
+                                                        }
+                                                    </Grid>
+                                                </Grid>
+                                            </Grid>
+
+                                        </Grid>
+                                        {renderDivider(suggestions, i)}
+                                    </Grid>
+                                )}
+
+                            </Box>
+                        }
                     </Search>
+
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', sm: 'none', md: 'flex' } }}>
                         {
@@ -459,7 +621,8 @@ export default function PrimarySearchAppBar(props) {
                                         fontSize="medium"
                                     />
                                 </IconButton>
-                            </Link>}
+                            </Link>
+                        }
                         {
                             props.user &&
                             <Link to="/cart">

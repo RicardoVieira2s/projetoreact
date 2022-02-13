@@ -137,35 +137,44 @@ export const Footer = React.memo(function GOOFRFooter() {
                         <Row wrap alignItems="center">
                             <Item grow={2}>
                                 <Item >
-                                    <FacebookRoundedIcon sx={{
-                                        color: COLOR_BDAZZLED_BLUE,
-                                        ':hover': {
-                                            color: COLOR_PLATINIUM,
-                                        },
-                                        mt: '6px',
-                                        paddingRight: '10px',
-                                        cursor: 'pointer'
-                                    }}
-                                        fontSize="medium" />
-                                    <TwitterIcon sx={{
-                                        color: COLOR_BDAZZLED_BLUE,
-                                        ':hover': {
-                                            color: COLOR_PLATINIUM,
-                                        },
-                                        mt: '6px',
-                                        paddingRight: '10px',
-                                        cursor: 'pointer'
-                                    }}
-                                        fontSize="medium" />
-                                    <InstagramIcon sx={{
-                                        color: COLOR_BDAZZLED_BLUE,
-                                        ':hover': {
-                                            color: COLOR_PLATINIUM,
-                                        },
-                                        mt: '6px',
-                                        cursor: 'pointer'
-                                    }}
-                                        fontSize="medium" />
+                                    <FacebookRoundedIcon
+                                        onClick={() => window.open('https://www.facebook.com/', "_blank")}
+                                        sx={{
+                                            color: COLOR_BDAZZLED_BLUE,
+                                            ':hover': {
+                                                color: COLOR_PLATINIUM,
+                                            },
+                                            mt: '6px',
+                                            paddingRight: '10px',
+                                            cursor: 'pointer'
+                                        }}
+                                        fontSize="medium"
+                                    />
+                                    <TwitterIcon
+                                        onClick={() => window.open('https://www.twitter.com/', "_blank")}
+                                        sx={{
+                                            color: COLOR_BDAZZLED_BLUE,
+                                            ':hover': {
+                                                color: COLOR_PLATINIUM,
+                                            },
+                                            mt: '6px',
+                                            paddingRight: '10px',
+                                            cursor: 'pointer'
+                                        }}
+                                        fontSize="medium"
+                                    />
+                                    <InstagramIcon
+                                        onClick={() => window.open('https://www.instagram.com/', "_blank")}
+                                        sx={{
+                                            color: COLOR_BDAZZLED_BLUE,
+                                            ':hover': {
+                                                color: COLOR_PLATINIUM,
+                                            },
+                                            mt: '6px',
+                                            cursor: 'pointer'
+                                        }}
+                                        fontSize="medium"
+                                    />
                                 </Item>
                             </Item>
                             <Item paddingRight='15px'>

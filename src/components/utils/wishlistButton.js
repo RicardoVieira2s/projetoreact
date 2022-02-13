@@ -4,7 +4,7 @@ import { IconButton } from '@mui/material'
 import { wishlistApi } from '../../api'
 import Cookies from 'universal-cookie'
 
-export default function WishlistButton({ gameId }) {
+export default function WishlistButton({ gameId, size="medium" }) {
 
     function addGameToClientWishlist(gameId) {
 
@@ -29,6 +29,7 @@ export default function WishlistButton({ gameId }) {
                         color: COLOR_SHADOW_BLUE,
                     },
                 }}
+                fontSize={size}
             />
         </IconButton>
     )

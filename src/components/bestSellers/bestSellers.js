@@ -11,6 +11,7 @@ import {
 import { Bar } from 'react-chartjs-2';
 import { statisticsApi } from '../../api'
 
+
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -29,7 +30,7 @@ const options = {
         },
         title: {
             display: true,
-            text: 'Jogos com melhores reviews',
+            text: 'Jogos mais vendidos',
             color: '#778DA9',
             padding: {
                 bottom: 20
@@ -44,7 +45,7 @@ const options = {
         y: {
             title: {
                 display: true,
-                text: 'Média das Reviews',
+                text: 'Número de Vendas',
                 color: '#778DA9',
                 align: 'center',
 
@@ -76,19 +77,18 @@ const options = {
 
 };
 
-
 class Charts extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            topReviews: [],
+            bestSellers: [],
             isLoaded: false,
         }
     }
 
     componentDidMount() {
-        statisticsApi.topReviewsGet((error, data) => {
+        statisticsApi.bestSellersGet((error, data) => {
 
             if (error) {
                 console.error(error);
@@ -98,7 +98,7 @@ class Charts extends Component {
 
             this.setState({
                 isLoaded: true,
-                topReviews: data,
+                bestSellers: data,
             })
         });
     }
@@ -107,15 +107,15 @@ class Charts extends Component {
 
     render() {
 
-        var { isLoaded, topReviews } = this.state;
+        var { isLoaded, bestSellers } = this.state;
 
-        const labelsMostReviewedGames = topReviews.map(review => review.game.name);
+        const labelsBestSellers = bestSellers.map(bestSeller => bestSeller.game.name);
 
-        const dataMostReviewedGames = {
-            labels: labelsMostReviewedGames,
+        const dataBestSellers = {
+            labels: labelsBestSellers,
             datasets: [
                 {
-                    data: topReviews.map(review => review.average),
+                    data: bestSellers.map(bestSeller => bestSeller.sales),
                     backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#36a2eb', '#36a2eb', '#36a2eb'],
                     color: '#778DA9'
                 }
@@ -126,13 +126,12 @@ class Charts extends Component {
         return (
             <div>
 
-                <Bar color='#778DA9' options={options} data={dataMostReviewedGames} />
+                <Bar color='#778DA9' options={options} data={dataBestSellers} />
 
             </div>
         )
     }
 
 }
-
 
 export default Charts;

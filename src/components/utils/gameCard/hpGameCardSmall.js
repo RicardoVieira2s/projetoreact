@@ -11,7 +11,6 @@ import StarsReview from '../starsReview'
 export default function GameCardSmall({ game }) {
 
     function renderGamePrice() {
-        console.log(game.discount)
         let gamePrice
         if (game.discount === 0) {
             gamePrice = game.price

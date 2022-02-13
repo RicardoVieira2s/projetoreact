@@ -504,7 +504,7 @@ export default function PrimarySearchAppBar(props) {
                     return game.name.match(regex)
                 })
             }
-            setSuggestions(matches)
+            setSuggestions(matches.slice(0,10))
         })
     }
 

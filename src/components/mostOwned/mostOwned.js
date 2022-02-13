@@ -113,7 +113,7 @@ class Charts extends Component {
         var { isLoaded, topReviews } = this.state;
 
 
-        const labelsMostReviewedGames = topReviews.map(review => review.game.name);
+        const labelsMostReviewedGames = topReviews.slice(0,10).map(review => review.game.name);
 
         console.log("teste", labelsMostReviewedGames);
 

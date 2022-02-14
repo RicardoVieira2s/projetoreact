@@ -108,7 +108,8 @@ export default function PrimarySearchAppBar(props) {
 
         const cookie = new Cookies();
         cookie.remove("clientEmail");
-        cookie.remove("clientID",);
+        cookie.remove("clientID");
+        cookie.remove("clientOAuth");
 
         setAnchorEl(null)
         handleMobileMenuClose()

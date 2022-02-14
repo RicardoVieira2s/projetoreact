@@ -92,7 +92,7 @@ class registerContent extends Component {
                 }
                 else {
                     const cookie = new Cookies();
-                    cookie.set("clientEmail", client.email, { path: '/' });
+                    cookie.set("clientEmail", access.email, { path: '/' });
                     cookie.set("clientID", data.id, { path: '/' });
                     cookie.set("clientOAuth", "true", { path: '/' });
 

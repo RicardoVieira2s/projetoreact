@@ -129,7 +129,6 @@ class registerContent extends Component {
                                 name="E-mail"
                                 value={this.state.clientAccess.email}
                                 required
-                                variant="outlined"
                                 type="email"
                                 variant="outlined"
                                 disabled={this.state.google}

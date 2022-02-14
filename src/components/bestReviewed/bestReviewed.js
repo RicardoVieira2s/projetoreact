@@ -32,7 +32,7 @@ const options = {
         },
         title: {
             display: true,
-            text: 'Jogos com melhores reviews',
+            text: 'Jogos com melhor média de avaliações',
             color: '#778DA9',
             padding:{
                 bottom: 20
@@ -47,7 +47,7 @@ const options = {
         y: {
             title: {
                 display: true,
-                text: 'Média de Reviews',
+                text: 'Média de Estrelas',
                 color: '#778DA9',
                 align: 'center',
 
@@ -162,7 +162,7 @@ class Charts extends Component {
                 <Bar options={options} data={dataMostPlayedGames} />
 
                 <SubTitles
-                    name={'Jogos mais vendidos'}
+                    name={'Jogos com melhor média de avaliações'}
                     color={COLOR_SHADOW_BLUE}
                 />
                 <Bar options={options} data={dataMostOwnedGames} />

@@ -9,7 +9,8 @@ import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   indicator: {
-    backgroundColor: COLOR_BDAZZLED_BLUE,
+    backgroundColor: COLOR_BDAZZLED_BLUE,    
+    color: COLOR_SHADOW_BLUE,
   },
   floatBar: {
     position: 'relative',
@@ -17,17 +18,18 @@ const useStyles = makeStyles(theme => ({
     borderRadius: BORDER_RADIUS_10PX,
     marginTop: '65px',
     display: 'table',
-    margin: '0 auto',
+    margin: '0 auto',    
+    color: COLOR_SHADOW_BLUE,
   },
   tabsConfig: {
-    color: COLOR_BDAZZLED_BLUE,
+    color: COLOR_SHADOW_BLUE,
     ':hover': {
       color: COLOR_SHADOW_BLUE,
       alignItems: 'center',
       justifyContent: 'center',
     },
     '&.Mui-selected': {
-      color: COLOR_BDAZZLED_BLUE,
+      color: COLOR_SHADOW_BLUE,
       ':hover': {
         color: COLOR_SHADOW_BLUE,
       },

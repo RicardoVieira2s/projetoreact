@@ -1,25 +1,38 @@
 import React, { Component } from 'react'
 import { gameApi } from '../../api'
-import { Card, CardContent, Grid, CardActions, Typography } from '@mui/material'
-import Box from '@mui/material/Box';
+import { CardContent, CardActions, Typography, Card, CardHeader, CardMedia, Grid } from '@mui/material'
 import { COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM } from '../utils/color'
 import WishlistButton from '../utils/wishlistButton'
 import CartButton from '../utils/cartButton'
 import StarsReview from '../utils/starsReview'
-import CardMedia from '@mui/material/CardMedia'
+import { dateToString } from '../utils/date'
 
 class AboutGame extends Component {
     constructor(props) {
         super(props);
         this.state = {
             game: null,
+            tags: null,
             isLoaded: false,
         }
     }
 
     componentDidMount() {
 
-        gameApi.gameGet({ id: "d8714590-8060-4e52-9ed3-b1499e49e62d" }, (error, data) => {
+        gameApi.gameGet({ id: "5d1ae5b3-a6e8-46ff-ba96-ef15f489cc65" }, (error, data) => {
+
+            if (error) {
+                console.error(error);
+            } else {
+                console.log('API called successfully.')
+            }
+
+            this.setState({
+                game: data[0],
+            })
+        });
+
+        gameApi.gameTagGet("5d1ae5b3-a6e8-46ff-ba96-ef15f489cc65", (error, data) => {
 
             if (error) {
                 console.error(error);
@@ -29,140 +42,110 @@ class AboutGame extends Component {
 
             this.setState({
                 isLoaded: true,
-                game: data[0],
+                tags: data,
             })
         });
 
     }
 
+    getPublisher(){
+        let idpublisher = this.state.game.idpublisher
+    }
+
     render() {
 
-        var { isLoaded, game } = this.state;
+        var { isLoaded, game, tags } = this.state
+        console.log("dsadas", game)
+        console.log("dasdasad", tags)
 
         if (!isLoaded) {
             return <div>Loading....</div>
         }
+        var gamePrice = game.price - (game.price * game.discount)
         return (
-            <CardContent
-                sx={{
-                    maxWidth: "auto",
-                    cursor: "pointer",
-                }}
+            <Grid
+                container
+                direction="column"
+                alignItems="center"
+                justifyContent="center"
             >
-                <Grid item lg={6} sx={12}>
+                <Card sx={{
+                    maxWidth: 500,
+                    backgroundColor: COLOR_PLATINIUM,
+                    cursor: "pointer",
+                }}>
+                    <CardHeader
+                        title={game.name}
+                        subheader="colocar tags aqui"
+                    />
                     <CardMedia
                         component="img"
-                        height="500px"
+                        height="300"
                         image={game.coverImage}
                         alt=""
                     />
-                    <CardActions
-                        style={{
-                            position: 'relative',
-                            backgroundColor: COLOR_PLATINIUM,
-                            padding: '0px',
-                            height: '100px'
-                        }}
-                    >
-                        <Box
+                    <CardContent>
+                        <Typography
                             sx={{
-                                width: '100%',
-                                height: '100%'
+                                paddingLeft: "13px",
+                                textOverflow: "ellipsis",
+                                overflow: "hidden",
+                                maxWidth: '290px',
+                                color: COLOR_BDAZZLED_BLUE,
+                                fontSize: '20px'
                             }}
+                            variant="p"
                         >
-                            <Grid
-                                container
-                                sx={{
-                                    display: 'flex',
-                                    width: '100%',
-                                    height: '100%'
-                                }}
-                            >
-                                <Grid
-                                    sx={{
-                                        width: '100%',
-                                        height: '50%',
-                                        display: 'flex',
-                                        justifyContent: 'space-evenly',
-                                        alignItems: 'center',
-                                        paddingRight: '20px'
-                                    }}
-                                >
-                                    <Grid item xs={8}>
-                                        <Typography
-                                            sx={{
-                                                paddingLeft: "13px",
-                                                textOverflow: "ellipsis",
-                                                overflow: 'hidden',
-                                                maxWidth: '290px',
-                                                color: COLOR_BDAZZLED_BLUE,
-                                                fontSize: '27px'
-                                            }}
-                                            variant="p"
-                                        >
-                                            {game.name}
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item xs={4}
-                                        sx={{
-                                            textAlign: 'right',
-                                        }}
-                                    >
-                                        <StarsReview ratingValue={game.rate} />
-                                    </Grid>
-                                </Grid>
-                                <Grid
-                                    sx={{
-                                        width: '100%',
-                                        height: '50%',
-                                        display: 'flex',
-                                        justifyContent: 'space-evenly',
-                                        alignItems: 'center',
-                                        paddingRight: '20px'
-                                    }}
-                                >
-                                    <Grid item xs={6}
-                                        textAlign={'left'}
-                                    >
-                                        <WishlistButton />
-                                        <CartButton />
-                                    </Grid>
-                                    <Grid item xs={6}
-                                        textAlign={'right'}
-                                    >
-                                        <Typography
-                                            sx={{
-                                                paddingLeft: "13px",
-                                                textOverflow: "ellipsis",
-                                                overflow: "hidden",
-                                                maxWidth: '290px',
-                                                color: COLOR_BDAZZLED_BLUE,
-                                                fontSize: '20px'
-                                            }}
-                                            variant="p"
-                                        >
-                                            Preço: €{game.price}
-                                        </Typography>
-                                        <Typography
-                                            sx={{
-                                                paddingLeft: "13px",
-                                                textOverflow: "ellipsis",
-                                                overflow: "hidden",
-                                                maxWidth: '290px',
-                                                color: COLOR_BDAZZLED_BLUE,
-                                                fontSize: '20px'
-                                            }}
-                                            variant="p"
-                                        >
-                                            Desconto: {game.discount * 100}%
-                                        </Typography>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                        </Box>
+                            Preço: €{game.price}
+                        </Typography>
+                        <Typography
+                            sx={{
+                                paddingLeft: "13px",
+                                textOverflow: "ellipsis",
+                                overflow: "hidden",
+                                maxWidth: '290px',
+                                color: COLOR_BDAZZLED_BLUE,
+                                fontSize: '20px'
+                            }}
+                            variant="p"
+                        >
+                            Desconto: {game.discount * 100}%
+                        </Typography>
+                        <Typography
+                            sx={{
+                                paddingLeft: "13px",
+                                textOverflow: "ellipsis",
+                                overflow: "hidden",
+                                maxWidth: '290px',
+                                color: COLOR_BDAZZLED_BLUE,
+                                fontSize: '20px'
+                            }}
+                            variant="p"
+                        >
+                            Total: {gamePrice.toFixed(2)}
+                        </Typography>
+                    </CardContent>
+                    <CardContent>
+                        <Typography
+                            sx={{
+                                paddingLeft: "13px",
+                                textOverflow: "ellipsis",
+                                overflow: "hidden",
+                                maxWidth: '290px',
+                                color: COLOR_BDAZZLED_BLUE,
+                                fontSize: '20px'
+                            }}
+                            variant="p"
+                        >
+                            Data de lancamento: {dateToString(game.releaseDate)}
+                        </Typography>
+                    </CardContent>
+                    <CardActions disableSpacing>
+                        <WishlistButton />
+                        <CartButton />
                     </CardActions>
-                </Grid>
-            </CardContent >
+                </Card>
+            </Grid>
         )
     }
 }

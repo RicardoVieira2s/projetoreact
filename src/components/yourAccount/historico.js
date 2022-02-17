@@ -42,6 +42,9 @@ class Historico extends Component {
 
             data.forEach(header => {
                 let games = []
+                if (header.games == null) {
+                    header.games = []
+                }
 
                 header.games.forEach(game => {
                     gameApi.gameGet({ id: game.idGame }, (error, tempGames) => {

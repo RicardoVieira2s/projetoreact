@@ -18,6 +18,7 @@ const wishlistApi = new goofrStore.WishlistApi(api)
 const newsletterApi = new goofrStore.NewsletterApi(api)
 const reviewApi = new goofrStore.ReviewApi(api)
 const searchApi = new goofrStore.SearchApi(api)
+const publisherApi = new goofrStore.PublisherApi(api)
 
 export {
     libraryApi, 
@@ -34,5 +35,6 @@ export {
     wishlistApi,
     newsletterApi,
     reviewApi,
-    searchApi
+    searchApi,
+    publisherApi,
 }

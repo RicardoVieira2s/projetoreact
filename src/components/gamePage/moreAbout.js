@@ -2,7 +2,7 @@ import Image from "./image"
 import { Card, Grid } from '@mui/material'
 import { BORDER_RADIUS_5PX } from '../utils/border'
 
-export default function MoreAbout({ cover_image }) {
+export default function MoreAbout({ publisherGames }) {
 
     return (
         <Grid
@@ -23,10 +23,15 @@ export default function MoreAbout({ cover_image }) {
                         width: '400px',
                         borderRadius: BORDER_RADIUS_5PX,
                         margin: "15px",
+                        '&:hover, &:focus': {
+                            transform: 'scale(1.1)',
+                            transition: 'all .2s ease-in-out',
+                            cursor: 'pointer',
+                        },
                     }}
                 >
                     <Image
-                        cover_image={"https://wallpapercave.com/wp/wp1810702.png"}
+                        cover_image={publisherGames[0].coverImage}
                     />
                 </Card>
             </Grid>
@@ -42,10 +47,15 @@ export default function MoreAbout({ cover_image }) {
                         borderRadius: BORDER_RADIUS_5PX,
                         margin: "15px",
                         width: '400px',
+                        '&:hover, &:focus': {
+                            transform: 'scale(1.1)',
+                            transition: 'all .2s ease-in-out',
+                            cursor: 'pointer',
+                        },
                     }}
                 >
                     <Image
-                        cover_image={"https://images3.alphacoders.com/120/thumb-1920-1202248.jpg"}
+                        cover_image={publisherGames[1].coverImage}
                     />
                 </Card>
             </Grid>
@@ -61,10 +71,15 @@ export default function MoreAbout({ cover_image }) {
                         borderRadius: BORDER_RADIUS_5PX,
                         margin: "15px",
                         width: '400px',
+                        '&:hover, &:focus': {
+                            transform: 'scale(1.1)',
+                            transition: 'all .2s ease-in-out',
+                            cursor: 'pointer',
+                        },
                     }}
                 >
                     <Image
-                        cover_image={"https://wallpaperaccess.com/full/2002262.jpg"}
+                        cover_image={publisherGames[2].coverImage}
                     />
                 </Card>
             </Grid>

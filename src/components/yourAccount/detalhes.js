@@ -10,6 +10,8 @@ import { clientApi } from '../../api'
 import camelCaseKeysToUnderscore from '../utils/api/camelCaseKeysToUnderscore'
 import { dateWithoutTimeZone } from '../utils/date'
 import Cookies from 'universal-cookie'
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 const useStyles = theme => ({
     container: {
@@ -26,6 +28,10 @@ const useStyles = theme => ({
     },
 })
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 class Detalhes extends Component {
 
     constructor(props) {
@@ -34,6 +40,8 @@ class Detalhes extends Component {
             client: null,
             date: null,
             isLoaded: false,
+            open: false,
+            errorMessage: "",
         }
     }
 
@@ -58,21 +66,7 @@ class Detalhes extends Component {
         });
     }
 
-    updateClient() {
-        if (this.state.client == null)
-            return
-        let obj = camelCaseKeysToUnderscore(this.state.client)
-        obj.birthdate = dateWithoutTimeZone(obj.birthdate)
-        obj.vat_id = parseInt(obj.vat_id, 10)
-        clientApi.clientPut(obj, obj.id, (error, data) => {
-            if (error) {
-                console.error(error)
-            } else {
-                console.log('API called successfully.')
-
-            }
-        });
-    }
+    
 
     handleChange(e) {
         const date = e.target.valueAsDate
@@ -90,137 +84,179 @@ class Detalhes extends Component {
 
         const { classes } = this.props
         const { isLoaded, client, date } = this.state
+
         if (!isLoaded) {
             return <div>Loading...</div>
         }
 
+        const handleClose = (event, reason) => {
+            if (reason === 'clickaway') {
+                return;
+            }
+            this.setState({
+                open: false,
+            })
+        };
+
+        const updateClient = async e => {
+        
+            e.preventDefault();
+            e.stopPropagation();
+    
+            if (this.state.client == null)
+                return
+            let obj = camelCaseKeysToUnderscore(this.state.client)
+            obj.birthdate = dateWithoutTimeZone(obj.birthdate)
+            obj.vat_id = parseInt(obj.vat_id, 10)
+            clientApi.clientPut(obj, obj.id, (error, data, response) => {
+                if (error) {
+                    this.setState({
+                        open: true,
+                        errorMessage: JSON.parse(response.text).error
+                    })
+                } else {
+                    window.location.reload(true)
+                }
+            });
+            return false
+        }
+
         return (
-            <form
-                autoComplete="off"
-            >
-                <Card className={classes.container}>
-                    <Title
-                        name={'Detalhes'}
-                        color={COLOR_BDAZZLED_BLUE}
-                    />
-                    <CardContent>
-                        <Grid
-                            container
-                            spacing={3}
-                        >
-                            <Grid
-                                item
-                                md={6}
-                                xs={12}
-                            >
-                                <TextField
-                                    fullWidth
-                                    label="Nome Próprio"
-                                    value={client.name}
-                                    onChange={e => this.setState({
-                                        client: {
-                                            ...this.state.client,
-                                            name: e.target.value
-                                        }
-                                    })}
-                                    name="Nome Próprio"
-                                    required
-                                    variant="outlined"
-                                />
-                            </Grid>
-                            <Grid
-                                item
-                                md={6}
-                                xs={12}
-                            >
-                                <TextField
-                                    fullWidth
-                                    label="Apelido"
-                                    value={client.surname}
-                                    onChange={e => this.setState({
-                                        client: {
-                                            ...this.state.client,
-                                            surname: e.target.value
-                                        }
-                                    })}
-                                    name="Apelido"
-                                    required
-                                    variant="outlined"
-                                />
-                            </Grid>
-                            <Grid
-                                item
-                                md={6}
-                                xs={12}
-                            >
-                                <TextField
-                                    fullWidth
-                                    label="Número de telemóvel"
-                                    value={client.phoneNumber}
-                                    onChange={e => this.setState({
-                                        client: {
-                                            ...this.state.client,
-                                            phoneNumber: e.target.value
-                                        }
-                                    })}
-                                    name="Número de telemóvel"
-                                    type="tel"
-                                    inputProps={{ maxLength: 9, pattern: "[9]{1}[0-9]{8}" }}
-                                    variant="outlined"
-                                    required
-                                />
-                            </Grid>
-                            <Grid
-                                item
-                                md={6}
-                                xs={12}
-                            >
-                                <TextField
-                                    fullWidth
-                                    label="Número de Identificação Fiscal"
-                                    name="Número de Identificação Fiscal"
-                                    value={client.vatId}
-                                    onChange={e => this.setState({
-                                        client: {
-                                            ...this.state.client,
-                                            vatId: e.target.value
-                                        }
-                                    })}
-                                    type="tel"
-                                    variant="outlined"
-                                    required
-                                    inputProps={{
-                                        maxLength: 9,
-                                        pattern: "[1-9]{1}[0-9]{8}"
-                                    }}
-                                />
-                            </Grid>
-                            <Grid
-                                item
-                                md={6}
-                                xs={12}
-                            >
-                                <TextField
-                                    fullWidth
-                                    value={date}
-                                    onChange={e => this.handleChange(e)}
-                                    type="date"
-                                    variant="outlined"
-                                    label="Data de nascimento"
-                                    required
-                                />
-                            </Grid>
-                        </Grid>
-                    </CardContent>
-                    <Divider />
-                    <Box className={classes.finalBox}>
-                        <CustomButton
-                            onClick={e => this.updateClient()}
-                            name={"Guardar Alterações"}
+            <div>
+                <form
+                    autoComplete="off"
+                    method='POST'
+                    onSubmit={updateClient}
+                >
+                    <Card className={classes.container}>
+                        <Title
+                            name={'Detalhes'}
+                            color={COLOR_BDAZZLED_BLUE}
                         />
-                    </Box>
-                </Card>
-            </form>
+                        <CardContent>
+                            <Grid
+                                container
+                                spacing={3}
+                            >
+                                <Grid
+                                    item
+                                    md={6}
+                                    xs={12}
+                                >
+                                    <TextField
+                                        fullWidth
+                                        label="Nome Próprio"
+                                        value={client.name}
+                                        onChange={e => this.setState({
+                                            client: {
+                                                ...this.state.client,
+                                                name: e.target.value
+                                            }
+                                        })}
+                                        name="Nome Próprio"
+                                        required
+                                        variant="outlined"
+                                    />
+                                </Grid>
+                                <Grid
+                                    item
+                                    md={6}
+                                    xs={12}
+                                >
+                                    <TextField
+                                        fullWidth
+                                        label="Apelido"
+                                        value={client.surname}
+                                        onChange={e => this.setState({
+                                            client: {
+                                                ...this.state.client,
+                                                surname: e.target.value
+                                            }
+                                        })}
+                                        name="Apelido"
+                                        required
+                                        variant="outlined"
+                                    />
+                                </Grid>
+                                <Grid
+                                    item
+                                    md={6}
+                                    xs={12}
+                                >
+                                    <TextField
+                                        fullWidth
+                                        label="Número de telemóvel"
+                                        value={client.phoneNumber}
+                                        onChange={e => this.setState({
+                                            client: {
+                                                ...this.state.client,
+                                                phoneNumber: e.target.value
+                                            }
+                                        })}
+                                        name="Número de telemóvel"
+                                        type="tel"
+                                        inputProps={{ maxLength: 9, pattern: "[9]{1}[0-9]{8}" }}
+                                        variant="outlined"
+                                        required
+                                    />
+                                </Grid>
+                                <Grid
+                                    item
+                                    md={6}
+                                    xs={12}
+                                >
+                                    <TextField
+                                        fullWidth
+                                        label="Número de Identificação Fiscal"
+                                        name="Número de Identificação Fiscal"
+                                        value={client.vatId}
+                                        onChange={e => this.setState({
+                                            client: {
+                                                ...this.state.client,
+                                                vatId: e.target.value
+                                            }
+                                        })}
+                                        type="tel"
+                                        variant="outlined"
+                                        required
+                                        inputProps={{
+                                            maxLength: 9,
+                                            pattern: "[1-9]{1}[0-9]{8}"
+                                        }}
+                                    />
+                                </Grid>
+                                <Grid
+                                    item
+                                    md={6}
+                                    xs={12}
+                                >
+                                    <TextField
+                                        fullWidth
+                                        value={date}
+                                        onChange={e => this.handleChange(e)}
+                                        type="date"
+                                        variant="outlined"
+                                        label="Data de nascimento"
+                                        required
+                                    />
+                                </Grid>
+                            </Grid>
+                        </CardContent>
+                        <Divider />
+                        <Box className={classes.finalBox}>
+                            <CustomButton                            
+                                name={"Guardar Alterações"}
+                            />
+                        </Box>
+                    </Card>
+                </form>
+
+                <Snackbar open={this.state.open} autoHideDuration={2500} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                        {this.state.errorMessage}
+                    </Alert>
+                </Snackbar>
+            </div>
         )
     }
 }

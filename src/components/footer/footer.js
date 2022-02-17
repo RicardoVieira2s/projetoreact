@@ -12,6 +12,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Item, Row } from '@mui-treasury/components/flex'
 import { EmailSubscribe, EmailTextInput } from '@mui-treasury/components/EmailSubscribe'
 import { newsletterApi } from '../../api'
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 const useStyles = makeStyles(({ palette, typography }) => ({
 
@@ -110,18 +112,31 @@ const useStyles = makeStyles(({ palette, typography }) => ({
     }
 }))
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 
 export const Footer = React.memo(function GOOFRFooter() {
     const classes = useStyles()
     const [email, setEmail] = useState("");
+    const [open, setOpen] = React.useState(false);
+    const [alertMessage, setAlertMessage] = useState("");
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpen(false);
+    };
 
     const handleSubmit = async e => {
 
         newsletterApi.newsletterPost(email, (error, data, response) => {
             console.log("email", email)
             if (error) {
-                alert(JSON.parse(response.text).error);
+                setAlertMessage(JSON.parse(response.text).error)
+                setOpen(true);
             }
             else {
                 alert("Nesletter subscrita com sucesso");
@@ -226,6 +241,11 @@ export const Footer = React.memo(function GOOFRFooter() {
                     </Box>
                 </Container>
             </Box >
+            <Snackbar open={open} autoHideDuration={2500} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                    {alertMessage}
+                </Alert>
+            </Snackbar>
         </footer>
     )
 })

@@ -8,12 +8,26 @@ import GoogleLogin from 'react-google-login'
 import { accessApi } from '../api'
 import { ClientAccessSchema } from '../api/src'
 import Cookies from 'universal-cookie'
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 export default function Login() {
 
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [open, setOpen] = React.useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -24,7 +38,8 @@ export default function Login() {
 
     accessApi.loginPost(body, (error, data, response) => {
       if (error) {
-        alert(JSON.parse(response.text).error);
+        setAlertMessage(JSON.parse(response.text).error)
+        setOpen(true);
       }
       else {
         const cookie = new Cookies();
@@ -55,7 +70,8 @@ export default function Login() {
 
     accessApi.loginPost(body, (error, data, response) => {
       if (error) {
-        alert(JSON.parse(response.text).error);
+        setAlertMessage(JSON.parse(response.text).error)
+        setOpen(true);
       }
       else {
         const cookie = new Cookies();
@@ -70,147 +86,153 @@ export default function Login() {
 
   }
   return (
-
-    <form
-      autoComplete="off"
-      onSubmit={handleSubmit}
-      method="POST"
-    >
-      <Card
-        style={{
-          backgroundColor: COLOR_PLATINIUM,
-          color: COLOR_BDAZZLED_BLUE,
-          paddingLeft: '15px',
-          paddingRight: '15px',
-          paddingBottom: '40px',
-        }}
+    <div>
+      <form
+        autoComplete="off"
+        onSubmit={handleSubmit}
+        method="POST"
       >
-        <Title
-          name={'Entrar'}
-          color={COLOR_BDAZZLED_BLUE}
-        />
-        <Grid
-          container
-          direction="column"
-          alignItems="center"
-          justify="center"
+        <Card
+          style={{
+            backgroundColor: COLOR_PLATINIUM,
+            color: COLOR_BDAZZLED_BLUE,
+            paddingLeft: '15px',
+            paddingRight: '15px',
+            paddingBottom: '40px',
+          }}
         >
-          <CardContent
-            style={{ maxWidth: "50%" }}
+          <Title
+            name={'Entrar'}
+            color={COLOR_BDAZZLED_BLUE}
+          />
+          <Grid
+            container
+            direction="column"
+            alignItems="center"
+            justify="center"
           >
-            <Grid
-              container
-              spacing={3}
+            <CardContent
+              style={{ maxWidth: "50%" }}
             >
               <Grid
-                item
-                md={12}
-                xs={12}
+                container
+                spacing={3}
               >
-                <Typography
-                  align="left"
-                  variant="body1"
-                  color="inherit"
+                <Grid
+                  item
+                  md={12}
+                  xs={12}
                 >
-                  Iniciar conta GOOFR
-                </Typography>
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                md={12}
-              >
-                <TextField
-                  fullWidth
-                  label="E-mail"
-                  name="E-mail"
-                  required
-                  variant="outlined"
-                  type="email"
-                  onChange={e => setEmail(e.target.value)}
-                />
-              </Grid>
-              <Grid
-                item
-                md={12}
-                xs={12}
-              >
-                <TextField
-                  fullWidth
-                  label="Password"
-                  name="Password"
-                  type="password"
-                  required
-                  variant="outlined"
-                  onChange={e => setPassword(e.target.value)}
-                />
-              </Grid>
-              <Grid
-                item
-                md={12}
-                xs={12}
-              >
-                <Button
-                  style={{
-                    marginTop: '20px',
-                    backgroundColor: COLOR_BDAZZLED_BLUE,
-                    color: COLOR_PLATINIUM
-                  }}
-                  fullWidth
-                  size="large"
-                  type="submit"
-                  variant="contained"
+                  <Typography
+                    align="left"
+                    variant="body1"
+                    color="inherit"
+                  >
+                    Iniciar conta GOOFR
+                  </Typography>
+                </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  md={12}
                 >
-                  Iniciar sessão
-                </Button>
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                md={12}
-              >
-                {console.log(process.env.REACT_APP_GOOGLE_CLIENT_ID)}
-                <GoogleLogin
-                  clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-                  buttonText="Entrar com conta Google"
-                  onSuccess={handleLogin}
-                  onFailure={handleLogin}
-                  cookiePolicy={'single_host_origin'}
-                  render={renderProps => (
-                    <Button
-                      onClick={renderProps.onClick}
-                      disabled={renderProps.disabled}
-                      fullWidth
-                      color="error"
-                      startIcon={<GoogleIcon />}
-                      size="large"
-                      variant="contained"
-                    >
-                      Iniciar conta Google
-                    </Button>
-                  )}
+                  <TextField
+                    fullWidth
+                    label="E-mail"
+                    name="E-mail"
+                    required
+                    variant="outlined"
+                    type="email"
+                    onChange={e => setEmail(e.target.value)}
+                  />
+                </Grid>
+                <Grid
+                  item
+                  md={12}
+                  xs={12}
+                >
+                  <TextField
+                    fullWidth
+                    label="Password"
+                    name="Password"
+                    type="password"
+                    required
+                    variant="outlined"
+                    onChange={e => setPassword(e.target.value)}
+                  />
+                </Grid>
+                <Grid
+                  item
+                  md={12}
+                  xs={12}
+                >
+                  <Button
+                    style={{
+                      marginTop: '20px',
+                      backgroundColor: COLOR_BDAZZLED_BLUE,
+                      color: COLOR_PLATINIUM
+                    }}
+                    fullWidth
+                    size="large"
+                    type="submit"
+                    variant="contained"
+                  >
+                    Iniciar sessão
+                  </Button>
+                </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  md={12}
+                >
+                  {console.log(process.env.REACT_APP_GOOGLE_CLIENT_ID)}
+                  <GoogleLogin
+                    clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                    buttonText="Entrar com conta Google"
+                    onSuccess={handleLogin}
+                    onFailure={handleLogin}
+                    cookiePolicy={'single_host_origin'}
+                    render={renderProps => (
+                      <Button
+                        onClick={renderProps.onClick}
+                        disabled={renderProps.disabled}
+                        fullWidth
+                        color="error"
+                        startIcon={<GoogleIcon />}
+                        size="large"
+                        variant="contained"
+                      >
+                        Iniciar conta Google
+                      </Button>
+                    )}
 
-                />
+                  />
+                </Grid>
               </Grid>
-            </Grid>
-          </CardContent>
-        </Grid>
-        <Divider
-          style={{ marginTop: '35px' }} />
-        <Link to="/register">
-          <Button
-            fullWidth
-            sx={{
-              marginTop: '50px',
-              ':hover': {
-                backgroundColor: COLOR_PLATINIUM,
-              },
-            }}
-          >
-            Registar
-          </Button>
-        </Link>
-      </Card >
-    </form >
+            </CardContent>
+          </Grid>
+          <Divider
+            style={{ marginTop: '35px' }} />
+          <Link to="/register">
+            <Button
+              fullWidth
+              sx={{
+                marginTop: '50px',
+                ':hover': {
+                  backgroundColor: COLOR_PLATINIUM,
+                },
+              }}
+            >
+              Registar
+            </Button>
+          </Link>
+        </Card >
+      </form >
+      <Snackbar open={open} autoHideDuration={2500} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+          {alertMessage}
+        </Alert>
+      </Snackbar>
+    </div>
   )
 }

@@ -9,6 +9,8 @@ import { cartApi } from '../../api'
 import { withStyles } from '@material-ui/core/styles'
 import { BORDER_RADIUS_5PX } from '../utils/border'
 import Cookies from 'universal-cookie'
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 const useStyles = theme => ({
     buttonBuy: {
@@ -24,12 +26,18 @@ const useStyles = theme => ({
     }
 });
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 class CartList extends Component {
     constructor(props) {
         super(props);
         this.state = {
             games: [],
             isLoaded: false,
+            open: false,
+            errorMessage: "",
         }
     }
 
@@ -55,9 +63,12 @@ class CartList extends Component {
     buyGamesFromCart() {
         let clientId = new Cookies().get('clientID')
 
-        cartApi.cartPurchaseGet(clientId, (error, data) => {
+        cartApi.cartPurchaseGet(clientId, (error, data, response) => {
             if (error) {
-                console.error(error);
+                this.setState({
+                    open: true,
+                    errorMessage: JSON.parse(response.text).error
+                })
             } else {
                 console.log('API called successfully.')
             }
@@ -68,9 +79,12 @@ class CartList extends Component {
     deleteAllGamesFromCart() {
         let clientId = new Cookies().get('clientID')
 
-        cartApi.cartDelete(clientId, null, (error, data) => {
+        cartApi.cartDelete(clientId, null, (error, data, response) => {
             if (error) {
-                console.error(error)
+                this.setState({
+                    open: true,
+                    errorMessage: JSON.parse(response.text).error
+                })
             } else {
                 console.log('API called successfully.')
             }
@@ -87,6 +101,15 @@ class CartList extends Component {
         if (!isLoaded) {
             return <div>Loading...</div>
         }
+
+        const handleClose = (event, reason) => {
+            if (reason === 'clickaway') {
+                return;
+            }
+            this.setState({
+                open: false,
+            })
+        };
 
         return (
             <div style={{
@@ -164,6 +187,11 @@ class CartList extends Component {
                         </Item>
                     </Grid>
                 </Grid>
+                <Snackbar open={this.state.open} autoHideDuration={2500} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                        {this.state.errorMessage}
+                    </Alert>
+                </Snackbar>
             </div>
         )
     }

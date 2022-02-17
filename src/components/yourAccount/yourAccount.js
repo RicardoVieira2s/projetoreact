@@ -15,6 +15,8 @@ import { clientApi, walletApi } from '../../api'
 import { Button, TextField } from '@mui/material'
 import { BORDER_RADIUS_5PX } from '../utils/border'
 import Cookies from 'universal-cookie'
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 const useStyles = theme => ({
 	container: {
@@ -91,6 +93,10 @@ const useStyles = theme => ({
 	}
 })
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+	return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 class YourAccount extends Component {
 
 	constructor(props) {
@@ -101,13 +107,15 @@ class YourAccount extends Component {
 			value: "0",
 			isLoaded: false,
 			addBalance: 0,
+			open: false,
+			errorMessage: "",
 		}
 	}
 
 	componentDidMount() {
 
 		let clientId = new Cookies().get('clientID')
-		
+
 		if (clientId === undefined || clientId === null)
 			return
 
@@ -140,14 +148,16 @@ class YourAccount extends Component {
 	addBalance() {
 		let clientId = new Cookies().get('clientID')
 
-		walletApi.addBalanceGet(clientId, this.state.addBalance, (error, data) => {
+		walletApi.addBalanceGet(clientId, this.state.addBalance, (error, data, response) => {
 			if (error) {
-				console.error(error)
+				this.setState({
+					open: true,
+					errorMessage: JSON.parse(response.text).error
+				})
 			} else {
-				console.log('API called successfully.')
+				document.location.href = "/account"
 			}
 		});
-		document.location.href = "/account"
 	}
 
 	handleChange(newValue) {
@@ -163,6 +173,15 @@ class YourAccount extends Component {
 		if (!isLoaded) {
 			return <div>Loading...</div>
 		}
+
+		const handleClose = (event, reason) => {
+			if (reason === 'clickaway') {
+				return;
+			}
+			this.setState({
+				open: false,
+			})
+		};
 
 		return (
 			<div className={classes.container}>
@@ -191,6 +210,7 @@ class YourAccount extends Component {
 									onChange={e => this.setState({ addBalance: e.target.value })}
 									value={addBalance}
 									type="number"
+									InputProps={{ inputProps: { min: 1, max: 50 } }}
 									size="small"
 								/>
 								<Button
@@ -235,6 +255,11 @@ class YourAccount extends Component {
 						</TabPanel>
 					</TabContext>
 				</div>
+				<Snackbar open={this.state.open} autoHideDuration={2500} onClose={handleClose}>
+					<Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+						{this.state.errorMessage}
+					</Alert>
+				</Snackbar>
 			</div >
 		)
 	}

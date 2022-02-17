@@ -6,6 +6,8 @@ import { clientApi } from '../../api'
 import { withStyles } from '@material-ui/core/styles'
 import { dateWithoutTimeZone } from '../utils/date'
 import camelCaseKeysToUnderscore from '../utils/api/camelCaseKeysToUnderscore'
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 const useStyles = theme => ({
     boxModalStyle: {
@@ -40,12 +42,18 @@ const useStyles = theme => ({
     },
 })
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 class UserImage extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             open: false,
+            openAlert: false,
+            errorMessage: "",
         }
     }
 
@@ -56,17 +64,16 @@ class UserImage extends Component {
         client.picture = url
         client.birthdate = dateWithoutTimeZone(client.birthdate)
         let obj = camelCaseKeysToUnderscore(client)
-        clientApi.clientPut(obj, obj.id, (error, data) => {
+        clientApi.clientPut(obj, obj.id, (error, data, response) => {
             if (error) {
-                console.error(error)
-            } else {
-                console.log('API called successfully.')
+                this.setState({
+                    openAlert: true,
+                    errorMessage: JSON.parse(response.text).error
+                })
             }
         });
 
         this.handleClose()
-
-        document.location.href = "/account"
     }
 
     handleOpen() {
@@ -83,6 +90,15 @@ class UserImage extends Component {
 
     render() {
         const { classes } = this.props;
+
+        const handleCloseAlert = (event, reason) => {
+            if (reason === 'clickaway') {
+                return;
+            }
+            this.setState({
+                openAlert: false,
+            })
+        };
 
         return (
             <>
@@ -149,6 +165,11 @@ class UserImage extends Component {
                         </Grid>
                     </Box>
                 </Modal>
+                <Snackbar open={this.state.openAlert} autoHideDuration={2500} onClose={handleCloseAlert}>
+                    <Alert onClose={handleCloseAlert} severity="error" sx={{ width: '100%' }}>
+                        {this.state.errorMessage}
+                    </Alert>
+                </Snackbar>
             </>
         )
     }

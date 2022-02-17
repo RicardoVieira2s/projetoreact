@@ -9,6 +9,8 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import { wishlistApi } from '../../api'
 import { cartApi } from '../../api'
 import Cookies from 'universal-cookie'
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 const useStyles = theme => ({
     container: {
@@ -43,13 +45,28 @@ const useStyles = theme => ({
     }
 })
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 class WishlistGames extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            open: false,
+            errorMessage: "",
+        }
+    }
 
     deleteGameFromWishList(id) {
         let clientId = new Cookies().get('clientID')
         wishlistApi.wishlistDelete(clientId, { gameID: id }, (error, data, response) => {
             if (error) {
-                alert(JSON.parse(response.text).error);
+                this.setState({
+                    open: true,
+                    errorMessage: JSON.parse(response.text).error
+                })
             } else {
                 window.location.reload(true);
             }
@@ -60,16 +77,27 @@ class WishlistGames extends Component {
         let clientId = new Cookies().get('clientID')
         cartApi.cartPost(clientId, id, (error, data, response) => {
             if (error) {
-                alert(JSON.parse(response.text).error);
+                this.setState({
+                    open: true,
+                    errorMessage: JSON.parse(response.text).error
+                })
             } else {
                 window.location.reload(true);
             }
         });
-        window.location.reload(true);
     }
 
     render() {
         const { classes } = this.props;
+
+        const handleClose = (event, reason) => {
+            if (reason === 'clickaway') {
+                return;
+            }
+            this.setState({
+                open: false,
+            })
+        };
 
         return (
             <div className={classes.container}>
@@ -167,6 +195,11 @@ class WishlistGames extends Component {
                         </Item>
                     </Grid>
                 </Grid>
+                <Snackbar open={this.state.open} autoHideDuration={2500} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                        {this.state.errorMessage}
+                    </Alert>
+                </Snackbar>
             </div>
         )
     }

@@ -71,7 +71,10 @@ class UserImage extends Component {
                     errorMessage: JSON.parse(response.text).error
                 })
             }
-        });
+            else { 
+                window.location.reload(true)
+            }
+        })
 
         this.handleClose()
     }

@@ -115,7 +115,7 @@ class registerContent extends Component {
                     const cookie = new Cookies();
                     cookie.set("clientEmail", access.email, { path: '/' });
                     cookie.set("clientID", data.id, { path: '/' });
-                    cookie.set("clientOAuth", "true", { path: '/' });
+                    cookie.set("clientOAuth", access.oauth, { path: '/' });
 
                     document.location.href = "/"
                 }

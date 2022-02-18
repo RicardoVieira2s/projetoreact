@@ -73,7 +73,12 @@ export default function GameReviews({ reviews, myReview = null }) {
     return (
         <div style={{ padding: 14 }}>
             {myReview !== null &&
-                <Paper style={{ padding: "40px 20px", marginBottom: "20px", background: COLOR_PLATINIUM }}>
+                <Paper
+                    style={{
+                        padding: "40px 20px",
+                        marginBottom: "20px",
+                        backgroundColor: COLOR_PLATINIUM
+                    }}>
                     <form
                         method="POST"
                         onSubmit={addReview}
@@ -98,8 +103,7 @@ export default function GameReviews({ reviews, myReview = null }) {
             {reviews.length !== 0 &&
                 <div>
                     <Paper style={{ padding: "40px 20px", background: COLOR_PLATINIUM }}>
-
-
+                        
                         {reviews.map((review, index) => {
                             return (
                                 <div key={index}>

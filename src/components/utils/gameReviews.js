@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Divider, Avatar, Grid, Paper } from "@material-ui/core";
-import StarsReview from "./starsReview";
 import { COLOR_BDAZZLED_BLUE, COLOR_RICH_BLACK, COLOR_PLATINIUM } from "./color";
 import { TextField } from "@mui/material";
 import CustomButton from "./customButton";
@@ -101,7 +100,8 @@ export default function GameReviews({ reviews, myReview = null }) {
                             rows={3}
                             value={review}
                             style={{
-                                marginBottom: '5px'
+                                marginBottom: '5px',
+                                fontFamily: 'Viga',
                             }}
                             onChange={e => setReview(e.target.value)}
                         />
@@ -135,7 +135,7 @@ export default function GameReviews({ reviews, myReview = null }) {
                                                     }}
                                                 />
 
-                                                
+
                                             </p>
                                             <p style={{ textAlign: "left", wordWrap: "break-word", color: COLOR_BDAZZLED_BLUE }}>
                                                 {review.review}

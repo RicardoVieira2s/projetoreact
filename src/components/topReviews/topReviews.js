@@ -109,6 +109,10 @@ class Charts extends Component {
 
         var { isLoaded, topReviews } = this.state;
 
+        if (!isLoaded) {
+            return <div>Loading...</div>
+        }
+
         const labelsMostReviewedGames = topReviews.map(review => review.game.name);
 
         const dataMostReviewedGames = {

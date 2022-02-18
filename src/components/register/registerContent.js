@@ -121,7 +121,7 @@ class registerContent extends Component {
                 }
             })
 
-            if (this.state.clientNewsletter == true) {
+            if (this.state.clientNewsletter === true) {
                 newsletterApi.newsletterPost(access.email, null)
             }
 

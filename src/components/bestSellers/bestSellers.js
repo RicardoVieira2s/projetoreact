@@ -109,6 +109,10 @@ class Charts extends Component {
 
         var { isLoaded, bestSellers } = this.state;
 
+        if (!isLoaded){
+            return <div>Loading...</div>
+        }
+
         const labelsBestSellers = bestSellers.slice(0,10).map(bestSeller => bestSeller.game.name);
 
         const dataBestSellers = {

@@ -7,7 +7,6 @@ import { BORDER_RADIUS_5PX } from '../border'
 import WishlistButton from '../wishlistButton'
 import CartButton from '../cartButton'
 import StarsReview from '../starsReview'
-import { Link } from 'react-router-dom'
 
 export default function GameCardMedium({ game }) {
     function renderGamePrice() {

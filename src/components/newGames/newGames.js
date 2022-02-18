@@ -31,8 +31,7 @@ class NewGames extends Component {
 
             if (error) {
                 console.error(error);
-            } else {
-                console.log('API called successfully.');
+                return
             }
             
             this.setState({

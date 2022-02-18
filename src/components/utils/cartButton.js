@@ -26,6 +26,11 @@ export default function CartButton({ gameId, size = "medium" }) {
     function addGameToClientCart(gameId) {
 
         let clientId = new Cookies().get('clientID')
+
+        if (clientId === undefined || clientId === null) {
+            window.location.href = "/login"
+        }
+
         cartApi.cartPost(clientId, gameId, (error, data, response) => {
             if (error) {
                 setAlertMessage(JSON.parse(response.text).error)

@@ -90,8 +90,7 @@ class Privacidade extends Component {
         clientApi.clientGet({ id: clientId }, (error, data) => {
             if (error) {
                 console.error(error)
-            } else {
-                console.log('API called successfully.')
+                return
             }
 
             this.setState({

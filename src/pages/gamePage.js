@@ -1,13 +1,15 @@
 import React from 'react'
 import Content from '../components/gamePage/content'
+import { useParams } from 'react-router-dom'
 
 
-function gamePage() {
+function GamePage() {
+    const { id } = useParams()
     return (
         <div>
-            <Content/>
+            <Content gameId={id} />
         </div>
     )
 }
 
-export default gamePage
+export default GamePage

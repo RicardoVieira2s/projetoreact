@@ -405,6 +405,7 @@ class registerContent extends Component {
                                     onChange={e => this.setState({
                                         clientNewsletter: e.target.checked
                                     })}
+                                    checked={this.state.clientNewsletter}
                                 />
                             </Grid>
                             <Grid

@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import Title from '../utils/Title'
-import { COLOR_SHADOW_BLUE } from '../utils/color'
+import { COLOR_PLATINIUM, COLOR_SHADOW_BLUE } from '../utils/color'
 import MoreAbout from './moreAbout';
 import AboutGame from './aboutGame';
-import Reviews from './reviews';
-import { gameApi, publisherApi, reviewApi } from '../../api'
+import { clientApi, gameApi, publisherApi, reviewApi } from '../../api'
+import GameReviews from '../utils/gameReviews'
+import Cookies from 'universal-cookie';
+import { ReviewSchema } from '../../api/src';
 
 class Content extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -16,109 +19,142 @@ class Content extends Component {
             publisherGames: null,
             tags: null,
             reviews: null,
+            myReview: null,
         }
     }
-    componentDidMount() {
 
-        gameApi.gameGet({ id: "5d1ae5b3-a6e8-46ff-ba96-ef15f489cc65" }, (error, data) => {
+    componentDidMount() {
+        if (this.props.gameId === undefined || this.props.gameId === null) {
+            return
+        }
+        let gameId = this.props.gameId
+        let publisherId = null
+
+        gameApi.gameGet({ id: gameId }, (error, data) => {
 
             if (error) {
                 console.error(error);
-            } else {
-                console.log('API called successfully.')
+                return
             }
 
             this.setState({
                 game: data[0],
             })
-        })
 
+            publisherId = data[0].idPublisher
 
-        publisherApi.publisherGet({ id: "0d4f55b9-af11-44e2-8324-686437956bd6" }, (error, data) => {
+            publisherApi.publisherGet({ id: publisherId }, (error, data) => {
 
-            if (error) {
-                console.error(error);
-            } else {
-                console.log('API called successfully.')
-            }
+                if (error) {
+                    console.error(error);
+                    return
+                }
 
-            this.setState({
-                publisher: data[0],
-            })
-        })
+                this.setState({
+                    publisher: data[0],
+                })
 
-        publisherApi.publisherGamesGet("0d4f55b9-af11-44e2-8324-686437956bd6", (error, data) => {
+                publisherApi.publisherGamesGet(publisherId, (error, data) => {
+                    if (error) {
+                        console.error(error);
+                        return
+                    }
 
-            if (error) {
-                console.error(error);
-            } else {
-                console.log('API called successfully.')
-            }
+                    this.setState({
+                        publisherGames: data,
+                    })
 
-            this.setState({
-                isLoaded: true,
-                publisherGames: data,
-            })
-        })
+                    gameApi.gameTagGet(gameId, (error, data) => {
 
-        gameApi.gameTagGet("5d1ae5b3-a6e8-46ff-ba96-ef15f489cc65", (error, data) => {
+                        if (error) {
+                            console.error(error);
+                            return
+                        }
 
-            if (error) {
-                console.error(error);
-            } else {
-                console.log('API called successfully.')
-            }
+                        this.setState({
+                            tags: data,
+                        })
 
-            this.setState({
-                isLoaded: true,
-                tags: data,
-            })
-        })
+                        reviewApi.gameReviewsGet(gameId, (error, data) => {
 
-        reviewApi.gameReviewsGet("5d1ae5b3-a6e8-46ff-ba96-ef15f489cc65", (error, data) => {
+                            if (error) {
+                                console.error(error);
+                                return
+                            }
 
-            if (error) {
-                console.error(error);
-            } else {
-                console.log('API called successfully.')
-            }
+                            data.forEach((d, index, obj) => {
+                                clientApi.clientGet({ id: d.idClient }, (error, clients) => {
+                                    if (error) {
+                                        obj.splice(index, 1);
+                                        console.error(error)
 
-            this.setState({
-                isLoaded: true,
-                reviews: data,
+                                    } else {
+                                        d.client = clients[0]
+                                    }
+                                })
+                            })
+
+                            setTimeout(() => {
+                                let idClient = new Cookies().get("clientID")
+
+                                if (idClient === undefined || idClient === null) {
+                                    this.setState({
+                                        isLoaded: true,
+                                        reviews: data,
+                                        myReview: null,
+                                    })
+                                } else {
+                                    let myReview = new ReviewSchema()
+                                    myReview.stars = 0
+                                    myReview.review = ""
+
+                                    data.forEach((d, index, obj) => {
+                                        if (d.idClient === idClient) {
+                                            myReview = d
+                                            obj.splice(index, 1);
+                                        }
+                                    })
+
+                                    this.setState({
+                                        isLoaded: true,
+                                        reviews: data,
+                                        myReview: myReview,
+                                    })
+                                }
+                            }, 100)
+                        })
+                    })
+                })
             })
         })
     }
 
     render() {
-
-        var { isLoaded, game, publisher, publisherGames, tags, reviews } = this.state
+        var { isLoaded, game, publisher, publisherGames, tags, reviews, myReview } = this.state
         if (!isLoaded) {
             return <div>Loading....</div>
         }
-
         return (
-            <div>
+            <div >
                 <Title
-                    name={'Nome do jogo: ' + game.name}
+                    name={game.name}
                     color={COLOR_SHADOW_BLUE}
                 />
 
-                <AboutGame game={game} publisher={publisher} tags={tags}/>
+                <AboutGame game={game} publisher={publisher} tags={tags} />
 
                 <Title
-                    name={'Mais jogos da publicadora: ' + publisher.name}
+                    name={'Mais jogos da publicadora ' + publisher.name}
                     color={COLOR_SHADOW_BLUE}
                 />
 
-                <MoreAbout publisherGames={publisherGames} />
+                <MoreAbout publisherGames={publisherGames} gameId={game.id} />
 
                 <Title
                     name={'Avaliações'}
                     color={COLOR_SHADOW_BLUE}
                 />
-
-                <Reviews reviews={reviews}/>
+                <GameReviews reviews={reviews} myReview={myReview} />
             </div >
         )
     }

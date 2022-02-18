@@ -105,7 +105,7 @@ class App extends Component {
             <Route
               path="/wishlist" component={wishlistPage} exact />
             <Route
-              path="/gamepage" component={gamePage} exact />
+              path="/gamepage/:id" component={gamePage} exact />
             <Route
               path="/login" component={Login} exact />
             <Route

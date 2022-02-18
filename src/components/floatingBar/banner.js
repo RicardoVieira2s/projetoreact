@@ -23,7 +23,7 @@ const useStyles = makeStyles(({ palette, typography }) => ({
     }
 }))
 
-export const Banner = React.memo(function BannerApp() {
+export const Banner = React.memo(function BannerApp({ games }) {
     const classes = useStyles()
 
     return (
@@ -41,7 +41,7 @@ export const Banner = React.memo(function BannerApp() {
                     width: '100%',
                 }}>
                     <MenuBar className={classes.teste} />
-                    <Slideshow />
+                    <Slideshow games={games} />
                 </div>
 
             </div>

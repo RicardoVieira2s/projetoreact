@@ -38,6 +38,7 @@ class Homepage extends Component {
             })
         });
     }
+
     render() {
 
         var { isLoaded, games } = this.state;
@@ -47,7 +48,7 @@ class Homepage extends Component {
         }
         return (
             <div>
-                <Banner />
+                <Banner games={games.featured} />
                 <RecomendedGames games={games.recommended} />
                 <GamesOnSale games={games.specialOffers} />
                 <DiscoverGames games={games.discover} />

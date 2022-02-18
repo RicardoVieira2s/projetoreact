@@ -26,6 +26,9 @@ export default function WishlistButton({ gameId, size = "medium" }) {
     function addGameToClientWishlist(gameId) {
 
         let clientId = new Cookies().get('clientID')
+        if (clientId === undefined || clientId === null) {
+            window.location.href = "/login"
+        }
         wishlistApi.wishlistPost(clientId, gameId, (error, data, response) => {
             if (error) {
                 setAlertMessage(JSON.parse(response.text).error)

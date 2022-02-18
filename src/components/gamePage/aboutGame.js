@@ -23,27 +23,30 @@ class AboutGame extends Component {
 
     render() {
 
-        var { isLoaded } = this.state
+        let { isLoaded } = this.state
 
         if (!isLoaded) {
             return <div>Loading....</div>
         }
-        var gamePrice = this.props.game.price - (this.props.game.price * this.props.game.discount)
+        let gamePrice = this.props.game.price - (this.props.game.price * this.props.game.discount)
+        let tags = this.props.tags.map(tag => tag.name).join(", ")
         return (
             <Grid
                 container
                 direction="column"
                 alignItems="center"
                 justifyContent="center"
+
             >
                 <Card sx={{
                     maxWidth: 500,
                     backgroundColor: COLOR_PLATINIUM,
                     cursor: "pointer",
-                }}>
+                }}
+                    style={{ background: COLOR_PLATINIUM }}
+                >
                     <CardHeader
-                        title={this.props.game.name}
-                        subheader="colocar tags aqui"
+                        subheader={tags}
                     />
                     <CardMedia
                         component="img"
@@ -89,7 +92,7 @@ class AboutGame extends Component {
                             }}
                             variant="p"
                         >
-                            Total: {gamePrice.toFixed(2)}
+                            Final: €{gamePrice.toFixed(2)}
                         </Typography>
                     </CardContent>
                     <CardContent>
@@ -123,8 +126,8 @@ class AboutGame extends Component {
                         </Typography>
                     </CardContent>
                     <CardActions disableSpacing>
-                        <WishlistButton />
-                        <CartButton />
+                        <WishlistButton gameId={this.props.game.id} />
+                        <CartButton gameId={this.props.game.id} />
                     </CardActions>
                 </Card>
             </Grid>

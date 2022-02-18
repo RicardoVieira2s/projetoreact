@@ -5,32 +5,6 @@ import 'swiper/swiper.min.css'
 import 'swiper/modules/pagination/pagination.min.css'
 import 'swiper/modules/navigation/navigation.min.css'
 
-
-// const games = [
-//   {
-//     id: 1,
-//     name: 'Fortnite',
-//     description: 'Fortnite is a survival game where 100 players fight against each other in player versus player combat to be the last one standing. It is a fast-paced, action-packed game, not unlike The Hunger Games, where strategic thinking is a must in order to survive. There are an estimated 125 million players on Fortnite.',
-//     image: 'https://cdn2.unrealengine.com/7up-v2-3840x2160-e11fc91a84d6.jpg',
-//     url: 'https://www.google.pt'
-//   },
-//   {
-//     id: 2,
-//     name: 'CS GO',
-//     description: 'Counter-Strike: Global Offensive (CS:GO) is a multiplayer first-person shooter developed by Valve and Hidden Path Entertainment. It is the fourth game in the Counter-Strike series. ... The game pits two teams, Terrorists and Counter-Terrorists, against each other in different objective-based game modes.',
-//     image: 'http://media.steampowered.com/apps/csgo/blog/images/fb_image.png?v=6',
-//     url: 'https://www.google.pt'
-//   },
-//   {
-//     id: 3,
-//     name: 'My Little Pony: Friendship is Magic',
-//     description:
-//       'Nightmare Moon has returned and covered the land in eternal darkness after escaping her imprisonment by her sister Celestia in the moon. Twilight Sparkle is the only pony to escape the darkness along with Spike the dragon, her assistant, which are attempting to rebuild their home, Ponyville, save everypony and collect the Elements of Harmony to defeat Nightmare Moon and bring sunlight back to the land of Equestria.',
-//     image: 'https://www.giantbomb.com/a/uploads/scale_small/3/36058/2352970-mlp_new_pack.jpg',
-//     url: 'https://www.google.pt'
-//   },
-// ]
-
 function Slideshow({ games }) {
   function onProgress(swiper, progress) {
     const scaleStep = 0.2
@@ -86,9 +60,6 @@ function Slideshow({ games }) {
         loopedSlides={5}
         slidesPerView='auto'
         centeredSlides
-        //navigation
-        //pagination={{ clickable: true }}
-        //autoplay={{ delay: 3000 }}
         onProgress={onProgress}
         onSetTransition={onSetTransition}
         onSlideChange={(swiper) => console.log(swiper.activeIndex)}

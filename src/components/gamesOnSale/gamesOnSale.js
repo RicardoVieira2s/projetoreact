@@ -15,8 +15,6 @@ function renderGames(games) {
                 justify="center"
                 alignItems="stretch"
             >
-                {/*  TODO: align center*/}
-
                 <Grid item xs={12} sm={12} md={5} lg={5}
                     style={{ padding: '0px 10px 0px 0px ' }}>
                     <Grid style={{ height: "100%" }} >

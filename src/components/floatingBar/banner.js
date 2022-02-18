@@ -35,7 +35,7 @@ export const Banner = React.memo(function BannerApp({ games }) {
                 position: 'absolute',
                 width: '100%',
                 top: '0px'
-            }}> {/* absolute  com topo 68px*/}
+            }}>
                 <div style={{
                     position: 'relative',
                     width: '100%',
@@ -45,13 +45,6 @@ export const Banner = React.memo(function BannerApp({ games }) {
                 </div>
 
             </div>
-
-
-            {/* <Container className={classes.containerBanner}>
-            
-            <MenuBar />
-
-        </Container> */}
 
         </div>
     )

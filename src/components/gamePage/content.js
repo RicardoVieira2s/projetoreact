@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import Title from '../utils/Title'
-import {  COLOR_SHADOW_BLUE } from '../utils/color'
+import { COLOR_SHADOW_BLUE } from '../utils/color'
 import MoreAbout from './moreAbout';
 import AboutGame from './aboutGame';
-import { clientApi, gameApi, publisherApi, reviewApi } from '../../api'
+import { clientApi, gameApi, publisherApi, reviewApi, searchApi } from '../../api'
 import GameReviews from '../utils/gameReviews'
 import Cookies from 'universal-cookie';
 import { ReviewSchema } from '../../api/src';
@@ -24,11 +24,20 @@ class Content extends Component {
     }
 
     componentDidMount() {
+
         if (this.props.gameId === undefined || this.props.gameId === null) {
             return
         }
         let gameId = this.props.gameId
         let publisherId = null
+
+
+        let idClient = new Cookies().get('clientID')
+        if (idClient !== undefined && idClient !== null) {
+
+            searchApi.searchHistoryPost(idClient, gameId, null)
+        }
+
 
         gameApi.gameGet({ id: gameId }, (error, data) => {
 
@@ -96,8 +105,6 @@ class Content extends Component {
 
                             setTimeout(() => {
 
-                                let idClient = new Cookies().get('clientID')
-
                                 if (idClient === undefined || idClient === null) {
                                     this.setState({
                                         isLoaded: true,
@@ -136,7 +143,7 @@ class Content extends Component {
         if (!isLoaded) {
             return <div>Loading....</div>
         }
-        
+
         return (
             <div >
                 <Title

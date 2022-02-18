@@ -68,7 +68,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
         transition: theme.transitions.create('width'),
         width: '295px',
-        [theme.breakpoints.up('md')]: {
+        [theme.breakpoints.up('lg')]: {
             width: '455px',
         },
         [theme.breakpoints.down('md')]: {
@@ -107,7 +107,7 @@ export default function PrimarySearchAppBar(props) {
     const handleLogout = () => {
 
         const cookie = new Cookies();
-        const opt = {path: "/"}
+        const opt = { path: "/" }
         cookie.remove("clientEmail", opt);
         cookie.remove("clientID", opt);
         cookie.remove("clientOAuth", opt);
@@ -523,7 +523,7 @@ export default function PrimarySearchAppBar(props) {
                 }}
             >
                 <Toolbar sx={{ flexGrow: 1 }}>
-                    <Box sx={{ display: { xs: 'none', sm: 'none', md: 'flex' } }}>
+                    <Box sx={{ display: { xs: 'none', sm: 'none', md: 'flex' }, minWidth: "270px" }}>
                         <ImageLogo />
                     </Box>
                     <Box sx={{ flexGrow: 1 }} />
@@ -610,7 +610,7 @@ export default function PrimarySearchAppBar(props) {
                     </Search>
 
                     <Box sx={{ flexGrow: 1 }} />
-                    <Box sx={{ display: { xs: 'none', sm: 'none', md: 'flex' } }}>
+                    <Box sx={{ display: { xs: 'none', sm: 'none', md: 'flex' }, minWidth: "270px", justifyContent: "flex-end" }}>
                         {
                             props.user &&
                             <Link to="/wishlist">

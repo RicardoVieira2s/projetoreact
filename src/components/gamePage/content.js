@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Title from '../utils/Title'
-import { COLOR_PLATINIUM, COLOR_SHADOW_BLUE } from '../utils/color'
+import {  COLOR_SHADOW_BLUE } from '../utils/color'
 import MoreAbout from './moreAbout';
 import AboutGame from './aboutGame';
 import { clientApi, gameApi, publisherApi, reviewApi } from '../../api'
@@ -95,7 +95,8 @@ class Content extends Component {
                             })
 
                             setTimeout(() => {
-                                let idClient = new Cookies().get("clientID")
+
+                                let idClient = new Cookies().get('clientID')
 
                                 if (idClient === undefined || idClient === null) {
                                     this.setState({
@@ -131,9 +132,11 @@ class Content extends Component {
 
     render() {
         var { isLoaded, game, publisher, publisherGames, tags, reviews, myReview } = this.state
+
         if (!isLoaded) {
             return <div>Loading....</div>
         }
+        
         return (
             <div >
                 <Title

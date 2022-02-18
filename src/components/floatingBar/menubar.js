@@ -73,7 +73,7 @@ export default function MenuBar() {
             className={classes.tabsConfig}
           />
         </Link>
-        <Link to="statistics">
+        <Link to="/statistics">
           <Tab
             label="Estatísticas"
             value={3}

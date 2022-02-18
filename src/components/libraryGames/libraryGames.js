@@ -4,9 +4,10 @@ import GameImage from './GameImage'
 import { Card, CardContent, Grid, CardActions, Typography } from '@mui/material'
 import { BORDER_RADIUS_5PX } from '../utils/border'
 import renderDownloadButton from '../utils/downloadButton'
+import { Link } from 'react-router-dom'
 
 export default function libraryGame({ game }) {
-    
+
     return (
         <CardContent>
             <Grid item>
@@ -16,9 +17,11 @@ export default function libraryGame({ game }) {
                         borderRadius: BORDER_RADIUS_5PX,
                     }}
                 >
-                    <GameImage
-                        cover_image={game.coverImage}
-                    />
+                    <Link to={"/gamepage/" + game.id}>
+                        <GameImage
+                            cover_image={game.coverImage}
+                        />
+                    </Link>
                     <CardActions style={{ position: 'relative', backgroundColor: COLOR_PLATINIUM }}>
                         <Grid
                             sx={{
@@ -27,19 +30,20 @@ export default function libraryGame({ game }) {
                                 height: '60px',
                             }}
                         >
-                            <Typography
-                                sx={{
-                                    paddingLeft: "13px",
-                                    textOverflow: "ellipsis",
-                                    overflow: "hidden",
-                                    maxWidth: '290px',
-                                    color: COLOR_BDAZZLED_BLUE,
-                                }}
-                                variant="p"
-                            >
-                                {game.name}
-                            </Typography>
-
+                            <Link to={"/gamepage/" + game.id}>
+                                <Typography
+                                    sx={{
+                                        paddingLeft: "13px",
+                                        textOverflow: "ellipsis",
+                                        overflow: "hidden",
+                                        maxWidth: '290px',
+                                        color: COLOR_BDAZZLED_BLUE,
+                                    }}
+                                    variant="p"
+                                >
+                                    {game.name}
+                                </Typography>
+                            </Link>
                         </Grid>
                         {renderDownloadButton(game.state, game.downloadLink, game.releaseDate)}
                     </CardActions>

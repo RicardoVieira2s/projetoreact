@@ -125,7 +125,9 @@ class WishlistGames extends Component {
                             width={"100%"}
                             textAlign={"center"}
                         >
-                            <img src={this.props.game.coverImage} alt="" className={classes.imageBox}></img>
+                            <a href={"http://localhost:3000/gamepage/" + this.props.game.id}>
+                                <img src={this.props.game.coverImage} alt="" className={classes.imageBox}></img>
+                            </a>
                         </Item>
                     </Grid>
 
@@ -133,11 +135,13 @@ class WishlistGames extends Component {
                         <Item
                             className={classes.paddingItem}
                         >
-                            <Typography
-                                component={'p'}
-                            >
-                                {this.props.game.name}
-                            </Typography>
+                            <a href={"http://localhost:3000/gamepage/" + this.props.game.id}>
+                                <Typography
+                                    component={'p'}
+                                >
+                                    {this.props.game.name}
+                                </Typography>
+                            </a>
                         </Item>
                     </Grid>
 

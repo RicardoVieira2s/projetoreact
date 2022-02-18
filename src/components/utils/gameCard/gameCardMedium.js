@@ -7,6 +7,7 @@ import { BORDER_RADIUS_5PX } from '../border'
 import WishlistButton from '../wishlistButton'
 import CartButton from '../cartButton'
 import StarsReview from '../starsReview'
+import { Link } from 'react-router-dom'
 
 export default function GameCardMedium({ game }) {
     function renderGamePrice() {
@@ -98,7 +99,7 @@ export default function GameCardMedium({ game }) {
                                     </Typography>
                                 </Grid>
                             </Grid>
-                            <Grid item xs={12} style={{ maxWidth: "30%", textAlign: 'right'}}>
+                            <Grid item xs={12} style={{ maxWidth: "30%", textAlign: 'right' }}>
                                 <Grid container >
                                     <Grid item xs={12}>
                                         <Typography
@@ -146,9 +147,11 @@ export default function GameCardMedium({ game }) {
                     borderRadius: BORDER_RADIUS_5PX,
                 }}
             >
-                <GameImage
-                    cover_image={game.coverImage}
-                />
+                <Link to={"/gamepage/" + game.id}>
+                    <GameImage
+                        cover_image={game.coverImage}
+                    />
+                </Link>
                 <CardActions
                     style={{
                         position: 'relative',
@@ -181,18 +184,20 @@ export default function GameCardMedium({ game }) {
                                 }}
                             >
                                 <Grid item xs={8}>
-                                    <Typography
-                                        sx={{
-                                            textOverflow: "ellipsis",
-                                            overflow: 'hidden',
-                                            maxWidth: '290px',
-                                            color: COLOR_BDAZZLED_BLUE,
-                                            fontSize: '20px',
-                                        }}
-                                        variant="p"
-                                    >
-                                        {game.name}
-                                    </Typography>
+                                    <Link to={"/gamepage/" + game.id}>
+                                        <Typography
+                                            sx={{
+                                                textOverflow: "ellipsis",
+                                                overflow: 'hidden',
+                                                maxWidth: '290px',
+                                                color: COLOR_BDAZZLED_BLUE,
+                                                fontSize: '20px',
+                                            }}
+                                            variant="p"
+                                        >
+                                            {game.name}
+                                        </Typography>
+                                    </Link>
                                 </Grid>
                                 <Grid item xs={6}
                                     sx={{

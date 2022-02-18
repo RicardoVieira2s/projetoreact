@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Typography, Grid, Tooltip, Fade  } from '@mui/material'
+import { Typography, Grid, Tooltip, Fade } from '@mui/material'
 import { Item } from '@mui-treasury/components/flex'
 import { COLOR_OXFORD_BLUE, COLOR_BDAZZLED_BLUE, COLOR_PLATINIUM } from '../utils/color'
 import { BORDER_RADIUS_10PX, BORDER_RADIUS_5PX } from '../utils/border'
@@ -46,7 +46,7 @@ class CartlistGames extends Component {
     deleteGameFromCart(id) {
         let clientId = new Cookies().get('clientID')
 
-        cartApi.cartDelete(clientId, {gameID: id}, (error, data) => {
+        cartApi.cartDelete(clientId, { gameID: id }, (error, data) => {
             if (error) {
                 console.error(error)
             } else {
@@ -85,7 +85,9 @@ class CartlistGames extends Component {
                             width={"100%"}
                             textAlign={"center"}
                         >
-                            <img src={this.props.game.coverImage} alt="" className={classes.imageBox}></img>
+                            <a href={"http://localhost:3000/gamepage/" + this.props.game.id}>
+                                <img src={this.props.game.coverImage} alt="" className={classes.imageBox}></img>
+                            </a>
                         </Item>
                     </Grid>
 
@@ -93,11 +95,13 @@ class CartlistGames extends Component {
                         <Item
                             className={classes.paddingItem}
                         >
-                            <Typography
-                                component={'p'}
-                            >
-                                {this.props.game.name}
-                            </Typography>
+                            <a href={"http://localhost:3000/gamepage/" + this.props.game.id}>
+                                <Typography
+                                    component={'p'}
+                                >
+                                    {this.props.game.name}
+                                </Typography>
+                            </a>
                         </Item>
                     </Grid>
 

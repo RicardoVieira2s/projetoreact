@@ -78,7 +78,7 @@ class App extends Component {
 
   render() {
     var { client, clientWallet, games } = this.state
-    
+
     return (
       <Router>
         <TopBar
@@ -91,7 +91,7 @@ class App extends Component {
             <Route
               path="/" component={homePage} exact />
             <Route
-              path="/News" component={newStorePage} exact />
+              path="/news" component={newStorePage} exact />
             <Route
               path="/featured" component={featuredPage} exact />
             <Route

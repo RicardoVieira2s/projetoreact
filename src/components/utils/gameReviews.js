@@ -11,6 +11,7 @@ import MuiAlert from '@mui/material/Alert';
 import Cookies from "universal-cookie";
 import camelCaseKeysToUnderscore from "./api/camelCaseKeysToUnderscore";
 import { useParams } from 'react-router-dom'
+import Rating from '@mui/material/Rating';
 
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -19,8 +20,9 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 
 export default function GameReviews({ reviews, myReview = null }) {
-    const [stars, setStars] = useState("");
-    const [review, setReview] = useState("")
+
+    const [stars, setStars] = useState(myReview == null ? 0 : myReview.stars);
+    const [review, setReview] = useState(myReview == null ? "" : myReview.review)
     const [open, setOpen] = React.useState(false);
     const [alertMessage, setAlertMessage] = useState("");
     const { id } = useParams()
@@ -32,6 +34,7 @@ export default function GameReviews({ reviews, myReview = null }) {
         setOpen(false);
     };
 
+
     const addReview = async e => {
         e.preventDefault();
         e.stopPropagation();
@@ -40,15 +43,13 @@ export default function GameReviews({ reviews, myReview = null }) {
         body = camelCaseKeysToUnderscore(body)
         body.id_game = id
         body.id_client = new Cookies().get("clientID")
-        body.stars = 3
+        body.stars = stars
         body.review = review
 
-
-        if (myReview.idGame === undefined || myReview.idGame === null) {
+        console.log("body", body)
+        if (myReview.id === undefined || myReview.id === null) {
 
             reviewApi.reviewPost(body, (error, data, response) => {
-                console.log(body)
-                alert(body)
                 if (error) {
                     setAlertMessage(JSON.parse(response.text).error)
                     setOpen(true);
@@ -83,19 +84,29 @@ export default function GameReviews({ reviews, myReview = null }) {
                         method="POST"
                         onSubmit={addReview}
                     >
+                        <Rating
+                            onChange={e => setStars(parseInt(e.target.value))}
+                            value={parseInt(stars)}
+                            precision={1}
+                            readOnly={false}
+                            sx={{
+                                color: COLOR_BDAZZLED_BLUE,
+                                borderColor: COLOR_BDAZZLED_BLUE,
+                            }}
+                        />
                         <TextField
                             fullWidth
                             label="Review"
                             multiline
                             rows={3}
-                            defaultValue={myReview.review}
+                            value={review}
                             style={{
                                 marginBottom: '5px'
                             }}
                             onChange={e => setReview(e.target.value)}
                         />
                         <CustomButton
-                            name={"Adicionar Review"}
+                            name={"Aplicar Review"}
                         />
                     </form>
                 </Paper>
@@ -103,7 +114,7 @@ export default function GameReviews({ reviews, myReview = null }) {
             {reviews.length !== 0 &&
                 <div>
                     <Paper style={{ padding: "40px 20px", background: COLOR_PLATINIUM }}>
-                        
+
                         {reviews.map((review, index) => {
                             return (
                                 <div key={index}>
@@ -111,10 +122,20 @@ export default function GameReviews({ reviews, myReview = null }) {
                                         <Grid item>
                                             <Avatar alt="Remy Sharp" src={review.client.picture} />
                                         </Grid>
-                                        <Grid justifyContent="left" item xs zeroMinWidth>
+                                        <Grid item xs zeroMinWidth>
                                             <h4 style={{ margin: 0, textAlign: "left", color: COLOR_RICH_BLACK }}>{review.client.name}</h4>
                                             <p style={{ textAlign: "left" }}>
-                                                <StarsReview gameId={review.idGame} />
+                                                <Rating
+                                                    value={parseInt(review.stars)}
+                                                    precision={1}
+                                                    readOnly={true}
+                                                    sx={{
+                                                        color: COLOR_BDAZZLED_BLUE,
+                                                        borderColor: COLOR_BDAZZLED_BLUE,
+                                                    }}
+                                                />
+
+                                                
                                             </p>
                                             <p style={{ textAlign: "left", wordWrap: "break-word", color: COLOR_BDAZZLED_BLUE }}>
                                                 {review.review}

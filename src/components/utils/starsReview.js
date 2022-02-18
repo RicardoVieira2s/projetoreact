@@ -45,7 +45,6 @@ class StarsReview extends Component {
 
         return (
             <Rating
-                name="simple-controlled"
                 value={this.state.rate}
                 precision={0.5}
                 readOnly={true}

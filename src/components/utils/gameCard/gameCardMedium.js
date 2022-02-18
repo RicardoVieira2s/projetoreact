@@ -204,7 +204,7 @@ export default function GameCardMedium({ game }) {
                                         textAlign: 'right',
                                     }}
                                 >
-                                    <StarsReview gameId={game.id} size="medium" />
+                                    <StarsReview gameId={game.id} />
                                 </Grid>
                             </Grid>
                             <Grid

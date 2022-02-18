@@ -77,7 +77,7 @@ export default function Login() {
         const cookie = new Cookies();
         cookie.set("clientEmail", email, { path: '/' });
         cookie.set("clientID", data.id, { path: '/' });
-        cookie.set("clientOAuth", "false", { path: '/' });
+        cookie.set("clientOAuth", "true", { path: '/' });
 
         document.location.href = "/";
       }

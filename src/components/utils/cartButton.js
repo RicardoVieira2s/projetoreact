@@ -50,7 +50,8 @@ export default function CartButton({ gameId, size = "medium" }) {
                         },
                     }}
                     fontSize={size} />
-            </IconButton><Snackbar open={open} autoHideDuration={2500} onClose={handleClose}>
+            </IconButton>
+            <Snackbar open={open} autoHideDuration={2500} onClose={handleClose}>
                 <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
                     {alertMessage}
                 </Alert>

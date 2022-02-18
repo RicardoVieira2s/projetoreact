@@ -147,11 +147,11 @@ export default function GameCardMedium({ game }) {
                     borderRadius: BORDER_RADIUS_5PX,
                 }}
             >
-                <Link to={"/gamepage/" + game.id}>
+                <a href={"/gamepage/" + game.id}>
                     <GameImage
                         cover_image={game.coverImage}
                     />
-                </Link>
+                </a>
                 <CardActions
                     style={{
                         position: 'relative',
@@ -184,7 +184,7 @@ export default function GameCardMedium({ game }) {
                                 }}
                             >
                                 <Grid item xs={8}>
-                                    <Link to={"/gamepage/" + game.id}>
+                                <a href={"/gamepage/" + game.id}>
                                         <Typography
                                             sx={{
                                                 textOverflow: "ellipsis",
@@ -197,7 +197,7 @@ export default function GameCardMedium({ game }) {
                                         >
                                             {game.name}
                                         </Typography>
-                                    </Link>
+                                    </a>
                                 </Grid>
                                 <Grid item xs={6}
                                     sx={{

@@ -107,13 +107,14 @@ export default function PrimarySearchAppBar(props) {
     const handleLogout = () => {
 
         const cookie = new Cookies();
-        cookie.remove("clientEmail");
-        cookie.remove("clientID");
-        cookie.remove("clientOAuth");
+        const opt = {path: "/"}
+        cookie.remove("clientEmail", opt);
+        cookie.remove("clientID", opt);
+        cookie.remove("clientOAuth", opt);
 
         setAnchorEl(null)
         handleMobileMenuClose()
-        document.location.href = "/";
+        window.location.href = "/";
     }
 
     const handleMobileMenuOpen = (event) => {
@@ -505,7 +506,7 @@ export default function PrimarySearchAppBar(props) {
                     return game.name.match(regex)
                 })
             }
-            setSuggestions(matches.slice(0,10))
+            setSuggestions(matches.slice(0, 10))
         })
     }
 
@@ -546,7 +547,7 @@ export default function PrimarySearchAppBar(props) {
                                     marginLeft: 'auto',
                                     marginRight: 'auto',
                                     top: '55px',
-                                    zIndex: '1',
+                                    zIndex: '500',
                                     overflow: 'visible',
                                     borderRadius: BORDER_RADIUS_10PX,
                                     backgroundColor: COLOR_PLATINIUM,
@@ -567,20 +568,23 @@ export default function PrimarySearchAppBar(props) {
                                             }}>
                                             <Grid item xs={12} style={{ maxWidth: "30%" }}>
                                                 <Grid>
-                                                    <CardMedia
-                                                        component="img"
-                                                        image={suggestion.coverImage}
-                                                        style={{
-                                                            borderRadius: BORDER_RADIUS_5PX
-                                                        }}
-                                                    />
+                                                    <a href={"/gamepage/" + suggestion.id}>
+                                                        <CardMedia
+                                                            component="img"
+                                                            image={suggestion.coverImage}
+                                                            style={{
+                                                                borderRadius: BORDER_RADIUS_5PX
+                                                            }}
+                                                        />
+                                                    </a>
                                                 </Grid>
                                             </Grid>
                                             <Grid item xs={12} style={{ maxWidth: "70%", paddingLeft: "5px", color: COLOR_BDAZZLED_BLUE }}>
                                                 <Grid container >
                                                     <Grid item xs={12} style={{ fontSize: "20px" }}>
-                                                        {suggestion.name}
-                                                        {/* <CartButton gameId={suggestion.id}/> */}
+                                                        <a href={"/gamepage/" + suggestion.id}>
+                                                            {suggestion.name}
+                                                        </a>
                                                     </Grid>
                                                     <Grid item xs={6}>
                                                         {renderPrice(suggestion)}
@@ -671,7 +675,7 @@ export default function PrimarySearchAppBar(props) {
                                 onClick={handleProfileMenuOpen}
                                 endIcon={renderArrowFunc(props.user)}
                             >
-                                <Paper sx={{
+                                <Paper style={{
                                     width: '30px',
                                     backgroundColor: 'transparent',
                                     marginTop: '11px',

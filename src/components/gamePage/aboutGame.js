@@ -41,12 +41,12 @@ class AboutGame extends Component {
                 <Card sx={{
                     maxWidth: 500,
                     backgroundColor: COLOR_PLATINIUM,
-                    cursor: "pointer",
                 }}
                     style={{ background: COLOR_PLATINIUM }}
                 >
                     <CardHeader
                         subheader={tags}
+                        subheaderTypographyProps={{ variant: "p" }}
                     />
                     <CardMedia
                         component="img"
